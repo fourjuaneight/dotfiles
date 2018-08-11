@@ -2,6 +2,13 @@
 # 
 # Bootstrap script for setting up a new macOS machine
 
+
+# Ask for the administrator password upfront
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
 echo "Starting bootstrapping"
 
 # Check for Homebrew, install if we don't have it
@@ -29,42 +36,45 @@ brew install bash
 echo "Installing packages..."
 PACKAGES=(
     ack
+    cabal-install
     dep
-	  docker
+    docker
     ffmpeg
     fzf
     git
     gist
-	  go
+    go
     gpg
     hub
-	  hugo
-	  inetutils
+    hugo
+    inetutils
     libjpeg
     libmemcached 
     markdown
     memcached
     mercurial
-	  mosh
-	  mysql
-	  node
+    mosh
+    mysql
+    node
     npm
     pkg-config
     postgresql
     python
     python3
     rename
-	  ruby
-	  sphinx
+    ruby
+    sphinx
     ssh-copy-id
+    the_silver_searcher
     tmux
     vim
     wget
-	  xz
+    xz
     yarn
-	  youtube-dl
-	  zsh
-	  zsh-syntax-highlighting
+    youtube-dl
+    zsh
+    zsh-autosuggestions
+    zsh-syntax-highlighting
 )
 brew install ${PACKAGES[@]}
 
@@ -105,20 +115,20 @@ brew cask install ${FONTS[@]}
 
 echo "Installing Python packages..."
 PYTHON_PACKAGES=(
-	 brotli
-	 fonttools
-   ipython
-   virtualenv
-   virtualenvwrapper
+    brotli
+    fonttools
+    ipython
+    virtualenv
+    virtualenvwrapper
 )
 sudo pip install ${PYTHON_PACKAGES[@]}
 
 echo "Installing Ruby gems"
 RUBY_GEMS=(
     bundler
-	  jekyll
-	  nokogiri
-	  rails
+    jekyll
+    nokogiri
+    rails
 )
 sudo gem install ${RUBY_GEMS[@]}
 
@@ -131,35 +141,18 @@ echo "Installing global npm packages..."
 NPM_PACKAGES =(
     branch-diff
     fkill
-	  empty-trash
-	  glyphhanger
-	  gtop
-	  gulp
-	  hex-rgb-cli
-	  kill-tabs
-	  localtunnel
-	  postcss-cli
-	  rgb-hex-cli
- 	  speed-test
-	  trash
+    empty-trash
+    glyphhanger
+    gtop
+    gulp
+    hex-rgb-cli
+    kill-tabs
+    localtunnel
+    postcss-cli
+    rgb-hex-cli
+    speed-test
+    trash
 )
 npm install -g ${NPM_PACKAGES[@]}
-
-echo "Configuring OSX..."
-
-# Require password as soon as screensaver or sleep mode starts
-defaults write com.apple.screensaver askForPassword -int 1
-defaults write com.apple.screensaver askForPasswordDelay -int 0
-
-# Show filename extensions by default
-defaults write NSGlobalDomain AppleShowAllExtensions -bool true
-
-# Enable tap-to-click
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-
-echo "Creating folder structure..."
-[[ ! -d Wiki ]] && mkdir Wiki
-[[ ! -d Workspace ]] && mkdir Workspace
 
 echo "Bootstrapping complete"

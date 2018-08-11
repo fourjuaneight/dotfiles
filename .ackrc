@@ -1,0 +1,5 @@
+# TOML file type
+--type-set=toml:ext:toml
+
+# Sass file type
+--type-set=scss:ext:scss
