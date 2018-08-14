@@ -324,7 +324,3 @@ uninstall() {
 
 export FZF_DEFAULT_COMMAND='ag -l -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-source ~/.zsh/antigen-hs/init.zshsource ~/.zsh/antigen-hs/init.zsh
-source ~/.zsh/antigen-hs/init.zsh
-source ~/.zsh/antigen-hs/init.zsh
-source ~/.zsh/antigen-hs/init.zsh

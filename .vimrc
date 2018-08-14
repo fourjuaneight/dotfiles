@@ -15,8 +15,8 @@ endif
 
 cnoreabbrev ak Ack!
 
-nmap <C>a       :Ack!<Space>
-nmap <Leader>af :Ack  %<Left><Left>
+nmap ;a       :Ack! ""<Left>
+nmap ;af :Ack "" %<Left><Left><Left>
 nmap <Esc>k     :Ack! "\b<cword>\b" <CR>
 nmap <M-S-k>    :Ggrep! "\b<cword>\b" <CR>
 nmap <Esc>K     :Ggrep! "\b<cword>\b" <CR>
@@ -27,10 +27,11 @@ Plug 'w0rp/ale'
 let g:ale_sign_warning='●'
 let g:ale_sign_error='●'
 
-let g:ale_linters = {}
-let g:ale_linter_aliases = {}
+let g:ale_sign_column_always = 1
+
+let g:ale_linters = {'css': ['prettier'], 'scss': ['prettier'], 'javascript': ['prettier', 'eslint'], 'erb': ['erb'], 'yaml': ['prettier']}
 let g:ale_fix_on_save = 1
-let g:ale_fixers = {}
+let g:ale_fixers = {'css': ['prettier'], 'scss': ['prettier'], 'javascript': ['prettier', 'eslint'], 'erb': ['erb'], 'yaml': ['prettier']}
 
 " Editor
 Plug 'scrooloose/nerdcommenter'
@@ -52,12 +53,28 @@ function! s:fzf_statusline()
 endfunction
 autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
+nmap ;b :Buffers<CR>
+nmap ;f :Files<CR>
+nmap ;r :Tags<CR>
+
 " Git gutter
 Plug 'airblade/vim-gitgutter'
 highlight clear SignColumn
 
 " Lightline
 Plug 'itchyny/lightline.vim'
+let g:lightline = {
+      \ 'colorscheme': 'darcula',
+      \ }
+Plug 'maximbaz/lightline-ale'
+let g:lightline = {}
+
+let g:lightline.component_expand = {
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ }
 
 " Multiple cursors
 Plug 'terryma/vim-multiple-cursors'
@@ -129,6 +146,7 @@ set showcmd
 
 set list
 set listchars=tab:··,trail:·
+set listchars=eol:·,tab:··,trail:·,extends:·,precedes:·
 
 set hlsearch
 set ic
@@ -177,16 +195,11 @@ cnoremap <C-n> <Down>
 
 " Italic comments
 highlight Comment cterm=italic
-highlight LineNr ctermbg=15  " clear background for line numbers
 
 nmap ;pc :PlugClean<CR>
 
 " delete all empty lines
 map <C-o> :g/^$/d
-
-nmap ;b :Buffers<CR>
-nmap ;f :Files<CR>
-nmap ;r :Tags<CR>
 
 " Autoclose
 inoremap " ""<left>
