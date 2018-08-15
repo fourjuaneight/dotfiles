@@ -1,7 +1,7 @@
 export GOPATH=$HOME/Code/go
 PATH=$PATH:$GOPATH/bin
 
-echo 'source ~/.zsh/antigen-hs/init.zsh' | tee -a ~/.zshrc | env zsh
+. ~/.zsh/antigen-hs/init.zsh
 
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
@@ -47,6 +47,8 @@ alias tso="source ~/.tmux.conf"
 alias tn='tmux -u new'
 alias tk='pkill -f tmux'
 alias tx='exit'
+
+alias guw='gulp watch'
 
 alias hs='hugo server'
 alias hsd='hugo server --disableFastRender'
