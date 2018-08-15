@@ -33,6 +33,17 @@ let g:ale_linters = {'css': ['prettier'], 'scss': ['prettier'], 'javascript': ['
 let g:ale_fix_on_save = 1
 let g:ale_fixers = {'css': ['prettier'], 'scss': ['prettier'], 'javascript': ['prettier', 'eslint'], 'erb': ['erb'], 'yaml': ['prettier']}
 
+" Ariline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+let g:airline_theme='dracula'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline#extensions#ale#enabled = 1
+
 " Editor
 Plug 'scrooloose/nerdcommenter'
 Plug 'ntpeters/vim-better-whitespace'
@@ -60,21 +71,6 @@ nmap ;r :Tags<CR>
 " Git gutter
 Plug 'airblade/vim-gitgutter'
 highlight clear SignColumn
-
-" Lightline
-Plug 'itchyny/lightline.vim'
-let g:lightline = {
-      \ 'colorscheme': 'darcula',
-      \ }
-Plug 'maximbaz/lightline-ale'
-let g:lightline = {}
-
-let g:lightline.component_expand = {
-      \  'linter_checking': 'lightline#ale#checking',
-      \  'linter_warnings': 'lightline#ale#warnings',
-      \  'linter_errors': 'lightline#ale#errors',
-      \  'linter_ok': 'lightline#ale#ok',
-      \ }
 
 " Multiple cursors
 Plug 'terryma/vim-multiple-cursors'
@@ -141,7 +137,6 @@ set hidden
 set mouse=a
 set number
 set scrolloff=2
-set undofile
 set showcmd
 
 set list
