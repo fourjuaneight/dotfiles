@@ -122,7 +122,12 @@ PYTHON_PACKAGES=(
     virtualenv
     virtualenvwrapper
 )
-sudo pip install ${PYTHON_PACKAGES[@]}
+pip install ${PYTHON_PACKAGES[@]}
+
+echo "Installing rvm..."
+gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+\curl -sSL https://get.rvm.io | bash -s stable
+rvm install ruby-2.5.0
 
 echo "Installing Ruby gems"
 RUBY_GEMS=(
@@ -131,15 +136,10 @@ RUBY_GEMS=(
     nokogiri
     rails
 )
-sudo gem install ${RUBY_GEMS[@]}
-
-echo "Installing rvm..."
-gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-\curl -sSL https://get.rvm.io | bash -s stable
-rvm install ruby-2.5.0
+gem install ${RUBY_GEMS[@]}
 
 echo "Installing global npm packages..."
-NPM_PACKAGES =(
+NPM_PACKAGES=(
     branch-diff
     fkill
     empty-trash
