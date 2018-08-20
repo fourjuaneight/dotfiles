@@ -47,6 +47,7 @@ PACKAGES=(
     gpg
     hub
     hugo
+    imagemagick
     inetutils
     libjpeg
     libmemcached 
@@ -149,6 +150,7 @@ NPM_PACKAGES =(
     kill-tabs
     localtunnel
     postcss-cli
+    prettier
     rgb-hex-cli
     speed-test
     trash
