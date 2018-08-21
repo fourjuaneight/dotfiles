@@ -15,8 +15,13 @@ endif
 
 cnoreabbrev ak Ack!
 
-nmap ;a       :Ack! ""<Left>
-nmap ;af :Ack "" %<Left><Left><Left>
+nmap <Esc>ak    :Ack! ""<Left>
+nmap <Esc>akf   :Ack "" %<Left><Left><Left>
+nmap <Esc>akc   :Ack! --css ""<Left>
+nmap <Esc>aks   :Ack! --sass ""<Left>
+nmap <Esc>akh   :Ack! --html ""<Left>
+nmap <Esc>akr   :Ack! --ruby ""<Left>
+nmap ;cdo       :cdo s///g | update
 nmap <Esc>k     :Ack! "\b<cword>\b" <CR>
 nmap <M-S-k>    :Ggrep! "\b<cword>\b" <CR>
 nmap <Esc>K     :Ggrep! "\b<cword>\b" <CR>
@@ -24,14 +29,17 @@ nmap <Esc>K     :Ggrep! "\b<cword>\b" <CR>
 " ALE
 Plug 'w0rp/ale'
 
-let g:ale_sign_warning='●'
-let g:ale_sign_error='●'
+let g:ale_sign_warning='--'
+let g:ale_sign_error='>>'
 
 let g:ale_sign_column_always = 1
 
-let g:ale_linters = {'css': ['prettier'], 'scss': ['prettier'], 'javascript': ['prettier', 'eslint'], 'erb': ['erb'], 'yaml': ['prettier']}
+let g:ale_linters = {'html': ['proselint'], 'css': ['prettier'], 'scss': ['prettier'], 'less': ['prettier'], 'javascript': ['prettier', 'eslint'], 'erb': ['erb'], 'ruby': ['rubocop'], 'yaml': ['prettier'], 'json': ['prettier'], 'python': ['flake8', 'pylint'], 'vim': ['vint']}
 let g:ale_fix_on_save = 1
-let g:ale_fixers = {'css': ['prettier'], 'scss': ['prettier'], 'javascript': ['prettier', 'eslint'], 'erb': ['erb'], 'yaml': ['prettier']}
+let g:ale_lint_on_enter = 1
+let g:ale_fixers = {'html': ['tidy'], 'css': ['prettier'], 'scss': ['prettier'], 'less': ['prettier'], 'javascript': ['prettier', 'eslint'], 'erb': ['erb'], 'ruby': ['rubocop'], 'yaml': ['prettier'], 'json': ['prettier'], 'python': ['flake8', 'pylint'], 'vim': ['vint']}
+
+nmap <Esc>alef	:ALEFix<CR>
 
 " Ariline
 Plug 'vim-airline/vim-airline'
@@ -43,6 +51,9 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#ale#enabled = 1
+let g:airline_section_c = ''
+let g:airline_section_x = ''
+let g:airline_section_y = ''
 
 " Editor
 Plug 'scrooloose/nerdcommenter'
@@ -64,9 +75,12 @@ function! s:fzf_statusline()
 endfunction
 autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
-nmap ;b :Buffers<CR>
-nmap ;f :Files<CR>
-nmap ;r :Tags<CR>
+nmap <Esc>bf :Buffers<CR>
+nmap <Esc>fz :Files<CR>
+nmap <Esc>tg :Tags<CR>
+
+" Fugitive
+Plug 'tpope/vim-fugitive'
 
 " Git gutter
 Plug 'airblade/vim-gitgutter'
@@ -95,6 +109,8 @@ let NERDTreeDirArrows = 1
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
+map <Esc>nt :NERDTreeToggle<CR>
+
 " Surround
 Plug 'tpope/vim-surround'
 
@@ -104,6 +120,8 @@ Plug 'tpope/vim-unimpaired'
 " ~~~ Declare the list of plugins ~~~
 " Utilities
 Plug 'qpkorr/vim-bufkill'
+map bd :BD<cr>
+
 Plug 'editorconfig/editorconfig-vim'
 
 " Rainbow
@@ -131,7 +149,6 @@ let g:UltiSnipsEditSplit="vertical"
 
 call plug#end()
 
-set colorcolumn=80
 set foldmethod=manual
 set hidden
 set mouse=a
@@ -180,6 +197,11 @@ nmap <C-k> <C-w>k
 nmap <C-h> :<C-u>TmuxNavigateLeft<CR>
 nmap <C-l> <C-w>l
 
+" Tabs
+map gn :bn<cr>
+map gp :bp<cr>
+map gd :bd<cr>
+
 " Move by screen lines
 noremap j gj
 noremap k gk
@@ -191,7 +213,9 @@ cnoremap <C-n> <Down>
 " Italic comments
 highlight Comment cterm=italic
 
-nmap ;pc :PlugClean<CR>
+nmap <Esc>pc :PlugClean<CR>
+nmap <Esc>pu :PlugUpdate<CR>
+nmap <Esc>pi :PlugInstall<CR>
 
 " delete all empty lines
 map <C-o> :g/^$/d

@@ -35,6 +35,8 @@ fi
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Aliases
+alias cdh="cd ~"
+
 alias zco="vim ~/.zshrc"
 alias zso="source ~/.zshrc"
 
@@ -43,6 +45,11 @@ alias vso="source ~/.vimrc"
 
 alias tco="vim ~/.tmux.conf"
 alias tso="source ~/.tmux.conf"
+
+alias gco="sudo vim ~/.ssh/config"
+
+alias croe="crontab -e"
+alias crol="crontab -l"
 
 alias tn='tmux -u new'
 alias tk='pkill -f tmux'
@@ -147,6 +154,9 @@ alias ggsup='git branch --set-upstream-to=origin/$(git_current_branch)'
 alias gpsup='git push --set-upstream origin $(git_current_branch)'
 
 
+alias bu="brew update"
+alias buu="brew upgrade"
+
 # tm - create new tmux session, or switch to existing one. Works from within tmux too. (@bag-man)
 # `tm` will allow you to select your tmux session via fzf.
 # `tm irc` will attach to the irc session (if it exists), else it will create it.
@@ -238,7 +248,7 @@ fbr() {
 }
 
 # fkill - kill process
-fkill() {
+fkl() {
   local pid
   pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
 

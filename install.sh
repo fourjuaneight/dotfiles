@@ -117,8 +117,11 @@ brew cask install ${FONTS[@]}
 echo "Installing Python packages..."
 PYTHON_PACKAGES=(
     brotli
+    flake8
     fonttools
     ipython
+    proselint
+    pylint
     virtualenv
     virtualenvwrapper
 )
@@ -141,8 +144,9 @@ gem install ${RUBY_GEMS[@]}
 echo "Installing global npm packages..."
 NPM_PACKAGES=(
     branch-diff
-    fkill
+    fkill-cli
     empty-trash
+    eslint
     glyphhanger
     gtop
     gulp
