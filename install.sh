@@ -50,8 +50,9 @@ PACKAGES=(
     imagemagick
     inetutils
     libjpeg
-    libmemcached 
+    libmemcached
     markdown
+    mas
     memcached
     mercurial
     mosh
@@ -67,6 +68,7 @@ PACKAGES=(
     sphinx
     ssh-copy-id
     the_silver_searcher
+    tidy-html5
     tmux
     vim
     wget
@@ -93,9 +95,11 @@ CASKS=(
     hazel
     iterm2
     keyboard-maestro
-    sketch
+    mamp
+    mattermost
     skype
     slack
+    the-unarchiver
     tower
     transmit
     tunnelblick
@@ -116,12 +120,12 @@ brew cask install ${FONTS[@]}
 
 echo "Installing Python packages..."
 PYTHON_PACKAGES=(
+    autopep8
     brotli
     flake8
     fonttools
     ipython
     proselint
-    pylint
     vim-vint
     virtualenv
     virtualenvwrapper
@@ -133,7 +137,7 @@ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB8
 \curl -sSL https://get.rvm.io | bash -s stable
 rvm install ruby-2.5.0
 
-echo "Installing Ruby gems"
+echo "Installing Ruby gems.."
 RUBY_GEMS=(
     bundler
     jekyll
@@ -162,5 +166,22 @@ NPM_PACKAGES=(
     trash
 )
 npm install -g ${NPM_PACKAGES[@]}
+
+echo "Sign into the Mac App Store"
+read -s -p "Enter Password: " pswd
+mas signin juan@villela.co "$pswd"
+
+echo "Installing Mac apps"
+MAC_APPS=(
+    824183456
+    1091189122
+    1026349850
+    1055273043
+    1176895641
+    904280696
+    1107421413
+    1333542190
+)
+mas install ${MAC_APPS[@]}
 
 echo "Bootstrapping complete"
