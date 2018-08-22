@@ -36,6 +36,7 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Aliases
 alias cdh="cd ~"
+alias cl="clear"
 
 alias zco="vim ~/.zshrc"
 alias zso="source ~/.zshrc"
@@ -62,6 +63,10 @@ alias hsd='hugo server --disableFastRender'
 
 alias js='jekyll serve'
 
+alias msrs='mysql.server restart'
+alias msst='mysql.server stop'
+alias mss='mysql.server start'
+alias psl='psql postgres -h localhost -l'
 alias rs='rails s'
 
 alias g='git'
@@ -245,6 +250,14 @@ fbr() {
   branches=$(git branch) &&
   branch=$(echo "$branches" | fzf-tmux -d 15 +m) &&
   git checkout $(echo "$branch" | sed "s/.* //")
+}
+
+frbr() {
+  git fetch
+  local branches branch
+  branches=$(git branch -a) &&
+  branch=$(echo "$branches" | fzf +s +m -e) &&
+  git checkout $(echo "$branch" | sed "s:.* remotes/origin/::" | sed "s:.* ::")
 }
 
 # fkill - kill process
