@@ -122,6 +122,7 @@ PYTHON_PACKAGES=(
     ipython
     proselint
     pylint
+    vim-vint
     virtualenv
     virtualenvwrapper
 )
@@ -138,6 +139,7 @@ RUBY_GEMS=(
     jekyll
     nokogiri
     rails
+    rubocop
 )
 gem install ${RUBY_GEMS[@]}
 
