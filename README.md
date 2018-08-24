@@ -1,2 +1,2 @@
-# dotfiles
+# Dotfiles
 Setup for my macOS environment
