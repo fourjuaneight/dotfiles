@@ -38,6 +38,8 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 alias cdh="cd ~"
 alias cl="clear"
 
+alias v="vim"
+
 alias zco="vim ~/.zshrc"
 alias zso="source ~/.zshrc"
 
@@ -57,6 +59,7 @@ alias tk='pkill -f tmux'
 alias tx='exit'
 
 alias guw='gulp watch'
+alias gu='gulp'
 
 alias hs='hugo server'
 alias hsd='hugo server --disableFastRender'
@@ -67,6 +70,7 @@ alias msrs='mysql.server restart'
 alias msst='mysql.server stop'
 alias mss='mysql.server start'
 alias psl='psql postgres -h localhost -l'
+alias rc='bundle exec rails c'
 alias rs='rails s'
 
 alias g='git'
@@ -305,7 +309,7 @@ bcp() {
   fi
 }
 
-# Install or open the webpage for the selected application 
+# Install or open the webpage for the selected application
 # using brew cask search as input source
 # and display a info quickview window for the currently marked application
 install() {
@@ -325,8 +329,8 @@ install() {
     fi
 }
 
-# Uninstall or open the webpage for the selected application 
-# using brew list as input source (all brew cask installed applications) 
+# Uninstall or open the webpage for the selected application
+# using brew list as input source (all brew cask installed applications)
 # and display a info quickview window for the currently marked application
 uninstall() {
     local token

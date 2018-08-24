@@ -49,6 +49,7 @@ PACKAGES=(
     hugo
     imagemagick
     inetutils
+    jenv
     libjpeg
     libmemcached
     markdown
@@ -93,6 +94,7 @@ CASKS=(
     google-chrome
     gpgtools
     hazel
+    hyper
     iterm2
     keyboard-maestro
     mamp

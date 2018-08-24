@@ -34,11 +34,17 @@ let g:ale_sign_error='>>'
 
 let g:ale_sign_column_always = 1
 
-let g:ale_linters = {'html': ['proselint'], 'css': ['prettier'], 'scss': ['prettier'], 'less': ['prettier'], 'javascript': ['prettier', 'eslint'], 'erb': ['erb'], 'ruby': ['rubocop'], 'yaml': ['prettier'], 'json': ['prettier'], 'python': ['flake8', 'pylint'], 'vim': ['vint']}
-let g:ale_fixers = {'html': ['tidy'], 'css': ['prettier'], 'scss': ['prettier'], 'less': ['prettier'], 'javascript': ['prettier', 'eslint'], 'erb': ['erb'], 'ruby': ['rubocop'], 'yaml': ['prettier'], 'json': ['prettier'], 'python': ['flake8', 'pylint'], 'vim': ['vint']}
+let g:ale_linters = {'css': ['prettier'], 'scss': ['prettier'], 'less': ['prettier'], 'javascript': ['prettier', 'eslint'], 'erb': ['erb'], 'ruby': ['rubocop'], 'yaml': ['prettier'], 'json': ['prettier'], 'python': ['flake8'], 'vim': ['vint']}
+let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace'], 'css': ['prettier'], 'scss': ['prettier'], 'less': ['prettier'], 'javascript': ['prettier', 'eslint'], 'erb': ['erb'], 'ruby': ['rubocop'], 'yaml': ['prettier'], 'json': ['prettier'], 'python': ['autopep8'], 'vim': ['vint']}
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_enter = 1
-
+let g:ale_javascript_css_use_local_config = 1
+let g:ale_javascript_sass_use_local_config = 1
+let g:ale_javascript_less_use_local_config = 1
+let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_javascript_eslint_use_local_config = 1
+let g:ale_json_prettier_use_local_config = 1
+let g:ale_yaml_prettier_use_local_config = 1
 nmap <Esc>alef	:ALEFix<CR>
 
 " Ariline
@@ -56,7 +62,6 @@ let g:airline_section_x = ''
 let g:airline_section_y = ''
 
 " Editor
-Plug 'scrooloose/nerdcommenter'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'alvan/vim-closetag'
@@ -110,6 +115,21 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 map <Esc>nt :NERDTreeToggle<CR>
+
+" NERDCommenter
+Plug 'scrooloose/nerdcommenter'
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+" Add your own custom formats or override the defaults
+let g:NERDCustomDelimiters = { 'css': { 'left': '/*','right': '*/' } }
+
+map ;cc <plug>NERDCommenterComment
+map ;ct <plug>NERDCommenterToggle
 
 " Surround
 Plug 'tpope/vim-surround'

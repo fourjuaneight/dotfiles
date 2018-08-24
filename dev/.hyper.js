@@ -1,0 +1,18 @@
+module.exports = {
+  config: {
+    updateChannel: 'stable',
+    fontSize: 12,
+    fontFamily: '"IBM Plex Mono", Menlo, monospace',
+    fontWeight: 'normal',
+    fontWeightBold: 'bold',
+    padding: '0 14px',
+    borderColor: 'rgb(189,147,249)',
+    backgroundColor: 'rgb(68,71,90)',
+    cursorColor: 'rgb(87,236,135)',
+    shellArgs: ['--login'],
+    bell: false,
+    copyOnSelect: false,
+    defaultSSHApp: true,
+  },
+  plugins: ['hyper-dracula'],
+};
