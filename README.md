@@ -1,2 +1,2 @@
 # Dotfiles
-Setup for my macOS environment
+Setup for my development environment

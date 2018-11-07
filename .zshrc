@@ -58,13 +58,15 @@ alias tn='tmux -u new'
 alias tk='pkill -f tmux'
 alias tx='exit'
 
-alias guw='gulp watch'
 alias gu='gulp'
+alias guw='gulp watch'
 
 alias hs='hugo server'
 alias hsd='hugo server --disableFastRender'
 
 alias js='jekyll serve'
+alias jb='jekyll build'
+alias jc='jekyll clean'
 
 alias msrs='mysql.server restart'
 alias msst='mysql.server stop'
