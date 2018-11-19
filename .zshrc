@@ -164,9 +164,13 @@ ggu() {
 alias ggsup='git branch --set-upstream-to=origin/$(git_current_branch)'
 alias gpsup='git push --set-upstream origin $(git_current_branch)'
 
+alias agud="apt-get update"
+alias agug="apt-get upgrade"
+alias agi="apt-get install"
 
-alias bu="brew update"
-alias buu="brew upgrade"
+alias bud="brew update"
+alias bug="brew upgrade"
+alias bi="brew install"
 
 # tm - create new tmux session, or switch to existing one. Works from within tmux too. (@bag-man)
 # `tm` will allow you to select your tmux session via fzf.
