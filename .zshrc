@@ -1,11 +1,11 @@
-export GOPATH=$HOME/Code/go
-PATH=$PATH:$GOPATH/bin
+export PATH="$PATH:$HOME/.rvm/bin"export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:$PATH"
+[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh  # This loads NVM
+eval "$(rbenv init -)"export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 
 . ~/.zsh/antigen-hs/init.zsh
 
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-source /Users/administrator/.rvm/scripts/rvm
+source ~/.zsh/zsh-autosuggestions.zsh
 
 # Set name of the theme to load
 ZSH_THEME=""
@@ -58,15 +58,28 @@ alias tn='tmux -u new'
 alias tk='pkill -f tmux'
 alias tx='exit'
 
-alias gu='gulp'
+alias yt="youtube-dl"
+alias ytf="youtube-dl -F"
+alias ytba="youtube-dl -f 'bestaudio[ext=m4a]'"
+alias ytbv="youtube-dl -f \'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio\' --merge-output-format mp4"
+
+alias glho='glyphhanger --US_ASCII --formats=woff2,woff'
+alias glh='glyphhanger --LATIN --formats=woff2,woff'
+
 alias guw='gulp watch'
+alias gu='gulp'
+
+alias wpw='webpack -watch'
+alias wp='webpack'
+
+alias ni='nvm install'
+alias nu='nvm use'
+alias niu='nvm install; nvm use'
 
 alias hs='hugo server'
 alias hsd='hugo server --disableFastRender'
 
-alias js='jekyll serve'
-alias jb='jekyll build'
-alias jc='jekyll clean'
+alias js='bundle exec jekyll serve'
 
 alias msrs='mysql.server restart'
 alias msst='mysql.server stop'
@@ -359,3 +372,5 @@ uninstall() {
 
 export FZF_DEFAULT_COMMAND='ag -l -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export PATH='/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin':"$PATH"
+export PATH='/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin':"$PATH"
