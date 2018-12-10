@@ -1,7 +1,8 @@
 module.exports = {
   config: {
+    shell: 'C:\\Windows\\System32\\bash.exe',
     updateChannel: 'stable',
-    fontSize: 12,
+    fontSize: 14,
     fontFamily: '"IBM Plex Mono", Menlo, monospace',
     fontWeight: 'normal',
     fontWeightBold: 'bold',
