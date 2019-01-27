@@ -1,3 +1,6 @@
+export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/lib/python:$PATH
+
 export PATH="$PATH:$HOME/.rvm/bin"export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh  # This loads NVM
@@ -35,6 +38,8 @@ fi
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Aliases
+alias xclip='clip.exe'
+alias code-snips='node /mnt/c/Users/Juan/snippets/index.js'
 alias cdh="cd ~"
 alias cl="clear"
 
@@ -67,6 +72,7 @@ alias glho='glyphhanger --US_ASCII --formats=woff2,woff'
 alias glh='glyphhanger --LATIN --formats=woff2,woff'
 
 alias guw='gulp watch'
+alias guc='gulp critical'
 alias gu='gulp'
 
 alias wpw='webpack -watch'
@@ -177,13 +183,9 @@ ggu() {
 alias ggsup='git branch --set-upstream-to=origin/$(git_current_branch)'
 alias gpsup='git push --set-upstream origin $(git_current_branch)'
 
-alias agud="apt-get update"
-alias agug="apt-get upgrade"
-alias agi="apt-get install"
 
-alias bud="brew update"
-alias bug="brew upgrade"
-alias bi="brew install"
+alias bu="brew update"
+alias buu="brew upgrade"
 
 # tm - create new tmux session, or switch to existing one. Works from within tmux too. (@bag-man)
 # `tm` will allow you to select your tmux session via fzf.
