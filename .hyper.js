@@ -1,18 +1,22 @@
 module.exports = {
   config: {
-    shell: 'C:\\Windows\\System32\\bash.exe',
-    updateChannel: 'stable',
-    fontSize: 14,
+    bell: false,
+    borderColor: 'rgb(189,147,249)',
+    copyOnSelect: false,
+    cursorColor: 'rgb(87,236,135)',
+    cursorShape: 'BLOCK',
+    defaultSSHApp: true,
     fontFamily: '"IBM Plex Mono", Menlo, monospace',
+    fontSize: 16,
     fontWeight: 'normal',
     fontWeightBold: 'bold',
-    padding: '0 14px',
-    borderColor: 'rgb(189,147,249)',
-    cursorColor: 'rgb(87,236,135)',
+    padding: '10px',
+    shell: 'C:\\Windows\\System32\\bash.exe',
     shellArgs: ['--login'],
-    bell: false,
-    copyOnSelect: false,
-    defaultSSHApp: true,
+    updateChannel: 'stable',
+    wickedBorder: true,
+    windowSize: [1080, 720]
   },
   plugins: ['hyper-dracula'],
+  updateChannel: 'canary'
 };

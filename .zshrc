@@ -80,7 +80,8 @@ alias wp='webpack'
 
 alias ni='nvm install'
 alias nu='nvm use'
-alias niu='nvm install; nvm use'
+alias niu='nvm install;nvm use --delete-prefix'
+alias nr='npm run'
 
 alias hs='hugo server'
 alias hsd='hugo server --disableFastRender'
