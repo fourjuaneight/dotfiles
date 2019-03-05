@@ -15,7 +15,7 @@ module.exports = {
     shellArgs: ['--login'],
     updateChannel: 'stable',
     wickedBorder: true,
-    windowSize: [1080, 720]
+    windowSize: [1230, 1230]
   },
   plugins: ['hyper-dracula'],
   updateChannel: 'canary'
