@@ -6,8 +6,8 @@ module.exports = {
     cursorColor: 'rgb(87,236,135)',
     cursorShape: 'BLOCK',
     defaultSSHApp: true,
-    fontFamily: '"IBM Plex Mono", Menlo, monospace',
-    fontSize: 16,
+    fontFamily: '"Fira Code", "IBM Plex Mono", Menlo, monospace',
+    fontSize: 14,
     fontWeight: 'normal',
     fontWeightBold: 'bold',
     padding: '10px',
@@ -15,8 +15,17 @@ module.exports = {
     shellArgs: ['--login'],
     updateChannel: 'stable',
     wickedBorder: true,
-    windowSize: [1230, 1230]
+    windowSize: [1230, 1230],
+    hyperTabs: {
+      border: true,
+      closeAlign: 'right',
+      tabIconsColored: true,
+      trafficButtons: true
+    }
   },
-  plugins: ['hyper-dracula'],
+  plugins: [
+    'hyperterm-cobalt2-theme',
+    'hyper-tabs-enhanced'
+  ],
   updateChannel: 'canary'
 };

@@ -19,6 +19,7 @@ bundles =
   , bundle "zsh-users/zsh-syntax-highlighting"
   , bundle "mafredri/zsh-async"
   , bundle "sindresorhus/pure"
+	, bundle "bhilburn/powerlevel9k"
   , (bundle "zsh-users/zsh-history-substring-search") { sourcingStrategy = antigenSourcingStrategy }
   ]
 
