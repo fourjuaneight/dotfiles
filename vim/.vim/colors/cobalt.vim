@@ -112,6 +112,7 @@ function! s:h(scope, fg, ...)
 
   let l:attr_list = filter(get(a:, 2, ['NONE']), 'type(v:val) == 1')
   let l:attrs = len(l:attr_list) > 0 ? join(l:attr_list, ',') : 'NONE'
+
   let l:special = get(a:, 3, ['NONE', 'NONE'])
   if l:special[0] !=# 'NONE' && l:fg[0] ==# 'NONE' && !has('gui_running')
     let l:fg[0] = l:special[0]
@@ -289,4 +290,4 @@ hi! link helpCommand CobaltPurple
 hi! link helpExample CobaltGreen
 hi! link helpBacktick Special
 
-" vim: fdm=marker ts=2 sts=2 sw=2:
+" vim: fdm=marker ts=2 sts=2 sw=2

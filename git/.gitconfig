@@ -1,17 +1,12 @@
-[http]
-  sslVerify = true
 [user]
-  name = Juan Villela
-  email = hello@juanvillela.me
-[color]
-  ui = true
-[commit]
-  gpgsign = true
+	name = Juan Villela
+	email = juan@villela.co
+[winUpdater]
+	recentlySeenVersion = 2.21.0.windows.1
 [core]
-  excludesfile = ~/.gitignore_global
-  ignorecase = true
-  pager = diff-so-fancy | less --tabs=2 -RFX
-[credential]
-  helper = osxkeychain
-[hub]
-  protocol = https
+	editor = 'C:\\Users\\Juan\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe' --wait
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

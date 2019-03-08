@@ -22,6 +22,7 @@ NPM_PACKAGES=(
     node-sass
     postcss-cli
     prettier
+    pure-prompt
     rgb-hex-cli
     react
     react-dom
@@ -31,4 +32,4 @@ NPM_PACKAGES=(
     webpack
     webpack-cli
 )
-npm install -g ${NPM_PACKAGES[@]}
+npm i -g ${NPM_PACKAGES[@]}
