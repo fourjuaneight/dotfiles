@@ -26,7 +26,6 @@ PACKAGES=(
     curl --with-openssl
     dep
     docker
-    duti
     ffmpeg
     fzf
     ghc
