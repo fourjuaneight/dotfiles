@@ -1,0 +1,17 @@
+[http]
+  sslVerify = true
+[user]
+  name = Juan Villela
+  email = hello@juanvillela.me
+[color]
+  ui = true
+[commit]
+  gpgsign = true
+[core]
+  excludesfile = ~/.gitignore_global
+  ignorecase = true
+  pager = diff-so-fancy | less --tabs=2 -RFX
+[credential]
+  helper = osxkeychain
+[hub]
+  protocol = https
