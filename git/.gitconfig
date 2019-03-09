@@ -3,3 +3,7 @@
 [user]
 	email = juan@villela.co
 	name = Juan Villela
+[color]
+	ui = true
+[core]
+	excludesfile = ~/.gitignore_global

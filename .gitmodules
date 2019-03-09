@@ -1,0 +1,93 @@
+[submodule "vim/.vim/plugged/ack.vim"]
+  path = vim/.vim/plugged/ack.vim
+  url = https://github.com/mileszs/ack.vim
+[submodule "vim/.vim/plugged/ale"]
+  path = vim/.vim/plugged/ale
+  url = https://github.com/w0rp/ale
+[submodule "vim/.vim/plugged/editorconfig-vim"]
+  path = vim/.vim/plugged/editorconfig-vim
+  url = https://github.com/editorconfig/editorconfig-vim
+[submodule "vim/.vim/plugged/emmet-vim"]
+  path = vim/.vim/plugged/emmet-vim
+  url = https://github.com/mattn/emmet-vim
+[submodule "vim/.vim/plugged/fzf.vim"]
+  path = vim/.vim/plugged/fzf.vim
+  url = https://github.com/junegunn/fzf.vim
+[submodule "vim/.vim/plugged/html5.vim"]
+  path = vim/.vim/plugged/html5.vim
+  url = https://github.com/othree/html5.vim
+[submodule "vim/.vim/plugged/javascript-libraries-syntax.vim"]
+  path = vim/.vim/plugged/javascript-libraries-syntax.vim
+  url = https://github.com/othree/javascript-libraries-syntax.vim
+[submodule "vim/.vim/plugged/nerdcommenter"]
+  path = vim/.vim/plugged/nerdcommenter
+  url = https://github.com/scrooloose/nerdcommenter
+[submodule "vim/.vim/plugged/nerdtree"]
+  path = vim/.vim/plugged/nerdtree
+  url = https://github.com/scrooloose/nerdtree
+[submodule "vim/.vim/plugged/nerdtree-git-plugin"]
+  path = vim/.vim/plugged/nerdtree-git-plugin
+  url = https://github.com/Xuyuanp/nerdtree-git-plugin
+[submodule "vim/.vim/plugged/rainbow"]
+  path = vim/.vim/plugged/rainbow
+  url = https://github.com/luochen1990/rainbow
+[submodule "vim/.vim/plugged/scss-syntax.vim"]
+  path = vim/.vim/plugged/scss-syntax.vim
+  url = https://github.com/cakebaker/scss-syntax.vim
+[submodule "vim/.vim/plugged/ultisnips"]
+  path = vim/.vim/plugged/ultisnips
+  url = https://github.com/SirVer/ultisnips
+[submodule "vim/.vim/plugged/vim-airline"]
+  path = vim/.vim/plugged/vim-airline
+  url = https://github.com/vim-airline/vim-airline
+[submodule "vim/.vim/plugged/vim-airline-themes"]
+  path = vim/.vim/plugged/vim-airline-themes
+  url = https://github.com/vim-airline/vim-airline-themes
+[submodule "vim/.vim/plugged/vim-better-whitespace"]
+  path = vim/.vim/plugged/vim-better-whitespace
+  url = https://github.com/ntpeters/vim-better-whitespace
+[submodule "vim/.vim/plugged/vim-bufkill"]
+  path = vim/.vim/plugged/vim-bufkill
+  url = https://github.com/qpkorr/vim-bufkill
+[submodule "vim/.vim/plugged/vim-closetag"]
+  path = vim/.vim/plugged/vim-closetag
+  url = https://github.com/alvan/vim-closetag
+[submodule "vim/.vim/plugged/vim-css3-syntax"]
+  path = vim/.vim/plugged/vim-css3-syntax
+  url = https://github.com/hail2u/vim-css3-syntax
+[submodule "vim/.vim/plugged/vim-fugitive"]
+  path = vim/.vim/plugged/vim-fugitive
+  url = https://github.com/tpope/vim-fugitive
+[submodule "vim/.vim/plugged/vim-gitgutter"]
+  path = vim/.vim/plugged/vim-gitgutter
+  url = https://github.com/airblade/vim-gitgutter
+[submodule "vim/.vim/plugged/vim-javascript"]
+  path = vim/.vim/plugged/vim-javascript
+  url = https://github.com/pangloss/vim-javascript
+[submodule "vim/.vim/plugged/vim-json"]
+  path = vim/.vim/plugged/vim-json
+  url = https://github.com/elzr/vim-json
+[submodule "vim/.vim/plugged/vim-multiple-cursors"]
+  path = vim/.vim/plugged/vim-multiple-cursors
+  url = https://github.com/terryma/vim-multiple-cursors
+[submodule "vim/.vim/plugged/vim-snippets"]
+  path = vim/.vim/plugged/vim-snippets
+  url = https://github.com/honza/vim-snippets
+[submodule "vim/.vim/plugged/vim-surround"]
+  path = vim/.vim/plugged/vim-surround
+  url = https://github.com/tpope/vim-surround
+[submodule "vim/.vim/plugged/vim-toml"]
+  path = vim/.vim/plugged/vim-toml
+  url = https://github.com/cespare/vim-toml
+[submodule "vim/.vim/plugged/vim-unimpaired"]
+  path = vim/.vim/plugged/vim-unimpaired
+  url = https://github.com/tpope/vim-unimpaired
+[submodule "vim/.vim/plugged/vim-yankstack"]
+  path = vim/.vim/plugged/vim-yankstack
+  url = https://github.com/maxbrunsfeld/vim-yankstack
+[submodule "vim/.vim/plugged/cobalt2.vim"]
+  path = vim/.vim/plugged/cobalt2.vim
+  url = https://github.com/herrbischoff/cobalt2.vim
+[submodule "vim/.vim/plugged/vim-jsx"]
+  path = vim/.vim/plugged/vim-jsx
+  url = https://github.com/mxw/vim-jsx
