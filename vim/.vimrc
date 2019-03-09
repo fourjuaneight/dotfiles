@@ -158,6 +158,7 @@ Plug 'honza/vim-snippets'
 " Syntax
 Plug 'elzr/vim-json'
 Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'cakebaker/scss-syntax.vim'
