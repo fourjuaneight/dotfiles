@@ -1,4 +1,4 @@
-# TOML file type
+# Toml file type
 --type-set=toml:ext:toml
 
 # Sass file type

@@ -1,4 +1,4 @@
---recurse=yes
+--recursive=yes
 --tag-relative=yes
 
 --exclude=.build
