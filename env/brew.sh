@@ -27,6 +27,7 @@ PACKAGES=(
     dep
     docker
     ffmpeg
+    fswatch
     fzf
     ghc
     git
