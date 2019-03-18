@@ -1,7 +1,7 @@
 module.exports = {
   config: {
     bell: false,
-    borderColor: 'rgb(189,147,249)',
+    borderColor: '#FF79C6',
     copyOnSelect: false,
     cursorColor: 'rgb(87,236,135)',
     cursorShape: 'BLOCK',
@@ -24,7 +24,7 @@ module.exports = {
     }
   },
   plugins: [
-    'hyperterm-cobalt2-theme',
+    'hyper-dracula',
     'hyper-tabs-enhanced'
   ],
   updateChannel: 'canary'

@@ -18,7 +18,7 @@ module.exports = {
   },
   plugins: ['html', 'prettier', 'react-hooks'],
   rules: {
-    'arrow-body-style': [2, 'as-needed'],
+    'arrow-body-style': ['error', 'always'],
     'comma-dangle': 0,
     'consistent-return': 0,
     curly: 2,
@@ -27,7 +27,7 @@ module.exports = {
     'id-length': [
       2,
       {
-        exceptions: ['i', 'a', 'b'],
+        exceptions: ['_', 'i', 'a', 'b'],
       },
     ],
     import: 0,
@@ -99,7 +99,7 @@ module.exports = {
       'error',
       {
         arrowParens: 'avoid',
-        bracketSpacing: false,
+        bracketSpacing: true,
         endOfLine: 'auto',
         jsxBracketSameLine: false,
         printWidth: 80,

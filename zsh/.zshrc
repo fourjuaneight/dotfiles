@@ -73,6 +73,7 @@ alias ytbv="youtube-dl -f \'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+best
 alias glho='glyphhanger --US_ASCII --formats=woff2,woff'
 alias glh='glyphhanger --LATIN --formats=woff2,woff'
 
+alias gub-'gulp build'
 alias guw='gulp watch'
 alias guc='gulp critical'
 alias gu='gulp'
