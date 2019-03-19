@@ -113,13 +113,8 @@ module.exports = {
       },
     ],
     quotes: [
-      2,
-      'single',
+      'error',
       'backtick',
-      {
-        avoidEscape: true,
-        allowTemplateLiterals: true,
-      },
     ],
     radix: 0,
     'react-hooks/exhaustive-deps': 'warn',
