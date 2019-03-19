@@ -39,10 +39,14 @@ usage:
 
 .PHONY: linux macos link unlink
 
-linux: apt brew ruby node antigen stow
+linux: brew ruby node antigen stow
+  bash $(DOTFILES_DIR)/linux/apt-get.sh
+  bash $(DOTFILES_DIR)/linux/brew.sh
 
 macos: bash brew ruby node antigen stow
   bash $(DOTFILES_DIR)/macos/default.sh
+  bash $(DOTFILES_DIR)/linux/apt.sh
+  bash $(DOTFILES_DIR)/macos/brew.sh
   bash $(DOTFILES_DIR)/macos/brewCask.sh
   bash $(DOTFILES_DIR)/macos/mas.sh
   brew install duti
@@ -63,10 +67,7 @@ unlink:
   unlink $(HOME)/.vimrc
   unlink $(HOME)/.vim
 
-.PHONY: apt bash brew stow
-
-apt:
-  bash $(DOTFILES_DIR)/linux/apt.sh
+.PHONY: bash brew stow
 
 bash:
   echo /usr/local/bin/bash | sudo tee -a /etc/shells
@@ -74,7 +75,6 @@ bash:
 
 brew:
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  bash $(DOTFILES_DIR)/env/brew.sh
 
 ruby:
   gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
@@ -90,6 +90,17 @@ antigen:
   cabal update
   cabal install base text directory filepath process
   git clone https://github.com/Tarrasch/antigen-hs.git ~/.zsh/antigen-hs/
+
+rclone:
+  curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip
+  unzip rclone-current-linux-amd64.zip
+  cd rclone-*-linux-amd64
+  sudo cp rclone /usr/bin/
+  sudo chown root:root /usr/bin/rclone
+  sudo chmod 755 /usr/bin/rclone
+  sudo mkdir -p /usr/local/share/man/man1
+  sudo cp rclone.1 /usr/local/share/man/man1/
+  sudo mandb
 
 stow:
   stow dev

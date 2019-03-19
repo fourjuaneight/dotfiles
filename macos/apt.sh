@@ -11,4 +11,4 @@ sudo apt install nginx
 sudo apt install stow
 sudo apt install tree
 
-sudo apt-get install inotify-tools
+sudo apt autoclean -y
