@@ -8,6 +8,8 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh  # This loads NVM
 eval "$(rbenv init -)"export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 
+export PYTHONPATH="/usr/lib/python3/dist-packages:$PYTHONPATH"
+
 . ~/.zsh/antigen-hs/init.zsh
 
 source ~/.zsh/zsh-autosuggestions.zsh
