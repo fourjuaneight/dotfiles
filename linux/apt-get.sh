@@ -5,50 +5,50 @@ sudo apt-get upgrade -y
 sudo apt-get dist-upgrade -f
 sudo apt-get autoremove -y
 
-sudo apt-get bash
-sudo apt-get cabal-install
-sudo apt-get certbot
-sudo apt-get coreutils
-sudo apt-get curl --with-openssl
-sudo apt-get docker-engine
-sudo apt-get findutils
-sudo apt-get ghc
-sudo apt-get gist
-sudo apt-get git
-sudo apt-get gpg
-sudo apt-get graphicsmagick
-sudo apt-get htop
-sudo apt-get imagemagick
-sudo apt-get inetutils
-sudo apt-get indent
-sudo apt-get inotify-tools
-sudo apt-get libjpeg8
-sudo apt-get libmemcached-tools
-sudo apt-get mc
-sudo apt-get memcached
-sudo apt-get mercurial
-sudo apt-get mosh
-sudo apt-get mysql-server
-sudo apt-get ncdu
-sudo apt-get nginx
-sudo apt-get nodejs
-sudo apt-get perl
-sudo apt-get php
-sudo apt-get pkg-config
-sudo apt-get postgresql
-sudo apt-get python
-sudo apt-get python3
-sudo apt-get rsync
-sudo apt-get sed
-sudo apt-get sphinx
-sudo apt-get stow
-sudo apt-get tar
-sudo apt-get tmux
-sudo apt-get tree
-sudo apt-get vim
-sudo apt-get virtualenv
-sudo apt-get wget
-sudo apt-get xz-utils
-sudo apt-get zsh
+sudo apt-get install bash
+sudo apt-get install cabal-install
+sudo apt-get install certbot
+sudo apt-get install coreutils
+sudo apt-get install curl --with-openssl
+sudo apt-get install docker-engine
+sudo apt-get install findutils
+sudo apt-get install ghc
+sudo apt-get install gist
+sudo apt-get install git
+sudo apt-get install gpg
+sudo apt-get install graphicsmagick
+sudo apt-get install htop
+sudo apt-get install imagemagick
+sudo apt-get install inetutils
+sudo apt-get install indent
+sudo apt-get install inotify-tools
+sudo apt-get install libjpeg8
+sudo apt-get install libmemcached-tools
+sudo apt-get install mc
+sudo apt-get install memcached
+sudo apt-get install mercurial
+sudo apt-get install mosh
+sudo apt-get install mysql-server
+sudo apt-get install ncdu
+sudo apt-get install nginx
+sudo apt-get install nodejs
+sudo apt-get install perl
+sudo apt-get install php
+sudo apt-get install pkg-config
+sudo apt-get install postgresql
+sudo apt-get install python
+sudo apt-get install python3
+sudo apt-get install rsync
+sudo apt-get install sed
+sudo apt-get install sphinx
+sudo apt-get install stow
+sudo apt-get install tar
+sudo apt-get install tmux
+sudo apt-get install tree
+sudo apt-get install vim
+sudo apt-get install virtualenv
+sudo apt-get install wget
+sudo apt-get install xz-utils
+sudo apt-get install zsh
 
 sudo apt autoclean -y
