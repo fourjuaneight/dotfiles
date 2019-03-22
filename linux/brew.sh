@@ -9,6 +9,7 @@ brew install dep
 brew install ffmpeg
 brew install fzf
 brew install go
+brew install haskell-stack
 brew install hugo
 brew install markdown
 brew install ssh-copy-id
