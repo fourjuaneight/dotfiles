@@ -17,69 +17,64 @@ brew install findutils
 brew install bash
 
 # Brew Packages
-echo "Installing packages..."
-PACKAGES=(
-    ack
-    cabal-install
-    certbot
-    chunkwm
-    curl --with-openssl
-    dep
-    docker
-    ffmpeg
-    fswatch
-    fzf
-    ghc
-    git
-    gist
-    go
-    gpg
-    graphicsmagick
-    hub
-    htop
-    hugo
-    imagemagick
-    inetutils
-    jenv
-    libjpeg
-    libmemcached
-    markdown
-    mas
-    mc
-    memcached
-    mercurial
-    mosh
-    mysql
-    ncdu
-    node
-    npm
-    php
-    pkg-config
-    postgresql
-    python
-    python3
-    rename
-    rsync
-    ruby
-    skhd
-    slurm
-    spark
-    sphinx
-    ssh-copy-id
-    stow
-    the_silver_searcher
-    tidy-html5
-    tmux
-    vim
-    wget
-    xz
-    yarn
-    youtube-dl
-    zsh
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-)
-brew install ${PACKAGES[@]}
+brew install ack
+brew install cabal-install
+brew install certbot
+brew install chunkwm
+brew install curl --with-openssl
+brew install dep
+brew install docker
+brew install ffmpeg
+brew install fswatch
+brew install fzf
+brew install ghc
+brew install git
+brew install gist
+brew install go
+brew install gpg
+brew install graphicsmagick
+brew install hub
+brew install htop
+brew install hugo
+brew install imagemagick
+brew install inetutils
+brew install jenv
+brew install libjpeg
+brew install libmemcached
+brew install markdown
+brew install mas
+brew install mc
+brew install memcached
+brew install mercurial
+brew install mosh
+brew install mysql
+brew install ncdu
+brew install node
+brew install npm
+brew install php
+brew install pkg-config
+brew install postgresql
+brew install python
+brew install python3
+brew install rename
+brew install rsync
+brew install ruby
+brew install skhd
+brew install slurm
+brew install spark
+brew install sphinx
+brew install ssh-copy-id
+brew install stow
+brew install the_silver_searcher
+brew install tidy-html5
+brew install tmux
+brew install vim
+brew install wget
+brew install xz
+brew install yarn
+brew install youtube-dl
+brew install zsh
+brew install zsh-autosuggestions
+brew install zsh-syntax-highlighting
 
-echo "Cleaning up..."
 brew cleanup

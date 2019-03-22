@@ -4,23 +4,18 @@
 brew update
 
 # Brew Packages
-echo "Installing packages..."
-PACKAGES=(
-    "ack"
-    "dep"
-    "ffmpeg"
-    "fzf"
-    "go"
-    "hugo"
-    "markdown"
-    "ssh-copy-id"
-    "the_silver_searcher"
-    "tidy-html5"
-    "youtube-dl"
-    "zsh-autosuggestions"
-    "zsh-syntax-highlighting"
-)
-brew install ${PACKAGES[@]}
+brew install ack
+brew install dep
+brew install ffmpeg
+brew install fzf
+brew install go
+brew install hugo
+brew install markdown
+brew install ssh-copy-id
+brew install the_silver_searcher
+brew install tidy-html5
+brew install youtube-dl
+brew install zsh-autosuggestions
+brew install zsh-syntax-highlighting
 
-echo "Cleaning up..."
 brew cleanup

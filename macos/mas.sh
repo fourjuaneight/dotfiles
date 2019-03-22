@@ -5,15 +5,11 @@ echo "Sign into the Mac App Store"
 read -s -p "Enter Password: " pswd
 mas signin juan@villela.co "$pswd"
 
-echo "Installing Mac apps"
-MAC_APPS=(
-    824183456
-    1091189122
-    1026349850
-    1055273043
-    1176895641
-    904280696
-    1107421413
-    1333542190
-)
-mas install ${MAC_APPS[@]}
+mas install824183456
+mas install1091189122
+mas install1026349850
+mas install1055273043
+mas install1176895641
+mas install904280696
+mas install1107421413
+mas install1333542190
