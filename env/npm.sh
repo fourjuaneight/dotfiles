@@ -1,35 +1,35 @@
 # Node Packages
 echo "Installing global npm packages..."
 NPM_PACKAGES=(
-    @babel/core
-    @slack/client
-    babel-cli
-    babel-eslint
-    branch-diff
-    fkill-cli
-    eslint
-    eslint-config-airbnb
-    eslint-config-prettier
-    gatsby
-    gatsby-cli
-    glyphhanger
-    graphiql
-    graphql
-    graphql-tools
-    gtop
-    gulp
-    localtunnel
-    node-sass
-    postcss-cli
-    prettier
-    pure-prompt
-    rgb-hex-cli
-    react
-    react-dom
-    speed-test
-    simple-node-logger
-    trash
-    webpack
-    webpack-cli
+    "@babel/core"
+    "@slack/client"
+    "babel-cli"
+    "babel-eslint"
+    "branch-diff"
+    "fkill-cli"
+    "eslint"
+    "eslint-config-airbnb"
+    "eslint-config-prettier"
+    "gatsby"
+    "gatsby-cli"
+    "glyphhanger"
+    "graphiql"
+    "graphql"
+    "graphql-tools"
+    "gtop"
+    "gulp"
+    "localtunnel"
+    "node-sass"
+    "postcss-cli"
+    "prettier"
+    "pure-prompt"
+    "rgb-hex-cli"
+    "react"
+    "react-dom"
+    "speed-test"
+    "simple-node-logger"
+    "trash"
+    "webpack"
+    "webpack-cli"
 )
 npm i -g ${NPM_PACKAGES[@]}
