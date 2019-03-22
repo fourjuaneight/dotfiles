@@ -39,12 +39,16 @@ usage:
 
 .PHONY: linux macos link unlink
 
-linux: brew ruby node antigen stow
+linux: ruby node antigen stow
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+	test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
+	test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+	test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
+	echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
 	bash $(DOTFILES_DIR)/linux/apt-get.sh
 	bash $(DOTFILES_DIR)/linux/brew.sh
 
-macos: bash brew ruby node antigen stow
+macos: bash ruby node antigen stow
 	bash $(DOTFILES_DIR)/macos/default.sh
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	bash $(DOTFILES_DIR)/linux/apt.sh
@@ -69,7 +73,7 @@ unlink:
 	unlink $(HOME)/.vimrc
 	unlink $(HOME)/.vim
 
-.PHONY: bash brew stow
+.PHONY: bash stow
 
 bash:
 	echo /usr/local/bin/bash | sudo tee -a /etc/shells
@@ -77,7 +81,7 @@ bash:
 
 ruby:
 	gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-	\curl -sSL https://get.rvm.io | bash -s stable
+	\curl -sSL https://get.rvm.io | bash -s stable --ruby
 	rvm install ruby-2.5.3
 	bash $(DOTFILES_DIR)/env/gem.sh
 
