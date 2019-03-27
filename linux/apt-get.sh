@@ -28,7 +28,6 @@ sudo apt-get install mc
 sudo apt-get install memcached
 sudo apt-get install mercurial
 sudo apt-get install mosh
-sudo apt-get install mysql-server
 sudo apt-get install ncdu
 sudo apt-get install nginx
 sudo apt-get install nodejs
@@ -39,6 +38,7 @@ sudo apt-get install postgresql
 sudo apt-get install python
 sudo apt-get install python3
 sudo apt-get install rsync
+sudo apt-get install rbenv
 sudo apt-get install sed
 sudo apt-get install sphinx
 sudo apt-get install stow

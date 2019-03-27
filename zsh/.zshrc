@@ -1,5 +1,3 @@
-POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
-
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/lib/python:$PATH
 
