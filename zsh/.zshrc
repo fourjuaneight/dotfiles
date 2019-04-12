@@ -33,7 +33,7 @@ export LANG=en_US.UTF-8
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='mvim'
+  export EDITOR='vim'
 fi
 
 # ssh
@@ -209,6 +209,19 @@ fe() {
   local files
   IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+}
+
+# fa - Open via ag with line number
+fa() {
+	local file
+  local line
+
+	read -r file line <<<"$(ag --nobreak --noheading $@ | fzf -0 -1 | awk -F: '{print $1, $2}')"
+
+	if [[ -n $file ]]
+	then
+		vim $file +$line
+	fi
 }
 
 # Modified version where you can press
