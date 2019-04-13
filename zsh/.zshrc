@@ -245,6 +245,7 @@ fd() {
   cd "$dir"
 }
 
+# ft - tree selected directory
 ft() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
@@ -312,7 +313,7 @@ frbr() {
 # fkill - kill process
 fkl() {
   local pid
-  pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+  pid=$(ps -u $USER axco pid,command | sed 1d | fzf -m | awk '{print $2}')
 
   if [ "x$pid" != "x" ]
   then
