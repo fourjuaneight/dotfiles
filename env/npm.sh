@@ -3,8 +3,6 @@ npm i -g @babel/core
 npm i -g @slack/client
 npm i -g babel-cli
 npm i -g babel-eslint
-npm i -g branch-diff
-npm i -g fkill-cli
 npm i -g eslint
 npm i -g eslint-config-airbnb
 npm i -g eslint-config-prettier
@@ -14,18 +12,12 @@ npm i -g glyphhanger
 npm i -g graphiql
 npm i -g graphql
 npm i -g graphql-tools
-npm i -g gtop
 npm i -g gulp
-npm i -g localtunnel
 npm i -g node-sass
 npm i -g postcss-cli
 npm i -g prettier
-npm i -g pure-prompt
-npm i -g rgb-hex-cli
 npm i -g react
 npm i -g react-dom
-npm i -g speed-test
 npm i -g simple-node-logger
-npm i -g trash
 npm i -g webpack
 npm i -g webpack-cli
