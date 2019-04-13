@@ -24,6 +24,8 @@ sudo apt-get install indent
 sudo apt-get install inotify-tools
 sudo apt-get install libjpeg8
 sudo apt-get install libmemcached-tools
+sudo apt-get install libsecret-1-dev
+sudo apt-get install libsecret-1-0
 sudo apt-get install mc
 sudo apt-get install memcached
 sudo apt-get install mercurial
