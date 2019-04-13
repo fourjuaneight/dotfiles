@@ -245,6 +245,13 @@ fd() {
   cd "$dir"
 }
 
+ft() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+  tree "$dir"
+}
+
 # fdr - cd to selected parent directory
 fdr() {
   local declare dirs=()
