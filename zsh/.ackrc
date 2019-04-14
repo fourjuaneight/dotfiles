@@ -1,3 +1,5 @@
+--ignore-directory=is:node_modules
+
 # Toml file type
 --type-set=toml:ext:toml
 
