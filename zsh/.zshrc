@@ -2,20 +2,20 @@
 export PATH=/usr/local/bin:$PATH
 
 # Load Linux Homebrew
-export PATH="$HOME/linuxbrew/.linuxbrew/bin:$HOME/linuxbrew/.linuxbrew/sbin:$PATH"
-eval $($HOME/linuxbrew/.linuxbrew/bin/brew shellenv)
+export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 # Python PATH
 export PATH=/usr/local/lib/python:$PATH
 export PYTHONPATH="/usr/lib/python3/dist-packages:$PYTHONPATH"
 
 # RVM PATH
-export PATH="$PATH:$HOME/.rvm/bin" export PATH="$HOME/.rbenv/bin:$PATH"
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)" export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+export PATH="$PATH:~/.rvm/bin" export PATH="~/.rbenv/bin:$PATH"
+export PATH="~/.rbenv/bin:$PATH"
+eval "$(rbenv init -)" export PATH="~/.rbenv/plugins/ruby-build/bin:$PATH"
 
 # Load nvm
-[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
+[[ -s ~/.nvm/nvm.sh ]] && . ~/.nvm/nvm.sh
 
 # Loading Antigen-hs
 . ~/.zsh/antigen-hs/init.zsh

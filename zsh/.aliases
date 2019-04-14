@@ -159,8 +159,8 @@ alias ggsup='git branch --set-upstream-to=origin/$(git_current_branch)'
 alias gpsup='git push --set-upstream origin $(git_current_branch)'
 
 # Homebrew
-alias bu="brew update"
-alias bup="brew upgrade"
+alias bru="brew update"
+alias brup="brew upgrade"
 
 # apt-get
 alias agu="sudo apt-get update"
