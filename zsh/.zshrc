@@ -313,7 +313,7 @@ frbr() {
 # fkill - kill process
 fkl() {
   local pid
-  pid=$(ps -u $USER axco pid,command | sed 1d | fzf -m | awk '{print $2}')
+  pid=$(ps -u $USER axco pid,command | sed 1d | fzf -m | awk '{print $1}')
 
   if [ "x$pid" != "x" ]
   then
