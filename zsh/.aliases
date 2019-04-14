@@ -1,0 +1,167 @@
+# Windows
+alias xclip='clip.exe'
+alias code-snips='node /mnt/c/Users/Juan/snippets/index.js'
+
+# common cli commands
+alias cdh="cd ~"
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+alias .......='cd ../../../../../..'
+alias ........='cd ../../../../../../..'
+alias .........='cd ../../../../../../../..'
+alias cl="clear"
+
+# Search history
+alias hgrep='history | ag'
+
+# Enhanced WHOIS lookups
+alias whois="whois -h whois-servers.net"
+
+# zsh
+alias zco="vim ~/.zshrc"
+alias zso="source ~/.zshrc"
+alias tco="vim ~/.tmux.conf"
+
+# vim
+alias vi="vim"
+alias vco="vim ~/.vimrc"
+alias vso="source ~/.vimrc"
+
+# Cron
+alias croe="crontab -e"
+alias crol="crontab -l"
+
+# tmux
+alias tso="source ~/.tmux.conf"
+alias tn='tmux -u new'
+alias tk='pkill -f tmux'
+alias tx='exit'
+
+# youtube-dl
+alias yt="youtube-dl"
+alias ytf="youtube-dl -F"
+alias ytba="youtube-dl -f 'bestaudio[ext=m4a]'"
+alias ytbv="youtube-dl -f \'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio\' --merge-output-format mp4"
+
+# glyphhanger
+alias glho='glyphhanger --US_ASCII --formats=woff2,woff'
+alias glh='glyphhanger --LATIN --formats=woff2,woff'
+
+# Gulp
+alias gub-'gulp build'
+alias guw='gulp watch'
+alias guc='gulp critical'
+alias gu='gulp'
+
+# Webpack
+alias wpw='webpack -watch'
+alias wp='webpack'
+
+# nvm
+alias ni='nvm install'
+alias nu='nvm use'
+alias niu='nvm install;nvm use --delete-prefix'
+alias nr='npm run'
+
+# Hugo
+alias hs='hugo server'
+alias hsd='hugo server --disableFastRender'
+
+# Jekyll
+alias js='bundle exec jekyll serve'
+
+# mySQL
+alias msrs='mysql.server restart'
+alias msst='mysql.server stop'
+alias mss='mysql.server start'
+alias psl='psql postgres -h localhost -l'
+alias rc='bundle exec rails c'
+alias rs='rails s'
+
+# Git
+alias gco="sudo vim ~/.ssh/config"
+
+alias g='git'
+alias ghh='git help'
+
+alias ga='git add'
+alias gaa='git add --all'
+alias gapa='git add --patch'
+alias gau='git add --update'
+alias gap='git apply'
+
+alias gb='git branch'
+alias gba='git branch -a'
+alias gbd='git branch -d'
+alias gbl='git blame -b -w'
+alias gbnm='git branch --no-merged'
+alias gbr='git branch --remote'
+
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gcb='git checkout -b'
+alias gcf='git config --list'
+alias gcl='git clone --recursive'
+alias gco='git checkout'
+
+alias gd='git diff'
+alias gdca='git diff --cached'
+alias gdcw='git diff --cached --word-diff'
+alias gdt='git diff-tree --no-commit-id --name-only -r'
+alias gdw='git diff --word-diff'
+
+alias gf='git fetch'
+alias gfa='git fetch --all --prune'
+alias gfo='git fetch origin'
+
+alias gm='git merge'
+alias gmom='git merge origin/master'
+alias gmt='git mergetool --no-prompt'
+alias gmtvim='git mergetool --no-prompt --tool=vimdiff'
+alias gmum='git merge upstream/master'
+alias gma='git merge --abort'
+
+alias gup='git push'
+alias gupd='git push --dry-run'
+alias gupu='git push upstream'
+
+alias gp='git pull --rebase'
+alias gprv='git pull --rebase -v'
+alias gpum='git pull upstream master'
+
+alias gr='git remote'
+alias gra='git remote add'
+alias grup='git remote update'
+alias grv='git remote -v'
+
+alias grh='git reset'
+alias grhh='git reset --hard'
+
+alias gst='git status'
+alias gsb='git status -sb'
+alias gss='git status -s'
+
+alias gsta='git stash save'
+alias gstaa='git stash apply'
+alias gstc='git stash clear'
+alias gstd='git stash drop'
+alias gstl='git stash list'
+alias gstp='git stash pop'
+alias gsts='git stash show --text'
+
+alias gts='git tag -s'
+alias gtv='git tag | sort -V'
+
+alias ggsup='git branch --set-upstream-to=origin/$(git_current_branch)'
+alias gpsup='git push --set-upstream origin $(git_current_branch)'
+
+# Homebrew
+alias bu="brew update"
+alias bup="brew upgrade"
+
+# apt-get
+alias agu="sudo apt-get update"
+alias agup="sudo apt-get upgrade"
