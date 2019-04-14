@@ -6,16 +6,14 @@ export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PAT
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 # Python PATH
-export PATH=/usr/local/lib/python:$PATH
 export PYTHONPATH="/usr/lib/python3/dist-packages:$PYTHONPATH"
 
 # RVM PATH
-export PATH="$PATH:~/.rvm/bin" export PATH="~/.rbenv/bin:$PATH"
-export PATH="~/.rbenv/bin:$PATH"
-eval "$(rbenv init -)" export PATH="~/.rbenv/plugins/ruby-build/bin:$PATH"
+export PATH="$PATH:$HOME/.rvm/bin"
 
 # Load nvm
-[[ -s ~/.nvm/nvm.sh ]] && . ~/.nvm/nvm.sh
+export NVMPATH="$HOME/.nvm"
+[[ -s $NVMPATH/nvm.sh ]] && . $NVMPATH/nvm.sh
 
 # Loading Antigen-hs
 . ~/.zsh/antigen-hs/init.zsh
