@@ -14,6 +14,7 @@ npm i -g graphql
 npm i -g graphql-tools
 npm i -g gulp
 npm i -g node-sass
+npm i -g npm-fzf
 npm i -g postcss-cli
 npm i -g prettier
 npm i -g react
