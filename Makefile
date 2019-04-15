@@ -39,7 +39,7 @@ usage:
 
 .PHONY: linux macos link unlink
 
-linux: ruby node antigen stow
+linux: stow ruby node antigen
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
 	test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
 	test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
@@ -48,16 +48,16 @@ linux: ruby node antigen stow
 	bash $(DOTFILES_DIR)/linux/apt-get.sh
 	bash $(DOTFILES_DIR)/linux/brew.sh
 
-macos: bash ruby node antigen stow
+macos: stow bash ruby node antigen
 	bash $(DOTFILES_DIR)/macos/default.sh
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	bash $(DOTFILES_DIR)/linux/apt.sh
 	bash $(DOTFILES_DIR)/macos/brew.sh
 	bash $(DOTFILES_DIR)/macos/brewCask.sh
 	bash $(DOTFILES_DIR)/macos/mas.sh
+	xcode-select --install
 	brew install duti
 	bash $(DOTFILES_DIR)/macos/duti/set.sh
-	stow macos
 	brew services start chunkwm
 	brew services start skhd
 
