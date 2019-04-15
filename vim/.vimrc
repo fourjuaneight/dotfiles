@@ -164,7 +164,7 @@ highlight clear SignColumn
 let g:used_javascript_libs = 'jquery,react,underscore,vue'
 
 " Multiple Cursor
-et g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_use_default_mapping=0
 
 " Default mapping
 let g:multi_cursor_start_word_key      = '<C-n>'
