@@ -1,40 +1,111 @@
+"""""""""""""""""""""""""""""""""""""""""""""""
+" General
+"""""""""""""""""""""""""""""""""""""""""""""""
+" encoding
+set encoding=utf-8
+set fileencoding=utf-8
+
+syntax on                       " Enable syntax highlight
+
+set hidden                      " hides buffers instead of closing them
+set foldmethod=manual           " manual folding
+set mouse=a                     " when copying, keeping the line numbers out
+set number                      " show line numbers
+set scrolloff=2                 " context lines above and below the cursor
+set showcmd                     " see commands as you type them
+
+" Show white spaces as a character
+set list
+set listchars=tab:··,trail:·
+set listchars=eol:·,tab:··,trail:·,extends:·,precedes:·
+
+set hlsearch                    " highlight search terms
+set ic                          " ignore case
+set incsearch                   " show search matches as you type
+
+" tab is two spaces
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2 noexpandtab
+
+set splitbelow
+set splitright
+
+" no backup files written on save
+set nobackup
+set noswapfile
+set nowritebackup
+
+filetype plugin indent on        " indentation
+
+" italic comments on terminal and gui
+highlight Comment cterm=italic gui=italic
+
+" theme
+color dracula
+
+" change the mapleader from \ to ,
+let mapleader=","
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""
+" Plugins List
+"""""""""""""""""""""""""""""""""""""""""""""""
+" Auto-install Plug
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+
+" Install plugins
 call plug#begin('~/.vim/plugged')
 
-
-" ACK
 Plug 'mileszs/ack.vim'
+Plug 'w0rp/ale'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'qpkorr/vim-bufkill'
+Plug 'alvan/vim-closetag'
+Plug 'mattn/emmet-vim'
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'scrooloose/nerdcommenter'
+Plug 'luochen1990/rainbow'
+Plug 'honza/vim-snippets'
+Plug 'tpope/vim-surround'
 
+Plug 'pangloss/vim-javascript'
+Plug 'othree/javascript-libraries-syntax.vim'
+
+Plug 'tpope/vim-unimpaired'
+Plug 'SirVer/ultisnips'
+Plug 'maxbrunsfeld/vim-yankstack'
+Plug 'Valloric/YouCompleteMe'
+
+call plug#end()
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin Related Configs
+"""""""""""""""""""""""""""""""""""""""""""""""
+" ACK
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
-cnoreabbrev ak Ack!
-
-nmap <Esc>ak    :Ack! ""<Left>
-nmap <Esc>akf   :Ack "" %<Left><Left><Left>
-nmap <Esc>akc   :Ack! --css ""<Left>
-nmap <Esc>aks   :Ack! --sass ""<Left>
-nmap <Esc>akh   :Ack! --html ""<Left>
-nmap <Esc>akr   :Ack! --ruby ""<Left>
-nmap ;cdo       :cdo s///g | update
-nmap <Esc>k     :Ack! "\b<cword>\b" <CR>
-nmap <M-S-k>    :Ggrep! "\b<cword>\b" <CR>
-nmap <Esc>K     :Ggrep! "\b<cword>\b" <CR>
-
 " ALE
-Plug 'w0rp/ale'
-
 let g:ale_sign_warning='--'
 let g:ale_sign_error='>>'
 
 let g:ale_sign_column_always = 1
 
-let g:ale_linters = {'css': ['prettier'], 'scss': ['prettier'], 'less': ['prettier'], 'javascript': ['prettier', 'eslint'], 'erb': ['erb'], 'ruby': ['rubocop'], 'yaml': ['prettier'], 'json': ['prettier'], 'python': ['flake8']}
+let g:ale_linters = {'css': ['prettier'], 'scss': ['prettier'], 'less': ['prettier'], 'javascript': ['eslint'], 'erb': ['erb'], 'ruby': ['rubocop'], 'yaml': ['prettier'], 'json': ['prettier'], 'python': ['flake8']}
 let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace'], 'css': ['prettier'], 'scss': ['prettier'], 'less': ['prettier'], 'javascript': ['prettier', 'eslint'], 'erb': ['erb'], 'ruby': ['rubocop'], 'yaml': ['prettier'], 'json': ['prettier'], 'python': ['autopep8']}
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_enter = 1
@@ -45,12 +116,8 @@ let g:ale_javascript_prettier_use_local_config = 1
 let g:ale_javascript_eslint_use_local_config = 1
 let g:ale_json_prettier_use_local_config = 1
 let g:ale_yaml_prettier_use_local_config = 1
-nmap <Esc>alef	:ALEFix<CR>
 
 " Ariline
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
 let g:airline_theme='dracula'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
@@ -61,20 +128,27 @@ let g:airline_section_c = ''
 let g:airline_section_x = ''
 let g:airline_section_y = ''
 
-" Cobolt2
-Plug 'herrbischoff/cobalt2.vim'
+" Closetag
+" Non-closing tags self-closing in the specified files.
+let g:closetag_xhtml_filetypes = 'html,jsx,tsx'
+" Non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
+let g:closetag_emptyTags_caseSensitive = 1
+" Disables auto-close if not in a "valid" region (based on filetype)
+let g:closetag_regions = {
+    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+    \ 'javascript.jsx': 'jsxRegion',
+    \ }
+" Shortcut for closing tags, default is '>'
+let g:closetag_shortcut = '>'
+" Add > at current position without closing the current tag, default is ''
+let g:closetag_close_shortcut = '<leader>>'
 
-" Editor
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'maxbrunsfeld/vim-yankstack'
-Plug 'alvan/vim-closetag'
-Plug 'mattn/emmet-vim'
+" Emmet
+let g:user_emmet_install_global = 0
+autocmd FileType html EmmetInstall " enable just for HTML
 
 " FZF
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
-Plug 'junegunn/fzf.vim'
-
-" Set fzf statusline color
+" Set statusline color
 function! s:fzf_statusline()
   highlight fzf1 ctermfg=yellow
   highlight fzf2 ctermfg=yellow
@@ -83,24 +157,26 @@ function! s:fzf_statusline()
 endfunction
 autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
-nmap <Esc>bf :Buffers<CR>
-nmap <Esc>fz :Files<CR>
-nmap <Esc>tg :Tags<CR>
-
-" Fugitive
-Plug 'tpope/vim-fugitive'
-
 " Git gutter
-Plug 'airblade/vim-gitgutter'
 highlight clear SignColumn
 
-" Multiple cursors
-Plug 'terryma/vim-multiple-cursors'
+" JS Libs
+let g:used_javascript_libs = 'jquery,react,underscore,vue'
+
+" Multiple Cursor
+et g:multi_cursor_use_default_mapping=0
+
+" Default mapping
+let g:multi_cursor_start_word_key      = '<C-n>'
+let g:multi_cursor_select_all_word_key = '<A-n>'
+let g:multi_cursor_start_key           = 'g<C-n>'
+let g:multi_cursor_select_all_key      = 'g<A-n>'
+let g:multi_cursor_next_key            = '<C-n>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
 
 " NERDTree
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-
 let NERDTreeShowHidden=1
 
 " close if it's the only window left
@@ -117,11 +193,7 @@ let NERDTreeDirArrows = 1
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-map <Esc>nt :NERDTreeToggle<CR>
-
 " NERDCommenter
-Plug 'scrooloose/nerdcommenter'
-
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
 " Align line-wise comment delimiters flush left instead of following code indentation
@@ -131,122 +203,81 @@ let g:NERDTrimTrailingWhitespace = 1
 " Add your own custom formats or override the defaults
 let g:NERDCustomDelimiters = { 'css': { 'left': '/*','right': '*/' } }
 
-map ;cc <plug>NERDCommenterComment
-map ;ct <plug>NERDCommenterToggle
-
-" Surround
-Plug 'tpope/vim-surround'
-
-" Unimpaired
-Plug 'tpope/vim-unimpaired'
-
-" ~~~ Declare the list of plugins ~~~
-" Utilities
-Plug 'qpkorr/vim-bufkill'
-map bd :BD<cr>
-
-Plug 'editorconfig/editorconfig-vim'
-
 " Rainbow
-Plug 'luochen1990/rainbow'
-
-let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
-
-" Snippets
-Plug 'honza/vim-snippets'
-
-" Syntax
-Plug 'elzr/vim-json'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'hail2u/vim-css3-syntax'
-Plug 'cakebaker/scss-syntax.vim'
-Plug 'othree/html5.vim'
-Plug 'cespare/vim-toml'
+let g:rainbow_active = 1 " 0 if you want to enable it later via :RainbowToggle
 
 " Ultisnips
-Plug 'SirVer/ultisnips'
-
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
-call plug#end()
 
-set foldmethod=manual
-set hidden
-set mouse=a
-set number
-set scrolloff=2
-set showcmd
-
-set list
-set listchars=tab:··,trail:·
-set listchars=eol:·,tab:··,trail:·,extends:·,precedes:·
-
-set hlsearch
-set ic
-set incsearch
-
-set softtabstop=2 noexpandtab
-set shiftwidth=2
-set tabstop=2
-
-set splitbelow
-set splitright
-
-set nobackup
-set noswapfile
-set nowritebackup
-
-syntax on
-color cobalt
-
-" Copy selection to system clipboard
+"""""""""""""""""""""""""""""""""""""""""""""""
+" Key Remaps
+"""""""""""""""""""""""""""""""""""""""""""""""
+" copy selection to system clipboard
 vnoremap <Leader>y "+y
 
-" Indentation
-filetype plugin indent on
-autocmd Filetype bash
-autocmd Filetype ruby
-autocmd Filetype sh
-autocmd Filetype vim
-autocmd Filetype xml
-autocmd Filetype yaml
-autocmd Filetype zsh
-
-" Window navigation
+" window navigation
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
-nmap <C-h> :<C-u>TmuxNavigateLeft<CR>
+nmap <C-h> <C-w>h
 nmap <C-l> <C-w>l
 
-" Tabs
-map gn :bn<cr>
-map gp :bp<cr>
-map gd :bd<cr>
-
-" Move by screen lines
-noremap j gj
-noremap k gk
-
-" Filter command history
-cnoremap <C-p> <Up>
-cnoremap <C-n> <Down>
-
-" Italic comments
-highlight Comment cterm=italic
-
-nmap <Esc>pc :PlugClean<CR>
-nmap <Esc>pu :PlugUpdate<CR>
-nmap <Esc>pi :PlugInstall<CR>
+" Plug shortcuts
+nmap <leader>pc :PlugClean<CR>
+nmap <leader>pu :PlugUpdate<CR>
+nmap <leader>pi :PlugInstall<CR>
 
 " delete all empty lines
 map <C-o> :g/^$/d
 
-" Autoclose
+" autoclose brackets and quotes
 inoremap " ""<left>
 inoremap ' ''<left>
+inoremap ` ``<left>
 inoremap ( ()<left>
 inoremap [ []<left>
 inoremap { {}<left>
+
+" ACK
+nmap <leader>ak :Ack! ""<Left> " search pattern
+nmap <leader>akf :Ack "" %<Left><Left><Left> " search pattern in current file
+nmap <leader>akc :Ack! --css ""<Left> " search pattern in css files
+nmap <leader>aks :Ack! --sass ""<Left> " search pattern in sass files
+nmap <leader>akh :Ack! --html ""<Left> " search pattern in html files
+nmap <leader>akr :Ack! --ruby ""<Left> " search pattern in ruby files
+nmap <leader>akj :Ack! --js ""<Left> " search pattern in js files
+nmap <leader>cdo :cdo s///g | update " search and replace
+" https://chrisarcand.com/vims-new-cdo-command/
+
+" ALE
+nmap <leader>alef :ALEFix<cr> " Ale lint and fix
+nmap <leader>alefs :ALEFixSuggest<cr> " Ale suggest fixes
+
+" Bufkill
+nmap <leader>bd :BD<cr> " delete a file from buffer and keep window/split
+nmap <leader>bn :BF<cr> " next buffer
+nmap <leader>bp :BB<cr> " prev buffer
+
+" Fugitive
+nmap <leader>gst :Gstatus<cr> " git status
+nmap <leader>gdf :Gdelete<cr> " git rm file and buffer
+
+" fzf
+nmap <leader>bf :Buffers<CR> " search active buffer
+nmap <leader>fz :Files<CR> " search current directory
+nmap <leader>tg :Tags<CR> " search tags
+
+" Git Gutter
+nmap <leader>gg :GitGutterToggle<CR> " toggle git gutter
+
+" NERDCommenter
+imap <leader>cc <plug>NERDCommenterComment " comment selection
+imap <leader>ct <plug>NERDCommenterToggle " toggle comment selection
+
+" NERDTree
+nmap <leader>nt :NERDTreeToggle<CR> " toggle nr
+
+" Yankstack
+nmap <leader>p <Plug>yankstack_substitute_older_paste " cycle backwards through your yanks
+nmap <leader>P <Plug>yankstack_substitute_newer_paste " cycle forwards through your yanks
