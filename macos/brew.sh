@@ -21,6 +21,7 @@ brew install ack
 brew install cabal-install
 brew install certbot
 brew install chunkwm
+brew install cmake
 brew install curl --with-openssl
 brew install dep
 brew install docker
@@ -41,6 +42,7 @@ brew install inetutils
 brew install jenv
 brew install libjpeg
 brew install libmemcached
+brew install --with-toolchain llvm
 brew install markdown
 brew install mas
 brew install mc

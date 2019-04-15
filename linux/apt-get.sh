@@ -6,8 +6,11 @@ sudo apt-get dist-upgrade -f
 sudo apt-get autoremove -y
 
 sudo apt-get install bash
+sudo apt-get install build-essential
 sudo apt-get install cabal-install
 sudo apt-get install certbot
+sudo apt-get install clang
+sudo apt-get install cmake
 sudo apt-get install coreutils
 sudo apt-get install curl --with-openssl
 sudo apt-get install docker-engine
@@ -39,6 +42,7 @@ sudo apt-get install pkg-config
 sudo apt-get install postgresql
 sudo apt-get install python
 sudo apt-get install python3
+sudo apt-get install python3-dev
 sudo apt-get install rsync
 sudo apt-get install rbenv
 sudo apt-get install sed
