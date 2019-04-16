@@ -281,3 +281,9 @@ nmap <leader>nt :NERDTreeToggle<CR> " toggle nr
 " Yankstack
 nmap <leader>p <Plug>yankstack_substitute_older_paste " cycle backwards through your yanks
 nmap <leader>P <Plug>yankstack_substitute_newer_paste " cycle forwards through your yanks
+
+" YCM
+nmap <leader>yrs :YcmRestartServer <CR>
+nmap <leader>yfc :YcmForceCompileAndDiagnostics<CR>
+nmap <leader>ydi :YcmShowDetailedDiagnostic <CR>
+nmap <leader>ycm :YcmCompleter <CR>

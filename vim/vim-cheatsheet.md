@@ -63,6 +63,12 @@ g<A-n> - select_all_key
 ,p - cycle backwards through your yanks
 ,P - cycle forwards through your yanks
 
+<!-- YCM -->
+,yrs - Ycm Restart Server
+,yfc - Ycm Force Compile And Diagnostic
+,ydi - Ycm Show Detailed Diagnostic
+,ycm - Ycm Completer
+
 <!-- OTHER -->
 <C-o> - delete all empty lines
 <Leader>y - copy selection to system clipboard
