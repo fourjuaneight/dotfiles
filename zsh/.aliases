@@ -14,6 +14,7 @@ alias ........='cd ../../../../../../..'
 alias .........='cd ../../../../../../../..'
 alias cl="clear"
 alias dot="cd ~/dotfiles"
+alias win="cd /mnt/c/Users/Juan"
 
 # Search history
 alias hgrep='history | ag'
