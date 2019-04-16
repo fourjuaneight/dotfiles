@@ -207,6 +207,11 @@ let g:NERDCustomDelimiters = { 'css': { 'left': '/*','right': '*/' } }
 let g:rainbow_active = 1 " 0 if you want to enable it later via :RainbowToggle
 
 " Ultisnips
+" snippets location
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "snips"]
+
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
@@ -214,7 +219,7 @@ let g:UltiSnipsEditSplit="vertical"
 " disable auto_triggering ycm suggestions pane and instead
 " use semantic completion only on Ctrl+n
 let ycm_trigger_key = '<C-n>'
-let g:ycm_auto_trigger = 0
+" let g:ycm_auto_trigger = 0
 let g:ycm_key_invoke_completion = ycm_trigger_key
 
 " this is some arcane magic to allow cycling through the YCM options
