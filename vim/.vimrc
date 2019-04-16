@@ -257,6 +257,11 @@ inoremap ( ()<left>
 inoremap [ []<left>
 inoremap { {}<left>
 
+" tabs
+map ,tn :bn<cr>
+map ,tp :bp<cr>
+map ,:td :bd<cr>
+
 " ACK
 nmap <leader>ak :Ack! ""<Left> " search pattern
 nmap <leader>akf :Ack "" %<Left><Left><Left> " search pattern in current file
