@@ -51,16 +51,8 @@ fo() {
 }
 
 # fp - format with prettier
-fp() {
-  local file
-  local line
-
-  read -r file line <<<"$(ag --nobreak --noheading $@ | fzf -0 -1 | awk -F: '{print $1, $2}')"
-
-  if [[ -n $file ]]
-  then
-    prettier $file --write
-  fi
+yt() {
+  youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio:' --merge-output-format mp4 $1
 }
 
 # fd - cd to selected directory
