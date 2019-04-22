@@ -263,14 +263,14 @@ map ,tp :bp<cr>
 map ,:td :bd<cr>
 
 " ACK
-nmap <leader>ak :Ack! ""<Left> " search pattern
-nmap <leader>akf :Ack "" %<Left><Left><Left> " search pattern in current file
-nmap <leader>akc :Ack! --css ""<Left> " search pattern in css files
-nmap <leader>aks :Ack! --sass ""<Left> " search pattern in sass files
-nmap <leader>akh :Ack! --html ""<Left> " search pattern in html files
-nmap <leader>akr :Ack! --ruby ""<Left> " search pattern in ruby files
-nmap <leader>akj :Ack! --js ""<Left> " search pattern in js files
-nmap <leader>cdo :cdo s///g | update " search and replace
+nmap <leader>ak :Ack! ""<Left>
+nmap <leader>akf :Ack "" %<Left><Left><Left>
+nmap <leader>akc :Ack! --css ""<Left>
+nmap <leader>aks :Ack! --sass ""<Left>
+nmap <leader>akh :Ack! --html ""<Left>
+nmap <leader>akr :Ack! --ruby ""<Left>
+nmap <leader>akj :Ack! --js ""<Left>
+nmap <leader>cdo :cdo s///g | update
 " https://chrisarcand.com/vims-new-cdo-command/
 
 " ALE
