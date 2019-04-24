@@ -42,7 +42,7 @@ filetype plugin indent on        " indentation
 highlight Comment cterm=italic gui=italic
 
 " theme
-color dracula
+color nord
 
 " change the mapleader from \ to ,
 let mapleader=","
