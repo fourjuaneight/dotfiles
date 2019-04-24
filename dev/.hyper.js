@@ -24,8 +24,7 @@ module.exports = {
     }
   },
   plugins: [
-    'hyper-dracula',
+    'nord-hyper',
     'hyper-tabs-enhanced'
-  ],
-  updateChannel: 'canary'
+  ]
 };
