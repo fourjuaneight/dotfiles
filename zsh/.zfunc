@@ -4,6 +4,16 @@ ggu() {
   git pull --rebase origin "${b:=$1}"
 }
 
+# gla - glyphhanger whitelist Latin
+gla() {
+  glyphhanger --LATIN --formats=woff2,woff --subset=$1.ttf
+}
+
+# glu - glyphhanger whitelist US ASCII
+glu() {
+  glyphhanger --US_ASCII --formats=woff2,woff --subset=$1.ttf
+}
+
 # tm - create new tmux session, or switch to existing one. Works from within tmux too. (@bag-man)
 # `tm` will allow you to select your tmux session via fzf.
 # `tm irc` will attach to the irc session (if it exists), else it will create it.
