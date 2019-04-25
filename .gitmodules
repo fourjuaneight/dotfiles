@@ -91,3 +91,6 @@
 [submodule "vim/.vim/plugged/vim-jsx"]
   path = vim/.vim/plugged/vim-jsx
   url = https://github.com/mxw/vim-jsx
+[submodule "tmux/.tmux/themes/nord-tmux"]
+	path = tmux/.tmux/themes/nord-tmux
+	url = https://github.com/arcticicestudio/nord-tmux
