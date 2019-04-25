@@ -62,14 +62,16 @@ macos: stow bash ruby node antigen
 	brew services start skhd
 
 link:
-	ln -fs $(DOTFILES_DIR)/bash/.zshrc $(HOME)/.zshrc
-	ln -fs $(DOTFILES_DIR)/bash/.curlrc $(HOME)/.curlrc
+	ln -fs $(DOTFILES_DIR)/zsh/.zshrc $(HOME)/.zshrc
+	ln -fs $(DOTFILES_DIR)/zsh/.curlrc $(HOME)/.curlrc
+	ln -fs $(DOTFILES_DIR)/tmux/.tmux $(HOME)/.tmux
 	ln -fs $(DOTFILES_DIR)/vim/.vimrc $(HOME)/.vimrc
 	ln -fs $(DOTFILES_DIR)/vim/.vim $(HOME)/.vim
 
 unlink:
 	unlink $(HOME)/.zshrc
 	unlink $(HOME)/.curlrc
+	unlink $(HOME)/.tmux
 	unlink $(HOME)/.vimrc
 	unlink $(HOME)/.vim
 
@@ -110,5 +112,6 @@ stow:
 	stow fonts
 	stow git
 	stow gpg
+	stow tmux
 	stow vim
 	stow zsh
