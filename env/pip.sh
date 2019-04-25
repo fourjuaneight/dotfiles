@@ -1,11 +1,12 @@
-python3 -m pip install autopep8
-python3 -m pip install b2
-python3 -m pip install brotli
-python3 -m pip install flake8
-python3 -m pip install fonttools
-python3 -m pip install ipython
-python3 -m pip install proselint
-python3 -m pip install requests
-python3 -m pip install vim-vint
-python3 -m pip install virtualenv
-python3 -m pip install virtualenvwrapper
+python3 -m pip install -t /usr/lib/python3/dist-packages autopep8
+python3 -m pip install -t /usr/lib/python3/dist-packages b2
+python3 -m pip install -t /usr/lib/python3/dist-packages brotli
+python3 -m pip install -t /usr/lib/python3/dist-packages flake8
+python3 -m pip install -t /usr/lib/python3/dist-packages fonttools
+python3 -m pip install -t /usr/lib/python3/dist-packages gitpython
+python3 -m pip install -t /usr/lib/python3/dist-packages ipython
+python3 -m pip install -t /usr/lib/python3/dist-packages proselint
+python3 -m pip install -t /usr/lib/python3/dist-packages requests
+python3 -m pip install -t /usr/lib/python3/dist-packages vim-vint
+python3 -m pip install -t /usr/lib/python3/dist-packages virtualenv
+python3 -m pip install -t /usr/lib/python3/dist-packages virtualenvwrapper
