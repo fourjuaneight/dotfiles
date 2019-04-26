@@ -14,6 +14,25 @@ glu() {
   glyphhanger --US_ASCII --formats=woff2,woff --subset=$1.ttf
 }
 
+# ytv - youtube-dl beat video/audio quality
+ytv() {
+  youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio:' --merge-output-format mp4 $1
+}
+
+# yta - youtube-dl beat audio (only) quality
+yta() {
+  youtube-dl -f bestaudio[ext=m4a] $1
+}
+
+# ffc - ffmpeg clip video 
+# 1 - start time
+# 2 - input file
+# 3 - stop time
+# 4 -  output file
+ffc() {
+  ffmpeg -ss $1 -i $2 -c copy -t $3 $4
+}
+
 # tm - create new tmux session, or switch to existing one. Works from within tmux too. (@bag-man)
 # `tm` will allow you to select your tmux session via fzf.
 # `tm irc` will attach to the irc session (if it exists), else it will create it.
@@ -58,16 +77,6 @@ fo() {
   if [[ -n "$file" ]]; then
     [[ "$key" = ctrl-o ]] && open "$file" || ${EDITOR:-vim} "$file"
   fi
-}
-
-# ytv - youtube-dl beat video/audio quality
-ytv() {
-  youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio:' --merge-output-format mp4 $1
-}
-
-# yta - youtube-dl beat audio (only) quality
-yta() {
-  youtube-dl -f bestaudio[ext=m4a] $1
 }
 
 # fd - cd to selected directory
