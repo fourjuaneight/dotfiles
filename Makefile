@@ -47,6 +47,7 @@ linux: stow ruby node antigen
 	echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
 	bash $(DOTFILES_DIR)/linux/apt-get.sh
 	bash $(DOTFILES_DIR)/linux/brew.sh
+	ln -s $(HOME)/init.vim $(HOME)/.config/nvim/init.vim
 
 macos: stow bash ruby node antigen
 	bash $(DOTFILES_DIR)/macos/default.sh
