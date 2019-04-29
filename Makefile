@@ -112,6 +112,7 @@ stow:
 	stow fonts
 	stow git
 	stow gpg
+	stow scripts
 	stow tmux
 	stow vim
 	stow zsh
