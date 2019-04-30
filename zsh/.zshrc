@@ -33,7 +33,7 @@ ZSH_THEME=""
 autoload -U promptinit; promptinit
 PURE_GIT_DOWN_ARROW='↓'
 PURE_GIT_UP_ARROW='↑'
-PROMPT='%(1j.[%j] .)%(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f '
+PROMPT='%(1j.[%j] .)%(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:-λ}%f '
 prompt pure
 
 # Add wisely, as too many plugins slow down shell startup.
