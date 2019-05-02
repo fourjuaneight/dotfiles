@@ -42,6 +42,11 @@ alias tn="tmux -u new"
 alias tk="pkill -f tmux"
 alias tx="exit"
 
+# ssh
+alias rsh="sudo service ssh --full-restart"
+alias srh="sudo service ssh start"
+alias sth="sudo service ssh stop"
+
 # youtube-dl
 alias yt="youtube-dl"
 alias ytf="youtube-dl -F"
