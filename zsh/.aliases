@@ -43,9 +43,9 @@ alias tk="pkill -f tmux"
 alias tx="exit"
 
 # ssh
-alias rsh="sudo service ssh --full-restart"
-alias srh="sudo service ssh start"
-alias sth="sudo service ssh stop"
+alias rssh="sudo service ssh --full-restart"
+alias stsh="sudo service ssh start"
+alias spsh="sudo service ssh stop"
 
 # youtube-dl
 alias yt="youtube-dl"
