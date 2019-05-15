@@ -5,6 +5,7 @@ python3 -m pip install -t /usr/lib/python3/dist-packages flake8
 python3 -m pip install -t /usr/lib/python3/dist-packages fonttools
 python3 -m pip install -t /usr/lib/python3/dist-packages gitpython
 python3 -m pip install -t /usr/lib/python3/dist-packages ipython
+python3 -m pip install -t /usr/lib/python3/dist-packages python-dotenv
 python3 -m pip install -t /usr/lib/python3/dist-packages proselint
 python3 -m pip install -t /usr/lib/python3/dist-packages requests
 python3 -m pip install -t /usr/lib/python3/dist-packages vim-vint
