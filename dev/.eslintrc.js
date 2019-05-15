@@ -114,7 +114,7 @@ module.exports = {
     ],
     quotes: [
       'error',
-      'backtick',
+      'single',
     ],
     radix: 0,
     'react-hooks/exhaustive-deps': 'warn',
