@@ -5,6 +5,7 @@ sudo apt-get upgrade -y
 sudo apt-get dist-upgrade -f
 sudo apt-get autoremove -y
 
+sudo apt-get install apt-transport-https
 sudo apt-get install bash
 sudo apt-get install build-essential
 sudo apt-get install cabal-install
@@ -13,11 +14,13 @@ sudo apt-get install clang
 sudo apt-get install cmake
 sudo apt-get install coreutils
 sudo apt-get install curl --with-openssl
+sudo apt-get install docker-ce
 sudo apt-get install docker-engine
 sudo apt-get install findutils
 sudo apt-get install ghc
 sudo apt-get install gist
 sudo apt-get install git
+sudo apt-get install gnupg2
 sudo apt-get install gpg
 sudo apt-get install graphicsmagick
 sudo apt-get install htop
