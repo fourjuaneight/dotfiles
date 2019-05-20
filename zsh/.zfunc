@@ -149,6 +149,11 @@ cf() {
   fi
 }
 
+# fgl - git log branch
+fgl() {
+  git log origin/$1
+}
+
 # fbr - checkout git branch
 fbr() {
   local branches branch
