@@ -164,6 +164,8 @@ alias gts="git tag -s"
 alias gtv="git tag | sort -V"
 
 alias glm="git log --pretty=oneline --abbrev-commit origin/master"
+alias grb="git rebase -i HEAD~5"
+alias gpfl="git push --force-with-lease"
 
 alias ggsup="git branch --set-upstream-to=origin/$(git_current_branch)"
 alias gpsup="git push --set-upstream origin $(git_current_branch)"
