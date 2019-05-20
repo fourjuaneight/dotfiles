@@ -46,6 +46,7 @@ sudo apt-get install postgresql
 sudo apt-get install python
 sudo apt-get install python3
 sudo apt-get install python3-dev
+sudo apt-get install pythond-pygments
 sudo apt-get install rsync
 sudo apt-get install rbenv
 sudo apt-get install sed
