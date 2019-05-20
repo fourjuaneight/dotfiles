@@ -163,7 +163,7 @@ alias gsts="git stash show --text"
 alias gts="git tag -s"
 alias gtv="git tag | sort -V"
 
-alias glm="git log origin/master HEAD"
+alias glm="git log --pretty=oneline --abbrev-commit origin/master"
 
 alias ggsup="git branch --set-upstream-to=origin/$(git_current_branch)"
 alias gpsup="git push --set-upstream origin $(git_current_branch)"

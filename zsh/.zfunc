@@ -151,7 +151,7 @@ cf() {
 
 # fgl - git log branch
 fgl() {
-  git log origin/$1
+  git log --pretty=oneline --abbrev-commit origin/$1
 }
 
 # fbr - checkout git branch
