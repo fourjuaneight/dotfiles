@@ -77,6 +77,7 @@ alias nr="npm run"
 # Hugo
 alias hs="hugo server"
 alias hsd="hugo server --disableFastRender"
+alias shs="concurrently \"hugo serve --disableFastRender\" \"gulp watch\""
 
 # Jekyll
 alias js="bundle exec jekyll serve"
