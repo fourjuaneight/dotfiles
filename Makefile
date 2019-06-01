@@ -40,20 +40,21 @@ usage:
 .PHONY: linux macos link unlink
 
 linux: stow ruby node antigen
+	bash $(DOTFILES_DIR)/linux/apt.sh
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
 	test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
 	test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 	test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
 	echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
-	bash $(DOTFILES_DIR)/linux/apt-get.sh
-	bash $(DOTFILES_DIR)/linux/brew.sh
 	ln -s $(HOME)/init.vim $(HOME)/.config/nvim/init.vim
+	bash $(DOTFILES_DIR)/macos/brew.sh
+	bash $(DOTFILES_DIR)/env/gem.sh
+	bash $(DOTFILES_DIR)/env/npm.sh
+	bash $(DOTFILES_DIR)/env/pip.sh
 
 macos: stow bash ruby node antigen
 	bash $(DOTFILES_DIR)/macos/default.sh
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-	bash $(DOTFILES_DIR)/linux/apt.sh
-	bash $(DOTFILES_DIR)/macos/brew.sh
 	bash $(DOTFILES_DIR)/macos/brewCask.sh
 	bash $(DOTFILES_DIR)/macos/mas.sh
 	xcode-select --install
@@ -61,6 +62,10 @@ macos: stow bash ruby node antigen
 	bash $(DOTFILES_DIR)/macos/duti/set.sh
 	brew services start chunkwm
 	brew services start skhd
+	bash $(DOTFILES_DIR)/macos/brew.sh
+	bash $(DOTFILES_DIR)/env/gem.sh
+	bash $(DOTFILES_DIR)/env/npm.sh
+	bash $(DOTFILES_DIR)/env/pip.sh
 
 link:
 	ln -fs $(DOTFILES_DIR)/zsh/.zshrc $(HOME)/.zshrc
@@ -86,11 +91,9 @@ ruby:
 	gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
 	\curl -sSL https://get.rvm.io | bash -s stable --ruby
 	rvm install ruby-2.5.3
-	bash $(DOTFILES_DIR)/env/gem.sh
 
 node:
 	curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
-	bash $(DOTFILES_DIR)/env/npm.sh
 
 antigen:
 	cabal update
@@ -98,9 +101,10 @@ antigen:
 	git clone https://github.com/Tarrasch/antigen-hs.git ~/.zsh/antigen-hs/
 
 rclone:
-	curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip
-	unzip rclone-current-linux-amd64.zip
-	cd rclone-*-linux-amd64
+	wget https://downloads.rclone.org/rclone-current-linux-amd64.zip -O ~/rclone.zip
+	cd ~/
+	unzip rclone.zip
+	cd rclone
 	sudo cp rclone /usr/bin/
 	sudo chown root:root /usr/bin/rclone
 	sudo chmod 755 /usr/bin/rclone
