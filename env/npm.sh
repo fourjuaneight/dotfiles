@@ -1,24 +1,24 @@
 # Node Packages
-npm i -g @babel/core
-npm i -g @slack/client
-npm i -g babel-cli
-npm i -g babel-eslint
-npm i -g eslint
-npm i -g eslint-config-airbnb
-npm i -g eslint-config-prettier
-npm i -g gatsby
-npm i -g gatsby-cli
-npm i -g glyphhanger
-npm i -g graphiql
-npm i -g graphql
-npm i -g graphql-tools
-npm i -g gulp
-npm i -g node-sass
-npm i -g npm-fzf
-npm i -g postcss-cli
-npm i -g prettier
-npm i -g react
-npm i -g react-dom
-npm i -g simple-node-logger
-npm i -g webpack
-npm i -g webpack-cli
+npm i -g @babel/core \
+  @slack/client \
+  babel-cli \
+  babel-eslint \
+  eslint \
+  eslint-config-airbnb \
+  eslint-config-prettier \
+  gatsby \
+  gatsby-cli \
+  glyphhanger \
+  graphiql \
+  graphql \
+  graphql-tools \
+  gulp \
+  node-sass \
+  npm-fzf \
+  postcss-cli \
+  prettier \
+  react \
+  react-dom \
+  simple-node-logger \
+  webpack \
+  webpack-cli
