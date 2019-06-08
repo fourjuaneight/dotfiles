@@ -6,6 +6,7 @@ sudo apt-get dist-upgrade -f
 sudo apt-get autoremove -y
 
 sudo apt-get install -y apt-transport-https \
+  alacritty \
   bash \
   build-essential \
   cabal-install \

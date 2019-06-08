@@ -5,10 +5,10 @@ sudo apt upgrade -y
 sudo apt dist-upgrade -f
 sudo apt autoremove -y
 
-sudo apt install curl
-sudo apt install git
-sudo apt install nginx
-sudo apt install stow
-sudo apt install tree
+sudo apt install -y curl \
+  git \
+  nginx \
+  stow \
+  tree
 
 sudo apt autoclean -y
