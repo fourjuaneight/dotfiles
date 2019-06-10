@@ -11,9 +11,15 @@ export PYTHONPATH="/usr/lib/python3/dist-packages:$PYTHONPATH"
 # RVM PATH
 export PATH="$PATH:$HOME/.rvm/bin"
 
-# Load nvm
+# nvm PATH
 export NVMPATH="$HOME/.nvm"
 [[ -s $NVMPATH/nvm.sh ]] && . $NVMPATH/nvm.sh
+
+# Go PATH
+export GOPATH=$HOME/golang
+export GOROOT=/home/linuxbrew/.linuxbrew/bin/go
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
 
 # Loading Antigen-hs
 . ~/.zsh/antigen-hs/init.zsh
