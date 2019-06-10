@@ -17,9 +17,7 @@ export NVMPATH="$HOME/.nvm"
 
 # Go PATH
 export GOPATH="$HOME/golang"
-export GOROOT="/home/linuxbrew/.linuxbrew/bin/go:$GOROOT"
-export PATH="$PATH:$GOPATH/bin"
-export PATH="$PATH:$GOROOT/bin"
+export PATH="$PATH:/usr/local/go/bin"
 
 # Loading Antigen-hs
 . ~/.zsh/antigen-hs/init.zsh
