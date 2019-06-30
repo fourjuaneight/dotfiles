@@ -18,15 +18,18 @@ dotenv_path = join(dirname(__file__), '.env')
 # Load file from the path
 load_dotenv(dotenv_path)
 
-folders = [
-    'Dropbox/',
-    'dotfiles/',
-    'Music/'
+c = [
+    'Photos/',
+    'Wallpapers/',
 ]
+music = 'Music/'
+
 rawday = datetime.datetime.today()
 today = rawday.strftime('%Y-%m-%d')
 oldest = rawday - timedelta(days=7)
 user = '/mnt/c/Users/Juan/'
+drop = user + 'Dropbox/'
+media = '/mnt/d/'
 bud = '/mnt/d/Backup/'
 backup = bud + today
 b2 = 'b2:helms-deep/guzman-backup/' + today
@@ -79,7 +82,8 @@ def slack_erros(message):
 # Create today's Backup Directory
 try:
     os.makedirs(backup)
-    for copy in folders:
+    os.makedirs(os.path.join(backup, music))
+    for copy in c:
         os.makedirs(os.path.join(backup, copy))
     logging.info('Backup directory created')
 except Exception as e:
@@ -88,8 +92,9 @@ except Exception as e:
 
 # Sync files to newly create Backup Directory
 try:
-    for loc in folders:
-        subprocess.call(rsync + [os.path.join(user, loc), os.path.join(backup, loc)])
+    subprocess.call(rsync + [os.path.join(media, music), os.path.join(backup, music)])
+    for folder in c:
+        subprocess.call(rsync + [os.path.join(drop, folder), os.path.join(backup, folder)])
     logging.info('Files synced')
 except Exception as e:
     logging.exception(e)
