@@ -71,6 +71,7 @@ brew install ack \
   tidy-html5 \
   tmux \
   vim \
+  webp \
   wget \
   xz \
   yarn \
