@@ -68,10 +68,6 @@ alias gu="gulp"
 alias wpw="webpack -w"
 alias wp="webpack"
 
-# Webp
-alias wbpng="find ./ -type f -name '*.png' | xargs -P 8 -I {} sh -c 'cwebp -q 90 $1 -o "${1%.png}.webp"' _ {} \;"
-alias wbjpg="find ./ -type f -name '*.jpg' | xargs -P 8 -I {} sh -c 'cwebp -q 90 $1 -o "${1%.jpg}.webp"' _ {} \;"
-
 # nvm
 alias ni="nvm install"
 alias nu="nvm use"

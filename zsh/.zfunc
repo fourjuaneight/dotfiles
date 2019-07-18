@@ -24,6 +24,15 @@ yta() {
   youtube-dl -f bestaudio[ext=m4a] $1
 }
 
+# webp - converting PNGs and JPEGs to webp
+wbpng() {
+  find ./ -type f -name '*.png' | xargs -P 8 -I {} sh -c 'cwebp -q 90 $1 -o "${1%.png}.webp"' _ {} \;
+}
+
+wbjpg() {
+  find ./ -type f -name '*.jpg' | xargs -P 8 -I {} sh -c 'cwebp -q 90 $1 -o "${1%.jpg}.webp"' _ {} \;
+}
+
 # ffc - ffmpeg clip video 
 # 1 - start time
 # 2 - input file
