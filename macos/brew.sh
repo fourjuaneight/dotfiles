@@ -28,6 +28,7 @@ brew install ack \
   ffmpeg \
   fswatch \
   fzf \
+	fd \
   ghc \
   git \
   gist \
