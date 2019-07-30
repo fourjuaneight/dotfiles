@@ -126,7 +126,7 @@ alias gf="git fetch"
 alias gfa="git fetch --all --prune"
 alias gfo="git fetch origin"
 
-alias gm="git merge"
+alias gmrg="git merge"
 alias gmom="git merge origin/master"
 alias gmt="git mergetool --no-prompt"
 alias gmtvim="git mergetool --no-prompt --tool=vimdiff"
