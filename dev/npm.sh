@@ -1,11 +1,17 @@
-# Node Packages
+#!/usr/bin/env bash
+
 npm i -g @babel/core \
+  @11ty/eleventy \
+  @babel/core \
+  @babel/cli \
+  @babel/preset-env \
   @slack/client \
-  babel-cli \
   babel-eslint \
+  cross-env \
   eslint \
   eslint-config-airbnb \
   eslint-config-prettier \
+  eslint-plugin-prettier \
   gatsby \
   gatsby-cli \
   glyphhanger \
@@ -15,10 +21,14 @@ npm i -g @babel/core \
   gulp \
   node-sass \
   npm-fzf \
+  postcss \
   postcss-cli \
+  postcss-preset-env \
   prettier \
   react \
   react-dom \
+  sass \
   simple-node-logger \
+  terser \
   webpack \
   webpack-cli

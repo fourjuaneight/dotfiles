@@ -8,7 +8,7 @@ brew install ack \
   dep \
   ffmpeg \
   fzf \
-	fd \
+  fd \
   go \
   haskell-stack \
   hugo \

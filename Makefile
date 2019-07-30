@@ -48,9 +48,9 @@ linux: stow ruby node antigen
 	echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
 	ln -s $(HOME)/init.vim $(HOME)/.config/nvim/init.vim
 	bash $(DOTFILES_DIR)/macos/brew.sh
-	bash $(DOTFILES_DIR)/env/gem.sh
-	bash $(DOTFILES_DIR)/env/npm.sh
-	bash $(DOTFILES_DIR)/env/pip.sh
+	bash $(DOTFILES_DIR)/dev/gem.sh
+	bash $(DOTFILES_DIR)/dev/npm.sh
+	bash $(DOTFILES_DIR)/dev/pip.sh
 
 macos: stow bash ruby node antigen
 	bash $(DOTFILES_DIR)/macos/default.sh
@@ -63,9 +63,9 @@ macos: stow bash ruby node antigen
 	brew services start chunkwm
 	brew services start skhd
 	bash $(DOTFILES_DIR)/macos/brew.sh
-	bash $(DOTFILES_DIR)/env/gem.sh
-	bash $(DOTFILES_DIR)/env/npm.sh
-	bash $(DOTFILES_DIR)/env/pip.sh
+	bash $(DOTFILES_DIR)/dev/gem.sh
+	bash $(DOTFILES_DIR)/dev/npm.sh
+	bash $(DOTFILES_DIR)/dev/pip.sh
 
 link:
 	ln -fs $(DOTFILES_DIR)/zsh/.zshrc $(HOME)/.zshrc
@@ -113,7 +113,7 @@ rclone:
 	sudo mandb
 
 stow:
-	stow dev
+	stow config
 	stow fonts
 	stow git
 	stow gpg

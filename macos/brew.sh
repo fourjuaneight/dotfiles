@@ -28,7 +28,7 @@ brew install ack \
   ffmpeg \
   fswatch \
   fzf \
-	fd \
+  fd \
   ghc \
   git \
   gist \
@@ -40,6 +40,7 @@ brew install ack \
   hugo \
   imagemagick \
   inetutils \
+  jasper \
   jenv \
   libjpeg \
   libmemcached \

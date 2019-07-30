@@ -29,6 +29,7 @@ sudo apt-get install -y apt-transport-https \
   inetutils \
   indent \
   inotify-tools \
+  jasper \
   libjpeg8 \
   libmemcached-tools \
   libsecret-1-dev \
