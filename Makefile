@@ -37,20 +37,16 @@ usage:
 	\\n\
 	"
 
-.PHONY: linux macos link unlink
+.PHONY: linux macos
 
 linux: stow ruby node antigen
 	bash $(DOTFILES_DIR)/linux/apt.sh
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
-	test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
-	test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-	test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
-	echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
-	ln -s $(HOME)/init.vim $(HOME)/.config/nvim/init.vim
 	bash $(DOTFILES_DIR)/macos/brew.sh
 	bash $(DOTFILES_DIR)/dev/gem.sh
 	bash $(DOTFILES_DIR)/dev/npm.sh
 	bash $(DOTFILES_DIR)/dev/pip.sh
+	rvm install ruby-2.5.3
 
 macos: stow bash ruby node antigen
 	bash $(DOTFILES_DIR)/macos/default.sh
@@ -66,20 +62,7 @@ macos: stow bash ruby node antigen
 	bash $(DOTFILES_DIR)/dev/gem.sh
 	bash $(DOTFILES_DIR)/dev/npm.sh
 	bash $(DOTFILES_DIR)/dev/pip.sh
-
-link:
-	ln -fs $(DOTFILES_DIR)/zsh/.zshrc $(HOME)/.zshrc
-	ln -fs $(DOTFILES_DIR)/zsh/.curlrc $(HOME)/.curlrc
-	ln -fs $(DOTFILES_DIR)/tmux/.tmux $(HOME)/.tmux
-	ln -fs $(DOTFILES_DIR)/vim/.vimrc $(HOME)/.vimrc
-	ln -fs $(DOTFILES_DIR)/vim/.vim $(HOME)/.vim
-
-unlink:
-	unlink $(HOME)/.zshrc
-	unlink $(HOME)/.curlrc
-	unlink $(HOME)/.tmux
-	unlink $(HOME)/.vimrc
-	unlink $(HOME)/.vim
+	rvm install ruby-2.5.3
 
 .PHONY: bash stow
 
@@ -90,14 +73,12 @@ bash:
 ruby:
 	gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
 	\curl -sSL https://get.rvm.io | bash -s stable --ruby
-	rvm install ruby-2.5.3
 
 node:
 	curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
 
 antigen:
-	cabal update
-	cabal install base text directory filepath process
+	cabal new-install base text directory filepath process
 	git clone https://github.com/Tarrasch/antigen-hs.git ~/.zsh/antigen-hs/
 
 rclone:
