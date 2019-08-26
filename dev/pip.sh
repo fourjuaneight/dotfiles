@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-python3 -m pip install -t /usr/lib/python3/dist-packages autopep8 \
+python3 -m pip install autopep8 \
   b2 \
   brotli \
   flake8 \

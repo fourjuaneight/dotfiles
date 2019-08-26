@@ -25,8 +25,10 @@ npm i -g @babel/core \
   postcss-cli \
   postcss-preset-env \
   prettier \
+  puppeteer \
   react \
   react-dom \
+  rollup \
   sass \
   simple-node-logger \
   terser \

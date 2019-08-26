@@ -93,6 +93,12 @@ rclone:
 	sudo cp rclone.1 /usr/local/share/man/man1/
 	sudo mandb
 
+ycm:
+	git clone https://github.com/ycm-core/ycmd.git
+	cd ycmd
+	git submodule update --init --recursive
+	python3 build.py --ts-completer
+
 stow:
 	stow config
 	stow fonts

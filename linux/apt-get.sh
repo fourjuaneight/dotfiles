@@ -14,9 +14,7 @@ sudo apt-get install -y apt-transport-https \
   clang \
   cmake \
   coreutils \
-  curl --with-openssl \
-  docker-ce \
-  docker-engine \
+  curl \
   findutils \
   ghc \
   gist \
@@ -26,7 +24,6 @@ sudo apt-get install -y apt-transport-https \
   graphicsmagick \
   htop \
   imagemagick \
-  inetutils \
   indent \
   inotify-tools \
   jasper \
@@ -50,11 +47,10 @@ sudo apt-get install -y apt-transport-https \
   python3 \
   python3-dev \
   python3-pip \
-  pythond-pygments \
+  python-pygments \
   rsync \
   rbenv \
   sed \
-  sphinx \
   stow \
   tar \
   tmux \
