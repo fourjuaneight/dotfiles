@@ -43,6 +43,7 @@ g<A-n> - select_all_key
 
 <!-- NERDtree -->
 ,nt - toggle tree
+m - entre file creation mode
 
 <!-- NERDCommenter -->
 ,cc - comment out selection
