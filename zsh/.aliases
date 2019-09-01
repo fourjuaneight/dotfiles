@@ -38,7 +38,7 @@ alias croe="crontab -e"
 alias crol="crontab -l"
 
 # tmux
-alias tso="source ~/.tmux.conf"
+alias tso="tmux source ~/.tmux.conf"
 alias tn="tmux -u new"
 alias tk="pkill -f tmux"
 alias tx="exit"
