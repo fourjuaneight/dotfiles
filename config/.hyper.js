@@ -11,8 +11,6 @@ module.exports = {
     fontWeight: 'normal',
     fontWeightBold: 'bold',
     padding: '10px',
-    shell: 'C:\\Windows\\System32\\bash.exe',
-    shellArgs: ['--login'],
     updateChannel: 'stable',
     wickedBorder: true,
     windowSize: [1230, 1230],
@@ -24,7 +22,7 @@ module.exports = {
     }
   },
   plugins: [
-    'nord-hyper',
+    'hyper-dracula',
     'hyper-tabs-enhanced'
   ]
 };
