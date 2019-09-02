@@ -266,7 +266,7 @@ nmap <leader>aks :Ack! --sass ""<Left>
 nmap <leader>akh :Ack! --html ""<Left>
 nmap <leader>akr :Ack! --ruby ""<Left>
 nmap <leader>akj :Ack! --js ""<Left>
-nmap <leader>cdo :cdo s///g | update
+nmap <leader>cdo :cdo %s///g \| update
 " https://chrisarcand.com/vims-new-cdo-command/
 
 " ALE
