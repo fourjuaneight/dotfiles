@@ -1,0 +1,153 @@
+snippet lig "Lighten color function"
+lighten($$1, $2%)
+endsnippet
+
+snippet dar "Darken color function"
+darken($$1, $2%)
+endsnippet
+
+snippet rgba "RGBA color function"
+rgba($$1, 0.$2)
+endsnippet
+
+snippet calc "Calc"
+calc($1)
+endsnippet
+
+snippet flx "Flex base extends"
+@extend %content-center;
+@extend %flex;
+@extend %items-center;
+endsnippet
+
+snippet sup "Run this code if this is supported (modern browsers)"
+@supports ($1) {
+  $2
+}
+endsnippet
+
+snippet supg "Run this code if grid is supported (modern browsers)"
+@supports (display:grid) {
+  $1
+}
+endsnippet
+
+snippet supgg "Display grid if grid is supported (modern browsers)"
+@supports (display:grid) {
+  display: grid !important;
+}
+endsnippet
+
+snippet mqmxc "Media query mixin call"
+@include media-query-max($1) {
+  $2
+}
+endsnippet
+
+snippet mqmnc "Media query mixin call"
+@include media-query-min($1) {
+  $2
+}
+endsnippet
+
+snippet elm "Each loop variable map"
+$$1: (
+  $2
+  $3
+);
+endsnippet
+
+snippet eld "Each loop variable dictionary"
+$$1: (
+  $2: $3,
+  $4: $5,
+);
+endsnippet
+
+snippet elmc "Each loop map call"
+@each $$item in $$1 {
+  $$item {
+    $2
+  }
+}
+endsnippet
+
+snippet elmic "Each loop map + index call"
+@each $$item in $$2 {
+  $$i: index($$3, $$item);
+  $$item:nth-child(#{$$i}) {
+    $4
+  }
+}
+endsnippet
+
+snippet eldc "Each loop dictionary call"
+@each $$1, $$item in $$2 {
+  $$3 {
+    $4: $$item;
+  }
+}
+endsnippet
+
+snippet eldic "Each loop dictionary + index call"
+@each $$1, $$item in $$2 {
+  $$i: index($$3, $$item);
+  $$4:nth-child(#{$$i}) {
+    $5: $$item;
+  }
+}
+endsnippet
+
+snippet for "For loop"
+@for $$i from $1 to $2 {
+  $3
+}
+endsnippet
+
+snippet fori "For loop + add"
+@for $$i from $1 to $2 {
+  $c : $3 + ($i - 1) * $4;
+  $5.$6#{$i} {
+    $7: #{$c}$8;
+  }
+}
+endsnippet
+
+snippet fornth "For loop through nth-child"
+@for $$i from $1 to $2 {
+  li:nth-child(#{$$i}) {
+    $3
+  }
+}
+endsnippet
+
+snippet ext "Extend code"
+@extend %$1;
+endsnippet
+
+snippet inc "Include code"
+@include $1($2);
+endsnippet
+
+snippet thm "Theme color map"
+$$themes: (
+  light: (
+    $1: $2,
+  ),
+  dark: (
+    $3: $4,
+  ),
+);
+endsnippet
+
+snippet thmf "Theme mixin and function"
+@mixin color($property, $varName) {
+  #{$property}: map-get($light, $varName);
+  #{$property}: var(--#{$varNameendsnippet
+ map-get($light, $varName));
+}
+endsnippet
+
+snippet thc "Theme call (property:value)"
+@include color($1, $2);
+endsnippet

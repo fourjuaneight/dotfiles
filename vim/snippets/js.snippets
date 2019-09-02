@@ -1,0 +1,107 @@
+snippet afunc "Arrow Function"
+const $1 = $2 => {
+  $3
+}
+endsnippet
+
+snippet fe "For Each Loop"
+$1.forEach(${2:el} => {
+  $3
+});
+endsnippet
+
+snippet fi "For in"
+for (let $1 in $2) {
+  $3
+}
+endsnippet
+
+snippet fo "For of"
+for (let $1 of $2) {
+  $3
+}
+endsnippet
+
+snippet el "Event Listener"
+$1.addEventListener('${2:click}', () => {
+  $3
+});
+endsnippet
+
+snippet ter "Ternary Operator"
+$1 ? $2 : $3
+endsnippet
+
+snippet ter "Switch Statement"
+switch ($1) {
+  case '$2':
+    $3;
+    break;
+  default:
+    $4;
+}
+endsnippet
+
+snippet dcon "DOM Constant"
+const $1 = document.querySelector('$2');
+endsnippet
+
+snippet imp "Import modules"
+import $1 from '$2';
+endsnippet
+
+snippet iso "Current date in ISO format"
+const offset = new Date().getTimezoneOffset() * 60000;
+const iso = new Date(Date.now() - offset).toISOString();
+const today = iso.substring(0, ${1:10});
+endsnippet
+
+snippet gt "Gulp task template"
+const $1 = cb => {
+  pump([
+    src('$2'),
+    $4
+    dest('$3')
+  ], cb);
+}
+endsnippet
+
+snippet sty "Styled component block"
+const $1 = styled.$2`
+  $3
+`;
+endsnippet
+
+snippet nsty "Nested Styled component block"
+$${$1} {
+  $2
+}
+endsnippet
+
+snippet ccomp "React component block"
+export default class $1 extends Component {
+  render() {
+    return (
+      $2
+    );
+  }
+}
+endsnippet
+
+snippet comp "React component block"
+const $1 = ({ $2 }) => (
+  $3
+)
+
+export default $1
+endsnippet
+
+snippet prop "React Proptype"
+.propTypes = {
+  : PropTypes.string.isRequired,
+}
+endsnippet
+
+snippet cx "React CSS Modules className cx"
+className={cx($1)}
+endsnippet

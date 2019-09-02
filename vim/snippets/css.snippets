@@ -1,0 +1,31 @@
+snippet rgba "RGBA color function"
+rgba($$1, 0.$2)
+endsnippet
+
+snippet calc "Calc"
+calc($1)
+endsnippet
+
+snippet sup "Run this code if this is supported (modern browsers)"
+@supports ($1) {
+  $2
+}
+endsnippet
+
+snippet supg "Run this code if grid is supported (modern browsers)"
+@supports (display:grid) {
+  $1
+}
+endsnippet
+
+snippet supgg "Display grid if grid is supported (modern browsers)"
+@supports (display:grid) {
+  display: grid !important;
+}
+endsnippet
+
+snippet mq "Media query"
+@media screen and ($1-width: $2) {
+  $3
+}
+endsnippet

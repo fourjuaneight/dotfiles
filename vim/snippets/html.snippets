@@ -1,0 +1,110 @@
+snippet tag "Universal tag"
+<${1:div}>$2</$1>
+endsnippet
+
+snippet exlink "External Links"
+<a href="$1" target="_blank" rel="noreferrer noopener">$2</a>
+endsnippet
+
+snippet link "Links"
+<a href="$1" class="$2">$3</a>
+endsnippet
+
+snippet jurl "Jekyll - BaseURL"
+{{ site.baseurl }}$1
+endsnippet
+
+snippet jif "Jekyll - If statement"
+{% if $1 %}
+  $2
+{% endif %}
+endsnippet
+
+snippet jeif "Jekyll - ElseIf statement"
+{% elsif $1 %}$2
+endsnippet
+
+snippet jifu "Jekyll - If URL statement"
+{% if page.url == '$1' %}
+  $2
+{% endif $3 %}
+endsnippet
+
+snippet jeifu "Jekyll - ElseIf URL statement"
+{% elsif page.url == '$1' %}$2
+endsnippet
+
+snippet hb "Hugo block"
+{{ $1 }}
+endsnippet
+
+snippet hif "Hugo If block"
+{{ if $1 }}
+endsnippet
+
+snippet hw "Hugo With block"
+{{ with $1 }}
+endsnippet
+
+snippet he "Hugo End block"
+{{ end }}
+endsnippet
+
+snippet hv "Hugo Variable"
+{{ \\$$1 := $2 }}
+endsnippet
+
+snippet hparam "Hugo Params"
+{{ .Params.$1 }}
+endsnippet
+
+snippet hsite "Hugo Site"
+{{ .Site.$1 }}
+endsnippet
+
+snippet hperma "Hugo Permalink"
+{{ \\$$1.Permalink }}
+endsnippet
+
+snippet hrul "Hugo relURL"
+{{ "$1" | relURL }}
+endsnippet
+
+snippet hrul "Hugo resourcesGet"
+{{ \\$$1 := resources.Get "$2/$3.png" }}
+endsnippet
+
+snippet hdt "Hugo Date"
+{{ time.Now.Format "2006" }}
+endsnippet
+
+snippet hcopy "Hugo Copyright"
+{{ .Site.Copyright }}
+endsnippet
+
+snippet hstitle "Hugo Site Title"
+{{ .Site.Title }}
+endsnippet
+
+snippet hburl "Hugo BaseURL"
+{{ .Site.BaseURL }}
+endsnippet
+
+snippet himg "Hugo - Image shortcode"
+{{ \\$img := resources.Get "img/$1.$2" }}
+<img src="{{ \\$img.Permalink }}" alt="$3" class="$4"/>
+endsnippet
+
+snippet hpic "Hugo - Picture shortcode"
+{{ \\$webp := resources.Get "img/$1.webp" }}
+{{ \\$img := resources.Get "img/$2.$3" }}
+<picture class="img__wrap $4">
+  <source data-srcset="{{ \\$webp.Permalink }}" type="image/webp">
+  <source data-srcset="{{ \\$img.Permalink }}" type="image/$3">
+  <img data-src="{{ \\$img.Permalink }}" alt="$6" class="lazy"/>
+</picture>
+endsnippet
+
+snippet hlink "Hugo - External links"
+<a href='{{ "$1" | relURL }}' class="$2">$3</a>
+endsnippet

@@ -208,19 +208,21 @@ let g:rainbow_active = 1 " 0 if you want to enable it later via :RainbowToggle
 
 " Ultisnips
 " snippets location
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "snips"]
-
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "snippets"]
+let g:UltiSnipsExpandTrigger="<c-r>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
 " YCM
 " disable auto_triggering ycm suggestions pane and instead
-" use semantic completion only on Ctrl+n
-let ycm_trigger_key = '<C-n>'
 " let g:ycm_auto_trigger = 0
-let g:ycm_key_invoke_completion = ycm_trigger_key
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " this is some arcane magic to allow cycling through the YCM options
 " with the same key that opened it.
