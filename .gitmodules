@@ -91,6 +91,9 @@
 [submodule "vim/.vim/plugged/vim-jsx"]
   path = vim/.vim/plugged/vim-jsx
   url = https://github.com/mxw/vim-jsx
+[submodule "vim/.vim/plugged/YouCompleteMe"]
+  path = vim/.vim/plugged/YouCompleteMe
+  url = https://github.com/ycm-core/YouCompleteMe
 [submodule "tmux/.tmux/themes/nord-tmux"]
-	path = tmux/.tmux/themes/nord-tmux
-	url = https://github.com/arcticicestudio/nord-tmux
+  path = tmux/.tmux/themes/nord-tmux
+  url = https://github.com/arcticicestudio/nord-tmux
