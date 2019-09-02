@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+sudo add-apt-repository ppa:kellyk/emacs
 sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get dist-upgrade -f
@@ -15,6 +16,7 @@ sudo apt-get install -y apt-transport-https \
   cmake \
   coreutils \
   curl \
+	emacs26 \
   findutils \
   ghc \
   gist \
