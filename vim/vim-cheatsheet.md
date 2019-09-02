@@ -1,75 +1,80 @@
-<!-- Ag -->
-,ak - search pattern
-,akf - search pattern in current file
-,akc - search pattern in css files
-,aks - search pattern in sass files
-,akh - search pattern in html files
-,akj - search pattern in js files
-,cdo - search and replace
+# Vim Cheatsheet
 
-<!-- Ale -->
-,alef - Ale lint and fix
-,alefs - Ale suggest fixes
+## Ag
+`,ak` - search pattern
+`,akf` - search pattern in current file
+`,akc` - search pattern in css files
+`,aks` - search pattern in sass files
+`,akh` - search pattern in html files
+`,akj` - search pattern in js files
+`,cdo` - search and replace
 
-<!-- Buffkil -->
-,bd - delete a file from buffer and keep window/split
-,bn - next buffer
-,bp - prev buffer
+## Ale
+`,alef` - Ale lint and fix
+`,alefs` - Ale suggest fixes
 
-<!-- Emmet -->
-<C-y>, - expand to HTML
+## Buffkil
+`,bd` - delete a file from buffer and keep window/split
+`,bn` - next buffer
+`,bp` - prev buffer
 
-<!-- Fugitive -->
-,gst - git status
-,gdf - git rm file and buffer
+## Emmet
+`<C-y>,` - expand to HTML
 
-<!-- fzf -->
-,bf - search active buffer
-,fz - search current directory
-,tg - search tags
+## Fugitive
+`,gst` - git status
+`,gdf` - git rm file and buffer
 
-<!-- Git gutter -->
-,gg - toggle git gutter
+## fzf
+`,bf` - search active buffer
+`,fz` - search current directory
+`,tg` - search tags
 
-<!-- Multi Cursor -->
-<C-n> - start_word_key
-<A-n> - select_all_word_key
-g<C-n> - start_key
-g<A-n> - select_all_key
-<C-n> - next_key
-<C-p> - prev_key
-<C-x> - skip_key
-<Esc> - quit_key
+## Git gutter
+`,gg` - toggle git gutter
 
-<!-- NERDtree -->
-,nt - toggle tree
-m - entre file creation mode
+## Multi Cursor
+`<C-n>` - start_word_key
+`<A-n>` - select_all_word_key
+`g<C-n>` - start_key
+`g<A-n>` - select_all_key
+`<C-n>` - next_key
+`<C-p>` - prev_key
+`<C-x>` - skip_key
+`<Esc>` - quit_key
 
-<!-- NERDCommenter -->
-,cc - comment out selection
-,ct - toggle commented selection
+## NERDtree
+`,nt` - toggle tree
+`m` - entre file creation mode
 
-<!-- Plug -->
-,pc - Plug Clean
-,pu - Plug Update
-,pi - Plug Install
+## NERDCommenter
+`,cc` - comment out selection
+`,ct` - toggle commented selection
 
-<!-- Unimpaired -->
-]b - switch forward between buffers
-[b - switch backward between buffers
-[f - next file in dir
-]f - previous file in dir
+## Plug
+`,pc` - Plug Clean
+`,pu` - Plug Update
+`,pi` - Plug Install
 
-<!-- Yankstack -->
-,p - cycle backwards through your yanks
-,P - cycle forwards through your yanks
+## Unimpaired
+`]b` - switch forward between buffers
+`[b` - switch backward between buffers
+`[f` - next file in dir
+`]f` - previous file in dir
 
-<!-- YCM -->
-,yrs - Ycm Restart Server
-,yfc - Ycm Force Compile And Diagnostic
-,ydi - Ycm Show Detailed Diagnostic
-,ycm - Ycm Completer
+## Utilsnips
+`<tab>` - select snippet
 
-<!-- OTHER -->
-<C-o> - delete all empty lines
-<Leader>y - copy selection to system clipboard
+## Yankstack
+`,p` - cycle backwards through your yanks
+`,P` - cycle forwards through your yanks
+
+## YCM
+`,yrs` - Ycm Restart Server
+`,yfc` - Ycm Force Compile And Diagnostic
+`,ydi` - Ycm Show Detailed Diagnostic
+`,ycm` - Ycm Completer
+
+## OTHER
+`<C-o>` - delete all empty lines
+`<Leader>y` - copy selection to system clipboard
