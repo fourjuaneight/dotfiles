@@ -140,14 +140,16 @@ alias gupu="git push upstream"
 alias gp="git pull --rebase"
 alias gprv="git pull --rebase -v"
 alias gpum="git pull upstream master"
+alias gsp="git pull --recurse-submodules"
 
 alias gr="git remote"
 alias gra="git remote add"
 alias grup="git remote update"
 alias grv="git remote -v"
 
-alias grh="git reset"
-alias grhh="git reset --hard"
+alias grs="git reset"
+alias grh="git reset --hard"
+alias gsrh="git submodule foreach 'git reset --hard'"
 
 alias gst="git status"
 alias gsb="git status -sb"
