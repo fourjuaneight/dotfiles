@@ -208,7 +208,7 @@ let g:rainbow_active = 1 " 0 if you want to enable it later via :RainbowToggle
 
 " Ultisnips
 " snippets location
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "snippets"]
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "snips"]
 let g:UltiSnipsExpandTrigger="<c-r>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
