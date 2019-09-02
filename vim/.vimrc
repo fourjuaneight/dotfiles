@@ -206,15 +206,6 @@ let g:NERDCustomDelimiters = { 'css': { 'left': '/*','right': '*/' } }
 " Rainbow
 let g:rainbow_active = 1 " 0 if you want to enable it later via :RainbowToggle
 
-" Ultisnips
-" snippets location
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "snips"]
-let g:UltiSnipsExpandTrigger="<c-r>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
 " YCM
 " disable auto_triggering ycm suggestions pane and instead
 " let g:ycm_auto_trigger = 0
@@ -224,11 +215,14 @@ let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 
-" this is some arcane magic to allow cycling through the YCM options
-" with the same key that opened it.
-" See http://vim.wikia.com/wiki/Improve_completion_popup_menu for more info.
-let g:ycm_key_list_select_completion = ['<TAB>', '<C-j>']
-inoremap <expr> ycm_trigger_key pumvisible() ? "<C-j>" : ycm_trigger_key;
+" Ultisnips
+" snippets location
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "snips"]
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""

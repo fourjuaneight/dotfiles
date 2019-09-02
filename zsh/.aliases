@@ -26,18 +26,18 @@ alias whois="whois -h whois-servers.net"
 # zsh
 alias zco="vim ~/.zshrc"
 alias zso="source ~/.zshrc"
-alias tco="vim ~/.tmux.conf"
 
 # vim
 alias vi="vim"
 alias vco="vim ~/.vimrc"
-alias vso="source ~/.vimrc"
+alias vso="vim source ~/.vimrc"
 
 # Cron
 alias croe="crontab -e"
 alias crol="crontab -l"
 
 # tmux
+alias tco="vim ~/.tmux.conf"
 alias tso="tmux source ~/.tmux.conf"
 alias tn="tmux -u new"
 alias tk="pkill -f tmux"
