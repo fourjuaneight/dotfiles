@@ -3,6 +3,7 @@ brew cask install alfred \
   alacritty \
   bartender \
   dropbox \
+	emacs \
   firefox \
   google-chrome \
   gpgtools \
