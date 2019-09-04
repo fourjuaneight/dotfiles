@@ -23,6 +23,9 @@ alias whois="whois -h whois-servers.net"
 alias zco="vim ~/.zshrc"
 alias zso="source ~/.zshrc"
 
+# doom
+alias doom="~/.emacs.d/bin/doom"
+
 # vim
 alias vi="nvim"
 alias vco="nvim ~/.vimrc"
