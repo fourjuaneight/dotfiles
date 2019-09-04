@@ -1,7 +1,3 @@
-# Windows
-alias xclip="clip.exe"
-alias code-snips="node /mnt/c/Users/Juan/snippets/index.js"
-
 # common cli commands
 alias cdh="cd ~"
 alias ..="cd .."
@@ -28,22 +24,22 @@ alias zco="vim ~/.zshrc"
 alias zso="source ~/.zshrc"
 
 # vim
-alias vi="vim"
-alias vco="vim ~/.vimrc"
-alias vso="vim source ~/.vimrc"
+alias vi="nvim"
+alias vco="nvim ~/.vimrc"
+alias vso="nvim source ~/.vimrc"
 
 # Cron
 alias croe="crontab -e"
 alias crol="crontab -l"
 
 # tmux
-alias tco="vim ~/.tmux.conf"
+alias tco="nvim ~/.tmux.conf"
 alias tso="tmux source ~/.tmux.conf"
 alias tn="tmux -u new"
 alias tk="pkill -f tmux"
 alias tx="exit"
-alias tdevx="tmux new-session \; split-window -v -p 30 \; send-keys 'clear' C-m \; split-window -h \; send-keys 'clear' C-m \; select-pane -U \; send-keys 'vim' C-m \;"
-alias tdev="tmux new-session \; split-window -v -p 30 \; send-keys 'clear' C-m \; select-pane -U \; send-keys 'vim' C-m \;"
+alias tdevx="tmux new-session \; split-window -v -p 30 \; send-keys 'clear' C-m \; split-window -h \; send-keys 'clear' C-m \; select-pane -U \; send-keys 'nvim' C-m \;"
+alias tdev="tmux new-session \; split-window -v -p 30 \; send-keys 'clear' C-m \; select-pane -U \; send-keys 'nvim' C-m \;"
 
 # ssh
 alias rssh="sudo service ssh --full-restart"
@@ -93,7 +89,7 @@ alias rc="bundle exec rails c"
 alias rs="rails s"
 
 # Git
-alias gco="sudo vim ~/.ssh/config"
+alias gco="sudo nvim ~/.ssh/config"
 
 alias g="git"
 alias ghh="git help"
@@ -131,7 +127,6 @@ alias gfo="git fetch origin"
 alias gmrg="git merge"
 alias gmom="git merge origin/master"
 alias gmt="git mergetool --no-prompt"
-alias gmtvim="git mergetool --no-prompt --tool=vimdiff"
 alias gmum="git merge upstream/master"
 alias gma="git merge --abort"
 

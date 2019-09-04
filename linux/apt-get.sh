@@ -38,6 +38,7 @@ sudo apt-get install -y apt-transport-https \
   mercurial \
   mosh \
   ncdu \
+	neovim \
   nginx \
   npm \
   nodejs \
