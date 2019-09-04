@@ -101,6 +101,7 @@ ycm:
 
 stow:
 	stow config
+	stow emacs
 	stow fonts
 	stow git
 	stow gpg
