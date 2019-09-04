@@ -1,0 +1,3 @@
+#name: null
+# --
+(null `(doom-snippets-format "%n%s")`$0)

@@ -1,0 +1,4 @@
+# name: @include mixin
+# key: inc
+# --
+@include `(doom-snippets-text nil t)`${1:mixin-name};
