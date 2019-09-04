@@ -1,6 +1,10 @@
 """""""""""""""""""""""""""""""""""""""""""""""
 " General
 """""""""""""""""""""""""""""""""""""""""""""""
+
+" change the mapleader from \ to SPC
+let mapleader=" "
+
 " encoding
 set encoding=utf-8
 set fileencoding=utf-8
@@ -13,6 +17,7 @@ set mouse=a                     " when copying, keeping the line numbers out
 set number                      " show line numbers
 set scrolloff=2                 " context lines above and below the cursor
 set showcmd                     " see commands as you type them
+set autowrite										" Automatically :write before running commands
 
 " Show white spaces as a character
 set list
@@ -28,6 +33,7 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=2 noexpandtab
 
+" Open new split panes to right and bottom; more natural
 set splitbelow
 set splitright
 
@@ -36,16 +42,17 @@ set nobackup
 set noswapfile
 set nowritebackup
 
+" Always use vertical diffs
+set diffopt+=vertical
+
 filetype plugin indent on        " indentation
 
 " italic comments on terminal and gui
 highlight Comment cterm=italic gui=italic
 
 " theme
-color nord
+color dracula
 
-" change the mapleader from \ to ,
-let mapleader=","
 
 
 """""""""""""""""""""""""""""""""""""""""""""""
