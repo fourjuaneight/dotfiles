@@ -5,54 +5,74 @@ Files and scripts for configuring a development and terminal enviromant on macOS
 ---
 
 ## Installation
-You can manually clone the repo and invoke the `Makefile`
+
+You can curl the install script and run `make`:
+
+```bash
+$ curl get.juanvillela.dev | sh
+$ cd ~/dotfiles
+$ make install
+```
+
+Or manually clone the repo:
+
 ```bash
 $ git clone https://github.com/fourjuaneight/dotfiles.git
-$ cd dotfiles
-$ make
+$ cd ~/dotfiles
+$ make install
 ```
 
 ## Makefile
 
-### `make`
-* Installs [Homebrew](https://brew.sh) on both systems as there is a [Linux](http://linuxbrew.sh/) now as well.
-* Installs [rvm](https://rvm.io/), [nvm](https://github.com/creationix/nvm), and several gems and npm packages for my particular needs.
-* Updates macOS and configures preferred system defaults defined in [`/macos/default.sh`](macos/default.sh)
-* Configures [chunkwm](https://github.com/koekeishiya/chunkwm) and [skhd](https://github.com/koekeishiya/skhd) to run at system startup
-* Creates necessary symlinks via [GNU Stow](https://www.gnu.org/software/stow/)
-* Runs [`/macos/duti/set.sh`](macos/duti/set.sh), which sets defaults handlers/programs for file extensions via [duti](http://duti.org).
+### `make install`
 
-### `make link`
-* Symlinks only Bash and Vim configuration files to the home directory using `ln` commands. Useful for temporarily configuring a shared computer. Nothing new is installed to the machine, but files *may* be overwritten since the Makefile recipe passes the `-f` flag for every `ln` command.
-* Run `make unlink` to remove these symlinks.
+- Creates necessary symlinks via [Stow](https://www.gnu.org/software/stow/).
+- Installs [Homebrew](https://brew.sh) on macOS and [Linuxbrew](http://linuxbrew.sh/) on Linux.
+- Installs [rvm](https://rvm.io/) and [nvm](https://github.com/creationix/nvm).
+- Installs `apt-get`, `brew`, and `brew cask` dependencies, relevant to each OS.
+- Installs Mac App Store apps via [mas](https://github.com/mas-cli/mas).
 
-## How it Works
+> **Important:** After running `make install`, run `chsh -s $(which zsh)` to set zsh as the default
+> shell. Then restart your terminal. The associated zshrc file will have all the
+> necessary PATHs for the next step.
 
-### Symlinks
+### `make setup`
 
-All necessary symlinks ( [`.bash_profile`](bash/.bash_profile), [`.vimrc`](vim/.vimrc), among others) are managed with GNU Stow (installed with Homebrew). Files you wish to be symlinked to the home directory need to be placed in a folder within `~/dotfiles`. Using the `stow` command from the `~/dotfiles` directory will symlink the contents of the folder you choose (`/bash`, `/vim`, etc) to the grandparent directory, which is wherever the `/dotfiles` folder is contained.
+- Installs npm, ruby, and pip packages.
+- Installs [antigen-hs](https://github.com/Tarrasch/antigen-hs) for zsh package management.
+- Installs [YCM](https://github.com/ycm-core/ycmd) for Vim code completion and snippets.
+- Installs [Doom Emacs](https://github.com/hlissner/doom-emacs).
+- Sets preferred system defaults defined in [`/macos/default.sh`](https://github.com/fourjuaneight/dotfiles/blob/master/macos/default.sh)
+- Sets up [chunkwm](https://github.com/koekeishiya/chunkwm) and [skhd](https://github.com/koekeishiya/skhd) to run at system startup
+- Runs `/macos/duti/set.sh`, which sets defaults handlers/programs for file extensions via [duti](http://duti.org).
 
-Assuming you clone the dotfiles repository in your home directory, executing the commands:
+## Customizing
 
-```bash
-$ cd dotfiles
-$ stow bash
-```
-will symlink the contents of [`/bash`](bash) to the home directory.
+Everything in here is setup to work for me. Which means you'd have to heavily
+edit a lot of the files. I'd recommend making a fork of the repo and then
+changing these things to your needs before installing.
 
-You can use the `stow` command anytime you add a new file to a folder you wish to symlink directly to the home directory. This can all be done without Stow using the `ln -s` command, but I find GNU Stow with folder management to be cleaner and easier to maintain.
+Some config files you'd want to change:
 
-### Zsh
-`.zshrc` includes all configurations, fzf` functions and alias. [Antigen-hs](https://github.com/Tarrasch/antigen-hs) is used in place of MyAntige. [Pure](https://github.com/sindresorhus/pure) is install via `npm` and integrated with `antigen-hs`.
+- [Emacs](https://github.com/fourjuaneight/dotfiles/blob/master/emacs/.doom.d/config.el)
+- [Git](https://github.com/fourjuaneight/dotfiles/blob/master/git/.gitconfig)
+- [Backup Script](https://github.com/fourjuaneight/dotfiles/blob/master/scripts/backup.py)
 
-### Vim
-My vim plugin manager of choice is [Plug](https://github.com/junegunn/vim-plug). The `plu.vim` file is autoloaded and invokes the plugins in the `/vim/bundle` folder via a single line in my `.vimrc`:
+## Thanks
 
-```
-call plug#begin()
-```
+This setup is possible thanks to some awesome developers that have
+been doing this a lot longer (and better) than I have.
 
-Vim plugins are currently contained as git submodules, to keep the remote repository slimmer. The extraneous `git submodule init` and `git submodule update` commands are handled by the `Makefile`.
-
-### Window Management
-chunkwm and skhd are configured via `.chunkwmrc` and `.skhdrc` respectively. Both are located in the `/macos` folder and symlinked to the home directory with `stow macos`.
+- [Darryl Abbate](https://github.com/rootbeersoup/dotfiles)'s dotfiles, which
+  was the "inspiration" for most of this setup.
+- [Lucas F. da
+  Costa](https://lucasfcosta.com/2019/04/07/streams-introduction.html) for
+  making love the terminal again.
+- [Aaron Bieber](https://youtu.be/JWD1Fpdd4Pc) for turning onto Emacs and his
+  great [dotfiles](https://github.com/aaronbieber/dotfiles).
+- Henrik Lissner and his holy work on [Doom
+  Emacs](https://github.com/hlissner/doom-emacs). This things allowed me to jump
+  into Emacs within a day with little friction.
+- Zaiste for his fantastic [Emacs DoomCasts](https://www.youtube.com/playlist?list=PLhXZp00uXBk4np17N39WvB80zgxlZfVwj).
+- [Ryan Schmukler](https://github.com/rschmukler/doom.d)'s dotfiles, which led
+  the way to my badass Doom Emacs setup.
