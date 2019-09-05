@@ -76,3 +76,5 @@ been doing this a lot longer (and better) than I have.
 - Zaiste for his fantastic [Emacs DoomCasts](https://www.youtube.com/playlist?list=PLhXZp00uXBk4np17N39WvB80zgxlZfVwj).
 - [Ryan Schmukler](https://github.com/rschmukler/doom.d)'s dotfiles, which led
   the way to my badass Doom Emacs setup.
+- [Eric Wendelin](https://github.com/eriwen/dotfiles)'s macOS system setup
+  script which makes life that much easier.
