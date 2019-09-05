@@ -34,9 +34,9 @@
                            ?\n)))))
 
 (setq
- doom-font (font-spec :family "FiraCode" :size 24)
+ doom-font (font-spec :family "FiraCode" :size 28)
  doom-big-font (font-spec :family "FiraCode" :size 36)
- doom-variable-pitch-font (font-spec :family "FiraCode" :size 22)
+ doom-variable-pitch-font (font-spec :family "FiraCode" :size 26)
  web-mode-markup-indent-offset 2
  web-mode-code-indent-offset 2
  web-mode-css-indent-offset 2
