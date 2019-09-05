@@ -61,6 +61,7 @@ brew install ack \
   postgresql \
   python \
   python3 \
+  rclone \
   rename \
   rsync \
   ruby \
