@@ -35,9 +35,6 @@ prompt pure
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git ssh-agent)
 
-# Use nvim as the default editor
-export EDITOR=nvim
-
 # Load aliases
 [[ -f ~/aliases.zsh ]] && source ~/aliases.zsh
 

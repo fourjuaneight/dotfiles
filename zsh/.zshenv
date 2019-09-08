@@ -18,3 +18,9 @@ export NVMPATH="$HOME/.nvm"
 # Go PATH
 export GOPATH="$HOME/golang"
 export PATH="$PATH:/usr/local/go/bin"
+
+# nnn
+export NNN_FALLBACK_OPENER=xdg-open
+export NNN_DE_FILE_MANAGER=nautilus
+export NNN_USE_EDITOR=1
+export EDITOR=emacs

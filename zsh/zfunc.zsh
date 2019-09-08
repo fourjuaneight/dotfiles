@@ -73,7 +73,7 @@ tm() {
 fe() {
   local files
   IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
-  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+  [[ -n "$files" ]] && ${EDITOR:-emacs} "${files[@]}"
 }
 
 # fa - Open via ag with line number
@@ -85,7 +85,7 @@ fa() {
 
   if [[ -n $file ]]
   then
-    vim $file +$line
+    emacs $file +$line
   fi
 }
 
@@ -98,7 +98,7 @@ fo() {
   key=$(head -1 <<< "$out")
   file=$(head -2 <<< "$out" | tail -1)
   if [[ -n "$file" ]]; then
-    [[ "$key" = ctrl-o ]] && open "$file" || ${EDITOR:-vim} "$file"
+    [[ "$key" = ctrl-o ]] && open "$file" || ${EDITOR:-emacs} "$file"
   fi
 }
 
@@ -178,6 +178,11 @@ frbr() {
   branches=$(git branch -a) &&
   branch=$(echo "$branches" | fzf +s +m -e) &&
   git checkout $(echo "$branch" | sed "s:.* remotes/origin/::" | sed "s:.* ::")
+}
+
+# Emacs Diff
+ediff() {
+	emacs --eval "(ediff-files \"$1\" \"$2\")";
 }
 
 # fkill - kill process
