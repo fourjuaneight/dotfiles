@@ -57,6 +57,12 @@ bash:
 	echo /usr/local/bin/bash | sudo tee -a /etc/shells
 	chsh -s /usr/local/bin/bash
 
+nnn:
+	git clone --depth 1 https://github.com/jarun/nnn
+	git checkout $(git describe --tags $(git rev-list --tags --max-count=1))
+	cd ~/nnn && make
+	sudo make strip install
+
 ruby:
 	gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
 	\curl -sSL https://get.rvm.io | bash -s stable --ruby
@@ -65,10 +71,6 @@ node:
 	git clone https://github.com/nvm-sh/nvm.git .nvm
 	cd ~/.nvm
 	. nvm.sh
-
-antigen:
-	cabal new-install base text directory filepath process
-	git clone https://github.com/Tarrasch/antigen-hs.git ~/.zsh/antigen-hs/
 
 ycm:
 	git clone https://github.com/ycm-core/ycmd.git
@@ -97,9 +99,9 @@ macDep:
 	bash $(DOTFILES_DIR)/macos/brewCask.sh
 	bash $(DOTFILES_DIR)/macos/mas.sh
 
-linSet: dev antigen ycm doom
+linSet: nnn dev ycm doom
 
-macSet: dev antigen ycm doom
+macSet: dev ycm doom
 	bash $(DOTFILES_DIR)/macos/default.sh
 	xcode-select --install
 	brew install duti

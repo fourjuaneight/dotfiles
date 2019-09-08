@@ -53,6 +53,7 @@ brew install ack \
   mysql \
   ncdu \
   neovim \
+  nnn \
   node \
   npm \
   php \

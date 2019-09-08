@@ -31,6 +31,8 @@ sudo apt-get install -y apt-transport-https \
   jasper \
   libjpeg8 \
   libmemcached-tools \
+  libncursesw5-dev \
+  libreadline6-dev \
   libsecret-1-dev \
   libsecret-1-0 \
   mc \
