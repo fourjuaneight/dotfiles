@@ -104,8 +104,6 @@ macSet: dev antigen ycm doom
 	xcode-select --install
 	brew install duti
 	bash $(DOTFILES_DIR)/macos/duti/set.sh
-	brew services start chunkwm
-	brew services start skhd
 
 linux: stow linDep ruby node
 

@@ -20,7 +20,6 @@ brew install bash
 brew install ack \
   cabal-install \
   certbot \
-  chunkwm \
   cmake \
   curl --with-openssl \
   dep \
@@ -53,7 +52,7 @@ brew install ack \
   mosh \
   mysql \
   ncdu \
-	neovim \
+  neovim \
   node \
   npm \
   php \
@@ -65,7 +64,6 @@ brew install ack \
   rename \
   rsync \
   ruby \
-  skhd \
   slurm \
   spark \
   sphinx \
