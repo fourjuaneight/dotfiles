@@ -19,8 +19,21 @@ export NVMPATH="$HOME/.nvm"
 export GOPATH="$HOME/golang"
 export PATH="$PATH:/usr/local/go/bin"
 
-# Loading Antigen-hs
-. ~/.zsh/antigen-hs/init.zsh
+# Load zgen
+source "${HOME}/.zgen/zgen.zsh"
+
+if ! zgen saved; then
+
+  zgen load hlissner/zsh-autopair autopair.zsh develop
+  zgen load zsh-users/zsh-history-substring-search
+  zgen load zdharma/history-search-multi-word
+  zgen load zsh-users/zsh-completions src
+  zgen load zdharma/fast-syntax-highlighting
+  zgen load mafredri/zsh-async
+  zgen load sindresorhus/pure
+
+  zgen save
+fi
 
 # Loading zsh Autosuggestions
 source ~/.zsh/zsh-autosuggestions.zsh
@@ -45,9 +58,7 @@ PROMPT='%(1j.[%j] .)%(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:-λ}%f '
 prompt pure
 
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  git
-)
+plugins=(git ssh-agent)
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -62,11 +73,8 @@ plugins=(
 # Use nvim as the default editor
 export EDITOR=nvim
 
-# ssh
-export SSH_KEY_PATH="~/.ssh/rsa_id"
-
 # Load aliases
-[[ -f ~/.aliases ]] && source ~/.aliases
+[[ -f ~/aliases.zsh ]] && source ~/aliases.zsh
 
 # Load functions
-[[ -f ~/.zfunc ]] && source ~/.zfunc
+[[ -f ~/zfunc.zsh ]] && source ~/zfunc.zsh

@@ -97,6 +97,3 @@
 [submodule "vim/.vim/plugged/YouCompleteMe"]
   path = vim/.vim/plugged/YouCompleteMe
   url = https://github.com/ycm-core/YouCompleteMe
-[submodule "zsh/.zsh/antigen-hs"]
-  path = zsh/.zsh/antigen-hs
-  url = https://github.com/Tarrasch/antigen-hs
