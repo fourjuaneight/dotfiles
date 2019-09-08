@@ -194,3 +194,5 @@
 * `d` delete node
 * `h` root one level up
 * `l` root into directory
+* `yf` copy file
+* `R` rename file
