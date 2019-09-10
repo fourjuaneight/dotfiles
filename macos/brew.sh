@@ -16,6 +16,9 @@ brew install findutils
 # Install Bash 4
 brew install bash
 
+# Taps
+brew tap heroku/brew
+
 # Brew Packages
 brew install ack \
   cabal-install \
@@ -34,6 +37,7 @@ brew install ack \
   go \
   gpg \
   graphicsmagick \
+  heroku \
   hub \
   htop \
   hugo \
