@@ -5,6 +5,9 @@ export PATH=/usr/local/bin:$PATH
 export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
+# Snap
+export PATH=$PATH:/snap/bin
+
 # Python PATH
 export PYTHONPATH="/usr/lib/python3/dist-packages:$PYTHONPATH"
 
