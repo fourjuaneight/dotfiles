@@ -16,7 +16,7 @@ sudo apt-get install -y apt-transport-https \
   cmake \
   coreutils \
   curl \
-	emacs26 \
+  emacs26 \
   findutils \
   ghc \
   gist \
@@ -40,7 +40,7 @@ sudo apt-get install -y apt-transport-https \
   mercurial \
   mosh \
   ncdu \
-	neovim \
+  neovim \
   nginx \
   npm \
   nodejs \

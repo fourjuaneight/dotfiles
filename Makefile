@@ -1,4 +1,3 @@
-DOTFILES_DIR := $(shell echo $(HOME)/dotfiles)
 SHELL        := /bin/sh
 UNAME        := $(shell uname -s)
 USER         := $(shell whoami)
@@ -56,6 +55,9 @@ stow:
 bash:
 	echo /usr/local/bin/bash | sudo tee -a /etc/shells
 	chsh -s /usr/local/bin/bash
+	
+zgen:
+	git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 
 nnn:
 	git clone --depth 1 https://github.com/jarun/nnn
@@ -83,30 +85,30 @@ doom:
 	~/.emacs.d/bin/doom install
 
 dev:
-	bash $(DOTFILES_DIR)/dev/gem.sh
-	bash $(DOTFILES_DIR)/dev/npm.sh
-	bash $(DOTFILES_DIR)/dev/pip.sh
+	bash ~/dotfiles/dev/gem.sh
+	bash ~/dotfiles/dev/npm.sh
+	bash ~/dotfiles/dev/pip.sh
 
 linDep:
-	bash $(DOTFILES_DIR)/linux/apt.sh
+	bash ~/dotfiles/linux/apt.sh
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
-	bash $(DOTFILES_DIR)/linux/brew.sh
+	bash ~/dotfiles/linux/brew.sh
 
 macDep:
-	bash $(DOTFILES_DIR)/macos/apt.sh
+	bash ~/dotfiles/macos/apt.sh
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-	bash $(DOTFILES_DIR)/macos/brew.sh
-	bash $(DOTFILES_DIR)/macos/brewCask.sh
-	bash $(DOTFILES_DIR)/macos/mas.sh
+	bash ~/dotfiles/macos/brew.sh
+	bash ~/dotfiles/macos/brewCask.sh
+	bash ~/dotfiles/macos/mas.sh
 
 linSet: nnn dev ycm doom
 
 macSet: dev ycm doom
-	bash $(DOTFILES_DIR)/macos/default.sh
+	bash ~/dotfiles/macos/default.sh
 	xcode-select --install
 	brew install duti
-	bash $(DOTFILES_DIR)/macos/duti/set.sh
+	bash ~/dotfiles/macos/duti/set.sh
 
-linux: stow linDep ruby node
+linux: stow linDep ruby node zgen
 
-macos: stow bash macDep ruby node
+macos: stow bash macDep ruby node zgen
