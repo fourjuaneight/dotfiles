@@ -8,6 +8,9 @@ eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 # Snap
 export PATH=$PATH:/snap/bin
 
+# PKG
+export PKG_CONFIG_PATH=/usr/lib/pkgconfig 
+
 # Python PATH
 export PYTHONPATH="/usr/lib/python3/dist-packages:$PYTHONPATH"
 
@@ -17,6 +20,9 @@ export PATH="$PATH:$HOME/.rvm/bin"
 # nvm PATH
 export NVMPATH="$HOME/.nvm"
 [[ -s $NVMPATH/nvm.sh ]] && . $NVMPATH/nvm.sh
+
+# Yarn
+export PATH="$PATH:/.yarn/bin"
 
 # Go PATH
 export GOPATH="$HOME/golang"
