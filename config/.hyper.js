@@ -18,11 +18,8 @@ module.exports = {
       border: true,
       closeAlign: 'right',
       tabIconsColored: true,
-      trafficButtons: true
-    }
+      trafficButtons: true,
+    },
   },
-  plugins: [
-    'hyper-dracula',
-    'hyper-tabs-enhanced'
-  ]
+  plugins: ['hyper-dracula', 'hyper-tabs-enhanced'],
 };
