@@ -34,16 +34,29 @@
                            ?\n)))))
 
 (setq
- doom-font (font-spec :family "FiraCode" :size 28)
- doom-big-font (font-spec :family "FiraCode" :size 36)
- doom-variable-pitch-font (font-spec :family "FiraCode" :size 26)
+ doom-font (font-spec :family "Fira Code" :size 28)
+ doom-big-font (font-spec :family "Fira Code" :size 36)
+ doom-variable-pitch-font (font-spec :family "Fira Code" :size 26)
  web-mode-markup-indent-offset 2
  web-mode-code-indent-offset 2
  web-mode-css-indent-offset 2
  js-indent-level 2
  typescript-indent-level 2
  json-reformat:indent-width 2
- prettier-js-args '("--single-quote")
+ prettier-js-args '(
+   "--arrow-parens" "avoid"
+   "--bracket-spacing" "true"
+   "--end-of-line" "auto"
+   "--jsx-bracket-same-line" "false"
+   "--print-width" "80"
+   "--prose-wrap" "preserve"
+   "--require-pragma" "false"
+   "--semi" "true"
+   "--single-quote" "true"
+   "--tab-width" "2"
+   "--trailing-comma" "es5"
+   "--use-tabs" "false"
+   )
  dired-dwim-target t
  org-ellipsis " ▾ "
  org-bullets-bullet-list '("·")
@@ -53,8 +66,7 @@
  org-refile-targets (quote ((nil :maxlevel . 1))))
 
 (add-hook!
-  js2-mode 'prettier-js-mode
-  (add-hook 'before-save-hook #'refmt-before-save nil t))
+  js2-mode 'prettier-js-mode)
 
 (after! web-mode
   (add-to-list 'auto-mode-alist '("\\.njk\\'" . web-mode)))
