@@ -154,6 +154,7 @@ alias grup="git remote update"
 alias grv="git remote -v"
 
 alias grs="git reset"
+alias grhd="git reset HEAD^"
 alias grh="git reset --hard"
 alias gsrh="git submodule foreach 'git reset --hard'"
 
