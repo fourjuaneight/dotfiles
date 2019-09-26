@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: #+BEGIN_VERSE block
-# key: <v
-# type: command
-# --
-(doom-snippets-expand :uuid "verse")

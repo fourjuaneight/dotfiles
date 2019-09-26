@@ -2,7 +2,7 @@
 # name: React.createClass({...})
 # key: rcl
 # --
-var ${1:ComponentName} = React.createClass({
+const ${1:ComponentName} = React.createClass({
     render: function() {
         $>`%`$0
     }
