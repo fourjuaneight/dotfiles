@@ -57,6 +57,7 @@ sudo apt-get install -y apt-transport-https \
   rsync \
   rbenv \
   sed \
+	silversearcher-ag \
   stow \
   tar \
   tmux \
