@@ -102,24 +102,24 @@ fo() {
   fi
 }
 
-# fd - cd to selected directory
+# fzd - cd to selected directory
 fzd() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -print 2> /dev/null | fzf +m) &&
+									-o -type d -not \( -name node_modules -prune \) -print 2> /dev/null | fzf +m) &&
   cd "$dir"
 }
 
 # ft - tree selected directory
-ft() {
+fzt() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -print 2> /dev/null | fzf +m) &&
+									-o -type d -not \( -name node_modules -prune \) -print 2> /dev/null | fzf +m) &&
   tree "$dir"
 }
 
 # fdr - cd to selected parent directory
-fdr() {
+fzdr() {
   local declare dirs=()
   get_parent_dirs() {
     if [[ -d "${1}" ]]; then dirs+=("$1"); else return; fi
