@@ -12,6 +12,7 @@ alias cl="clear"
 alias dot="cd ~/dotfiles"
 alias win="cd /mnt/c/Users/Juan"
 alias exd="cd /mnt/d/"
+alias tree="tree -I node_modules"
 
 # Search history
 alias hgrep="history | ag"

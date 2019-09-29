@@ -115,7 +115,7 @@ fzt() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
 									-o -type d -not \( -name node_modules -prune \) -print 2> /dev/null | fzf +m) &&
-  tree "$dir"
+  tree "$dir" -I node_modules
 }
 
 # fdr - cd to selected parent directory
