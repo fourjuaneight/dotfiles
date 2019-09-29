@@ -8,3 +8,4 @@
 .VolumeIcon.icns
 .com.apple.timemachine.donotpresent
 secring.*
+node_modules/
