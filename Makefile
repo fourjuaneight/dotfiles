@@ -88,6 +88,7 @@ dev:
 	bash ~/dotfiles/dev/gem.sh
 	bash ~/dotfiles/dev/npm.sh
 	bash ~/dotfiles/dev/pip.sh
+	bash ~/dotfiles/dev/code.sh
 
 linDep:
 	bash ~/dotfiles/linux/apt.sh
