@@ -1,0 +1,105 @@
+{
+  "Class Selector": {
+    "prefix": "cl",
+    "body": [
+      ".$1 {",
+      "  $2",
+      "}"
+    ],
+    "description": "Class selector"
+  },
+  "ID Selector": {
+    "prefix": "id",
+    "body": [
+      "#$1 {",
+      "  $2",
+      "}"
+    ],
+    "description": "ID selector"
+  },
+  "RGBA": {
+    "prefix": "rgba",
+    "body": "rgba($$1, 0.$2)",
+    "description": "RGBA color function"
+  },
+  "Calc Function": {
+    "prefix": "calc",
+    "body": "calc($1)",
+    "description": "Calc"
+  },
+  "Placeholder": {
+    "prefix": "ph",
+    "body": "// placeholder",
+    "description": "Placeholder comment"
+  },
+  "Font-Face": {
+    "prefix": "ff",
+    "body": [
+      "@font-face {",
+      "  font-display: swap;",
+      "  font-family: '$1';",
+      "  font-weight: $2;",
+      "  font-style: $3;",
+      "  src: local($4),",
+      "       local($5),",
+      "       url(\"type/$6.woff2\") format(\"woff2\"),",
+      "       url(\"type/$7.woff\") format(\"woff\");",
+      "}"
+    ],
+    "description": "Font-Face"
+  },
+  "Reset": {
+    "prefix": "res",
+    "body": [
+      "*,",
+      "*::before,",
+      "*::after {",
+      "  box-sizing: inherit;",
+      "}",
+      "html {",
+      "  box-sizing: border-box;",
+      "  -webkit-overflow-scrolling: touch;",
+      "}",
+      "body {",
+      "  height: 100%;",
+      "  overflow-y: auto;",
+      "  overflow-x: hidden;",
+      "  padding: 0 10px;",
+      "}"
+    ],
+    "description": "Basic reset for new site"
+  },
+  "Supports": {
+    "prefix": "sup",
+    "body": [
+      "@supports ($1) {",
+      "  $2",
+      "}"
+    ],
+    "description": "Run this code if this is supported (modern browsers)"
+  },
+  "Supports Grid": {
+    "prefix": "supg",
+    "body": ["@supports (display:grid) {", "  $1", "}"],
+    "description": "Run this code if grid is supported (modern browsers)"
+  },
+  "Supports Grid Stated": {
+    "prefix": "supgg",
+    "body": ["@supports (display:grid) {", " display: grid !important;", "}"],
+    "description": "Display grid if grid is supported (modern browsers)"
+  },
+  "Media Query": {
+    "prefix": "mq",
+    "body": [
+      "@media screen and ($1-width: $2) {",
+      "  $3",
+      "}"
+    ],
+    "description": "Media query"
+  },
+  "Font Size" : {
+    "prefix": "fsz",
+    "body": "font-size: $1px;",
+    "description": "Font size"
+  },
+}
