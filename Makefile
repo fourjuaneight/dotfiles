@@ -39,6 +39,11 @@ usage:
 	\\n\
 	"
 
+.PHONY: list
+
+list:
+	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
+
 .PHONY: linux macos
 
 stow:
@@ -52,12 +57,20 @@ stow:
 	stow vim
 	stow zsh
 
+
 bash:
 	echo /usr/local/bin/bash | sudo tee -a /etc/shells
 	chsh -s /usr/local/bin/bash
-	
-zgen:
-	git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
+
+dev:
+	bash ~/dotfiles/dev/gem.sh
+	bash ~/dotfiles/dev/npm.sh
+	bash ~/dotfiles/dev/pip.sh
+	bash ~/dotfiles/dev/code.sh
+
+doom:
+	git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
+	~/.emacs.d/bin/doom install
 
 nnn:
 	git clone --depth 1 https://github.com/jarun/nnn
@@ -65,29 +78,23 @@ nnn:
 	cd ~/nnn && make
 	sudo make strip install
 
-ruby:
-	gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-	\curl -sSL https://get.rvm.io | bash -s stable --ruby
-
 node:
 	git clone https://github.com/nvm-sh/nvm.git .nvm
 	cd ~/.nvm
 	. nvm.sh
+
+ruby:
+	gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+	\curl -sSL https://get.rvm.io | bash -s stable --ruby
 
 ycm:
 	git clone https://github.com/ycm-core/ycmd.git ~/ycmd
 	cd ~/ycmd && git submodule update --init --recursive
 	python3 ~/ycmd/build.py --ts-completer
 
-doom:
-	git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
-	~/.emacs.d/bin/doom install
+zgen:
+	git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 
-dev:
-	bash ~/dotfiles/dev/gem.sh
-	bash ~/dotfiles/dev/npm.sh
-	bash ~/dotfiles/dev/pip.sh
-	bash ~/dotfiles/dev/code.sh
 
 linDep:
 	bash ~/dotfiles/linux/apt.sh
