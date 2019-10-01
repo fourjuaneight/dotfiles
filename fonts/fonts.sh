@@ -5,7 +5,11 @@ for file in ~/dotfiles/fonts/**/*; do
     cp "$file" ~/.local/share/fonts
   elif [[ "$OSTYPE" == "darwin"* ]]; then
     cp "$file" ~/Library/Fonts
+    exit 0
   fi
 done
 
-fc-cache -f -v
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+  fc-cache -f -v
+  exit 0
+fi
