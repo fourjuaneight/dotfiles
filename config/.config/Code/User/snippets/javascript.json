@@ -119,7 +119,6 @@
     "prefix": "ccomp",
     "body": [
       "import React, { Component } from 'react';",
-      "import PropTypes from 'prop-types';",
       "import { Link } from 'gatsby';",
       "",
       "export default class $1 extends Component {",
@@ -130,9 +129,6 @@
       "  }",
       "}",
       "",
-      "$3.propTypes = {",
-      "  $4: PropTypes.$5.isRequired,",
-      "}",
     ],
     "description": "React component block"
   },
@@ -140,15 +136,12 @@
     "prefix": "vcomp",
     "body": [
       "import React, { Component } from 'react';",
-      "import PropTypes from 'prop-types';",
       "import { Link } from 'gatsby';",
       "",
-      "const $1 = ({ $2 }) => (",
-      "  $3",
-      ")",
-      "",
-      "$4.propTypes = {",
-      "  $5: PropTypes.$6.isRequired,",
+      "const $1 = ({ $2 }) => {",
+      "  return(",
+      "    $3",
+      "  );",
       "}",
       "",
       "export default $1"
@@ -211,6 +204,17 @@
     ],
     "description": "Gatsby Graphql Query"
   },
+  "Gatsby Graphql Static": {
+    "prefix": "gqlsqh",
+    "body": [
+      "const data = useStaticQuery(graphql`",
+      "  query {",
+      "    $1",
+      "  }",
+      "`);",
+    ],
+    "description": "Gatsby Graphql Static Query Hook"
+  },
   // React
   "React State": {
     "prefix": "rst",
@@ -227,13 +231,18 @@
     "body": [
       "$1.propTypes = {",
       "  $2: PropTypes.$3.isRequired,",
-      "}",
+      "};",
     ],
     "description": "React Proptype"
+  },
+  "React classnames": {
+    "prefix": "cn",
+    "body": "className={$1}",
+    "description": "React CSS Modules className"
   },
   "React cx classnames": {
     "prefix": "cnx",
     "body": "className={cx($1)}",
-    "description": "React CSS MOdules className cx"
+    "description": "React CSS Modules className cx"
   },
 }
