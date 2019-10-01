@@ -24,7 +24,7 @@ brew install ack \
   cabal-install \
   certbot \
   cmake \
-  curl --with-openssl \
+  curl \
   dep \
   docker \
   ffmpeg \
@@ -48,7 +48,6 @@ brew install ack \
   libjpeg \
   libmemcached \
   --with-toolchain llvm \
-  markdown \
   mas \
   mc \
   memcached \
@@ -72,10 +71,8 @@ brew install ack \
   slurm \
   spark \
   sphinx \
-  ssh-copy-id \
   stow \
   the_silver_searcher \
-  tidy-html5 \
   tmux \
   vim \
   webp \

@@ -10,12 +10,7 @@ brew install ack \
   fzf \
   fd \
   go \
-  haskell-stack \
   hugo \
-  markdown \
-  ssh-copy-id \
-  the_silver_searcher \
-  tidy-html5 \
   webp \
   youtube-dl \
   zsh-autosuggestions \
