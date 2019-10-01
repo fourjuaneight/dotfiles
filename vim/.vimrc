@@ -17,7 +17,7 @@ set mouse=a                     " when copying, keeping the line numbers out
 set number                      " show line numbers
 set scrolloff=2                 " context lines above and below the cursor
 set showcmd                     " see commands as you type them
-set autowrite										" Automatically :write before running commands
+set autowrite                   " Automatically :write before running commands
 
 " Show white spaces as a character
 set list
@@ -197,7 +197,7 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
 " line numbers
-let NERDTreeShowLineNumbers=1
+let NERDTreeShowLineNumbers=0
 
 " open automatically on startup with no specified file
 autocmd StdinReadPre * let s:std_in=1
