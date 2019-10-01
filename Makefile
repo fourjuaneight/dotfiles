@@ -75,10 +75,9 @@ node:
 	. nvm.sh
 
 ycm:
-	git clone https://github.com/ycm-core/ycmd.git
-	cd ycmd
-	git submodule update --init --recursive
-	python3 build.py --ts-completer
+	git clone https://github.com/ycm-core/ycmd.git ~/ycmd
+	cd ~/ycmd && git submodule update --init --recursive
+	python3 ~/ycmd/build.py --ts-completer
 
 doom:
 	git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
