@@ -67,6 +67,7 @@ dev:
 	bash ~/dotfiles/dev/npm.sh
 	bash ~/dotfiles/dev/pip.sh
 	bash ~/dotfiles/dev/code.sh
+	bash ~/dotfiles/fonts/fonts.sh
 
 doom:
 	git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
