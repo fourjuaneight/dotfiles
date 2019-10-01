@@ -18,6 +18,7 @@ sudo apt-get install -y apt-transport-https \
   curl \
   emacs26 \
   findutils \
+  font-manager \
   ghc \
   gist \
   git \
@@ -27,6 +28,7 @@ sudo apt-get install -y apt-transport-https \
   htop \
   imagemagick \
   indent \
+  indicator-multiload \
   inotify-tools \
   jasper \
   libjpeg8 \
@@ -57,7 +59,7 @@ sudo apt-get install -y apt-transport-https \
   rsync \
   rbenv \
   sed \
-	silversearcher-ag \
+  silversearcher-ag \
   stow \
   tar \
   tmux \
