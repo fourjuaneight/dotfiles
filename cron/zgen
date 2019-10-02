@@ -1,0 +1,9 @@
+# Zgen update plugins
+# Run every Tuesday at 12:00am
+
+# Zgen upgrade plugins
+# Run every Tuesday at 12:10am
+
+0 0 * * 2 /home/fourjuaneight/zgen/zgen.zsh update
+
+10 0 * * 2 /home/fourjuaneight/zgen/zgen.zsh selfupdate
