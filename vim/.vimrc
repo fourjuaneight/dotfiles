@@ -246,6 +246,7 @@ nmap <leader>wl <C-w>l
 " Plug shortcuts
 nmap <leader>pc :PlugClean<CR>
 nmap <leader>pu :PlugUpdate<CR>
+nmap <leader>pug :PlugUpgrade<CR>
 nmap <leader>pi :PlugInstall<CR>
 
 " delete all empty lines
