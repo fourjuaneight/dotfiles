@@ -54,7 +54,6 @@ highlight Comment cterm=italic gui=italic
 color dracula
 
 
-
 """""""""""""""""""""""""""""""""""""""""""""""
 " Plugins List
 """""""""""""""""""""""""""""""""""""""""""""""
@@ -68,32 +67,29 @@ endif
 " Install plugins
 call plug#begin('~/.vim/plugged')
 
-Plug 'mileszs/ack.vim'
-Plug 'w0rp/ale'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'qpkorr/vim-bufkill'
-Plug 'alvan/vim-closetag'
-Plug 'mattn/emmet-vim'
-Plug 'tpope/vim-fugitive'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
-Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-gitgutter'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'scrooloose/nerdcommenter'
-Plug 'luochen1990/rainbow'
+Plug 'alvan/vim-closetag'
 Plug 'honza/vim-snippets'
-Plug 'tpope/vim-surround'
-
-Plug 'pangloss/vim-javascript'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+Plug 'luochen1990/rainbow'
+Plug 'mattn/emmet-vim'
+Plug 'mileszs/ack.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
-
-Plug 'tpope/vim-unimpaired'
+Plug 'pangloss/vim-javascript'
+Plug 'qpkorr/vim-bufkill'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
 Plug 'SirVer/ultisnips'
-Plug 'maxbrunsfeld/vim-yankstack'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
 Plug 'Valloric/YouCompleteMe'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'w0rp/ale'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 call plug#end()
 
@@ -174,13 +170,13 @@ let g:used_javascript_libs = 'jquery,react,underscore,vue'
 let g:multi_cursor_use_default_mapping=0
 
 " Default mapping
-let g:multi_cursor_start_word_key      = '<C-n>'
-let g:multi_cursor_select_all_word_key = '<A-n>'
-let g:multi_cursor_start_key           = 'g<C-n>'
-let g:multi_cursor_select_all_key      = 'g<A-n>'
-let g:multi_cursor_next_key            = '<C-n>'
-let g:multi_cursor_prev_key            = '<C-p>'
-let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_start_word_key      = '<leader>mw'
+let g:multi_cursor_select_all_word_key = '<leader>maw'
+let g:multi_cursor_start_key           = '<leader>mk'
+let g:multi_cursor_select_all_key      = '<leader>mak'
+let g:multi_cursor_next_key            = '<leader>mn'
+let g:multi_cursor_prev_key            = '<leader>mp'
+let g:multi_cursor_skip_key            = '<leader>ms'
 let g:multi_cursor_quit_key            = '<Esc>'
 
 " NERDTree
@@ -221,8 +217,8 @@ let g:rainbow_active = 1 " 0 if you want to enable it later via :RainbowToggle
 " let g:ycm_auto_trigger = 0
 
 " make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:ycm_key_list_select_completion = ['<C-j>', '<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-k>', '<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " Ultisnips
@@ -239,13 +235,13 @@ let g:UltiSnipsEditSplit="vertical"
 " Key Remaps
 """""""""""""""""""""""""""""""""""""""""""""""
 " copy selection to system clipboard
-vnoremap <Leader>y "+y
+vnoremap <leader>by "+y
 
 " window navigation
-nmap <C-j> <C-w>j
-nmap <C-k> <C-w>k
-nmap <C-h> <C-w>h
-nmap <C-l> <C-w>l
+nmap <leader>wj <C-w>j
+nmap <leader>wk <C-w>k
+nmap <leader>wh <C-w>h
+nmap <leader>wl <C-w>l
 
 " Plug shortcuts
 nmap <leader>pc :PlugClean<CR>
@@ -253,7 +249,7 @@ nmap <leader>pu :PlugUpdate<CR>
 nmap <leader>pi :PlugInstall<CR>
 
 " delete all empty lines
-map <C-o> :g/^$/d
+map <leader>bln :g/^$/d
 
 " autoclose brackets and quotes
 inoremap " ""<left>
@@ -264,24 +260,22 @@ inoremap [ []<left>
 inoremap { {}<left>
 
 " tabs
-map ,tn :bn<cr>
-map ,tp :bp<cr>
-map ,:td :bd<cr>
+map <leader>tn :bn<cr>
+map <leader>tp :bp<cr>
+map <leader>td :bd<cr>
 
 " ACK
-nmap <leader>ak :Ack! ""<Left>
-nmap <leader>akf :Ack "" %<Left><Left><Left>
-nmap <leader>akc :Ack! --css ""<Left>
-nmap <leader>aks :Ack! --sass ""<Left>
-nmap <leader>akh :Ack! --html ""<Left>
-nmap <leader>akr :Ack! --ruby ""<Left>
-nmap <leader>akj :Ack! --js ""<Left>
-nmap <leader>cdo :cdo %s///g \| update
+nmap <leader>/b :Ack "" %<Left><Left><Left>
+nmap <leader>/dc :Ack! --css ""<Left>
+nmap <leader>/ds :Ack! --sass ""<Left>
+nmap <leader>/dh :Ack! --html ""<Left>
+nmap <leader>/dj :Ack! --js ""<Left>
+nmap <leader>/br :cdo %s///g \| update
 " https://chrisarcand.com/vims-new-cdo-command/
 
 " ALE
-nmap <leader>alef :ALEFix<cr> " Ale lint and fix
-nmap <leader>alefs :ALEFixSuggest<cr> " Ale suggest fixes
+nmap <leader>bfx :ALEFix<cr> " Ale lint and fix
+nmap <leader>bfxsg :ALEFixSuggest<cr> " Ale suggest fixes
 
 " Bufkill
 nmap <leader>bd :BD<cr> " delete a file from buffer and keep window/split
@@ -293,9 +287,7 @@ nmap <leader>gst :Gstatus<cr> " git status
 nmap <leader>gdf :Gdelete<cr> " git rm file and buffer
 
 " fzf
-nmap <leader>bf :Buffers<CR> " search active buffer
-nmap <leader>fz :Files<CR> " search current directory
-nmap <leader>tg :Tags<CR> " search tags
+nmap <leader>/d :Files<CR>
 
 " Git Gutter
 nmap <leader>gg :GitGutterToggle<CR> " toggle git gutter
@@ -306,10 +298,6 @@ imap <leader>ct <plug>NERDCommenterToggle " toggle comment selection
 
 " NERDTree
 nmap <leader>nt :NERDTreeToggle<CR> " toggle nr
-
-" Yankstack
-nmap <leader>p <Plug>yankstack_substitute_older_paste " cycle backwards through your yanks
-nmap <leader>P <Plug>yankstack_substitute_newer_paste " cycle forwards through your yanks
 
 " YCM
 nmap <leader>yrs :YcmRestartServer <CR>
