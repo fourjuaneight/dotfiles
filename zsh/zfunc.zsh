@@ -85,7 +85,7 @@ fa() {
 
   if [[ -n $file ]]
   then
-    emacs $file +$line
+    nvim $file +$line
   fi
 }
 
@@ -106,7 +106,7 @@ fo() {
 fzd() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
-									-o -type d -not \( -name node_modules -prune \) -print 2> /dev/null | fzf +m) &&
+                  -o -type d -not \( -name node_modules -prune \) -print 2> /dev/null | fzf +m) &&
   cd "$dir"
 }
 
@@ -114,7 +114,7 @@ fzd() {
 fzt() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
-									-o -type d -not \( -name node_modules -prune \) -print 2> /dev/null | fzf +m) &&
+                  -o -type d -not \( -name node_modules -prune \) -print 2> /dev/null | fzf +m) &&
   tree "$dir" -I node_modules
 }
 
@@ -182,7 +182,7 @@ frbr() {
 
 # Emacs Diff
 ediff() {
-	emacs --eval "(ediff-files \"$1\" \"$2\")";
+  emacs --eval "(ediff-files \"$1\" \"$2\")";
 }
 
 # fkill - kill process

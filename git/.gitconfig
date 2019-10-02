@@ -1,16 +1,22 @@
 [http]
-	sslVerify = true
+  sslVerify = true
 
 [user]
-	name = Juan Villela
-	email = juan@villela.co
-
-[github]
-	user = fourjuaneight
+  name = Juan Villela
+  email = juan@villela.co
 
 [color]
-	ui = true
+  ui = true
 
 [core]
-	excludesfile = ~/.gitignore_global
-	editor = emacs
+  excludesfile = ~/.gitignore_global
+  editor = nvim
+
+[merge]
+  tool = vimdiff
+
+[mergetool]
+  keepBackup = false
+
+[mergetool "vimdiff"]
+  cmd= nvim -d -c  "Gdiff" "$MERGED"

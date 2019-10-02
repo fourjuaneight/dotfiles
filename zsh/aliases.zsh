@@ -21,7 +21,7 @@ alias hgrep="history | ag"
 alias whois="whois -h whois-servers.net"
 
 # zsh
-alias zco="emacs ~/.zshrc"
+alias zco="nvim ~/.zshrc"
 alias zso="source ~/.zshrc"
 
 # nnn
@@ -35,7 +35,7 @@ alias doom="~/.emacs.d/bin/doom"
 
 # vim
 alias vi="nvim"
-alias vco="emacs ~/.vimrc"
+alias vco="nvim ~/.vimrc"
 alias vso="nvim source ~/.vimrc"
 
 # Cron
@@ -43,7 +43,7 @@ alias croe="crontab -e"
 alias crol="crontab -l"
 
 # tmux
-alias tco="emacs ~/.tmux.conf"
+alias tco="nvim ~/.tmux.conf"
 alias tso="tmux source ~/.tmux.conf"
 alias tn="tmux -u new"
 alias tk="pkill -f tmux"
@@ -99,7 +99,7 @@ alias rc="bundle exec rails c"
 alias rs="rails s"
 
 # Git
-alias gco="sudo emacs ~/.ssh/config"
+alias gco="sudo nvim ~/.ssh/config"
 
 alias g="git"
 alias ghh="git help"
