@@ -6,7 +6,7 @@ module.exports = {
     cursorColor: 'rgb(87,236,135)',
     cursorShape: 'BLOCK',
     defaultSSHApp: true,
-    fontFamily: '"Fira Code", "IBM Plex Mono", Menlo, monospace',
+    fontFamily: '"Dank Mono", "Fira Code", "IBM Plex Mono", Menlo, monospace',
     fontSize: 14,
     fontWeight: 'normal',
     fontWeightBold: 'bold',
