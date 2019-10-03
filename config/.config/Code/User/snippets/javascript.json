@@ -115,12 +115,34 @@
     "description": "Nested Styled component block"
   },
   // Gatsby
+  "Import React": {
+    "prefix": "impre",
+    "body": "import React from 'react';",
+    "description": "Import React dependency"
+  },
+  "Import React Component": {
+    "prefix": "impre",
+    "body": "import React, { Component } from 'react';",
+    "description": "Import React Component dependency"
+  },
+  "Import PropType": {
+    "prefix": "improp",
+    "body": "import PropTypes from 'prop-types';",
+    "description": "Import PropType dependency"
+  },
+  "Import cx": {
+    "prefix": "impcx",
+    "body": "import cx from 'classnames';",
+    "description": "Import cx dependency"
+  },
+  "Import Gtasby Link": {
+    "prefix": "implnk",
+    "body": "import { Link } from 'gatsby';",
+    "description": "Import Gatsby Link dependency"
+  },
   "Gatsby Class Component": {
     "prefix": "ccomp",
     "body": [
-      "import React, { Component } from 'react';",
-      "import { Link } from 'gatsby';",
-      "",
       "export default class $1 extends Component {",
       "  render() {",
       "    return (",
@@ -130,23 +152,20 @@
       "}",
       "",
     ],
-    "description": "React component block"
+    "description": "React class component block"
   },
-  "Gatsby Component": {
-    "prefix": "vcomp",
+  "Gatsby Functional Component": {
+    "prefix": "fcomp",
     "body": [
-      "import React, { Component } from 'react';",
-      "import { Link } from 'gatsby';",
-      "",
-      "const $1 = () => {",
+      "const $1 = ($2) => {",
       "  return(",
-      "    $2",
+      "    $3",
       "  );",
       "}",
       "",
-      "export default $1"
+      "export default $1;"
     ],
-    "description": "React component block"
+    "description": "React functional component block"
   },
   "Gatsby Image Component": {
     "prefix": "gicomp",
@@ -194,7 +213,7 @@
     "description": "Gatsby Image useStaticQuery component"
   },
   "Gatsby Graphql": {
-    "prefix": "gql",
+    "prefix": "gq",
     "body": [
       "export const query = graphql`",
       "  query $1 {",
@@ -205,7 +224,7 @@
     "description": "Gatsby Graphql Query"
   },
   "Gatsby Graphql Static": {
-    "prefix": "gqlsqh",
+    "prefix": "gusq",
     "body": [
       "const data = useStaticQuery(graphql`",
       "  query {",
@@ -217,7 +236,7 @@
   },
   // React
   "React State": {
-    "prefix": "rst",
+    "prefix": "rsc",
     "body": [
       "constructor(props) {",
       "  super(props);",
