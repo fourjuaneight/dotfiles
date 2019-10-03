@@ -1,5 +1,12 @@
 {
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "breadcrumbs.enabled": true,
+  "debug.console.fontSize": 16,
   "diffEditor.ignoreTrimWhitespace": false,
   "editor.cursorBlinking": "solid",
   "editor.cursorStyle": "block",
@@ -30,10 +37,18 @@
   "eslint.validate": [
     "javascript",
     "javascriptreact",
-    {"language": "typescript", "autoFix": true },
-    {"language": "typescriptreact", "autoFix": true }
+    {
+      "language": "typescript",
+      "autoFix": true
+    },
+    {
+      "language": "typescriptreact",
+      "autoFix": true
+    }
   ],
-  "eslint.workingDirectories": ["~/"],
+  "eslint.workingDirectories": [
+    "~/"
+  ],
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "explorer.sortOrder": "type",
@@ -46,6 +61,7 @@
   "gitlens.defaultDateStyle": "absolute",
   "gitlens.hovers.enabled": false,
   "javascript.updateImportsOnFileMove.enabled": "always",
+  "markdown.preview.fontSize": 16,
   "markdown.preview.markEditorSelection": false,
   "markdown.preview.openMarkdownLinks": "inEditor",
   "npm.scriptExplorerAction": "run",
@@ -61,10 +77,13 @@
   "sync.autoDownload": false,
   "sync.autoUpload": true,
   "sync.forceDownload": false,
+  "sync.forceUpload": true,
   "sync.gist": "21d10fa19fa119d49746f405f32bf208",
   "sync.quietSync": false,
   "sync.removeExtensions": true,
   "sync.syncExtensions": true,
+  "terminal.integrated.fontFamily": "Dank Mono, Fira Code, IBM Plex Mono, Monaco, 'Courier New', monospace",
+  "terminal.integrated.fontSize": 16,
   "terminal.integrated.rendererType": "dom",
   "typescript.format.insertSpaceAfterCommaDelimiter": false,
   "typescript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
@@ -73,9 +92,9 @@
   "typescript.format.insertSpaceAfterSemicolonInForStatements": false,
   "typescript.format.insertSpaceBeforeAndAfterBinaryOperators": false,
   "typescript.validate.enable": false,
-  "vim.leader": "<Alt>",
+  "vim.leader": "<SPACE>",
+  "vim.useCtrlKeys": false,
   "vim.useSystemClipboard": true,
-  "vim.useCtrlKeys": true,
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "window.zoomLevel": 0,
   "workbench.activityBar.visible": true,
@@ -84,12 +103,4 @@
   "workbench.editor.tabSizing": "shrink",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.startupEditor": "newUntitledFile",
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-
-  },
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "sync.forceUpload": true,
 }
