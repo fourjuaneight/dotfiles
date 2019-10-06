@@ -2,7 +2,7 @@
 # Run every Day at 12:00am
 
 # Brew upgrade formulas
-# Run every Dat at 12:20am
+# Run every Day at 12:20am
 
 0 0 * * * /home/linuxbrew/.linuxbrew/bin/brew update
 

@@ -1,4 +1,4 @@
 # Apt update and upgrade packages
-# Run every Tuesday at 12:00am
+# Run every Day at 12:00am
 
-0 0 * * 2 /usr/bin/bash /home/fourjuaneight/.scripts/apt-update.sh
+0 0 * * * /usr/bin/bash /home/fourjuaneight/.scripts/apt-update.sh
