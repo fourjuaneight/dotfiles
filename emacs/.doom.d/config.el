@@ -36,8 +36,8 @@
 (setq
  css-indent-offset 2
  doom-big-font (font-spec :family "Dank Mono" :size 36)
- doom-font (font-spec :family "Dank Mono" :size 28)
- doom-variable-pitch-font (font-spec :family "Dank Mono" :size 26)
+ doom-font (font-spec :family "Dank Mono" :size 30)
+ doom-variable-pitch-font (font-spec :family "Dank Mono" :size 30)
  dired-dwim-target t
  js-indent-level 2
  json-reformat:indent-width 2
@@ -78,4 +78,6 @@
 (after! web-mode
   (add-to-list 'auto-mode-alist '("\\.jsx?$" . web-mode)))
 
-(setq +magit-hub-features t)
+(move-text-default-bindings)
+
+(load! "+bindings")
