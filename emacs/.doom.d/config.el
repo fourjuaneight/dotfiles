@@ -65,8 +65,14 @@
  css-indent-offset 2
  org-refile-targets (quote ((nil :maxlevel . 1))))
 
+(add-to-list 'company-backends 'company-tern)
+
 (add-hook!
   js2-mode 'prettier-js-mode)
+
+(add-hook 'js2-mode-hook (lambda ()
+                            (tern-mode)
+                            (company-mode)))
 
 (after! web-mode
   (add-to-list 'auto-mode-alist '("\\.njk\\'" . web-mode)))
