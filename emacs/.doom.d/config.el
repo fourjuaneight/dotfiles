@@ -34,14 +34,12 @@
                            ?\n)))))
 
 (setq
- doom-font (font-spec :family "Dank Mono" :size 28)
+ css-indent-offset 2
  doom-big-font (font-spec :family "Dank Mono" :size 36)
+ doom-font (font-spec :family "Dank Mono" :size 28)
  doom-variable-pitch-font (font-spec :family "Dank Mono" :size 26)
- web-mode-markup-indent-offset 2
- web-mode-code-indent-offset 2
- web-mode-css-indent-offset 2
+ dired-dwim-target t
  js-indent-level 2
- typescript-indent-level 2
  json-reformat:indent-width 2
  prettier-js-args '(
    "--arrow-parens" "avoid"
@@ -57,13 +55,16 @@
    "--trailing-comma" "es5"
    "--use-tabs" "false"
    )
- dired-dwim-target t
- org-ellipsis " ▾ "
  org-bullets-bullet-list '("·")
- org-tags-column -80
+ org-ellipsis " ▾ "
  org-log-done 'time
- css-indent-offset 2
- org-refile-targets (quote ((nil :maxlevel . 1))))
+ org-refile-targets (quote ((nil :maxlevel . 1)))
+ org-tags-column -80
+ typescript-indent-level 2
+ web-mode-code-indent-offset 2
+ web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'"))
+ web-mode-css-indent-offset 2
+ web-mode-markup-indent-offset 2)
 
 (add-to-list 'company-backends 'company-tern)
 
@@ -75,6 +76,6 @@
                             (company-mode)))
 
 (after! web-mode
-  (add-to-list 'auto-mode-alist '("\\.njk\\'" . web-mode)))
+  (add-to-list 'auto-mode-alist '("\\.jsx?$" . web-mode)))
 
 (setq +magit-hub-features t)
