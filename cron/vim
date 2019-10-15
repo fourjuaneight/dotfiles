@@ -1,4 +1,0 @@
-# Vim-Plug update packages and self update
-# Run every Tuesday at 12:00am
-
-0 0 * * 2 /usr/bin/vim +PlugUpgrade +PlugUpdate +qa

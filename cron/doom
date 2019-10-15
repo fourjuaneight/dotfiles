@@ -1,4 +1,0 @@
-# Doom Emacs update packages and self update
-# Run every Tuesday at 12:00am
-
-0 0 * * 2 /home/fourjuaneight/.emacs.d/bin/doom upgrade -y
