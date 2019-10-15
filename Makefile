@@ -89,8 +89,9 @@ ruby:
 .PHONY: scripts
 
 scripts:
+	chmod +x ~/.scripts/apt-update.sh
+	chmod +x ~/.scripts/brew-update.sh
 	chmod +x ~/.scripts/dev-update.sh
-	chmod +x ~/.scripts/pkg-update.sh
 	chmod +x ~/.scripts/backup.py
 
 ycm:
