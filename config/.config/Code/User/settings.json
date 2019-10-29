@@ -46,9 +46,6 @@
       "autoFix": true
     }
   ],
-  "eslint.workingDirectories": [
-    "~/"
-  ],
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "explorer.sortOrder": "type",
