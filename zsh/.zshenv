@@ -17,6 +17,10 @@ export PYTHONPATH="/usr/lib/python3/dist-packages:$PYTHONPATH"
 # RVM PATH
 export PATH="$PATH:$HOME/.rvm/bin"
 
+# rbenv PATH
+export PATH="$HOME.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
 # nvm PATH
 export NVMPATH="$HOME/.nvm"
 [[ -s $NVMPATH/nvm.sh ]] && . $NVMPATH/nvm.sh
