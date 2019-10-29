@@ -20,3 +20,6 @@
 
 [mergetool "vimdiff"]
   cmd= nvim -d -c  "Gdiff" "$MERGED"
+
+[commit]
+	gpgsign = true

@@ -118,7 +118,7 @@ alias gbnm="git branch --no-merged"
 alias gbr="git branch --remote"
 
 alias gc="git commit"
-alias gcm="git commit -m"
+alias gcm="git commit -S -m"
 alias gcb="git checkout -b"
 alias gcf="git config --list"
 alias gcl="git clone --recursive"
