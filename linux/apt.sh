@@ -40,6 +40,7 @@ sudo apt-get install -y apt-transport-https \
   mc \
   memcached \
   mercurial \
+  mmv \
   mosh \
   ncdu \
   neovim \

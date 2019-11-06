@@ -52,6 +52,7 @@ brew install ack \
   mc \
   memcached \
   mercurial \
+  mmv \
   mosh \
   mysql \
   ncdu \
