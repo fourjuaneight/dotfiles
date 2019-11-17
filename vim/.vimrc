@@ -71,7 +71,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'alvan/vim-closetag'
 Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'luochen1990/rainbow'
 Plug 'mattn/emmet-vim'
 Plug 'mileszs/ack.vim'
