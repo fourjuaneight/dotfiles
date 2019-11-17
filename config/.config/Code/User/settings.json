@@ -100,4 +100,5 @@
   "workbench.editor.tabSizing": "shrink",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.startupEditor": "newUntitledFile",
+  "todo-tree.highlights.enabled": true,
 }

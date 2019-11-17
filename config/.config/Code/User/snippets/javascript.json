@@ -228,7 +228,7 @@
     "description": "Gatsby Graphql Query"
   },
   "Gatsby Graphql Static": {
-    "prefix": "gusq",
+    "prefix": "usgq",
     "body": [
       "const data = useStaticQuery(graphql`",
       "  query {",
