@@ -5,10 +5,10 @@ brew update
 
 # Install GNU core utilities (those that come with macOS are outdated)
 brew install coreutils
-brew install gnu-sed --with-default-names
-brew install gnu-tar --with-default-names
-brew install gnu-indent --with-default-names
-brew install gnu-which --with-default-names
+brew install gnu-sed
+brew install gnu-tar
+brew install gnu-indent
+brew install gnu-which
 
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
 brew install findutils
@@ -27,6 +27,7 @@ brew install ack \
   curl \
   dep \
   docker \
+  duti \
   ffmpeg \
   fswatch \
   fzf \
@@ -47,7 +48,7 @@ brew install ack \
   jenv \
   libjpeg \
   libmemcached \
-  --with-toolchain llvm \
+  llvm \
   mas \
   mc \
   memcached \
@@ -65,6 +66,7 @@ brew install ack \
   postgresql \
   python \
   python3 \
+  rbenv \
   rclone \
   rename \
   rsync \

@@ -22,4 +22,7 @@
   cmd= nvim -d -c  "Gdiff" "$MERGED"
 
 [commit]
-	gpgsign = true
+  gpgsign = true
+
+[gpg]
+  program = gpg

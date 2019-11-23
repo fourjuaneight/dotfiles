@@ -7,7 +7,7 @@ DUTI_DIR=$HOME/dotfiles/macos/duti
 
 # Media files
 while read -r ext; do
-  duti -s org.videolan.vlc "$ext" all
+  duti -s mo.darren.optimus.player.mac "$ext" all
 done <"${DUTI_DIR}/media.txt"
 
 # OpenEmu

@@ -2,9 +2,9 @@
 
 (setq
  css-indent-offset 2
- doom-big-font (font-spec :family "Dank Mono" :size 36)
- doom-font (font-spec :family "Dank Mono" :size 30)
- doom-variable-pitch-font (font-spec :family "Dank Mono" :size 30)
+ doom-big-font (font-spec :family "Dank Mono" :size 20)
+ doom-font (font-spec :family "Dank Mono" :size 18)
+ doom-variable-pitch-font (font-spec :family "Dank Mono" :size 18)
  dired-dwim-target t
  js-indent-level 2
  json-reformat:indent-width 2

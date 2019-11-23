@@ -60,7 +60,7 @@ bash:
 	echo /usr/local/bin/bash | sudo tee -a /etc/shells
 	chsh -s /usr/local/bin/bash
 
-dev:
+development:
 	bash ~/dotfiles/dev/gem.sh
 	bash ~/dotfiles/dev/npm.sh
 	bash ~/dotfiles/dev/pip.sh
