@@ -1,0 +1,271 @@
+{
+  "Arrow Function": {
+    "prefix": "afnc",
+    "body": [
+      "const $1 = $2 => {",
+      "  $3",
+      "}"
+    ],
+    "description": "Arrow Function"
+  },
+  "For Each": {
+    "prefix": "fe",
+    "body": [
+      "$1.forEach(${2:el} => {",
+      "  $3",
+      "});"
+    ],
+    "description": "For Each Loop"
+  },
+  "For in": {
+    "prefix": "fi",
+    "body": [
+      "for (let $1 in $2) {",
+      "  $3",
+      "}"
+    ],
+    "description": "For in"
+  },
+  "For of": {
+    "prefix": "fo",
+    "body": [
+      "for (let $1 of $2) {",
+      "  $3",
+      "}"
+    ],
+    "description": "For of"
+  },
+  "Event Listener": {
+    "prefix": "el",
+    "body": [
+      "$1.addEventListener(`${2:click}`, () => {",
+      "  $3",
+      "});"
+    ],
+    "description": "Event Listener"
+  },
+  "Service Worker Regristration": {
+    "prefix": "swr",
+    "body": [
+      "// SW",
+      "if (navigator.serviceWorker) {",
+      "  navigator.serviceWorker.register(`/sw.js`, { scope: `/` });",
+      "  navigator.serviceWorker.ready.then(registration => {",
+      "    console.log(`Service Worker Ready`);",
+      "  });",
+      "  window.addEventListener(`load`, () => {",
+      "    if (navigator.serviceWorker.controller) {",
+      "      navigator.serviceWorker.controller.postMessage({ command: `trimCaches` });",
+      "    }",
+      "  });",
+      "}"
+    ],
+    "description": "Service Worker Resgistration"
+  },
+  "Query Selector": {
+    "prefix": "qs",
+    "body": "const $1 = ${2:document}.querySelector(`$3`);",
+    "description": "Query Selector Constant"
+  },
+  "Import": {
+    "prefix": "imp",
+    "body": "import $1 from '$2';",
+    "description": "Import modules"
+  },
+  "ISO Date": {
+    "prefix": "iso",
+    "body": [
+      "const offset = new Date().getTimezoneOffset() * 60000;",
+      "const iso = new Date(Date.now() - offset).toISOString();",
+      "const today = iso.substring(0, ${1:10});"
+    ],
+    "description": "Current date in ISO format"
+  },
+  // Gulp
+  "Gulp Task": {
+    "prefix": "gt",
+    "body": [
+      "const $1 = cb => {",
+      "  pump([",
+      "    src('$2'),",
+      "    $4",
+      "    dest('$3')",
+      "  ], cb);",
+      "}"
+    ],
+    "description": "Gulp task template"
+  },
+  // Styled Components
+  "Styled Component": {
+    "prefix": "sty",
+    "body": [
+      "const $1 = styled.$2`",
+      "  $3",
+      "`;"
+    ],
+    "description": "Styled component block"
+  },
+  "Nested Styled Component": {
+    "prefix": "nsty",
+    "body": [
+      "/${$1} {",
+      "  $3",
+      "}"
+    ],
+    "description": "Nested Styled component block"
+  },
+  // Gatsby
+  "Import React": {
+    "prefix": "impre",
+    "body": "import React from 'react';",
+    "description": "Import React dependency"
+  },
+  "Import React Component": {
+    "prefix": "impre",
+    "body": "import React, { Component } from 'react';",
+    "description": "Import React Component dependency"
+  },
+  "Import PropType": {
+    "prefix": "improp",
+    "body": "import PropTypes from 'prop-types';",
+    "description": "Import PropType dependency"
+  },
+  "Import cx": {
+    "prefix": "impcx",
+    "body": "import cx from 'classnames';",
+    "description": "Import cx dependency"
+  },
+  "Import Gtasby Link": {
+    "prefix": "implnk",
+    "body": "import { Link } from 'gatsby';",
+    "description": "Import Gatsby Link dependency"
+  },
+  "Gatsby Class Component": {
+    "prefix": "ccomp",
+    "body": [
+      "export default class $1 extends Component {",
+      "  render() {",
+      "    return (",
+      "      $2",
+      "    );",
+      "  }",
+      "}",
+      "",
+    ],
+    "description": "React class component block"
+  },
+  "Gatsby Functional Component": {
+    "prefix": "fcomp",
+    "body": [
+      "const $1 = ($2) => {",
+      "  return(",
+      "    $3",
+      "  );",
+      "}",
+      "",
+      "export default $1;"
+    ],
+    "description": "React functional component block"
+  },
+  "Gatsby Image Component": {
+    "prefix": "gicomp",
+    "body": [
+      "import React from 'react';",
+      "import { useStaticQuery, graphql } from 'gatsby';",
+      "import Img from 'gatsby-image';",
+      "",
+      "const sizing = {",
+      "  ${9:height}: '$6px',",
+      "  ${8:width}: '$7px',",
+      "};",
+      "",
+      "const wrap = {",
+      "  ...sizing,",
+      "};",
+      "",
+      "const image = {",
+      "  ...sizing,",
+      "};",
+      "",
+      "const $1 = () => {",
+      "  const data = useStaticQuery(graphql`",
+      "    query {",
+      "      imageSharp($3: { originalName: { eq: \"$2\" } }) {",
+      "        $3(${8:width}: $5) {",
+      "          ...GatsbyImageSharp$4_withWebp",
+      "        }",
+      "      }",
+      "    }",
+      "  `);",
+      "  return (",
+      "    <>",
+      "      {data.imageSharp && (",
+      "        <Img",
+      "          $3={data.imageSharp.$3}",
+      "          alt=\"$10\"",
+      "          style={wrap}",
+      "          imgStyle={image}",
+      "        />",
+      "      )}",
+      "    </>",
+      "  );",
+      "};",
+      "",
+      "export default $1;",
+      "",
+    ],
+    "description": "Gatsby Image useStaticQuery component"
+  },
+  "Gatsby Graphql": {
+    "prefix": "gq",
+    "body": [
+      "export const query = graphql`",
+      "  query $1 {",
+      "    ",
+      "  }",
+      "`;"
+    ],
+    "description": "Gatsby Graphql Query"
+  },
+  "Gatsby Graphql Static": {
+    "prefix": "usgq",
+    "body": [
+      "const data = useStaticQuery(graphql`",
+      "  query {",
+      "    $1",
+      "  }",
+      "`);",
+    ],
+    "description": "Gatsby Graphql Static Query Hook"
+  },
+  // React
+  "React State": {
+    "prefix": "rsc",
+    "body": [
+      "constructor(props) {",
+      "  super(props);",
+      "  this.state = { $1: '$2' };",
+      "}"
+    ],
+    "description": "React State Constructor"
+  },
+  "React Prop": {
+    "prefix": "prop",
+    "body": [
+      "$1.propTypes = {",
+      "  $2: PropTypes.$3.isRequired,",
+      "};",
+    ],
+    "description": "React Proptype"
+  },
+  "React classnames": {
+    "prefix": "cn",
+    "body": "className={$1}",
+    "description": "React CSS Modules className"
+  },
+  "React cx classnames": {
+    "prefix": "cnx",
+    "body": "className={cx($1)}",
+    "description": "React CSS Modules className cx"
+  },
+}

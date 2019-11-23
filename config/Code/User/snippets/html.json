@@ -1,0 +1,149 @@
+{
+  // GENERAL //
+  "Tag": {
+    "prefix": "tag",
+    "body": "<${1:div}>$2</$1>",
+    "description": "Universal tag"
+  },
+  "External Link": {
+    "prefix": "exlink",
+    "body": "<a href=\"$1\" target=\"_blank\" rel=\"noreferrer noopener\">$2</a>",
+    "description": "External Links"
+  },
+  "Link": {
+    "prefix": "link",
+    "body": "<a href=\"$1\" class=\"$2\">$3</a>",
+    "description": "Links"
+  },
+  // JEKYLL //
+  "Jekyll BaseURL": {
+    "prefix": "jurl",
+    "body": "{{ site.baseurl }}$1",
+    "description": "Jekyll - BaseURL"
+  },
+  "Jekyll If Statement": {
+    "prefix": "jif",
+    "body": [
+      "{% if $1 %}",
+      "  $2",
+      "{% endif %}"
+    ],
+    "description": "Jekyll - If statement"
+  },
+  "Jekyll ElseIf Statement": {
+    "prefix": "jeif",
+    "body": "{% elsif $1 %}$2",
+    "description": "Jekyll - ElseIf statement"
+  },
+  "Jekyll If URL Statement": {
+    "prefix": "jifu",
+    "body": [
+      "{% if page.url == '$1' %}",
+      "  $2",
+      "{% endif $3 %}"
+    ],
+    "description": "Jekyll - If URL statement"
+  },
+  "Jekyll ElseIf URL Statement": {
+    "prefix": "jeifu",
+    "body": "{% elsif page.url == '$1' %}$2",
+    "description": "Jekyll - ElseIf URL statement"
+  },
+  // HUGO
+  "Hugo Block": {
+    "prefix": "hb",
+    "body": "{{ $1 }}",
+    "description": "Hugo block"
+  },
+  "Hugo If": {
+    "prefix": "hif",
+    "body": "{{ if $1 }}",
+    "description": "Hugo If block"
+  },
+  "Hugo With": {
+    "prefix": "hw",
+    "body": "{{ with $1 }}",
+    "description": "Hugo With block"
+  },
+  "Hugo End": {
+    "prefix": "he",
+    "body": "{{ end }}",
+    "description": "Hugo End block"
+  },
+  "Hugo Var": {
+    "prefix": "hv",
+    "body": "{{ \\$$1 := $2 }}",
+    "description": "Hugo Variable"
+  },
+  "Hugo Params Call": {
+    "prefix": "hparam",
+    "body": "{{ .Params.$1 }}",
+    "description": "Hugo Params"
+  },
+  "Hugo Site Call": {
+    "prefix": "hsite",
+    "body": "{{ .Site.$1 }}",
+    "description": "Hugo Site"
+  },
+  "Hugo Permalink": {
+    "prefix": "hperma",
+    "body": "{{ \\$$1.Permalink }}",
+    "description": "Hugo Permalink"
+  },
+  "Hugo Relative URL": {
+    "prefix": "hrul",
+    "body": "{{ \"$1\" | relURL }}",
+    "description": "Hugo relURL"
+  },
+  "Hugo Resource Call": {
+    "prefix": "hrul",
+    "body": "{{ \\$$1 := resources.Get \"$2/$3.png\" }}",
+    "description": "Hugo resourcesGet"
+  },
+  "Hugo Date": {
+    "prefix": "hdt",
+    "body": "{{ time.Now.Format \"2006\" }}",
+    "description": "Hugo Date"
+  },
+  "Hugo Copyright": {
+    "prefix": "hcopy",
+    "body": "{{ .Site.Copyright }}",
+    "description": "Hugo Copyright"
+  },
+  "Hugo Site Title": {
+    "prefix": "hstitle",
+    "body": "{{ .Site.Title }}",
+    "description": "Hugo Site Title"
+  },
+  "Hugo Base URL": {
+    "prefix": "hburl",
+    "body": "{{ .Site.BaseURL }}",
+    "description": "Hugo BaseURL"
+  },
+  "Hugo Images": {
+    "prefix": "himg",
+    "body": [
+      "{{ \\$img := resources.Get \"img/$1.$2\" }}",
+      "<img src=\"{{ \\$img.Permalink }}\" alt=\"$3\" class=\"$4\"/>",
+    ],
+    "description": "Hugo - Image shortcode"
+  },
+  "Hugo Picture": {
+    "prefix": "hpic",
+    "body": [
+      "{{ \\$webp := resources.Get \"img/$1.webp\" }}",
+      "{{ \\$img := resources.Get \"img/$2.$3\" }}",
+      "<picture class=\"img__wrap $4\">",
+      "  <source data-srcset=\"{{ \\$webp.Permalink }}\" type=\"image/webp\">",
+      "  <source data-srcset=\"{{ \\$img.Permalink }}\" type=\"image/$5\">",
+      "  <img data-src=\"{{ \\$img.Permalink }}\" alt=\"$6\" class=\"lazy\"/>",
+      "</picture>"
+    ],
+    "description": "Hugo - Picture shortcode"
+  },
+  "Hugo Links": {
+    "prefix": "hlink",
+    "body": "<a href='{{ \"$1\" | relURL }}' class=\"$2\">$3</a>",
+    "description": "Hugo - External links"
+  }
+}
