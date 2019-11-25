@@ -21,6 +21,7 @@ alias hgrep="history | ag"
 alias whois="whois -h whois-servers.net"
 
 # zsh
+alias vi="vim"
 alias zco="nvim ~/.zshrc"
 alias zso="source ~/.zshrc"
 
@@ -34,9 +35,9 @@ alias emacst="emacs -nw"
 alias doom="~/.emacs.d/bin/doom"
 
 # vim
-alias vi="nvim"
-alias vco="nvim ~/.vimrc"
-alias vso="nvim source ~/.vimrc"
+alias vi="vim"
+alias vco="vim ~/.vimrc"
+alias vso="vim source ~/.vimrc"
 
 # Cron
 alias croe="crontab -e"

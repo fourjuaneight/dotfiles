@@ -49,6 +49,7 @@ brew install ack \
   libjpeg \
   libmemcached \
   llvm \
+	macvim \
   mas \
   mc \
   memcached \
@@ -57,7 +58,6 @@ brew install ack \
   mosh \
   mysql \
   ncdu \
-  neovim \
   nnn \
   node \
   npm \
@@ -77,7 +77,6 @@ brew install ack \
   stow \
   the_silver_searcher \
   tmux \
-  vim \
   webp \
   wget \
   xz \

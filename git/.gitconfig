@@ -10,16 +10,18 @@
 
 [core]
   excludesfile = ~/.gitignore_global
-  editor = nvim
+  editor = vim
+
+[diff]
+  tool = vimdiff
 
 [merge]
   tool = vimdiff
+  conflictstyle = diff3
 
 [mergetool]
   keepBackup = false
-
-[mergetool "vimdiff"]
-  cmd= nvim -d -c  "Gdiff" "$MERGED"
+  prompt = false
 
 [commit]
   gpgsign = true
