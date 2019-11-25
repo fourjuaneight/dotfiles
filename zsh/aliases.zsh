@@ -22,7 +22,7 @@ alias whois="whois -h whois-servers.net"
 
 # zsh
 alias vi="vim"
-alias zco="nvim ~/.zshrc"
+alias zco="vim ~/.zshrc"
 alias zso="source ~/.zshrc"
 
 # nnn
@@ -44,13 +44,13 @@ alias croe="crontab -e"
 alias crol="crontab -l"
 
 # tmux
-alias tco="nvim ~/.tmux.conf"
+alias tco="vim ~/.tmux.conf"
 alias tso="tmux source ~/.tmux.conf"
 alias tn="tmux -u new"
 alias tk="pkill -f tmux"
 alias tx="exit"
-alias tdevx="tmux new-session \; split-window -v -p 20 \; send-keys 'clear' C-m \; split-window -h \; send-keys 'clear' C-m \; select-pane -U \; send-keys 'nvim' C-m \;"
-alias tdev="tmux new-session \; split-window -v -p 20 \; send-keys 'clear' C-m \; select-pane -U \; send-keys 'nvim' C-m \;"
+alias tdevx="tmux new-session \; split-window -v -p 20 \; send-keys 'clear' C-m \; split-window -h \; send-keys 'clear' C-m \; select-pane -U \; send-keys 'vim' C-m \;"
+alias tdev="tmux new-session \; split-window -v -p 20 \; send-keys 'clear' C-m \; select-pane -U \; send-keys 'vim' C-m \;"
 
 # ssh
 alias rssh="sudo service ssh --full-restart"
@@ -100,7 +100,7 @@ alias rc="bundle exec rails c"
 alias rs="rails s"
 
 # Git
-alias gco="sudo nvim ~/.ssh/config"
+alias gco="sudo vim ~/.ssh/config"
 
 alias g="git"
 alias ghh="git help"
