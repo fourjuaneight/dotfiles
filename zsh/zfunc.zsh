@@ -50,6 +50,10 @@ ffwm() {
   ffmpeg -i $1.mp4 -c:v libvpx-vp9 -crf $2 -b:v 0 -b:a 128k -c:a libopus $1.webm
 }
 
+# ffacc
+# 1 - input/output file
+  ffmpeg -i $1.flac -c:a libfdk_aac -vbr 3 -c:v copy $1.m4a
+
 # b2mov
 # 1 - filename
 b2mov() {
