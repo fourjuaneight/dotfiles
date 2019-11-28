@@ -52,7 +52,9 @@ ffwm() {
 
 # ffacc
 # 1 - input/output file
+ffacc() {
   ffmpeg -i $1.flac -c:a libfdk_aac -vbr 3 -c:v copy $1.m4a
+}
 
 # b2mov
 # 1 - filename
