@@ -18,6 +18,7 @@ brew install bash
 
 # Taps
 brew tap heroku/brew
+brew tap homebrew-ffmpeg/ffmpeg
 
 # Brew Packages
 brew install ack \
@@ -28,7 +29,7 @@ brew install ack \
   dep \
   docker \
   duti \
-  ffmpeg \
+  homebrew-ffmpeg/ffmpeg/ffmpeg --with-fdk-aac --HEAD \
   fswatch \
   fzf \
   fd \
