@@ -1,3 +1,4 @@
 scripts/SLACK_HOOK
 vim/.vim/autoload/
 vim/.vim/plugged/
+node_modules
