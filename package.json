@@ -1,0 +1,22 @@
+{
+  "name": "dotfiles",
+  "version": "1.0.0",
+  "description": "Files and scripts for configuring a development and terminal enviromant on macOS or Linux.",
+  "main": "index.js",
+  "dependencies": {
+    "csvtojson": "^2.0.10"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fourjuaneight/dotfiles.git"
+  },
+  "author": "Juan Villela <juan@villela.co>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fourjuaneight/dotfiles/issues"
+  },
+  "homepage": "https://github.com/fourjuaneight/dotfiles#readme"
+}
