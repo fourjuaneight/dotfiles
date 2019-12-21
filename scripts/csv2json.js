@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 const { readdir, writeFileSync } = require('fs');
 const { join } = require('path');
 const csv = require('csvtojson');
