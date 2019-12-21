@@ -10,10 +10,13 @@ if (isatty(1)) {
   rclone.splice(2, 0, '-P');
 }
 
-const backup = async dirs => {
-  for (const d of dirs) {
-    await exec(
-      `${rclone.join(' ')} ${join(media, d, '/')} ${join(b2, d.toLowerCase())}`,
+const backup = dirs => {
+  dirs.forEach(dir =>
+    exec(
+      `${rclone.join(' ')} ${join(media, dir, '/')} ${join(
+        b2,
+        dir.toLowerCase()
+      )}`,
       (err, stdout, stderr) => {
         if (err) {
           console.error(`exec error: ${err}`);
@@ -23,8 +26,8 @@ const backup = async dirs => {
         }
         console.log(stdout);
       }
-    );
-  }
+    )
+  );
 };
 
 backup(folders);
