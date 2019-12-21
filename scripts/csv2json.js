@@ -9,7 +9,8 @@ readdir(source, (err, files) => {
   if (err) {
     throw err;
   }
-  files.map(src => {
+
+  files.forEach(src => {
     const json = src.replace(/csv/g, 'json');
 
     csv()
