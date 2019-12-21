@@ -24,6 +24,8 @@ alias whois="whois -h whois-servers.net"
 alias vi="vim"
 alias zco="vim ~/.zshrc"
 alias zso="source ~/.zshrc"
+alias dl="rm"
+alias dldr="rm -rf"
 
 # nnn
 alias n="nnn"
