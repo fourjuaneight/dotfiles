@@ -171,7 +171,7 @@ alias gstaa="git stash apply"
 alias gstc="git stash clear"
 alias gstd="git stash drop"
 alias gstl="git stash list"
-alias gstp="git stash pop"
+alias gstap="git stash pop"
 alias gsts="git stash show --text"
 
 alias gts="git tag -s"

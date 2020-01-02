@@ -108,47 +108,8 @@ fo() {
   fi
 }
 
-# fzd - cd to selected directory
-fzd() {
-  local dir
-  dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -not \( -name node_modules -prune \) -print 2> /dev/null | fzf +m) &&
-  cd "$dir"
-}
-
-# ft - tree selected directory
-fzt() {
-  local dir
-  dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -not \( -name node_modules -prune \) -print 2> /dev/null | fzf +m) &&
-  tree "$dir" -I node_modules
-}
-
-# fdr - cd to selected parent directory
-fzdr() {
-  local declare dirs=()
-  get_parent_dirs() {
-    if [[ -d "${1}" ]]; then dirs+=("$1"); else return; fi
-    if [[ "${1}" == '/' ]]; then
-      for _dir in "${dirs[@]}"; do echo $_dir; done
-    else
-      get_parent_dirs $(dirname "$1")
-    fi
-  }
-  local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | fzf-tmux --tac)
-  cd "$DIR"
-}
-
-# cdf - cd into the directory of the selected file
-cdf() {
-   local file
-   local dir
-   file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
-}
-
 # cf - fuzzy cd from anywhere
 # ex: cf word1 word2 ... (even part of a file name)
-# zsh autoload function
 cf() {
   local file
 
@@ -165,12 +126,50 @@ cf() {
   fi
 }
 
+# fcd - cd to selected directory
+fcd() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -not \( -name node_modules -prune \) -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+}
+
+# fpcd - cd to selected parent directory
+fpcd() {
+  local declare dirs=()
+  get_parent_dirs() {
+    if [[ -d "${1}" ]]; then dirs+=("$1"); else return; fi
+    if [[ "${1}" == '/' ]]; then
+      for _dir in "${dirs[@]}"; do echo $_dir; done
+    else
+      get_parent_dirs $(dirname "$1")
+    fi
+  }
+  local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | fzf-tmux --tac)
+  cd "$DIR"
+}
+
+# ffcd - cd into the directory of the selected file
+ffcd() {
+   local file
+   local dir
+   file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+}
+
+# ftr - tree selected directory
+ftr() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -not \( -name node_modules -prune \) -print 2> /dev/null | fzf +m) &&
+  tree "$dir" -I node_modules
+}
+
 # fgl - git log branch
 fgl() {
   git log --pretty=oneline --abbrev-commit origin/$1
 }
 
-# fbr - checkout git branch
+# fbr - checkout git local branch
 fbr() {
   local branches branch
   branches=$(git branch) &&
@@ -178,12 +177,29 @@ fbr() {
   git checkout $(echo "$branch" | sed "s/.* //")
 }
 
+# frbr - checkout git remote branch
 frbr() {
   git fetch
   local branches branch
   branches=$(git branch -a) &&
   branch=$(echo "$branches" | fzf +s +m -e) &&
   git checkout $(echo "$branch" | sed "s:.* remotes/origin/::" | sed "s:.* ::")
+}
+
+# fbrd - delete git local branch
+fdbr() {
+  local branches branch
+  branches=$(git branch) &&
+  branch=$(echo "$branches" | fzf-tmux -d 15 +m) &&
+  git branch -d $(echo "$branch" | sed "s/.* //")
+}
+
+# fbrd - merge git local branch into current
+fmbr() {
+  local branches branch
+  branches=$(git branch) &&
+  branch=$(echo "$branches" | fzf-tmux -d 15 +m) &&
+  git merge $(echo "$branch" | sed "s/.* //")
 }
 
 # Emacs Diff
