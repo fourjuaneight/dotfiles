@@ -101,6 +101,13 @@ alias psl="psql postgres -h localhost -l"
 alias rc="bundle exec rails c"
 alias rs="rails s"
 
+# Dev
+alias dlnm="rm -rm node_modules"
+alias dlh="rm -rm public resources"
+alias dlj="rm -rf _public"
+alias rin="rm -rm node_modules && npm install"
+alias riny="rm -rm node_modules && yarn install"
+
 # Git
 alias gco="sudo vim ~/.ssh/config"
 
