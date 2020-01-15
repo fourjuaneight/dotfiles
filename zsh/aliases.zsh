@@ -102,11 +102,11 @@ alias rc="bundle exec rails c"
 alias rs="rails s"
 
 # Dev
-alias dlnm="rm -rm node_modules"
-alias dlh="rm -rm public resources"
+alias dlnm="rm -rf node_modules"
+alias dlh="rm -rf public resources"
 alias dlj="rm -rf _public"
-alias rin="rm -rm node_modules && npm install"
-alias riny="rm -rm node_modules && yarn install"
+alias rin="rm -rf node_modules && npm install"
+alias riny="rm -rf node_modules && yarn install"
 
 # Git
 alias gco="sudo vim ~/.ssh/config"
