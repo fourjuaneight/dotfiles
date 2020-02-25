@@ -17,6 +17,7 @@ npm i -g @babel/core \
   glyphhanger \
   graphiql \
   graphql \
+  graphqurl \
   graphql-tools \
   gulp \
   node-sass \
