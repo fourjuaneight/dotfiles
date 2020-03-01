@@ -1,4 +1,8 @@
-snippet afunc "Arrow Function"
+########################
+#       COMMON         #
+########################
+
+snippet func "Arrow Function"
 const $1 = $2 => {
   $3
 }
@@ -43,17 +47,35 @@ switch ($1) {
 endsnippet
 
 snippet dcon "DOM Constant"
-const $1 = document.querySelector('$2');
+const $1 = ${2:document}.querySelector('$3');
 endsnippet
 
-snippet imp "Import modules"
-import $1 from '$2';
+########################
+#        Node          #
+########################
+
+snippet req "Rquire dependencies"
+const $1 = require('$2');
 endsnippet
 
-snippet iso "Current date in ISO format"
-const offset = new Date().getTimezoneOffset() * 60000;
-const iso = new Date(Date.now() - offset).toISOString();
-const today = iso.substring(0, ${1:10});
+snippet reqfs "Rquire fs"
+const { $1 } = require('fs');
+endsnippet
+
+snippet reqpath "Rquire path"
+const { $1 } = require('path');
+endsnippet
+
+snippet reqaxios "Rquire axio"
+const { $1 } = require('axio');
+endsnippet
+
+snippet reqglob "Rquire glob"
+const glob = require('glob');
+endsnippet
+
+snippet reqmini "Rquire minimatch"
+const minimatch = require('minimatch');
 endsnippet
 
 snippet gt "Gulp task template"
@@ -66,10 +88,55 @@ const $1 = cb => {
 }
 endsnippet
 
+########################
+#       REACT          #
+########################
+
+snippet imp "Import modules"
+import $1 from '$2';
+endsnippet
+
+snippet imprec "Import React"
+import React from 'react';
+endsnippet
+
+snippet imprech "Import React w/ Hooks"
+import React, { $1 } from 'react';
+endsnippet
+
+snippet impgat "Gatsby Link"
+import { Link$1 } from 'gatsby';
+endsnippet
+
+snippet impprop "Import PropTypes"
+import PropTypes from 'prop-types';
+endsnippet
+
+snippet impsty "Import Emotion Styled"
+import styled from '@emotion/styled';
+endsnippet
+
+snippet impcx "Import Classnames"
+import cx from 'classnames';
+endsnippet
+
+snippet impax "Import Axios"
+import { $1 } from 'axios';
+endsnippet
+
+snippet cn "React CSS Modules className"
+className={$1}
+endsnippet
+
+snippet cnx "React CSS Modules className cx"
+className={cx($1)}
+endsnippet
+
 snippet sty "Styled component block"
 const $1 = styled.$2`
   $3
 `;
+
 endsnippet
 
 snippet nsty "Nested Styled component block"
@@ -78,30 +145,123 @@ $${$1} {
 }
 endsnippet
 
-snippet ccomp "React component block"
-export default class $1 extends Component {
-  render() {
-    return (
-      $2
-    );
+snippet fcomp "React component block"
+const $1 = ($2) => {
+  return(
+    $3
+  );
+};
+
+export default $1;
+
+endsnippet
+
+snippet gq "GraphQL Query"
+export const query = graphql`
+  query $1 {
+    
   }
-}
+`;
+
 endsnippet
 
-snippet comp "React component block"
-const $1 = ({ $2 }) => (
-  $3
-)
+snippet usgq "GraphQL Static Query Hook"
+const data = useStaticQuery(graphql`
+  query {
+    $1
+  }
+`);
 
-export default $1
 endsnippet
 
-snippet prop "React Proptype"
+snippet tprop "React Proptype"
 .propTypes = {
   : PropTypes.string.isRequired,
 }
+
 endsnippet
 
-snippet cx "React CSS Modules className cx"
-className={cx($1)}
+snippet dprop "React DefaultProps"
+$1.defaultProps = {
+  $2: $3,
+};
+
+endsnippet
+
+snippet exd "Export Default (bundler)"
+export default $1;
+
+endsnippet
+
+snippet rchar "React HTML Character Code conversion"
+{String.fromCharCode($1)}
+endsnippet
+
+snippet rush "React useState Hook"
+const [$1, set$2] = useState($3);
+endsnippet
+
+snippet rushobj "React useState Hook (object)"
+const [$1, set$2] = useState({
+  $3
+});
+endsnippet
+
+snippet rueh "React useEffect Hooks"
+useEffect(() => {
+  $1
+  return (
+    $2
+  );
+}, [$3]);
+endsnippet
+
+snippet ruch "React useContext Hooks"
+const [$1, set$2] = useContext($3);
+endsnippet
+
+snippet gicomp "Gatsby Image useStaticQuery component"
+import React from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
+import Img from 'gatsby-image';
+
+const sizing = {
+  ${9:height}: '$6px',
+  ${8:width}: '$7px',
+};
+
+const wrap = {
+  ...sizing,
+};
+
+const image = {
+  ...sizing,
+};
+
+const $1 = () => {
+  const data = useStaticQuery(graphql`
+    query {
+      imageSharp($3: { originalName: { eq: \"$2\" } }) {
+        $3(${8:width}: $5) {
+          ...GatsbyImageSharp$4_withWebp
+        }
+      }
+    }
+  `);
+  return (
+    <>
+      {data.imageSharp && (
+        <Img
+          $3={data.imageSharp.$3}
+          alt=\"$10\"
+          style={wrap}
+          imgStyle={image}
+        />
+      )}
+    </>
+  );
+};
+
+export default $1;
+
 endsnippet
