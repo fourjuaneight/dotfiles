@@ -67,6 +67,7 @@ endif
 " Install plugins
 call plug#begin('~/.vim/plugged')
 
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'airblade/vim-gitgutter'
 Plug 'alvan/vim-closetag'
 Plug 'honza/vim-snippets'
@@ -120,7 +121,7 @@ let g:ale_json_prettier_use_local_config = 1
 let g:ale_yaml_prettier_use_local_config = 1
 
 " Ariline
-let g:airline_theme='dracula'
+" let g:airline_theme='dracula'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
@@ -186,6 +187,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeIgnore = ['^node_modules$']
 
 " remove help
 let NERDTreeMinimalUI = 1
