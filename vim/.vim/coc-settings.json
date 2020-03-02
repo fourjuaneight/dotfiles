@@ -1,0 +1,6 @@
+{
+  "codeLens.enable": true,
+  "list.interactiveDebounceTime": 300,
+  "snippets.ultisnips.directories": ["UltiSnips", "snips"],
+  "suggest.noselect": false
+}

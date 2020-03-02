@@ -45,6 +45,10 @@ set nowritebackup
 " Always use vertical diffs
 set diffopt+=vertical
 
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
+
 filetype plugin indent on        " indentation
 
 " italic comments on terminal and gui
@@ -68,25 +72,21 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'airblade/vim-gitgutter'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'alvan/vim-closetag'
-Plug 'honza/vim-snippets'
+Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/fzf.vim'
 Plug 'luochen1990/rainbow'
-Plug 'mattn/emmet-vim'
 Plug 'mileszs/ack.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'qpkorr/vim-bufkill'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'SirVer/ultisnips'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'Valloric/YouCompleteMe'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
 Plug 'w0rp/ale'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -146,9 +146,29 @@ let g:closetag_shortcut = '>'
 " Add > at current position without closing the current tag, default is ''
 let g:closetag_close_shortcut = '<leader>>'
 
-" Emmet
-let g:user_emmet_install_global = 0
-autocmd FileType html EmmetInstall " enable just for HTML
+" COC
+let g:coc_global_extensions = [
+\ 'coc-snippets',
+\ 'coc-emmet',
+\ 'coc-pairs',
+\ 'coc-tsserver',
+\ 'coc-eslint',
+\ 'coc-prettier',
+\ 'coc-json',
+\ ]
+vmap <C-j> <Plug>(coc-snippets-select)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+let g:coc_snippet_next = '<tab>'
 
 " FZF
 " Set statusline color
@@ -213,10 +233,6 @@ let g:NERDCustomDelimiters = { 'css': { 'left': '/*','right': '*/' } }
 " Rainbow
 let g:rainbow_active = 1 " 0 if you want to enable it later via :RainbowToggle
 
-" YCM
-" disable auto_triggering ycm suggestions pane and instead
-" let g:ycm_auto_trigger = 0
-
 " make YCM compatible with UltiSnips (using supertab)
 let g:ycm_key_list_select_completion = ['<C-j>', '<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-k>', '<C-p>', '<Up>']
@@ -225,12 +241,6 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 " Ultisnips
 " snippets location
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "snips"]
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
 
 """""""""""""""""""""""""""""""""""""""""""""""
 " Key Remaps
@@ -284,6 +294,31 @@ nmap <leader>bd :BD<cr> " delete a file from buffer and keep window/split
 nmap <leader>bn :BF<cr> " next buffer
 nmap <leader>bp :BB<cr> " prev buffer
 
+" CoC
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
 " Fugitive
 nmap <leader>gst :Gstatus<cr> " git status
 nmap <leader>gdf :Gdelete<cr> " git rm file and buffer
@@ -300,9 +335,3 @@ imap <leader>ct <plug>NERDCommenterToggle " toggle comment selection
 
 " NERDTree
 nmap <leader>nt :NERDTreeToggle<CR> " toggle nr
-
-" YCM
-nmap <leader>yrs :YcmRestartServer <CR>
-nmap <leader>yfc :YcmForceCompileAndDiagnostics<CR>
-nmap <leader>ydi :YcmShowDetailedDiagnostic <CR>
-nmap <leader>ycm :YcmCompleter <CR>
