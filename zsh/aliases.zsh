@@ -53,6 +53,7 @@ alias tk="pkill -f tmux"
 alias tx="exit"
 alias tdevx="tmux new-session \; split-window -v -p 20 \; send-keys 'clear' C-m \; split-window -h \; send-keys 'clear' C-m \; select-pane -U \; send-keys 'vim' C-m \;"
 alias tdev="tmux new-session \; split-window -v -p 20 \; send-keys 'clear' C-m \; select-pane -U \; send-keys 'vim' C-m \;"
+alias tter="tmux new-session \; split-window -h \; send-keys 'clear' C-m \; select-pane -L \; send-keys 'clear' C-m \;"
 
 # ssh
 alias rssh="sudo service ssh --full-restart"
