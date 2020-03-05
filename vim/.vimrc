@@ -259,6 +259,21 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips", "snips"]
 """""""""""""""""""""""""""""""""""""""""""""""
 " Key Remaps
 """""""""""""""""""""""""""""""""""""""""""""""
+" quit
+noremap <leader>q :q<cr>
+
+" force quit
+noremap <leader>q! :q!<cr>
+
+" write
+noremap <leader>w :w<cr>
+
+" write and quit
+noremap <leader>wq :wq<cr>
+
+" write and force quit
+noremap <leader>wq! :wq!<cr>
+
 " copy selection to system clipboard
 vnoremap <leader>by "+y
 
@@ -326,13 +341,14 @@ xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
 " Fugitive
-nmap <leader>gst :Gstatus<cr>
+nmap <leader>gst :10Gstatus<cr>
 nmap <leader>gf :Gfetch<cr>
 nmap <leader>gp :Gpull<cr>
 nmap <leader>gup :Gpush<cr>
 nmap <leader>ga :Gw<cr>
 nmap <leader>gaq :Gwq<cr>
 nmap <leader>gaa :Git add .<cr>
+nmap <leader>gcm :Gcommit<cr>
 nmap <leader>gr :Git reset<cr>
 nmap <leader>gdf :Gdelete<cr>
 
