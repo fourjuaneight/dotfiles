@@ -11,7 +11,6 @@ set fileencoding=utf-8
 
 syntax on                       " Enable syntax highlight
 
-set hidden                      " hides buffers instead of closing them
 set foldmethod=manual           " manual folding
 set mouse=a                     " when copying, keeping the line numbers out
 set number                      " show line numbers
@@ -71,15 +70,15 @@ endif
 " Install plugins
 call plug#begin('~/.vim/plugged')
 
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'alvan/vim-closetag'
 Plug 'airblade/vim-gitgutter'
-Plug 'junegunn/fzf.vim'
+Plug 'alvan/vim-closetag'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'njk' }
+Plug 'junegunn/fzf', { 'do': './install --bin' }
+Plug 'lepture/vim-jinja'
 Plug 'luochen1990/rainbow'
 Plug 'mileszs/ack.vim'
-Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'pangloss/vim-javascript'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'qpkorr/vim-bufkill'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
@@ -148,19 +147,21 @@ let g:closetag_close_shortcut = '<leader>>'
 
 " COC
 let g:coc_global_extensions = [
-\ 'coc-snippets',
+\ 'coc-css',
 \ 'coc-emmet',
-\ 'coc-pairs',
-\ 'coc-tsserver',
 \ 'coc-eslint',
-\ 'coc-prettier',
+\ 'coc-html',
 \ 'coc-json',
+\ 'coc-pairs',
+\ 'coc-prettier',
+\ 'coc-snippets',
+\ 'coc-tsserver',
 \ ]
 vmap <C-j> <Plug>(coc-snippets-select)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<cr>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 
@@ -216,6 +217,24 @@ let NERDTreeDirArrows = 1
 " line numbers
 let NERDTreeShowLineNumbers=0
 
+" sync open file with NERDTree
+" " Check if NERDTree is open or active
+function! IsNERDTreeOpen()
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+" file, and we're not in vimdiff
+function! SyncTree()
+  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+    NERDTreeFind
+    wincmd p
+  endif
+endfunction
+
+" Highlight currently open buffer in NERDTree
+autocmd BufEnter * call SyncTree()
+
 " open automatically on startup with no specified file
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -232,11 +251,6 @@ let g:NERDCustomDelimiters = { 'css': { 'left': '/*','right': '*/' } }
 
 " Rainbow
 let g:rainbow_active = 1 " 0 if you want to enable it later via :RainbowToggle
-
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-j>', '<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-k>', '<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " Ultisnips
 " snippets location
@@ -255,21 +269,13 @@ nmap <leader>wh <C-w>h
 nmap <leader>wl <C-w>l
 
 " Plug shortcuts
-nmap <leader>pc :PlugClean<CR>
-nmap <leader>pu :PlugUpdate<CR>
-nmap <leader>pug :PlugUpgrade<CR>
-nmap <leader>pi :PlugInstall<CR>
+nmap <leader>pc :PlugClean<cr>
+nmap <leader>pu :PlugUpdate<cr>
+nmap <leader>pug :PlugUpgrade<cr>
+nmap <leader>pi :PlugInstall<cr>
 
 " delete all empty lines
-map <leader>bln :g/^$/d
-
-" autoclose brackets and quotes
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ` ``<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
+map <leader>dln :g/^$/d
 
 " tabs
 map <leader>tn :bn<cr>
@@ -286,8 +292,8 @@ nmap <leader>/br :cdo %s///g \| update
 " https://chrisarcand.com/vims-new-cdo-command/
 
 " ALE
-nmap <leader>bfx :ALEFix<cr> " Ale lint and fix
-nmap <leader>bfxsg :ALEFixSuggest<cr> " Ale suggest fixes
+nmap <leader>ff :ALEFix<cr> " Ale lint and fix
+nmap <leader>fs :ALEFixSuggest<cr> " Ale suggest fixes
 
 " Bufkill
 nmap <leader>bd :BD<cr> " delete a file from buffer and keep window/split
@@ -306,7 +312,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> K :call <SID>show_documentation()<cr>
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
@@ -320,18 +326,22 @@ xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
 " Fugitive
-nmap <leader>gst :Gstatus<cr> " git status
-nmap <leader>gdf :Gdelete<cr> " git rm file and buffer
+nmap <leader>gst :Gstatus<cr>
+nmap <leader>gf :Gfetch<cr>
+nmap <leader>gp :Gpull<cr>
+nmap <leader>gup :Gpush<cr>
+nmap <leader>ga :Gw<cr>
+nmap <leader>gaq :Gwq<cr>
+nmap <leader>gaa :Git add .<cr>
+nmap <leader>gr :Git reset<cr>
+nmap <leader>gdf :Gdelete<cr>
 
 " fzf
-nmap <leader>/d :Files<CR>
-
-" Git Gutter
-nmap <leader>gg :GitGutterToggle<CR> " toggle git gutter
+nmap <leader>/d :FZF<cr> " search files in dir
 
 " NERDCommenter
 imap <leader>cc <plug>NERDCommenterComment " comment selection
 imap <leader>ct <plug>NERDCommenterToggle " toggle comment selection
 
 " NERDTree
-nmap <leader>nt :NERDTreeToggle<CR> " toggle nr
+nmap <leader>nt :NERDTreeToggle<cr> " toggle nr
