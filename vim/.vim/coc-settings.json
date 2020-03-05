@@ -1,5 +1,15 @@
 {
   "codeLens.enable": true,
+  "emmet.includeLanguages": {
+    "ejs": "html",
+    "erb": "html",
+    "html.erb": "html",
+    "javascript": "javascriptreact",
+    "jsx-sublime-babel-tags": "javascriptreact",
+    "njk": "html",
+    "nunjucks": "html",
+    "ruby": "html"
+  },
   "list.interactiveDebounceTime": 300,
   "snippets.ultisnips.directories": ["UltiSnips", "snips"],
   "suggest.noselect": false
