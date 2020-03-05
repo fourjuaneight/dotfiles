@@ -1,4 +1,18 @@
 {
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "scss",
+    "graphql",
+    "html",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "nunjucks",
+    "nunjucks.njk",
+    "typescript.tsx",
+    "typescript",
+    "typescriptreact"
+  ],
   "codeLens.enable": true,
   "emmet.includeLanguages": {
     "ejs": "html",
