@@ -58,6 +58,11 @@
 * `<SPC>pu` - Plug Update
 * `<SPC>pi` - Plug Install
 
+## Surround
+* `<SPC>sp` - place wrapping
+* `<SPC>sc` - chage wrapping
+* `<SPC>sd` - delete wrapping
+
 ## Tabs
 * `<SPC>td` - kill tab
 * `<SPC>tn` - next tab

@@ -361,3 +361,8 @@ imap <leader>ct <plug>NERDCommenterToggle " toggle comment selection
 
 " NERDTree
 nmap <leader>nt :NERDTreeToggle<cr> " toggle nr
+
+" Surround
+nmap <leader>sp ys
+nmap <leader>sc cs
+nmap <leader>sd ds
