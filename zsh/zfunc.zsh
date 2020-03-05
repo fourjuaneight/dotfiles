@@ -79,7 +79,7 @@ tm() {
 fe() {
   local files
   IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
-  [[ -n "$files" ]] && ${EDITOR:-emacs} "${files[@]}"
+  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
 # fa - Open via ag with line number
@@ -104,7 +104,7 @@ fo() {
   key=$(head -1 <<< "$out")
   file=$(head -2 <<< "$out" | tail -1)
   if [[ -n "$file" ]]; then
-    [[ "$key" = ctrl-o ]] && open "$file" || ${EDITOR:-emacs} "$file"
+    [[ "$key" = ctrl-o ]] && open "$file" || ${EDITOR:-vim} "$file"
   fi
 }
 
