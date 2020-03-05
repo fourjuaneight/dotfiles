@@ -5,6 +5,8 @@
 " change the mapleader from \ to SPC
 let mapleader=" "
 
+set timeoutlen=1000 ttimeoutlen=0
+
 " encoding
 set encoding=utf-8
 set fileencoding=utf-8
