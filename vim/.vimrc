@@ -269,7 +269,7 @@ noremap <leader>q! :q!<cr>
 noremap <leader>w :w<cr>
 
 " write and quit
-noremap <leader>wq :wq<cr>
+noremap <leader>wq ZZ<cr>
 
 " write and force quit
 noremap <leader>wq! :wq!<cr>

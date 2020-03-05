@@ -89,3 +89,21 @@
 ## OTHER
 * `<SPC>dln` - delete all empty lines
 * `<Leader>y` - copy selection to system clipboard
+
+## Buffer Navigation
+* `$` - move to end of line
+* `A` - move to end of line and switch to insert move
+* `^` - move to beginning of line
+* `I` - move to beginning of line and switch to insert move
+* `%` - move between matching brace
+* `w` - next word (beginning)
+* `e` - next word (end)
+* `gg` - beginning of file
+* `G` - end of file
+
+## Buffer Selection
+* `V` - select line
+* `v` - select text
+* `viw` - select word
+* `<C-v>` - select column
+* `gv` - reselect block
