@@ -360,7 +360,7 @@ imap <leader>cc <plug>NERDCommenterComment " comment selection
 imap <leader>ct <plug>NERDCommenterToggle " toggle comment selection
 
 " NERDTree
-nmap <leader>nt :NERDTreeToggle<cr> " toggle nr
+nmap <leader>b :NERDTreeToggle<cr>
 
 " Surround
 nmap <leader>sp ys

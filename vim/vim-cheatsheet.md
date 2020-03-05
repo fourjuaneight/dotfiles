@@ -47,7 +47,12 @@
 
 ## NERDtree
 * `<SPC>nt` - toggle tree
+* `t` - open file in new tab
+* `i` - open file in horizontal split window
+* `s` - open file in vertical split window
 * `m` - entre file creation mode
+* `R` - refresh tree
+* `I` - toggle hidden files
 
 ## NERDCommenter
 * `<SPC>cc` - comment out selection
