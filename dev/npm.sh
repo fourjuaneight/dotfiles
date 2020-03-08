@@ -21,6 +21,7 @@ npm i -g @babel/core \
   graphql-tools \
   gulp \
   node-sass \
+  ngrok \
   npm-fzf \
   postcss \
   postcss-cli \

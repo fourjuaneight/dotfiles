@@ -35,12 +35,12 @@ brew install ack \
   fd \
   ghc \
   git \
+  github/gh/gh \
   gist \
   go \
   gpg \
   graphicsmagick \
   heroku \
-  hub \
   htop \
   hugo \
   imagemagick \
@@ -50,7 +50,7 @@ brew install ack \
   libjpeg \
   libmemcached \
   llvm \
-	macvim \
+  macvim \
   mas \
   mc \
   memcached \
@@ -59,6 +59,7 @@ brew install ack \
   mosh \
   mysql \
   ncdu \
+  nhrok \
   nnn \
   node \
   npm \
