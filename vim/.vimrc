@@ -76,6 +76,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'alvan/vim-closetag'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'njk' }
+Plug 'jparise/vim-graphql',
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'lepture/vim-jinja'
 Plug 'luochen1990/rainbow'
