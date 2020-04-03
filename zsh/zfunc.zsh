@@ -56,6 +56,12 @@ ffacc() {
   ffmpeg -i $1.flac -c:a libfdk_aac -vbr 3 -c:v copy $1.m4a
 }
 
+# ffmm
+# 1 - input/output file
+ffmm() {
+  ffmpeg -i $1.mov -q:v 0 mp2 $1.mp4
+}
+
 # b2mov
 # 1 - filename
 b2mov() {
@@ -200,6 +206,14 @@ fmbr() {
   branches=$(git branch) &&
   branch=$(echo "$branches" | fzf-tmux -d 15 +m) &&
   git merge $(echo "$branch" | sed "s/.* //")
+}
+
+# fbrd - rebase git local branch into current
+frebr() {
+  local branches branch
+  branches=$(git branch) &&
+  branch=$(echo "$branches" | fzf-tmux -d 15 +m) &&
+  git rebase $(echo "$branch" | sed "s/.* //")
 }
 
 # Emacs Diff

@@ -4,6 +4,7 @@
 [user]
   name = Juan Villela
   email = juan@villela.co
+  signingkey = 3151EBD8B9970BBE034C39BF57A7B910713E6772
 
 [color]
   ui = true
@@ -20,14 +21,14 @@
   conflictstyle = diff3
 
 [mergetool]
-  keepBackup = false
+  keepBackup = true
   prompt = false
 
 [commit]
   gpgsign = true
 
 [gpg]
-  program = gpg
+  program = /usr/local/bin/gpg
 
 [filter "lfs"]
   clean = git-lfs clean -- %f
