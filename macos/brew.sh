@@ -26,6 +26,7 @@ brew install ack \
   certbot \
   cmake \
   curl \
+	deno \
   dep \
   docker \
   duti \
@@ -35,6 +36,7 @@ brew install ack \
   fd \
   ghc \
   git \
+	git-delta \
   github/gh/gh \
   gist \
   go \

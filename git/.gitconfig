@@ -12,6 +12,7 @@
 [core]
   excludesfile = ~/.gitignore_global
   editor = vim
+	pager = delta --plus-color="#50fa7b" --minus-color="#ff80bf" --theme='Dracula'
 
 [diff]
   tool = vimdiff
@@ -35,3 +36,6 @@
   smudge = git-lfs smudge -- %f
   process = git-lfs filter-process
   required = true
+
+[interactive]
+  diffFilter = delta --color-only
