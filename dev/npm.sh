@@ -4,6 +4,7 @@ npm i -g @babel/core \
   @babel/cli \
   @slack/client \
   eslint \
+  eslint-config-jcv \
   gatsby-cli \
   glyphhanger \
   graphqurl \
@@ -11,5 +12,6 @@ npm i -g @babel/core \
   gulp-cli \
   ngrok \
   npm-fzf \
+  prettier \
   simple-node-logger \
   webpack-cli
