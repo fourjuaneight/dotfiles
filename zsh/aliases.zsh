@@ -1,6 +1,7 @@
 # common cli commands
 alias cdh="cd ~"
 alias cds="cd /Volumes/Samuel"
+alias cdr="cd /Volumes/Samuel/Repos"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
