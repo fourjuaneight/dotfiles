@@ -108,8 +108,8 @@ alias rs="rails s"
 alias dlnm="rm -rf node_modules"
 alias dlh="rm -rf public resources"
 alias dlj="rm -rf _public"
-alias rin="rm -rf node_modules && npm install"
-alias riny="rm -rf node_modules && yarn install"
+alias rin="rm -rf node_modules package-lock.json && npm install"
+alias riny="rm -rf node_modules yarn.lock && yarn install"
 
 # Git
 alias gco="sudo vim ~/.ssh/config"
