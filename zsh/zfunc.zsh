@@ -59,7 +59,7 @@ ffacc() {
 # ffmm
 # 1 - input/output file
 ffmm() {
-  ffmpeg -i $1.mov -q:v 0 mp2 $1.mp4
+  ffmpeg -i $1.mov -q:v 0 $1.mp4
 }
 
 # b2mov
