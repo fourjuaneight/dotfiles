@@ -1,8 +1,48 @@
-# git pull rebase given branch
-ggu() {
-  [[ "$#" != 1 ]] && local b="$(git_current_branch)"
-  git pull --rebase origin "${b:=$1}"
+# UTILITIES #
+
+# Easy way to extract archives
+extract () {
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)  tar xvjf $1   ;;
+      *.tar.gz)   tar xvzf $1   ;;
+      *.bz2)      bunzip2 $1    ;;
+      *.rar)      unrar x $1    ;;
+      *.gz)       gunzip $1     ;;
+      *.tar)      tar xvf $1    ;;
+      *.tbz2)     tar xvjf $1   ;;
+      *.tgz)      tar xvzf $1   ;;
+      *.zip)      unzip $1      ;;
+      *.Z)        uncompress $1 ;;
+      *.7z)       p7zip x $1    ;;
+      *)          echo "don't know how to extract '$1'..." ;;
+    esac
+  else
+    echo "'$1' is not a valid file!"
+  fi
 }
+
+#Kill any lingering SSH processes
+sshkill() {
+  ps aux | grep ssh | grep -v grep | grep -v sshd | awk {'print $2'} | xargs -r kill -9;
+}
+
+# fkill - kill process
+fkl() {
+  local pid
+  pid=$(ps -u $USER axco pid,command | sed 1d | fzf -m | awk '{print $1}')
+
+  if [[ "x$pid" != "x" ]];
+  then
+    echo $pid | xargs kill -${1:-9}
+  fi
+}
+
+weather() {
+  curl -s http://wttr.in/$1;
+}
+
+# FONTS #
 
 # gla - glyphhanger whitelist Latin
 gla() {
@@ -14,6 +54,9 @@ glu() {
   glyphhanger --US_ASCII --formats=woff2,woff --subset=$1.ttf
 }
 
+
+# YOUTUBE #
+
 # ytv - youtube-dl beat video/audio quality
 ytv() {
   youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio:' --merge-output-format mp4 -o "%(title)s.%(ext)s" $1
@@ -23,6 +66,9 @@ ytv() {
 yta() {
   youtube-dl -f bestaudio[ext=m4a] $1
 }
+
+
+# IMAGES #
 
 # webp - converting PNGs to webp
 wbpng() {
@@ -34,39 +80,43 @@ wbjpg() {
   find -e jpg | xargs -P 8 -I {} sh -c 'cwebp -q 90 $1 -o "${1%.jpg}.webp"' _ {} \;
 }
 
-# ffc - ffmpeg clip video
+
+# FFMPEG #
+
+# ffmpeg clip video
 # 1 - start time
 # 2 - input file
 # 3 - stop time
 # 4 -  output file
-ffc() {
-  ffmpeg -ss $1 -i $2 -c copy -t $3 $4
+clipvid() {
+  ffmpeg -ss $1 -i $2 -c copy -t $3 $4;
 }
 
-# ffwm
-# 1 - filename
-# 2 - quality
-ffwm() {
-  ffmpeg -i $1.mp4 -c:v libvpx-vp9 -crf $2 -b:v 0 -b:a 128k -c:a libopus $1.webm
+2webm() {
+  fname="${1%.*}";
+  ffmpeg -i $1 -c:v libvpx-vp9 -crf $2 -b:v 0 -b:a 128k -c:a libopus "$fname.webm";
 }
 
-# ffacc
-# 1 - input/output file
-ffacc() {
-  ffmpeg -i $1.flac -c:a libfdk_aac -vbr 3 -c:v copy $1.m4a
+2acc() {
+  fname="${1%.*}";
+  ffmpeg -i $1 -c:a libfdk_aac -vbr 3 -c:v copy "$fname.m4a";
 }
 
-# ffmm
-# 1 - input/output file
-ffmm() {
-  ffmpeg -i $1.mov -q:v 0 $1.mp4
+2mp4() {
+  fname="${1%.*}";
+  ffmpeg -i $1 -q:v 0 "$fname.mp4";
 }
+
+# B2/BACKBLAZE #
 
 # b2mov
 # 1 - filename
 b2mov() {
   b2 sync $1 helms-deep/movies/
 }
+
+
+# TMUX #
 
 # tm - create new tmux session, or switch to existing one. Works from within tmux too. (@bag-man)
 # `tm` will allow you to select your tmux session via fzf.
@@ -87,6 +137,9 @@ fe() {
   IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
+
+
+# DIRECTORIES #
 
 # fa - Open via ag with line number
 fa() {
@@ -170,6 +223,9 @@ ftr() {
   tree "$dir" -I node_modules
 }
 
+
+# GIT #
+
 # fgl - git log branch
 fgl() {
   git log --pretty=oneline --abbrev-commit origin/$1
@@ -216,21 +272,19 @@ frebr() {
   git rebase $(echo "$branch" | sed "s/.* //")
 }
 
+# git pull rebase given branch
+ggu() {
+  [[ "$#" != 1 ]] && local b="$(git_current_branch)"
+  git pull --rebase origin "${b:=$1}"
+}
+
 # Emacs Diff
 ediff() {
   emacs --eval "(ediff-files \"$1\" \"$2\")";
 }
 
-# fkill - kill process
-fkl() {
-  local pid
-  pid=$(ps -u $USER axco pid,command | sed 1d | fzf -m | awk '{print $1}')
 
-  if [[ "x$pid" != "x" ]];
-  then
-    echo $pid | xargs kill -${1:-9}
-  fi
-}
+# HOMEBREW  #
 
 # Install (one or multiple) selected application(s)
 # using "brew search" as source input
