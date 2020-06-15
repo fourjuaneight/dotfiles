@@ -22,15 +22,10 @@ extract () {
   fi
 }
 
-#Kill any lingering SSH processes
-sshkill() {
-  ps aux | grep ssh | grep -v grep | grep -v sshd | awk {'print $2'} | xargs -r kill -9;
-}
-
 # fkill - kill process
 fkl() {
   local pid
-  pid=$(ps -u $USER axco pid,command | sed 1d | fzf -m | awk '{print $1}')
+  pid=$(ps axco pid,command | sed 1d | fzf -m | awk '{print $1}')
 
   if [[ "x$pid" != "x" ]];
   then
