@@ -16,6 +16,15 @@ alias win="cd /mnt/c/Users/Juan"
 alias exd="cd /mnt/d/"
 alias tree="tree -I node_modules"
 
+# Common variations of 'ls' command
+alias ll="ls -l"
+alias lo="ls -o"
+alias lh="ls -lh"
+alias la="ls -la"
+alias sl="ls"
+alias l="ls"
+alias s="ls"
+
 # Search history
 alias hgrep="history | ag"
 
