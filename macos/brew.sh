@@ -26,7 +26,7 @@ brew install ack \
   certbot \
   cmake \
   curl \
-	deno \
+  deno \
   dep \
   docker \
   duti \
@@ -36,7 +36,7 @@ brew install ack \
   fd \
   ghc \
   git \
-	git-delta \
+  git-delta \
   github/gh/gh \
   gist \
   go \
@@ -65,6 +65,7 @@ brew install ack \
   nnn \
   node \
   npm \
+  p7zip \
   php \
   pkg-config \
   postgresql \
