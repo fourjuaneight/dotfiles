@@ -79,27 +79,40 @@ wbjpg() {
 # FFMPEG #
 
 # ffmpeg clip video
-# 1 - start time
-# 2 - input file
+# 1 - input file
+# 2 - start time
 # 3 - stop time
-# 4 -  output file
 clipvid() {
-  ffmpeg -ss $1 -i $2 -c copy -t $3 $4;
+  fname="${files%-clipped.*}";
+  ffmpeg -ss $2 -i $1 -c copy -t $3 $fname;
 }
 
 2webm() {
-  fname="${1%.*}";
-  ffmpeg -i $1 -c:v libvpx-vp9 -crf $2 -b:v 0 -b:a 128k -c:a libopus "$fname.webm";
+  local files fname
+  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  fname="${files%.*}";
+  ffmpeg -i $1 -c:v libvpx-vp9 -crf 10 -b:v 0 -b:a 128k -c:a libopus "$fname.webm";
 }
 
 2acc() {
-  fname="${1%.*}";
-  ffmpeg -i $1 -c:a libfdk_aac -vbr 3 -c:v copy "$fname.m4a";
+  local files fname
+  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  fname="${files%.*}";
+  ffmpeg -i $files -c:a libfdk_aac -vbr 3 -c:v copy "$fname.m4a";
 }
 
 2mp4() {
-  fname="${1%.*}";
-  ffmpeg -i $1 -q:v 0 "$fname.mp4";
+  local files fname
+  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  fname="${files%.*}";
+  ffmpeg -i $files -q:v 0 "$fname.mp4";
+}
+
+2mp3() {
+  local files fname
+  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  fname="${files%.*}";
+  ffmpeg -i $files -acodec libmp3lame "$fname.mp3";
 }
 
 # B2/BACKBLAZE #
