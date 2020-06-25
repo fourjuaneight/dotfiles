@@ -299,6 +299,14 @@ grs() {
   git reset --soft $(echo "$commit" | sed "s/ .*//")
 }
 
+# git revert to commit
+grvt() {
+  local commits commit
+  commits=$(git log --pretty=oneline --abbrev-commit --reverse) &&
+  commit=$(echo "$commits" | fzf --tac +s +m -e) &&
+  git revert $(echo "$commit" | sed "s/ .*//")
+}
+
 # git reset hard to commit id
 grh() {
   local commits commit
