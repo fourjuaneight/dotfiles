@@ -182,9 +182,8 @@ alias gra="git remote add"
 alias grup="git remote update"
 alias grv="git remote -v"
 
-alias grs="git reset"
+alias grhom="git reset --hard origin/master"
 alias grhd="git reset HEAD^"
-alias grh="git reset --hard"
 alias gsrh="git submodule foreach 'git reset --hard'"
 
 alias gst="git status"

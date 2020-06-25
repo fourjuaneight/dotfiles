@@ -291,6 +291,22 @@ ggu() {
   git pull --rebase origin "${b:=$1}"
 }
 
+# git reset soft to commit id
+grs() {
+  local commits commit
+  commits=$(git log --pretty=oneline --abbrev-commit --reverse) &&
+  commit=$(echo "$commits" | fzf --tac +s +m -e) &&
+  git reset --soft $(echo "$commit" | sed "s/ .*//")
+}
+
+# git reset hard to commit id
+grh() {
+  local commits commit
+  commits=$(git log --pretty=oneline --abbrev-commit --reverse) &&
+  commit=$(echo "$commits" | fzf --tac +s +m -e) &&
+  git reset --hard $(echo "$commit" | sed "s/ .*//")
+}
+
 # Emacs Diff
 ediff() {
   emacs --eval "(ediff-files \"$1\" \"$2\")";
