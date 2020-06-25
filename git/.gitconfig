@@ -9,6 +9,9 @@
 [color]
   ui = true
 
+[log]
+  decorate = auto
+
 [core]
   excludesfile = ~/.gitignore_global
   editor = vim
