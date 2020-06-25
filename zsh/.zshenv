@@ -26,6 +26,9 @@ export PATH="$PATH:/.yarn/bin"
 export GOPATH="$HOME/golang"
 export PATH="$PATH:/usr/local/go/bin"
 
+# sed PATH
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+
 # nnn
 export NNN_FALLBACK_OPENER=xdg-open
 export NNN_DE_FILE_MANAGER=nautilus

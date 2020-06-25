@@ -1,5 +1,10 @@
 # UTILITIES #
 
+# fh - repeat history
+fh() {
+  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | gsed -r 's/ *[0-9]*\*? *//' | gsed -r 's/\\/\\\\/g')
+}
+
 # Easy way to extract archives
 extract () {
   if [ -f $1 ] ; then
