@@ -327,6 +327,14 @@ gshow() {
 FZF-EOF"
 }
 
+# fgcm - find git commit and price selected message for new commit
+fgcm() {
+  local commits commit
+  commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%N%Creset %s' --abbrev-commit --reverse) &&
+  commit=$(echo "$commits" | fzf --ansi --tac +s +m -e | gsed -r "s/^[a-z0-9]+\s-\s([a-zA-z\s]+).?/\1/g") &&
+  message="git commit -S -m \"$commit\""
+  print -z $message
+}
 
 # Emacs Diff
 ediff() {
