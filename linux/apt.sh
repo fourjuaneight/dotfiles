@@ -57,6 +57,7 @@ sudo apt-get install -y apt-transport-https \
   python3-pip \
   python-pygments \
   rclone \
+  ripgrep \
   rsync \
   rbenv \
   sed \

@@ -74,6 +74,7 @@ brew install ack \
   rbenv \
   rclone \
   rename \
+  ripgrep \
   rsync \
   ruby \
   slurm \
