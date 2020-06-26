@@ -82,6 +82,7 @@ brew install ack \
   stow \
   the_silver_searcher \
   tmux \
+  tree \
   webp \
   wget \
   xz \
