@@ -67,7 +67,7 @@ been doing this a lot longer (and better) than I have.
   was the "inspiration" for most of this setup.
 - [Lucas F. da
   Costa](https://lucasfcosta.com/2019/04/07/streams-introduction.html) for
-  making love the terminal again.
+  making me love the terminal again.
 - [Aaron Bieber](https://youtu.be/JWD1Fpdd4Pc) for turning onto Emacs and his
   great [dotfiles](https://github.com/aaronbieber/dotfiles).
 - Henrik Lissner and his holy work on [Doom
