@@ -56,8 +56,9 @@ filetype plugin indent on        " indentation
 highlight Comment cterm=italic gui=italic
 
 " theme
-color dracula
-
+packadd! dracula_pro
+let g:dracula_colorterm = 0
+colorscheme dracula_pro_van_helsing
 
 """""""""""""""""""""""""""""""""""""""""""""""
 " Plugins List
@@ -74,7 +75,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'airblade/vim-gitgutter'
 Plug 'alvan/vim-closetag'
-Plug 'dracula/vim', { 'as': 'dracula' }
+" Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'njk' }
 Plug 'jparise/vim-graphql',
 Plug 'junegunn/fzf', { 'do': './install --bin' }
@@ -123,7 +124,7 @@ let g:ale_json_prettier_use_local_config = 1
 let g:ale_yaml_prettier_use_local_config = 1
 
 " Ariline
-" let g:airline_theme='dracula'
+let g:airline_theme='dracula_pro'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
