@@ -240,8 +240,14 @@ ftr() {
 # find-in-file - usage: fif <searchTerm>
 fif() {
   if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
-  local file
-  file="$(rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}")" && code "$file"
+  local file line
+  file="$(rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}")" &&
+  line=$(rg -n $1 $file | gsed -r "s/^([[:digit:]]+)\:\s\s.*/\1/") &&
+
+  if [[ -n $file ]]
+  then
+    code -g $file:$line
+  fi
 }
 
 
