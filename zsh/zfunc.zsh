@@ -163,7 +163,7 @@ fa() {
 
   if [[ -n $file ]]
   then
-    nvim $file +$line
+    code -g $file:$line
   fi
 }
 
@@ -176,7 +176,7 @@ fo() {
   key=$(head -1 <<< "$out")
   file=$(head -2 <<< "$out" | tail -1)
   if [[ -n "$file" ]]; then
-    [[ "$key" = ctrl-o ]] && open "$file" || ${EDITOR:-vim} "$file"
+    [[ "$key" = ctrl-o ]] && code "$file" || ${EDITOR:-vim} "$file"
   fi
 }
 
@@ -234,6 +234,14 @@ ftr() {
   dir=$(find ${1:-.} -path '*/\.*' -prune \
                   -o -type d -not \( -name node_modules -prune \) -print 2> /dev/null | fzf +m) &&
   tree "$dir" -I node_modules
+}
+
+# using ripgrep combined with preview and open on VSCode
+# find-in-file - usage: fif <searchTerm>
+fif() {
+  if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
+  local file
+  file="$(rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}")" && code "$file"
 }
 
 
@@ -342,7 +350,7 @@ ediff() {
 }
 
 
-# HOMEBREW  #
+# HOMEBREW #
 
 # Install (one or multiple) selected application(s)
 # using "brew search" as source input
