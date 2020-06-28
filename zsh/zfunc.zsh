@@ -6,24 +6,27 @@ fh() {
 }
 
 # Easy way to extract archives
-extract () {
-  if [ -f $1 ] ; then
-    case $1 in
-      *.tar.bz2)  tar xvjf $1   ;;
-      *.tar.gz)   tar xvzf $1   ;;
-      *.bz2)      bunzip2 $1    ;;
-      *.rar)      unrar x $1    ;;
-      *.gz)       gunzip $1     ;;
-      *.tar)      tar xvf $1    ;;
-      *.tbz2)     tar xvjf $1   ;;
-      *.tgz)      tar xvzf $1   ;;
-      *.zip)      unzip $1      ;;
-      *.Z)        uncompress $1 ;;
-      *.7z)       p7zip x $1    ;;
-      *)          echo "don't know how to extract '$1'..." ;;
+fex () {
+  local files fname
+  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  fname="${files%.*}";
+  if [ -n $files ] ; then
+    case $files in
+      *.tar.bz2)  tar xvjf $files   ;;
+      *.tar.gz)   tar xvzf $files   ;;
+      *.bz2)      bunzip2 $files    ;;
+      *.rar)      unrar x $files    ;;
+      *.gz)       gunzip $files     ;;
+      *.tar)      tar xvf $files    ;;
+      *.tbz2)     tar xvjf $files   ;;
+      *.tgz)      tar xvzf $files   ;;
+      *.zip)      unzip $files      ;;
+      *.Z)        uncompress $files ;;
+      *.7z)       p7zip x $files    ;;
+      *)          echo "don't know how to extract '$files'..." ;;
     esac
   else
-    echo "'$1' is not a valid file!"
+    echo "'$files' is not a valid file!"
   fi
 }
 
