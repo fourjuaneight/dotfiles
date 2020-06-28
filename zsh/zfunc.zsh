@@ -6,7 +6,7 @@ fh() {
 }
 
 # fex - find and extract archives
-fex () {
+fex() {
   local files fname
   IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
   fname="${files%.*}";
