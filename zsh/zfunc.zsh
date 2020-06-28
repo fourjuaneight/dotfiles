@@ -154,6 +154,12 @@ fe() {
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
+# fdf - find and delete files
+fdf() {
+  local files
+  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  [[ -n "$files" ]] && rm $files
+}
 
 # DIRECTORIES #
 
@@ -237,6 +243,14 @@ ftr() {
   dir=$(find ${1:-.} -path '*/\.*' -prune \
                   -o -type d -not \( -name node_modules -prune \) -print 2> /dev/null | fzf +m) &&
   tree "$dir" -I node_modules
+}
+
+# fdd - find and delete directory
+fdd() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -not \( -name node_modules -prune \) -print 2> /dev/null | fzf +m) &&
+  rm -rf $dir
 }
 
 # using ripgrep combined with preview and open on VSCode
