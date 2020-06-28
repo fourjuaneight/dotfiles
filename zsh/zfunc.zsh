@@ -5,7 +5,7 @@ fh() {
   print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | gsed -r 's/ *[0-9]*\*? *//' | gsed -r 's/\\/\\\\/g')
 }
 
-# Easy way to extract archives
+# fex - find and extract archives
 fex () {
   local files fname
   IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
@@ -30,7 +30,7 @@ fex () {
   fi
 }
 
-# fkill - kill process
+# fkill - find and kill process
 fkl() {
   local pid
   pid=$(ps axco pid,command | sed 1d | fzf -m | awk '{print $1}')
@@ -151,7 +151,21 @@ tm() {
 fe() {
   local files
   IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
-  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+  [[ -n "$files" ]] && code ${files[@]}
+}
+
+# using ripgrep combined with preview and open on VSCode
+# find-in-file - usage: fif <searchTerm>
+fif() {
+  if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
+  local file line
+  file="$(rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}")" &&
+  line=$(rg -n $1 $file | gsed -r "s/^([[:digit:]]+)\:\s\s.*/\1/") &&
+
+  if [[ -n $file ]]
+  then
+    code -g $file:$line
+  fi
 }
 
 # fdf - find and delete files
@@ -215,6 +229,15 @@ fcd() {
   cd "$dir"
 }
 
+# ffmv - find file and move to another directory
+ffmv() {
+  local file dest
+  IFS=$'\n' file=($(fzf-tmux --query="$1" --multi --select-1 --exit-0)) &&
+  dest=$(find ~ -path '*/\.*' -prune \
+                  -o -type d -not \( -name node_modules -prune \) -print 2> /dev/null | fzf +m) &&
+  mv "$file" "$dest"
+}
+
 # fpcd - cd to selected parent directory
 fpcd() {
   local declare dirs=()
@@ -251,20 +274,6 @@ fdd() {
   dir=$(find ${1:-.} -path '*/\.*' -prune \
                   -o -type d -not \( -name node_modules -prune \) -print 2> /dev/null | fzf +m) &&
   rm -rf $dir
-}
-
-# using ripgrep combined with preview and open on VSCode
-# find-in-file - usage: fif <searchTerm>
-fif() {
-  if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
-  local file line
-  file="$(rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}")" &&
-  line=$(rg -n $1 $file | gsed -r "s/^([[:digit:]]+)\:\s\s.*/\1/") &&
-
-  if [[ -n $file ]]
-  then
-    code -g $file:$line
-  fi
 }
 
 
