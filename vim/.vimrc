@@ -270,13 +270,13 @@ noremap <leader>q :q<cr>
 noremap <leader>q! :q!<cr>
 
 " write
-noremap <leader>w :w<cr>
+noremap <leader>s :w<cr>
 
 " write and quit
-noremap <leader>wq ZZ<cr>
+noremap <leader>sq ZZ<cr>
 
 " write and force quit
-noremap <leader>wq! :wq!<cr>
+noremap <leader>sq! :wq!<cr>
 
 " copy selection to system clipboard
 vnoremap <leader>by "+y
@@ -302,11 +302,16 @@ map <leader>tp :bp<cr>
 map <leader>td :bd<cr>
 
 " ACK
+nmap <leader>/a :Ack ""<Left>
 nmap <leader>/b :Ack "" %<Left><Left><Left>
 nmap <leader>/dc :Ack! --css ""<Left>
 nmap <leader>/ds :Ack! --sass ""<Left>
 nmap <leader>/dh :Ack! --html ""<Left>
+nmap <leader>/dm :Ack! --md ""<Left>
 nmap <leader>/dj :Ack! --js ""<Left>
+nmap <leader>/djn :Ack! --json ""<Left>
+nmap <leader>/dt :Ack! --ts ""<Left>
+nmap <leader>/dtx :Ack! --tsx ""<Left>
 nmap <leader>/br :cdo %s///g \| update
 " https://chrisarcand.com/vims-new-cdo-command/
 
