@@ -49,12 +49,18 @@ weather() {
 
 # gla - glyphhanger whitelist Latin
 gla() {
-  glyphhanger --LATIN --formats=woff2,woff --subset=$1.ttf
+  local files fname
+  IFS=$'\n' files=($(fzf-tmux --query="$1.ttf" --multi --select-1 --exit-0))
+  fname="${files%.*}";
+  [[ -n "$files" ]] && glyphhanger --LATIN --formats=woff2,woff --subset=$fname.ttf
 }
 
 # glu - glyphhanger whitelist US ASCII
 glu() {
-  glyphhanger --US_ASCII --formats=woff2,woff --subset=$1.ttf
+  local files fname
+  IFS=$'\n' files=($(fzf-tmux --query="$1.ttf" --multi --select-1 --exit-0))
+  fname="${files%.*}";
+  [[ -n "$files" ]] && glyphhanger --US_ASCII --formats=woff2,woff --subset=$fname.ttf
 }
 
 
