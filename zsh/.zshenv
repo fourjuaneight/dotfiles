@@ -23,8 +23,10 @@ export PATH="/usr/local/opt/node@12/bin:$PATH"
 export PATH="$PATH:/.yarn/bin"
 
 # Go PATH
-export GOPATH="$HOME/golang"
-export PATH="$PATH:/usr/local/go/bin"
+export GOPATH=$HOME/golang
+export GOROOT=/usr/local/opt/go/libexec
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
 
 # sed PATH
 export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
