@@ -40,3 +40,12 @@ plugins=(git ssh-agent)
 
 # Load functions
 [[ -f ~/zfunc.zsh ]] && source ~/zfunc.zsh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/fourjuaneight/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/fourjuaneight/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/fourjuaneight/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/fourjuaneight/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+export YVM_DIR=/usr/local/opt/yvm
+[ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
