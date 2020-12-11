@@ -310,6 +310,15 @@ gcrbr() {
   git checkout $(echo "$branch" | sed "s:.* remotes/origin/::" | sed "s:.* ::")
 }
 
+
+# create git branch and add to remote
+# (G)it(N)ew(B)(R)anch <NEW-BRANCH-NAME>
+gnbr() {
+  git fetch
+  git checkout -b $1
+  git push -u
+}
+
 # delete git local branch
 # (G)it(D)elete(B)(R)anch
 gdbr() {
