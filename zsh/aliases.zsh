@@ -81,6 +81,11 @@ alias ytbv="youtube-dl -f \'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+best
 alias glhu="glyphhanger --US_ASCII --formats=woff2,woff --subset=*.ttf"
 alias glha="glyphhanger --LATIN --formats=woff2,woff --subset=*.ttf"
 
+# Docker
+alias dcu="docker-compose up"
+alias dcb="docker-compose build"
+alias dcrm="docker-compose down -s"
+
 # Gulp
 alias gub="gulp build"
 alias guw="gulp watch"
