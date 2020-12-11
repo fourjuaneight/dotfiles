@@ -83,6 +83,7 @@ brew install ack \
   stow \
   the_silver_searcher \
   tmux \
+  tophat/bar/yvm \
   tree \
   webp \
   wget \
