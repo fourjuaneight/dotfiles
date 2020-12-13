@@ -22,7 +22,6 @@ brew tap homebrew-ffmpeg/ffmpeg
 
 # Brew Packages
 brew install ack \
-  cabal-install \
   certbot \
   cmake \
   curl \
@@ -37,7 +36,7 @@ brew install ack \
   ghc \
   git \
   git-delta \
-  github/gh/gh \
+  gh \
   gist \
   go \
   gpg \
@@ -48,7 +47,6 @@ brew install ack \
   imagemagick \
   inetutils \
   jasper \
-  jenv \
   libjpeg \
   libmemcached \
   llvm \
