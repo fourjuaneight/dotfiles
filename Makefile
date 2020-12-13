@@ -45,10 +45,8 @@ list:
 	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
 
 stow:
-	stow emacs
 	stow fonts
 	stow git
-	stow gpg
 	stow scripts
 	stow tmux
 	stow vim
@@ -63,27 +61,17 @@ development:
 	bash ~/dotfiles/dev/gem.sh
 	bash ~/dotfiles/dev/npm.sh
 	bash ~/dotfiles/dev/pip.sh
-	bash ~/dotfiles/dev/code.sh
-	bash ~/dotfiles/fonts/fonts.sh
-
-doom:
-	git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
-	~/.emacs.d/bin/doom install
 
 nnn:
-	git clone --depth 1 https://github.com/jarun/nnn
+	git clone --depth 1 https://github.com/jarun/nnn ~/nnn
 	git checkout $(git describe --tags $(git rev-list --tags --max-count=1))
 	cd ~/nnn && make
 	sudo make strip install
 
 node:
-	git clone https://github.com/nvm-sh/nvm.git .nvm
+	git clone https://github.com/nvm-sh/nvm.git ~/nvm
 	cd ~/.nvm
 	. nvm.sh
-
-ruby:
-	gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-	\curl -sSL https://get.rvm.io | bash -s stable --ruby
 
 .PHONY: scripts
 
@@ -117,10 +105,8 @@ macDep:
 
 linSet: nnn dev ycm doom
 
-macSet: dev ycm doom
-	bash ~/dotfiles/macos/default.sh
+macSet: dev ycm
 	xcode-select --install
-	brew install duti
 	bash ~/dotfiles/macos/duti/set.sh
 
 linux: stow linDep ruby node zgen
