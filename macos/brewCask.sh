@@ -4,9 +4,7 @@ brew cask install alfred \
   backblaze \
   bartender \
   choosy \
-  emacs \
   firefox \
-  gitup \
   google-chrome \
   handbrake \
   hazel \
@@ -16,11 +14,8 @@ brew cask install alfred \
   openemu \
   screens-connect \
   slack \
-  sketch \
-  skype \
   tower \
   transmit \
-  upwork \
   visual-studio-code \
   zoomus
 

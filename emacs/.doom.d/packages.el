@@ -1,8 +1,0 @@
-(package! company-tern)
-(package! indium)
-(package! move-text)
-(package! ob-typescript)
-(package! org-brain)
-(package! org-fancy-priorities)
-(package! origami)
-(package! prettier-js)
