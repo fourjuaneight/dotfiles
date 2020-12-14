@@ -99,6 +99,7 @@ linDep:
 macDep:
 	bash ~/dotfiles/macos/apt.sh
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 	bash ~/dotfiles/macos/brew.sh
 	bash ~/dotfiles/macos/brewCask.sh
 	bash ~/dotfiles/macos/mas.sh
