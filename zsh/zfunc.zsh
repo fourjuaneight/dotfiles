@@ -33,7 +33,7 @@ fex() {
 # fkill - find and kill process
 fkl() {
   local pid
-  pid=$(ps axco pid,command | sed 1d | fzf -m | awk '{print $1}')
+  pid=$(ps axco pid,command | sed 1d | fzf -m | mawk '{print $1}')
 
   if [[ "x$pid" != "x" ]];
   then
@@ -188,7 +188,7 @@ fa() {
   local file
   local line
 
-  read -r file line <<<"$(ag --nobreak --noheading $@ | fzf -0 -1 | awk -F: '{print $1, $2}')"
+  read -r file line <<<"$(ag --nobreak --noheading $@ | fzf -0 -1 | mawk -F: '{print $1, $2}')"
 
   if [[ -n $file ]]
   then

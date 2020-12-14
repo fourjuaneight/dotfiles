@@ -52,6 +52,7 @@ brew install ack \
   llvm \
   macvim \
   mas \
+  mawk \
   mc \
   memcached \
   mercurial \
