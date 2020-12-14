@@ -1,4 +1,4 @@
-SHELL        := /bin/bash
+SHELL        := /bin/zsh
 UNAME        := $(shell uname -s)
 USER         := $(shell whoami)
 
@@ -58,9 +58,9 @@ bash:
 	chsh -s /usr/local/bin/bash
 
 development:
-	bash ~/dotfiles/dev/gem.sh
-	bash ~/dotfiles/dev/npm.sh
-	bash ~/dotfiles/dev/pip.sh
+	sh ~/dotfiles/dev/gem.sh
+	sh ~/dotfiles/dev/npm.sh
+	sh ~/dotfiles/dev/pip.sh
 
 nnn:
 	git clone --depth 1 https://github.com/jarun/nnn ~/nnn
@@ -92,25 +92,26 @@ zgen:
 .PHONY: linDep linSet macDep macSet
 
 linDep:
-	bash ~/dotfiles/linux/apt.sh
+	sh ~/dotfiles/linux/apt.sh
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
-	bash ~/dotfiles/linux/brew.sh
+	sh ~/dotfiles/linux/brew.sh
 
 macDep:
-	bash ~/dotfiles/macos/apt.sh
+	sh ~/dotfiles/macos/apt.sh
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 	source ~/.zshrc
 	rustup toolchain install nightly --allow-downgrade --profile minimal --component clippy
-	bash ~/dotfiles/macos/brew.sh
-	bash ~/dotfiles/macos/brewCask.sh
-	bash ~/dotfiles/macos/mas.sh
+	rustup completions zsh > ~/.zsh/_rustup
+	sh ~/dotfiles/macos/brew.sh
+	sh ~/dotfiles/macos/brewCask.sh
+	sh ~/dotfiles/macos/mas.sh
 
 linSet: nnn dev ycm doom
 
 macSet: dev ycm
 	xcode-select --install
-	bash ~/dotfiles/macos/duti/set.sh
+	sh ~/dotfiles/macos/duti/set.sh
 
 linux: stow linDep ruby node zgen
 
