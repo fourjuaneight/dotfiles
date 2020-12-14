@@ -34,7 +34,7 @@ export PATH=$PATH:$GOROOT/bin
 
 # Rust PATH
 export PATH="$HOME/.cargo/bin:$PATH"
-rustup completions zsh > ~/.zfunc/_rustup
+source "$HOME/.cargo/env"
 
 # sed PATH
 export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"

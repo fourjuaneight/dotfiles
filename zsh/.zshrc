@@ -1,3 +1,5 @@
+fpath+=~/.zsh/completions
+
 # Load zgen
 source "${HOME}/.zgen/zgen.zsh"
 
@@ -15,7 +17,7 @@ if ! zgen saved; then
 fi
 
 # Loading zsh Autosuggestions
-source ~/.zsh/zsh-autosuggestions.zsh
+[[ -f ~/.zsh/zsh-autosuggestions.zsh ]] && source ~/.zsh/zsh-autosuggestions.zsh
 
 # Load fzf
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
@@ -26,17 +28,16 @@ _fzf_compgen_path() {
   fd --hidden --follow --exclude ".git" . "$1"
 }
 
-# Loading Pure prompt
-autoload -U promptinit; promptinit
-PURE_GIT_DOWN_ARROW='↓'
-PURE_GIT_UP_ARROW='↑'
-PURE_PROMPT_SYMBOL='λ'
-prompt pure
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git ssh-agent)
-
 # Load aliases
 [[ -f ~/aliases.zsh ]] && source ~/aliases.zsh
 
 # Load functions
 [[ -f ~/zfunc.zsh ]] && source ~/zfunc.zsh
+
+# Loading Pure prompt
+autoload -U promptinit
+promptinit
+PURE_GIT_DOWN_ARROW='↓'
+PURE_GIT_UP_ARROW='↑'
+PURE_PROMPT_SYMBOL='λ'
+prompt pure
