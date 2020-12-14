@@ -48,9 +48,7 @@ $ make install
 
 ## Customizing
 
-Everything in here is setup to work for me. Which means you'd have to heavily
-edit a lot of the files. I'd recommend making a fork of the repo and then
-changing these things to your needs before installing.
+Everything in here is setup to work for me. Which means you'd have to heavily edit a lot of the files. I'd recommend making a fork of the repo and then changing these things to your needs before installing.
 
 Some config files you'd want to change:
 
@@ -63,18 +61,10 @@ Some config files you'd want to change:
 This setup is possible thanks to some awesome developers that have
 been doing this a lot longer (and better) than I have.
 
-- [Darryl Abbate](https://github.com/rootbeersoup/dotfiles)'s dotfiles, which
-  was the "inspiration" for most of this setup.
-- [Lucas F. da
-  Costa](https://lucasfcosta.com/2019/04/07/streams-introduction.html) for
-  making me love the terminal again.
-- [Aaron Bieber](https://youtu.be/JWD1Fpdd4Pc) for turning onto Emacs and his
-  great [dotfiles](https://github.com/aaronbieber/dotfiles).
-- Henrik Lissner and his holy work on [Doom
-  Emacs](https://github.com/hlissner/doom-emacs). This things allowed me to jump
-  into Emacs within a day with little friction.
+- [Darryl Abbate](https://github.com/rootbeersoup/dotfiles)'s dotfiles, which was the "inspiration" for most of this setup.
+- [Lucas F. daCosta](https://lucasfcosta.com/2019/04/07/streams-introduction.html) for making me love the terminal again.
+- [Aaron Bieber](https://youtu.be/JWD1Fpdd4Pc) for turning onto Emacs and his great [dotfiles](https://github.com/aaronbieber/dotfiles).
+- Henrik Lissner and his holy work on [Doom Emacs](https://github.com/hlissner/doom-emacs). This things allowed me to jump into Emacs within a day with little friction.
 - Zaiste for his fantastic [Emacs DoomCasts](https://www.youtube.com/playlist?list=PLhXZp00uXBk4np17N39WvB80zgxlZfVwj).
-- [Ryan Schmukler](https://github.com/rschmukler/doom.d)'s dotfiles, which led
-  the way to my badass Doom Emacs setup.
-- [Eric Wendelin](https://github.com/eriwen/dotfiles)'s macOS system setup
-  script which makes life that much easier.
+- [Ryan Schmukler](https://github.com/rschmukler/doom.d)'s dotfiles, which led the way to my badass Doom Emacs setup.
+- [Eric Wendelin](https://github.com/eriwen/dotfiles)'s macOS system setup script which makes life that much easier.
