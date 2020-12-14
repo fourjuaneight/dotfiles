@@ -16,6 +16,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # loads nvm bash_completion
 
+# yvm PATH
+export YVM_DIR=/usr/local/opt/yvm
+[ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
+
 # Node
 export PATH="/usr/local/opt/node@12/bin:$PATH"
 
@@ -35,4 +39,4 @@ export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 export NNN_FALLBACK_OPENER=xdg-open
 export NNN_DE_FILE_MANAGER=nautilus
 export NNN_USE_EDITOR=1
-export EDITOR=nvim
+export EDITOR=macvim
