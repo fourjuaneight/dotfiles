@@ -32,6 +32,10 @@ export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
 
+# Rust PATH
+export PATH="$HOME/.cargo/bin:$PATH"
+rustup completions zsh > ~/.zfunc/_rustup
+
 # sed PATH
 export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 
