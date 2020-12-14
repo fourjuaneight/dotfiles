@@ -12,7 +12,7 @@ alias ........="cd ../../../../../../.."
 alias .........="cd ../../../../../../../.."
 alias cl="clear"
 alias dot="cd ~/dotfiles"
-alias win="cd /mnt/c/Users/Juan"
+alias win="cd /mnt/c/Users/fourjuaneight"
 alias exd="cd /mnt/d/"
 alias tree="tree -I node_modules"
 
@@ -82,9 +82,9 @@ alias glhu="glyphhanger --US_ASCII --formats=woff2,woff --subset=*.ttf"
 alias glha="glyphhanger --LATIN --formats=woff2,woff --subset=*.ttf"
 
 # Docker
-alias dcu="docker-compose up"
-alias dcb="docker-compose build"
-alias dcrm="docker-compose down -s"
+alias dcu="clear && docker-compose up"
+alias dcb="clear && docker-compose build"
+alias dcrm="clear && docker-compose down -s"
 
 # Gulp
 alias gub="gulp build"
@@ -97,10 +97,10 @@ alias wpw="webpack -w"
 alias wp="webpack"
 
 # nvm
-alias ni="nvm install"
-alias nu="nvm use"
-alias niu="nvm install;nvm use --delete-prefix"
-alias nr="npm run"
+alias nvi="nvm install"
+alias nvu="nvm use"
+alias nviu="nvm install && nvm use --delete-prefix"
+alias nvr="npm run"
 
 # Hugo
 alias hs="hugo server"
