@@ -12,6 +12,7 @@ if ! zgen saved; then
   zgen load zsh-users/zsh-history-substring-search
   zgen load zdharma/history-search-multi-word
   zgen load zsh-users/zsh-completions src
+  zgen load lukechilds/zsh-better-npm-completion
   zgen load zdharma/fast-syntax-highlighting
   zgen load mafredri/zsh-async
   zgen load sindresorhus/pure
