@@ -89,6 +89,7 @@ brew install ack \
   xz \
   yarn \
   youtube-dl \
+  tophat/bar/yvm --without-node \
   zsh \
   zsh-autosuggestions \
   zsh-syntax-highlighting

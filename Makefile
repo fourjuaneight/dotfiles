@@ -47,20 +47,26 @@ list:
 stow:
 	stow fonts
 	stow git
-	stow scripts
 	stow tmux
 	stow vim
 	stow zsh
-
 
 bash:
 	echo /usr/local/bin/bash | sudo tee -a /etc/shells
 	chsh -s /usr/local/bin/bash
 
+brew:
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	source ~/.zshrc
+
 development:
 	sh ~/dotfiles/dev/gem.sh
 	sh ~/dotfiles/dev/npm.sh
 	sh ~/dotfiles/dev/pip.sh
+
+git:
+	sh ~/dotfiles/scripts/createGithubSSHKey.sh
+	sh ~/dotfiles/scripts/createGitSigningKey.sh
 
 nnn:
 	git clone --depth 1 https://github.com/jarun/nnn ~/nnn
@@ -69,17 +75,17 @@ nnn:
 	sudo make strip install
 
 node:
-	git clone https://github.com/nvm-sh/nvm.git ~/nvm
-	cd ~/.nvm
-	. nvm.sh
+	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | sh
 
-.PHONY: scripts
+ruby:
+	gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+	\curl -sSL https://get.rvm.io | bash -s stable
 
-scripts:
-	chmod +x ~/.scripts/apt-update.sh
-	chmod +x ~/.scripts/brew-update.sh
-	chmod +x ~/.scripts/dev-update.sh
-	chmod +x ~/.scripts/backup.py
+rust:
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+	source ~/.zshrc
+	rustup toolchain install nightly --allow-downgrade --profile minimal --component clippy
+	rustup completions zsh > /usr/local/share/zsh/site-functions/_rustup
 
 ycm:
 	git clone https://github.com/ycm-core/ycmd.git ~/ycmd
@@ -91,28 +97,21 @@ zgen:
 
 .PHONY: linDep linSet macDep macSet
 
-linDep:
+linDep: ruby brew rust
 	sh ~/dotfiles/linux/apt.sh
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
 	sh ~/dotfiles/linux/brew.sh
 
-macDep:
-	sh ~/dotfiles/macos/apt.sh
-	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-	source ~/.zshrc
-	rustup toolchain install nightly --allow-downgrade --profile minimal --component clippy
-	rustup completions zsh > ~/.zsh/_rustup
+macDep: ruby brew rust
 	sh ~/dotfiles/macos/brew.sh
 	sh ~/dotfiles/macos/brewCask.sh
-	sh ~/dotfiles/macos/mas.sh
 
 linSet: nnn dev ycm doom
 
 macSet: dev ycm
 	xcode-select --install
+	sh ~/dotfiles/macos/mas.sh
 	sh ~/dotfiles/macos/duti/set.sh
 
-linux: stow linDep ruby node zgen
+linux: stow linDep node zgen development
 
-macos: stow bash macDep ruby node zgen
+macos: stow macDep node zgen development
