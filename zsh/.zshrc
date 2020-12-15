@@ -2,7 +2,6 @@
 source "${HOME}/.zgen/zgen.zsh"
 
 if ! zgen saved; then
-
   zgen load hlissner/zsh-autopair autopair.zsh develop
   zgen load zsh-users/zsh-history-substring-search
   zgen load zdharma/history-search-multi-word
@@ -13,6 +12,14 @@ if ! zgen saved; then
 
   zgen save
 fi
+
+# Loading Pure prompt
+autoload -U promptinit
+promptinit
+PURE_GIT_DOWN_ARROW='↓'
+PURE_GIT_UP_ARROW='↑'
+PURE_PROMPT_SYMBOL='λ'
+prompt pure
 
 # Loading zsh Autosuggestions
 [[ -f ~/.zsh/zsh-autosuggestions.zsh ]] && source ~/.zsh/zsh-autosuggestions.zsh
@@ -31,11 +38,3 @@ _fzf_compgen_path() {
 
 # Load functions
 [[ -f ~/zfunc.zsh ]] && source ~/zfunc.zsh
-
-# Loading Pure prompt
-autoload -U promptinit
-promptinit
-PURE_GIT_DOWN_ARROW='↓'
-PURE_GIT_UP_ARROW='↑'
-PURE_PROMPT_SYMBOL='λ'
-prompt pure
