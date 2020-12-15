@@ -1,5 +1,7 @@
 # Load completions
-fpath+=~/.zsh/completions
+fpath=(~/.zfunc/completions $fpath)
+autoload -Uz compinit
+compinit -u
 
 # Load zgen
 source "${HOME}/.zgen/zgen.zsh"
