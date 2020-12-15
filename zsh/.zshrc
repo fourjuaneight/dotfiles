@@ -1,8 +1,3 @@
-# Load completions
-fpath=(~/.zfunc/completions $fpath)
-autoload -Uz compinit
-compinit -u
-
 # Load zgen
 source "${HOME}/.zgen/zgen.zsh"
 
@@ -11,8 +6,7 @@ if ! zgen saved; then
   zgen load hlissner/zsh-autopair autopair.zsh develop
   zgen load zsh-users/zsh-history-substring-search
   zgen load zdharma/history-search-multi-word
-  zgen load zsh-users/zsh-completions src
-  zgen load lukechilds/zsh-better-npm-completion
+  zgen load zsh-users/zsh-completions
   zgen load zdharma/fast-syntax-highlighting
   zgen load mafredri/zsh-async
   zgen load sindresorhus/pure
