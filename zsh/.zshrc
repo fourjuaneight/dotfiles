@@ -1,3 +1,4 @@
+# Load completions
 fpath+=~/.zsh/completions
 
 # Load zgen
