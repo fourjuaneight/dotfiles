@@ -305,11 +305,10 @@ gcbr() {
 gcrbr() {
   git fetch
   local branches branch
-  branches=$(git branch -a) &&
+  branches=$(git branch -r) &&
   branch=$(echo "$branches" | fzf +s +m -e) &&
   git checkout $(echo "$branch" | sed "s:.* remotes/origin/::" | sed "s:.* ::")
 }
-
 
 # create git branch and add to remote
 # (G)it(N)ew(B)(R)anch <NEW-BRANCH-NAME>
@@ -405,6 +404,21 @@ fgcm() {
 # Emacs Diff
 ediff() {
   emacs --eval "(ediff-files \"$1\" \"$2\")";
+}
+
+# GITHUB CLI #
+
+# git create pr, add title, select reviewer
+# (G)it(C)reate(P)(R)
+gcpr() {
+  git fetch
+  local branches selectedBranch branch reviewers handle
+  branches=$(git branch -r) &&
+  selectedBranch=$(echo "$branches" | fzf +s +m -e) &&
+  branch=$(echo $selectedBranch | sed 's/^\(remotes\/origin\/\)*//') &&
+  reviewers=(fourjuaneight nathSierra jfbloom22) &&
+  handle=$(print -l "${(@)reviewers}" | fzf --ansi --tac +s +m -e) &&
+  gh pr create -B $branch -t \"$1\" -r $handle
 }
 
 
