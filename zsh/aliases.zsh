@@ -16,7 +16,7 @@ alias win="cd /mnt/c/Users/fourjuaneight"
 alias exd="cd /mnt/d/"
 alias tree="tree -I node_modules"
 
-# Common variations of 'ls' command
+# common variations of 'ls' command
 alias ll="ls -l"
 alias lo="ls -o"
 alias lh="ls -lh"
@@ -25,16 +25,30 @@ alias sl="ls"
 alias l="ls"
 alias s="ls"
 
-# Search history
+# search history
 alias hgrep="history | ag"
 
-# Enhanced WHOIS lookups
+# enhanced WHOIS lookups
 alias whois="whois -h whois-servers.net"
+
+# homebrew
+alias bru="brew update"
+alias brup="brew upgrade"
+alias brcl="brew cleanup"
+alias brug="brew update && brew upgrade && brew cleanup"
+
+# apt-get
+alias agu="sudo apt-get update"
+alias agup="sudo apt-get upgrade"
+alias agug="sudo apt-get update && apt-get upgrade"
 
 # zsh
 alias vi="vim"
 alias zco="vim ~/.zshrc"
 alias zso="source ~/.zshrc"
+alias zgnsup="zgen selfupdate"
+alias zgnup="zgen update"
+alias zgnug="zgen selfupdate && zgen update"
 alias dl="rm"
 alias dldr="rm -rf"
 
@@ -51,8 +65,9 @@ alias doom="~/.emacs.d/bin/doom"
 alias vi="vim"
 alias vco="vim ~/.vimrc"
 alias vso="vim source ~/.vimrc"
+alias vplug="vim +PlugUpgrade +PlugUpdate +qa"
 
-# Cron
+# cron
 alias croe="crontab -e"
 alias crol="crontab -l"
 
@@ -108,7 +123,7 @@ alias hsd="hugo server --disableFastRender"
 alias shs="concurrently \"hugo serve --disableFastRender\" \"gulp watch\""
 
 # Jekyll
-alias js="bundle exec jekyll serve"
+alias jk="bundle exec jekyll serve"
 
 # mySQL
 alias msrs="mysql.server restart"
@@ -209,11 +224,3 @@ alias gtv="git tag | sort -V"
 alias glm="git log --pretty=oneline --abbrev-commit origin/master"
 alias grb="git rebase -i HEAD~5"
 alias gpfl="git push --force-with-lease"
-
-# Homebrew
-alias bru="brew update"
-alias brup="brew upgrade"
-
-# apt-get
-alias agu="sudo apt-get update"
-alias agup="sudo apt-get upgrade"
