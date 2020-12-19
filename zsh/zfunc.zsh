@@ -324,7 +324,7 @@ gdbr() {
   local branches branch
   branches=$(git branch) &&
   branch=$(echo "$branches" | fzf-tmux -d 15 +m) &&
-  git branch -d $(echo "$branch" | sed "s/.* //")
+  git branch -D $(echo "$branch" | sed "s/.* //")
 }
 
 # merge git local branch into current

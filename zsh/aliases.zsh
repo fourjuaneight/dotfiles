@@ -115,7 +115,7 @@ alias wp="webpack"
 alias nvi="nvm install"
 alias nvu="nvm use"
 alias nviu="nvm install && nvm use --delete-prefix"
-alias nvr="npm run"
+alias nr="npm run"
 
 # Hugo
 alias hs="hugo server"
