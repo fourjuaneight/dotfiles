@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # macOS App Store Apps
 echo "Sign into the Mac App Store"

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 for file in ~/dotfiles/fonts/**/*; do
   if [[ "$OSTYPE" == "linux-gnu" ]]; then

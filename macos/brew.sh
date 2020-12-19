@@ -1,32 +1,31 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # Update homebrew recipes
-brew update
+/usr/local/bin/brew update
 
 # Install GNU core utilities (those that come with macOS are outdated)
-brew install coreutils
-brew install gnu-sed
-brew install gnu-tar
-brew install gnu-indent
-brew install gnu-which
+/usr/local/bin/brew install coreutils
+/usr/local/bin/brew install gnu-sed
+/usr/local/bin/brew install gnu-tar
+/usr/local/bin/brew install gnu-indent
+/usr/local/bin/brew install gnu-which
 
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
-brew install findutils
+/usr/local/bin/brew install findutils
 
 # Install Bash 4
-brew install bash
+/usr/local/bin/brew install bash
 
 # Taps
-brew tap heroku/brew
-brew tap homebrew-ffmpeg/ffmpeg
+/usr/local/bin/brew tap heroku/brew
+/usr/local/bin/brew tap homebrew-ffmpeg/ffmpeg
 
 # Brew Packages
-brew install ack \
+/usr/local/bin/brew install ack \
   certbot \
   cmake \
   curl \
   deno \
-  dep \
   docker \
   duti \
   homebrew-ffmpeg/ffmpeg/ffmpeg --with-fdk-aac --HEAD \
@@ -94,4 +93,5 @@ brew install ack \
   zsh-autosuggestions \
   zsh-syntax-highlighting
 
-brew cleanup
+/usr/local/bin/brew cleanup
+/usr/local/bin/brew analytics off

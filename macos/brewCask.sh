@@ -1,5 +1,7 @@
+#!/bin/sh
+
 # Brew Cask Packages
-brew cask install alfred \
+/usr/local/bin/brew cask install alfred \
   arq-cloud-backup \
   backblaze \
   bartender \
@@ -19,4 +21,4 @@ brew cask install alfred \
   visual-studio-code \
   zoomus
 
-brew cleanup
+/usr/local/bin/brew cleanup

@@ -1,12 +1,12 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # Update homebrew recipes
-brew update
+${HOME}/linuxbrew/.linuxbrew/bin/brew update
 
 # Brew Packages
-brew install ack \
+${HOME}/linuxbrew/.linuxbrew/bin/brew install ack \
   dep \
-  ffmpeg \
+  homebrew-ffmpeg/ffmpeg/ffmpeg --with-fdk-aac --HEAD \
   fzf \
   fd \
   go \
@@ -16,4 +16,5 @@ brew install ack \
   zsh-autosuggestions \
   zsh-syntax-highlighting
 
-brew cleanup
+${HOME}/linuxbrew/.linuxbrew/bin/brew cleanup
+${HOME}/linuxbrew/.linuxbrew/bin/brew analytics off
