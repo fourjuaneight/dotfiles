@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 signingkey=$(git config --global --get user.signingkey)
 

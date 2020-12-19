@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 if [[ -f ~/.ssh/id_rsa_github ]]
 then
