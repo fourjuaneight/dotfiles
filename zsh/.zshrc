@@ -1,17 +1,26 @@
-# Load zgen
-source "${HOME}/.zgen/zgen.zsh"
+# Load zplug
+source "${HOME}/.zplug/init.zsh"
 
-if ! zgen saved; then
-  zgen load hlissner/zsh-autopair autopair.zsh develop
-  zgen load zsh-users/zsh-history-substring-search
-  zgen load zdharma/history-search-multi-word
-  zgen load zsh-users/zsh-completions
-  zgen load zdharma/fast-syntax-highlighting
-  zgen load mafredri/zsh-async
-  zgen load sindresorhus/pure
+zplug "hlissner/zsh-autopair", defer:2
+zplug "zsh-users/zsh-history-substring-search"
+zplug "zdharma/history-search-multi-word"
+zplug "zsh-users/zsh-completions"
+zplug "zdharma/fast-syntax-highlighting"
+zplug "mafredri/zsh-async"
+zplug "sindresorhus/pure"
 
-  zgen save
+if ! zplug check --verbose; then
+  printf "Install? [y/N]: "
+
+  if read -q; then
+    echo
+    zplug install
+  else
+    echo
+  fi
 fi
+
+zplug load
 
 # Loading Pure prompt
 autoload -U promptinit
@@ -19,7 +28,6 @@ promptinit
 PURE_GIT_DOWN_ARROW='↓'
 PURE_GIT_UP_ARROW='↑'
 PURE_PROMPT_SYMBOL='λ'
-prompt pure
 
 # Loading zsh Autosuggestions
 [[ -f ~/.zsh/zsh-autosuggestions.zsh ]] && source ~/.zsh/zsh-autosuggestions.zsh
