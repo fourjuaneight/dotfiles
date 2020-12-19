@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 sudo add-apt-repository ppa:kellyk/emacs
 sudo apt-get update
@@ -7,18 +7,16 @@ sudo apt-get dist-upgrade -f
 sudo apt-get autoremove -y
 
 sudo apt-get install -y apt-transport-https \
-  alacritty \
   bash \
   build-essential \
-  cabal-install \
   certbot \
   clang \
   cmake \
   coreutils \
   curl \
-  emacs26 \
   findutils \
   font-manager \
+  gawk \
   ghc \
   gist \
   git \
@@ -34,9 +32,10 @@ sudo apt-get install -y apt-transport-https \
   libjpeg8 \
   libmemcached-tools \
   libncursesw5-dev \
+  libreadline-dev \
   libreadline6-dev \
-  libsecret-1-dev \
   libsecret-1-0 \
+  libsecret-1-dev \
   mc \
   memcached \
   mercurial \
