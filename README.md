@@ -9,17 +9,17 @@ Files and scripts for configuring a development and terminal enviromant on macOS
 You can curl the install script and run `make`:
 
 ```bash
-$ curl get.juanvillela.dev | sh
-$ cd ~/dotfiles
-$ make install
+curl get.juanvillela.dev | sh
+cd ~/dotfiles
+make install
 ```
 
 Or manually clone the repo:
 
 ```bash
-$ git clone https://github.com/fourjuaneight/dotfiles.git
-$ cd ~/dotfiles
-$ make install
+git clone https://github.com/fourjuaneight/dotfiles.git
+cd ~/dotfiles
+make install
 ```
 
 ## Makefile
@@ -53,6 +53,20 @@ Some config files you'd want to change:
 
 - [Emacs](https://github.com/fourjuaneight/dotfiles/blob/master/emacs/.doom.d/config.el)
 - [Git](https://github.com/fourjuaneight/dotfiles/blob/master/git/.gitconfig)
+
+## Testing with Docker
+
+We can use Docker to test some changes in a Linux Container.
+
+Assuming your host system has Docker & Docker Compose properly installed, run:
+
+```bash
+docker-compose run dotfiles
+```
+
+This will build the container image if it never built it before (which may take a while -- future times will be faster) and then run a zsh session inside that container for you. There you can play around, test commands, aliases, etc.
+
+Warning: this repo is primarily macOS oriented. So any support for Linux can only be done with the help of the community.
 
 ## Thanks
 
