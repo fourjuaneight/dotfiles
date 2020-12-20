@@ -45,6 +45,15 @@ weather() {
   curl -s http://wttr.in/$1;
 }
 
+## hammer a service with curl for a given number of times
+curlhammer () {
+  echo "curl -k -s -D - $1 -o /dev/null | grep 'HTTP/1.1' | sed 's/HTTP\/1.1 //'"
+  for i in {1..$2}
+  do
+    curl -k -s -D - $1 -o /dev/null | grep 'HTTP/1.1' | sed 's/HTTP\/1.1 //'
+  done
+}
+
 # FONTS #
 
 # gla - glyphhanger whitelist Latin
