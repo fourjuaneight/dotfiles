@@ -90,18 +90,18 @@ zplug:
 .PHONY: linux linuxSetup macos macosSetup
 
 linux: rust nvm plug brew
-	sh ${HOME}/dotfiles/linux/apt.sh
-	sh ${HOME}/dotfiles/linux/brew.sh
+	sh ${HOME}/dotfiles/lib/linux/apt.sh
+	sh ${HOME}/dotfiles/lib/linux/brew.sh
 
 linuxSetup: stow zplug rustup nnn dev
 	zplug install
 
 macos: rust nvm plug brew
-	sh ${HOME}/dotfiles/macos/brew.sh
-	sh ${HOME}/dotfiles/macos/brewCask.sh
+	sh ${HOME}/dotfiles/lib/macos/brew.sh
+	sh ${HOME}/dotfiles/lib/macos/brewCask.sh
 
 macosSetup: stow zplug rustup dev
 	xcode-select --install
-	sh ${HOME}/dotfiles/macos/duti/set.sh
-	sh ${HOME}/dotfiles/macos/mas.sh
+	sh ${HOME}/dotfiles/lib/macos/duti/set.sh
+	sh ${HOME}/dotfiles/lib/macos/mas.sh
 	zplug install
