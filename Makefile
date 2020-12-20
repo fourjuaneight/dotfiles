@@ -61,8 +61,8 @@ dev:
 	sh ${HOME}/dotfiles/dev/pip.sh
 
 git:
-	sh ${HOME}/dotfiles/scripts/createGithubSSHKey.sh
-	sh ${HOME}/dotfiles/scripts/createGitSigningKey.sh
+	sh ${HOME}/dotfiles/lib/gitSSH.sh
+	sh ${HOME}/dotfiles/lib/gitGPG.sh
 
 nnn:
 	git clone --depth 1 https://github.com/jarun/nnn "${HOME}/nnn"
