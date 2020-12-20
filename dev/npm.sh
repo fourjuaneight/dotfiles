@@ -2,9 +2,7 @@
 
 npm i -g @babel/core \
   @babel/cli \
-  @slack/client \
   eslint \
-  eslint-config-jcv \
   gatsby-cli \
   glyphhanger \
   graphqurl \
@@ -14,4 +12,5 @@ npm i -g @babel/core \
   npm-fzf \
   prettier \
   simple-node-logger \
+  typescript \
   webpack-cli
