@@ -57,8 +57,8 @@ brew:
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 dev:
-	sh ${HOME}/dotfiles/dev/npm.sh
-	sh ${HOME}/dotfiles/dev/pip.sh
+	sh ${HOME}/dotfiles/lib/npm.sh
+	sh ${HOME}/dotfiles/lib/pip.sh
 
 git:
 	sh ${HOME}/dotfiles/lib/gitSSH.sh
