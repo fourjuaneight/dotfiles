@@ -6,6 +6,9 @@
   email = juan@villela.co
   signingkey = 3151EBD8B9970BBE034C39BF57A7B910713E6772
 
+[github]
+  user = fourjuaneight
+
 [color]
   ui = true
 
