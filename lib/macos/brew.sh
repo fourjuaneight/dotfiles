@@ -93,5 +93,6 @@
   zsh-autosuggestions \
   zsh-syntax-highlighting
 
-/usr/local/bin/brew cleanup
 /usr/local/bin/brew analytics off
+/usr/local/bin/brew cleanup --force
+rm -f -r /Library/Caches/Homebrew/*

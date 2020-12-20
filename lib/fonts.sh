@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# include Adam Eivy's library helpers
 source ./lib/util/echos.sh
 
 bot "Fonts will be saved to your local Fonts directory."

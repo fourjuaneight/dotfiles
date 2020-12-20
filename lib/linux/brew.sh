@@ -16,5 +16,5 @@ ${HOME}/linuxbrew/.linuxbrew/bin/brew install ack \
   zsh-autosuggestions \
   zsh-syntax-highlighting
 
-${HOME}/linuxbrew/.linuxbrew/bin/brew cleanup
 ${HOME}/linuxbrew/.linuxbrew/bin/brew analytics off
+${HOME}/linuxbrew/.linuxbrew/bin/brew cleanup --force
