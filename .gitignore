@@ -1,6 +1,7 @@
 .DS_Store
-scripts/SLACK_HOOK
 vim/.vim/autoload/
 vim/.vim/plugged/
 vim/.vim/sessions/
-node_modules
+homedir/.vim/autoload
+homedir/.vim/plugged
+homedir/.vim/sessions
