@@ -43,10 +43,7 @@ list:
 .PHONY: stow bash brew dev git nnn nvm plug rust rustup zplug
 
 stow:
-	stow git
-	stow tmux
-	stow vim
-	stow zsh
+	stow homedir
 
 bash:
 	echo /usr/local/bin/bash | sudo tee -a /etc/shells

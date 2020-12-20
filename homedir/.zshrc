@@ -30,10 +30,10 @@ PURE_GIT_UP_ARROW='↑'
 PURE_PROMPT_SYMBOL='λ'
 
 # Loading zsh Autosuggestions
-[[ -f ~/.zsh/zsh-autosuggestions.zsh ]] && source ~/.zsh/zsh-autosuggestions.zsh
+[[ -f ~/.zsh/autosuggestions.zsh ]] && source ~/.zsh/autosuggestions.zsh
 
 # Load fzf
-[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+[[ -f ~/.zsh/fzf.zsh ]] && source ~/.zsh/fzf.zsh
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
@@ -42,16 +42,16 @@ _fzf_compgen_path() {
 }
 
 # Load aliases
-[[ -f ~/aliases.zsh ]] && source ~/aliases.zsh
+[[ -f ~/.zsh/aliases.zsh ]] && source ~/.zsh/aliases.zsh
 
 # Load functions
-[[ -f ~/zfunc.zsh ]] && source ~/zfunc.zsh
+[[ -f ~/.zsh/func.zsh ]] && source ~/.zsh/func.zsh
 
 # History Configuration
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
 SAVEHIST=5000
 HISTDUP=erase
-setopt    appendhistory
-setopt    sharehistory
-setopt    incappendhistory
+setopt appendhistory
+setopt sharehistory
+setopt incappendhistory

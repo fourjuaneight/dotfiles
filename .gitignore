@@ -1,7 +1,4 @@
 .DS_Store
-vim/.vim/autoload/
-vim/.vim/plugged/
-vim/.vim/sessions/
 homedir/.vim/autoload
 homedir/.vim/plugged
 homedir/.vim/sessions
