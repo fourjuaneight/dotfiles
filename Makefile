@@ -40,7 +40,7 @@ usage:
 list:
 	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | mawk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
 
-.PHONY: stow bash brew dev git nnn nvm plug ruby rust rustup zplug
+.PHONY: stow bash brew dev git nnn nvm plug rust rustup zplug
 
 stow:
 	stow fonts
@@ -57,7 +57,6 @@ brew:
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 dev:
-	sh ${HOME}/dotfiles/dev/gem.sh
 	sh ${HOME}/dotfiles/dev/npm.sh
 	sh ${HOME}/dotfiles/dev/pip.sh
 
@@ -78,10 +77,6 @@ plug:
 	curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-ruby:
-	gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-	\curl -sSL https://get.rvm.io | bash -s stable
-
 rust:
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
@@ -94,14 +89,14 @@ zplug:
 
 .PHONY: linux linuxSetup macos macosSetup
 
-linux: ruby rust nvm plug brew
+linux: rust nvm plug brew
 	sh ${HOME}/dotfiles/linux/apt.sh
 	sh ${HOME}/dotfiles/linux/brew.sh
 
 linuxSetup: stow zplug rustup nnn dev
 	zplug install
 
-macos: ruby rust nvm plug brew
+macos: rust nvm plug brew
 	sh ${HOME}/dotfiles/macos/brew.sh
 	sh ${HOME}/dotfiles/macos/brewCask.sh
 
