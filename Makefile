@@ -43,7 +43,6 @@ list:
 .PHONY: stow bash brew dev git nnn nvm plug rust rustup zplug
 
 stow:
-	stow fonts
 	stow git
 	stow tmux
 	stow vim
