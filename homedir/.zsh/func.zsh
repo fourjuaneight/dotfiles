@@ -423,11 +423,11 @@ gcpr() {
   git fetch
   local branches selectedBranch branch reviewers handle
   branches=$(git branch -r) &&
-  selectedBranch=$(echo "$branches" | fzf +s +m -e) &&
-  branch=$(echo $selectedBranch | sed 's/^\(remotes\/origin\/\)*//') &&
+  selectedBranch=$(echo "$branches" | sed 's/origin\///g' | fzf +s +m -e) &&
+  branch=$(echo $selectedBranch | sed 's/^[[:space:]]*//g') &&
   reviewers=(fourjuaneight nathSierra jfbloom22) &&
   handle=$(print -l "${(@)reviewers}" | fzf --ansi --tac +s +m -e) &&
-  gh pr create -B $branch -t \"$1\" -r $handle
+  gh pr create -B $branch -t $1 -r $handle
 }
 
 
