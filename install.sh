@@ -31,7 +31,7 @@ fi
 bot "Installing development tooling."
 
 action "installing nvm"
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | sh
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | sh
 if [[ $? != 0 ]]; then
   error "unable to install nvm"
   exit 2
@@ -49,6 +49,7 @@ else
 fi
 
 action "installing rustup"
+source $HOME/.cargo/env
 ${HOME}/.cargo/bin/rustup toolchain install nightly --allow-downgrade --profile minimal --component clippy
 ${HOME}/.cargo/bin/rustup completions zsh >/usr/local/share/zsh/site-functions/_rustup
 if [[ $? != 0 ]]; then
