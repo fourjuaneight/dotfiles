@@ -23,6 +23,10 @@ function bot() {
     echo -e "\n$COL_GREEN|[._.]|$COL_RESET - "$1
 }
 
+function minibot() {
+    echo -e "\n$COL_MAGENTA|['-']|$COL_RESET - "$1
+}
+
 function running() {
     echo -en "$COL_YELLOW ⇒ $COL_RESET"$1": "
 }
