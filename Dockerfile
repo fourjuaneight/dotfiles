@@ -7,6 +7,7 @@ ENV TERM xterm-256color
 RUN \
   apt-get update && \
   apt-get install -yqq \
+  apt-utils \
   locales \
   lsb-release \
   software-properties-common && \
@@ -49,8 +50,8 @@ RUN DEBIAN_FRONTEND=noninteractive \
 
 # Install dotfiles
 COPY . /root/dotfiles
-RUN cd /root/dotfiles && make install
-RUN make setup
+RUN chmod +x /root/dotfiles/install.sh && find /root/dotfiles/lib/ -type f -name "*.sh" -exec chmod +x {} \;
+RUN cd /root/dotfiles && ./install.sh
 
 # Run a zsh session
 CMD [ "/bin/zsh" ]
