@@ -94,7 +94,6 @@ linuxSetup: stow zplug rustup nnn dev
 
 macos: rust nvm plug brew
 	sh ${HOME}/dotfiles/lib/macos/brew.sh
-	sh ${HOME}/dotfiles/lib/macos/brewCask.sh
 
 macosSetup: stow zplug rustup dev
 	xcode-select --install

@@ -6,8 +6,8 @@
 
 echo "Configuring OSX..."
 
-COMPUTERNAME='Mauricio'
-LOCALHOSTNAME='Mauricio'
+COMPUTERNAME='juancvillela'
+LOCALHOSTNAME='juancvillela'
 
 # Set computer name (as done via System Preferences → Sharing)
 sudo scutil --set ComputerName $COMPUTERNAME
@@ -693,14 +693,12 @@ for app in "Activity Monitor" \
   "Contacts" \
   "Dock" \
   "Finder" \
-  "Google Chrome Canary" \
   "Google Chrome" \
   "Messages" \
   "Photos" \
   "Safari" \
   "SystemUIServer" \
-  "Terminal" \
-  "iCal"; do
+  "Terminal"; do
   killall "${app}" &> /dev/null
 done
 echo "Done. Note that some of these changes require a logout/restart to take effect."

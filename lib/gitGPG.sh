@@ -1,23 +1,24 @@
 #!/bin/sh
 
+# include Adam Eivy's library helper
+source ./lib/util/echos.sh
+
 signingkey=$(git config --global --get user.signingkey)
 
-if [[ ! -z $signingkey ]] && [[ ${#signingkey} == 16 ]] # signingkey is not empty and exactly 16 characters long
-then
-echo "Your Git user.signingkey is: "$signingkey
+bot "Let's setup a GPG key to sign git commits."
+
+if [[ ! -z $signingkey ]] && [[ ${#signingkey} == 16 ]]; then
+    bot "Looks like your git signingkey is: "$signingkey
 else
-echo "No global user.signingkey configured for Git. Let's create it."
-echo 
-echo "Use RSA, Size 4096"
-    if  [[ -z $(gpg --list-secret-keys) ]] # no keys exist
-    then
+    action "creating gpg key"
+    running "using rsa 4096..."
+    if [[ -z $(gpg --list-secret-keys) ]]; then
         gpg --full-generate-key
     fi
     gpg --list-secret-keys --keyid-format LONG
     read -p "Key |sec| rsa4096/*key* [SC]: " signingkey
     git config --global user.signingkey "$signingkey"
     gpg --armor --export $signingkey
-    echo "Add the public key above to your Github Accout."
-    ./CreateGitSigningKey.sh
-    history -c
+    ok "add the public key to your Github account."
+    exit 0
 fi

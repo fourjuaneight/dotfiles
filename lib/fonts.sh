@@ -1,22 +1,30 @@
 #!/bin/sh
 
-# include Adam Eivy's library helpers
+# include Adam Eivy's library helper
 source ./lib/util/echos.sh
 
 bot "Fonts will be saved to your local Fonts directory."
-action "Saving fonts..."
+action "saving fonts"
 for file in ~/dotfiles/fonts/**/*; do
   if [[ "$OSTYPE" == "linux-gnu" ]]; then
     cp "$file" ~/.local/share/fonts
+    if [[ $? != 0 ]]; then
+      error "unable to save linux fonts, script $0 abort!"
+      exit 2
+    fi
   elif [[ "$OSTYPE" == "darwin"* ]]; then
     cp "$file" ~/Library/Fonts
+    if [[ $? != 0 ]]; then
+      error "unable to save macOS fonts, script $0 abort!"
+      exit 2
+    fi
   fi
-  ok "Done saving fonts."
 done
+ok "done saving fonts."
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-  action "Building font chaches..."
+  action "building font chaches"
   fc-cache -f -v
-  ok "Done building chaches."
+  ok "done building chaches."
   exit 0
 fi

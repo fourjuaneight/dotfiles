@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 
-npm i -g @babel/core \
-  @babel/cli \
+# include Adam Eivy's library helper
+source ./lib/util/echos.sh
+
+bot "Let's download the universe."
+
+action "installing global npm dependencies"
+npm i -g @babel/cli \
   eslint \
   gatsby-cli \
   glyphhanger \
@@ -14,3 +19,5 @@ npm i -g @babel/core \
   simple-node-logger \
   typescript \
   webpack-cli
+
+ok "done installing dependencies."

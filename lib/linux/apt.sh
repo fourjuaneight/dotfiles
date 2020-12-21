@@ -1,12 +1,22 @@
 #!/bin/sh
 
-sudo add-apt-repository ppa:kellyk/emacs
-sudo apt-get update
-sudo apt-get upgrade -y
-sudo apt-get dist-upgrade -f
-sudo apt-get autoremove -y
+# include Adam Eivy's library helper
+source ./lib/util/echos.sh
 
-sudo apt-get install -y apt-transport-https \
+bot "Let's install some Linux goodies."
+
+action "updating apt-get directories"
+add-apt-repository ppa:kellyk/emacs
+apt-get update
+apt-get upgrade -y
+apt-get dist-upgrade -f
+apt-get autoremove -y
+
+action "refreshing snap directories"
+snap refresh
+
+action "installing dependencies"
+apt-get install -y apt-transport-https \
   bash \
   build-essential \
   certbot \
@@ -71,4 +81,11 @@ sudo apt-get install -y apt-transport-https \
   xz-utils \
   zsh
 
-sudo apt autoclean -y
+
+action "installing snap packs"
+snap install --classic heroku
+
+action "cleaning up"
+apt autoclean -y
+
+ok "done installing dependencies."

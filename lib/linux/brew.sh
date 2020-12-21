@@ -1,9 +1,14 @@
 #!/bin/sh
 
-# Update homebrew recipes
+# include Adam Eivy's library helper
+source ./lib/util/echos.sh
+
+bot "Let's get some beers."
+
+action "updating homebrew directories"
 ${HOME}/linuxbrew/.linuxbrew/bin/brew update
 
-# Brew Packages
+action "installing packages"
 ${HOME}/linuxbrew/.linuxbrew/bin/brew install ack \
   dep \
   homebrew-ffmpeg/ffmpeg/ffmpeg --with-fdk-aac --HEAD \
@@ -16,5 +21,8 @@ ${HOME}/linuxbrew/.linuxbrew/bin/brew install ack \
   zsh-autosuggestions \
   zsh-syntax-highlighting
 
+action "cleaning up"
 ${HOME}/linuxbrew/.linuxbrew/bin/brew analytics off
 ${HOME}/linuxbrew/.linuxbrew/bin/brew cleanup --force
+
+ok "done installing brews."

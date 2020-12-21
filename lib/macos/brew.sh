@@ -1,26 +1,31 @@
 #!/bin/sh
 
-# Update homebrew recipes
+# include Adam Eivy's library helper
+source ./lib/util/echos.sh
+
+bot "Let's get some beers."
+
+action "updating homebrew directories"
 /usr/local/bin/brew update
 
-# Install GNU core utilities (those that come with macOS are outdated)
+action "installing updated GNU core utils"
 /usr/local/bin/brew install coreutils
 /usr/local/bin/brew install gnu-sed
 /usr/local/bin/brew install gnu-tar
 /usr/local/bin/brew install gnu-indent
 /usr/local/bin/brew install gnu-which
 
-# Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
+action "installing GNU goodies"
 /usr/local/bin/brew install findutils
 
-# Install Bash 4
+action "installing latest bash"
 /usr/local/bin/brew install bash
 
-# Taps
+action "tapping casks"
 /usr/local/bin/brew tap heroku/brew
 /usr/local/bin/brew tap homebrew-ffmpeg/ffmpeg
 
-# Brew Packages
+action "installing packages"
 /usr/local/bin/brew install ack \
   certbot \
   cmake \
@@ -93,6 +98,30 @@
   zsh-autosuggestions \
   zsh-syntax-highlighting
 
+action "installing casks"
+/usr/local/bin/brew cask install alfred \
+  arq-cloud-backup \
+  backblaze \
+  bartender \
+  choosy \
+  firefox \
+  google-chrome \
+  handbrake \
+  hazel \
+  imageoptim \
+  iterm2 \
+  moom \
+  openemu \
+  screens-connect \
+  slack \
+  tower \
+  transmit \
+  visual-studio-code \
+  zoomus
+
+action "cleaning up"
 /usr/local/bin/brew analytics off
 /usr/local/bin/brew cleanup --force
 rm -f -r /Library/Caches/Homebrew/*
+
+ok "done installing brews."
