@@ -3,7 +3,8 @@
 # include Adam Eivy's library helper
 source ./lib/util/echos.sh
 
-bot "Fonts will be saved to your local Fonts directory."
+minibot "Little Gary here! Fonts will be saved to your local Fonts directory."
+
 action "saving fonts"
 for file in ~/dotfiles/fonts/**/*; do
   if [[ "$OSTYPE" == "linux-gnu" ]]; then

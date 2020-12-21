@@ -3,7 +3,7 @@
 # include Adam Eivy's library helper
 source ./lib/util/echos.sh
 
-bot "Let's setup default apps."
+minibot "Little Gary here! Let's setup default apps."
 
 DUTI_DIR=$HOME/dotfiles/lib/macos/duti
 

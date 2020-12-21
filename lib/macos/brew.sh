@@ -3,7 +3,7 @@
 # include Adam Eivy's library helper
 source ./lib/util/echos.sh
 
-bot "Let's get some beers."
+minibot "Little Gary here! Let's get some beers."
 
 action "updating homebrew directories"
 /usr/local/bin/brew update
@@ -27,7 +27,7 @@ action "tapping casks"
 
 action "installing packages"
 /usr/local/bin/brew install ack \
-  certbot \
+  certminibot \
   cmake \
   curl \
   deno \
@@ -120,8 +120,10 @@ action "installing casks"
   zoomus
 
 action "cleaning up"
-/usr/local/bin/brew analytics off
 /usr/local/bin/brew cleanup --force
 rm -f -r /Library/Caches/Homebrew/*
+# Just to avoid a potential bug
+mkdir -p ~/Library/Caches/Homebrew/Formula
+brew doctor
 
 ok "done installing brews."

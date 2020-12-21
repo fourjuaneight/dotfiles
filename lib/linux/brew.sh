@@ -3,7 +3,7 @@
 # include Adam Eivy's library helper
 source ./lib/util/echos.sh
 
-bot "Let's get some beers."
+minibot "Little Gary here! Let's get some beers."
 
 action "updating homebrew directories"
 ${HOME}/linuxbrew/.linuxbrew/bin/brew update
@@ -22,7 +22,6 @@ ${HOME}/linuxbrew/.linuxbrew/bin/brew install ack \
   zsh-syntax-highlighting
 
 action "cleaning up"
-${HOME}/linuxbrew/.linuxbrew/bin/brew analytics off
 ${HOME}/linuxbrew/.linuxbrew/bin/brew cleanup --force
 
 ok "done installing brews."

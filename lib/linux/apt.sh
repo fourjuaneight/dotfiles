@@ -3,7 +3,7 @@
 # include Adam Eivy's library helper
 source ./lib/util/echos.sh
 
-bot "Let's install some Linux goodies."
+minibot "Little Gary here! Let's install some Linux goodies."
 
 action "updating apt-get directories"
 add-apt-repository ppa:kellyk/emacs
@@ -19,7 +19,7 @@ action "installing dependencies"
 apt-get install -y apt-transport-https \
   bash \
   build-essential \
-  certbot \
+  certminibot \
   clang \
   cmake \
   coreutils \

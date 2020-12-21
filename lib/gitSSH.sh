@@ -3,10 +3,10 @@
 # include Adam Eivy's library helper
 source ./lib/util/echos.sh
 
-bot "Let's setup an SSH key for Github."
+minibot "Little Gary here! Let's setup an SSH key for Github."
 
 if [[ -f ~/.ssh/id_rsa_github ]]; then
-    bot "Looks like you already have a key named id_rsa_github."
+    minibot "Looks like you already have a key named id_rsa_github."
 else
     action "creating ssh key (id_rsa_github)"
 

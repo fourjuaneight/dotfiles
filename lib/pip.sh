@@ -3,7 +3,7 @@
 # include Adam Eivy's library helper
 source ./lib/util/echos.sh
 
-bot "Ok. Let's try to install some pips."
+minibot "Little Gary here! Ok. Let's try to install some pips."
 
 action "installing python3 packages"
 python3 -m pip install autopep8 \

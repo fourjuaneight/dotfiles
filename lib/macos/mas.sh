@@ -3,7 +3,7 @@
 # include Adam Eivy's library helper
 source ./lib/util/echos.sh
 
-bot "Let's install some apps."
+minibot "Little Gary here! Let's install some apps."
 
 running "sign into the Mac App Store"
 read -s -p "Enter Password: " pswd

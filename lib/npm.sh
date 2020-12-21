@@ -3,7 +3,7 @@
 # include Adam Eivy's library helper
 source ./lib/util/echos.sh
 
-bot "Let's download the universe."
+minibot "Little Gary here! Let's download the universe."
 
 action "installing global npm dependencies"
 npm i -g @babel/cli \
