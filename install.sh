@@ -35,6 +35,8 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | sh
 if [[ $? != 0 ]]; then
   error "unable to install nvm"
   exit 2
+else
+  ok "nvm installed."
 fi
 
 action "installing rust"
@@ -42,6 +44,8 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 if [[ $? != 0 ]]; then
   error "unable to install rust"
   exit 2
+else
+  ok "rust installed."
 fi
 
 action "installing rustup"
@@ -50,6 +54,8 @@ ${HOME}/.cargo/bin/rustup completions zsh >/usr/local/share/zsh/site-functions/_
 if [[ $? != 0 ]]; then
   error "unable to install rustup"
   exit 2
+else
+  ok "rustup installed."
 fi
 
 action "installing nnn"
@@ -109,6 +115,8 @@ if [[ $? != 0 ]]; then
   if [[ $? != 0 ]]; then
     error "unable to install homebrew"
     exit 2
+  else
+    ok "homebrew installed."
   fi
 
   action "turning homebrew analytics off"
@@ -150,12 +158,22 @@ bot "Setting up zsh and vim environment."
 
 action "installing zplug"
 curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-ok "installed zplug."
+if [[ $? != 0 ]]; then
+  error "unable to install zplug"
+  exit 2
+else
+  ok "installed zplug."
+fi
 
 action "installing vim plug"
 curl -fLo ${HOME}/.vim/autoload/plug.vim --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-ok "installed vim plug."
+if [[ $? != 0 ]]; then
+  error "unable to install vim plug"
+  exit 2
+else
+  ok "installed vim plug."
+fi
 
 # ###########################################################
 # Stow dotfiles, save fonts, and copy preferences
