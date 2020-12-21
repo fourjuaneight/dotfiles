@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 ###
 # some colorized echo helpers
@@ -32,15 +32,15 @@ function running() {
 }
 
 function action() {
-    echo -e "\n$COL_YELLOW\[o_o]/$COL_RESET\n ⇒ $1..."
+    echo -e "\n$COL_YELLOW\[o_o]/$COL_RESET ⇒ $1..."
 }
 
 function warn() {
-    echo -e "$COL_YELLOW|\[O_O]/|$COL_RESET "$1
+    echo -e "$COL_YELLOW|\[O_O]/|$COL_RESET - "$1
 }
 
 function error() {
-    echo -e "$COL_RED|[T_T]|$COL_RESET "$1
+    echo -e "$COL_RED|[T_T]|$COL_RESET - "$1
 }
 
 function print_error() {

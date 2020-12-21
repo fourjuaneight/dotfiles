@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-source ./lib/util/echos.sh
+source ${HOME}/dotfiles/lib/util/echos.sh
 
 minibot "Little Gary here! Let's install some Linux goodies."
 
@@ -10,6 +10,9 @@ apt-get update
 apt-get upgrade -y
 apt-get dist-upgrade -f
 apt-get autoremove -y
+
+action "installing snapd"
+apt install snapd
 
 action "refreshing snap directories"
 snap refresh
@@ -25,6 +28,7 @@ apt-get install -y apt-transport-https \
   curl \
   findutils \
   font-manager \
+  fontconfig \
   gawk \
   ghc \
   gist \

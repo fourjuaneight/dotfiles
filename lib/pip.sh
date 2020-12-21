@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ./lib/util/echos.sh
+source ${HOME}/dotfiles/lib/util/echos.sh
 
 minibot "Little Gary here! Ok. Let's try to install some pips."
 

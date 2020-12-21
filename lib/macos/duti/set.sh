@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ./lib/util/echos.sh
+source ${HOME}/dotfiles/lib/util/echos.sh
 
 minibot "Little Gary here! Let's setup default apps."
 
@@ -10,7 +10,7 @@ action "setting default app for media files"
 while read -r ext; do
   duti -s mo.darren.optimus.player.mac "$ext" all
   if [[ $? != 0 ]]; then
-    error "unable to set app for $ext files, script $0 abort!"
+    error "unable to set app for $ext files"
     exit 2
   fi
 done <"${DUTI_DIR}/media.txt"
@@ -20,7 +20,7 @@ action "setting default app for rom files"
 while read -r ext; do
   duti -s org.openemu.OpenEmu "$ext" all
   if [[ $? != 0 ]]; then
-    error "unable to set app for $ext files, script $0 abort!"
+    error "unable to set app for $ext files"
     exit 2
   fi
 done <"${DUTI_DIR}/emu.txt"
@@ -30,7 +30,7 @@ action "setting default app for code files"
 while read -r ext; do
   duti -s com.microsoft.VSCode "$ext" all
   if [[ $? != 0 ]]; then
-    error "unable to set app for $ext files, script $0 abort!"
+    error "unable to set app for $ext files"
     exit 2
   fi
 done <"${DUTI_DIR}/dev.txt"
