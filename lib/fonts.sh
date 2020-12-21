@@ -1,6 +1,5 @@
 #!/bin/sh
 
-# include Adam Eivy's library helper
 source ./lib/util/echos.sh
 
 minibot "Little Gary here! Fonts will be saved to your local Fonts directory."

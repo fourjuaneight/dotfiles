@@ -1,6 +1,5 @@
 #!/bin/sh
 
-# include Adam Eivy's library helper
 source ./lib/util/echos.sh
 
 signingkey=$(git config --global --get user.signingkey)
