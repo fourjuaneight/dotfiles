@@ -48,10 +48,17 @@ RUN DEBIAN_FRONTEND=noninteractive \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# Move dependencies to homedir
+COPY . /home/docker/dotfiles
+
+# Create user
+RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
+RUN mkdir -p /home/docker && chown -R docker:docker /home/docker
+USER docker
+
 # Install dotfiles
-COPY . /root/dotfiles
-RUN chmod +x /root/dotfiles/install.sh && find /root/dotfiles/lib/ -type f -name "*.sh" -exec chmod +x {} \;
-RUN cd /root/dotfiles && ./install.sh
+RUN chmod +x /home/docker/dotfiles/install.sh && find /home/docker/dotfiles/lib/ -type f -name "*.sh" -exec chmod +x {} \;
+RUN cd /home/docker/dotfiles && ./install.sh
 
 # Run a zsh session
 CMD [ "/bin/zsh" ]

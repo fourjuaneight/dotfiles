@@ -5,4 +5,5 @@ services:
       context: .
     image: dotfiles
     volumes:
-      - ./:/root/dotfiles/
+      - /home/docker/
+      - /home/docker/dotfiles/
