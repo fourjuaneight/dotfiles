@@ -14,5 +14,5 @@ jobs:
           
 
       - name: Install dependencies
-        run: |
-          ./install.sh
+        run: ${GITHUB_WORKSPACE}/install.sh
+        shell: bash
