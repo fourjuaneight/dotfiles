@@ -4,12 +4,12 @@ source ${HOME}/dotfiles/lib/util/echos.sh
 
 minibot "Little Gary here! Let's install some Linux goodies."
 
-action "updating apt-get directories"
-add-apt-repository ppa:kellyk/emacs
-apt-get update
-apt-get upgrade -y
-apt-get dist-upgrade -f
-apt-get autoremove -y
+action "updating sudo apt-get directories"
+sudo add-apt-repository ppa:kellyk/emacs
+sudo apt-get update
+sudo apt-get upgrade -y
+sudo apt-get dist-upgrade -f
+sudo apt-get autoremove -y
 
 action "installing snapd"
 apt install snapd
@@ -18,7 +18,7 @@ action "refreshing snap directories"
 snap refresh
 
 action "installing dependencies"
-apt-get install -y apt-transport-https \
+sudo apt-get install -y apt-transport-https \
   bash \
   build-essential \
   certminibot \
