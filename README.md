@@ -11,7 +11,7 @@ You can curl the install script and run `make`:
 ```bash
 curl get.juanvillela.dev | sh
 cd ~/dotfiles
-make install
+./install.sh
 ```
 
 Or manually clone the repo:
@@ -19,31 +19,27 @@ Or manually clone the repo:
 ```bash
 git clone https://github.com/fourjuaneight/dotfiles.git
 cd ~/dotfiles
-make install
+./install.sh
 ```
 
-## Makefile
+## Bootstrapping
 
-### `make install`
+### Installs
 
-- Creates necessary symlinks via [Stow](https://www.gnu.org/software/stow/).
-- Installs [Homebrew](https://brew.sh) on macOS and [Linuxbrew](http://linuxbrew.sh/) on Linux.
-- Installs [nvm](https://github.com/creationix/nvm) for version management.
-- Installs [Rust](https://www.rust-lang.org) from source.
-- Installs `apt-get`, `brew`, and `brew cask` dependencies, relevant to each OS.
+- [Homebrew](https://brew.sh) on macOS and [Linuxbrew](http://linuxbrew.sh/) on Linux.
+- [nvm](https://github.com/creationix/nvm) for version management.
+- [Rust](https://www.rust-lang.org).
+- `apt-get`, `brew`, and `brew cask` dependencies, relevant to each OS.
+- [nnn](https://github.com/jarun/nnn) for Linux cli file management.
+- [zplug](https://github.com/zplug/zplug) for zsh and [plug](https://github.com/zplug/zplug) for vim plugin management.
+- Global npm and pip packages.
+- [rustup](https://github.com/rust-lang/rustup) nightly (with zsh completions) for tooling and version management.
+- Mac App Store apps via [mas](https://github.com/mas-cli/mas).
 
-> **Important:** After running `make install`, run `chsh -s $(which zsh)` to set zsh as the default shell. Then restart your terminal. The associated zshrc file will have all the necessary PATHs for the next step.
+### Setup
 
-### `make setup`
-
-- Installs [nnn](https://github.com/jarun/nnn) for Linux cli file management.
-- Installs [zplug](https://github.com/zplug/zplug) for zsh and [plug](https://github.com/zplug/zplug) for vim plugin management.
-- Installs global npm and pip packages.
-- Installs Installs [rustup](https://github.com/rust-lang/rustup) nightly (with zsh completions) for tooling and version management.
-- Installs Mac App Store apps via [mas](https://github.com/mas-cli/mas).
-- Installs [Doom Emacs](https://github.com/hlissner/doom-emacs).
-- Sets preferred system defaults defined in [`/macos/default.sh`](https://github.com/fourjuaneight/dotfiles/blob/master/macos/default.sh)
-- Runs `/macos/duti/set.sh`, which sets defaults handlers/programs for file extensions via [duti](http://duti.org).
+- Symlinks via [Stow](https://www.gnu.org/software/stow/).
+- Defaults handlers/programs for file extensions via [duti](http://duti.org).
 
 ## Testing with Docker
 
