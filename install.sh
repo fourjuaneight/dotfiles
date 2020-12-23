@@ -51,7 +51,6 @@ fi
 action "installing rustup"
 source $HOME/.cargo/env
 ${HOME}/.cargo/bin/rustup toolchain install nightly --allow-downgrade --profile minimal --component clippy
-${HOME}/.cargo/bin/rustup completions zsh >/usr/local/share/zsh/site-functions/_rustup
 if [[ $? != 0 ]]; then
   error "unable to install rustup"
   exit 2
