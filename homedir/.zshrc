@@ -1,3 +1,5 @@
+fpath=(~/.zsh/completions $fpath)
+
 # Load zplug
 source "${HOME}/.zplug/init.zsh"
 

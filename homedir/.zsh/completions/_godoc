@@ -1,0 +1,59 @@
+#compdef godoc
+
+# The MIT License (MIT)
+#
+# Copyright (c) 2020 Shohei YOSHIDA
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+local -a go_packages
+
+go_packages=($(gopkgs | sort -u))
+
+_arguments -n : \
+  '(-ex)-ex=[show examples in command line mode]:bool:(true false)' \
+  '(-goroot)-goroot=[Go root directory]:rootdir:_files -/' \
+  '(-html)-html=[print HTML in command-line mode]:bool:(true false)' \
+  '(-index)-index=[enable search index]:bool:(true false)' \
+  '(-index_files)-index_files=[glob pattern specifying index files]' \
+  '(-index_throttle)-index_throttle=[index throttle value]' \
+  '(-links)-links=[link identifiers to their declarations]:bool:(true false)' \
+  '(-maxresults)-maxresults=[maximum number of full text search results shown]' \
+  '(-notes)-notes=[regular expression matching note markers to show]' \
+  '(-play)-play=[enable playground in web interface]:bool:(true false)' \
+  '(-q)-q=[arguments are considered search queries]:boold:(true false)' \
+  '(-server)-server=[webserver address for command line searches]' \
+  '(-src)-src=[print (exported) source in command-line mode]:bool:(true false)' \
+  '(-tabwidth)-tabwidth=[tab width]' \
+  '(-templates)-templates=[directory containing alternate template files]:tempdir:_files -/' \
+  '(-testdir)-testdir=[Go root subdirectory for testing only]:testdir:_files -/' \
+  '(-timestamps)-timestamps=[show timestamps with directory listings]:bool:(true false)' \
+  '(-url)-url=[print HTML for named URL]' \
+  '(-v)-v=[verbose mode]:bool:(true false)' \
+  '(-write_index)-write_index=[write index to a file]:bool:(true false)' \
+  '(-zip)-zip=[zip file providing the file system to serve]' \
+  '*:packages:'"($go_packages)"
+
+# Local Variables:
+# mode: Shell-Script
+# sh-indentation: 2
+# indent-tabs-mode: nil
+# sh-basic-offset: 2
+# End:
+# vim: ft=zsh sw=2 ts=2 et
