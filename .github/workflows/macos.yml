@@ -11,8 +11,11 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.head_ref }}
-          
-
-      - name: Install dependencies
-        run: ${GITHUB_WORKSPACE}/install.sh
+      - name: Set permissions
         shell: bash
+        run: >
+          ${GITHUB_WORKSPACE}/.github/scripts/permissions.sh
+      - name: Install dependencies
+        shell: bash
+        run: >
+          ${GITHUB_WORKSPACE}/install.sh
