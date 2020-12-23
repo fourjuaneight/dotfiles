@@ -4,7 +4,7 @@ on:
   push
 
 jobs:
-  macos-install:
+  linux-install:
     runs-on: ubuntu-18.04
 
     steps:
