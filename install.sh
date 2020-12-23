@@ -58,18 +58,6 @@ else
   ok "rustup installed."
 fi
 
-action "installing nnn"
-git clone --depth 1 https://github.com/jarun/nnn "${HOME}/nnn"
-git checkout $(git describe --tags $(git rev-list --tags --max-count=1))
-cd ${HOME}/nnn && make
-sudo make strip install
-if [[ $? != 0 ]]; then
-  error "unable to install nnn"
-  exit 2
-else
-  ok "nnn installed. \"n\" is available as an alias."
-fi
-
 # ###########################################################
 # Install non-brew various tools (PRE-BREW Installs)
 # ###########################################################
