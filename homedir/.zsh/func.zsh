@@ -22,7 +22,7 @@ fex() {
       *.tgz)      tar xvzf $files   ;;
       *.zip)      unzip $files      ;;
       *.Z)        uncompress $files ;;
-      *.7z)       p7zip x $files    ;;
+      *.7z)       7z x $files    ;;
       *)          echo "don't know how to extract '$files'..." ;;
     esac
   else
