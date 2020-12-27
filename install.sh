@@ -230,5 +230,10 @@ else
   ok "skipped croning updates."
 fi
 
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  action "setting macOS defaults"
+  run ${HOME}/dotfiles/lib/macos/default.sh
+fi
+
 bot "All done! Gary out."
 minibot "Little Gary out, too!"
