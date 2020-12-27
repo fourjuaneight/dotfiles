@@ -431,6 +431,21 @@ gcpr() {
 }
 
 
+# DOCKER #
+
+# find and delete docker images
+dcrm() {
+  local images
+  images=$(docker image list --format "table {{.ID}}\t{{.Repository}}" | sed -n '1!p') &&
+  # use <TAB> to select multiple items
+  selectedImage=$(echo "$images" | fzf +s -m -e) &&
+  image=$(echo $selectedImage | sed -E 's/^([a-z0-9]+)[[:space:]]+.*/\1/g') &&
+  # converte list to space separate string
+  imageList=$(echo $image | mawk 'FNR!=1{print l}{l=$0};END{ORS="";print l}' ORS=' ') &&
+  echo $imageList
+}
+
+
 # HOMEBREW #
 
 # Install (one or multiple) selected application(s)
