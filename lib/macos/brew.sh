@@ -4,6 +4,9 @@ source ${HOME}/dotfiles/lib/util/echos.sh
 
 minibot "Little Gary here! Let's get some beers."
 
+action "turning off analytics"
+/usr/local/bin/brew analytics off
+
 action "updating homebrew directories"
 /usr/local/bin/brew update
 

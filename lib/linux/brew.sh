@@ -4,6 +4,12 @@ source ${HOME}/dotfiles/lib/util/echos.sh
 
 minibot "Little Gary here! Let's get some beers."
 
+echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >> /home/docker/.zshrc
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+action "turning off analytics"
+${HOME}/linuxbrew/.linuxbrew/bin/brew analytics off
+
 action "updating homebrew directories"
 ${HOME}/linuxbrew/.linuxbrew/bin/brew update
 
