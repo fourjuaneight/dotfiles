@@ -434,7 +434,7 @@ gcpr() {
 # DOCKER #
 
 # find and delete docker images
-dcrm() {
+dckrm() {
   local images
   images=$(docker image list --format "table {{.ID}}\t{{.Repository}}" | sed -n '1!p') &&
   # use <TAB> to select multiple items

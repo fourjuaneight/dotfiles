@@ -94,9 +94,9 @@ alias glhu="glyphhanger --US_ASCII --formats=woff2,woff --subset=*.ttf"
 alias glha="glyphhanger --LATIN --formats=woff2,woff --subset=*.ttf"
 
 # Docker
-alias dcu="clear && docker-compose up"
-alias dcb="clear && docker-compose build"
-alias dcrm="clear && docker-compose down -s"
+alias dcku="clear && docker-compose up"
+alias dckb="clear && docker-compose build"
+alias dckdrm="clear && docker-compose down -s"
 
 # Gulp
 alias gub="gulp build"
