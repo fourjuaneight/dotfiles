@@ -10,6 +10,34 @@ source ${HOME}/dotfiles/lib/util/runner.sh
 bot "Hey, it's me Gaaary! I'm gonna install some tooling and tweak your system settings. You've been warned!"
 
 # ###########################################################
+# Stow dotfiles, save fonts, and copy preferences
+# ###########################################################
+bot "Setting up dotfiles and fonts."
+
+action "running stow"
+stow homedir
+if [[ $? != 0 ]]; then
+  error "unable to run stow"
+  exit 2
+else
+  ok "dotfiles stowed."
+fi
+
+action "saving fonts"
+run ${HOME}/dotfiles/lib/fonts.sh
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  action "copying preferences"
+  cp ./configs/com*.plist ~/Library/Preference
+  if [[ $? != 0 ]]; then
+    error "unable to copy plist files"
+    exit 2
+  else
+    ok "preferences copied."
+  fi
+fi
+
+# ###########################################################
 # /etc/hosts -- spyware/ad blocking
 # ###########################################################
 read -r -p "Overwrite /etc/hosts with the ad-blocking hosts file from someonewhocares.org? (from ./configs/hosts file) [y|N] " response
@@ -22,7 +50,7 @@ if [[ $response =~ (yes|y|Y) ]]; then
   ok
   bot "Your /etc/hosts file has been updated. Last version is saved in /etc/hosts.backup"
 else
-  ok "skipped."
+  ok "skipped hosts update."
 fi
 
 # ###########################################################
@@ -65,7 +93,7 @@ bot "Ensuring build/install tools are available."
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   action "installing linux dependencies"
-  runsh ${HOME}/dotfiles/lib/linux/apt.sh
+  run ${HOME}/dotfiles/lib/linux/apt.sh
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   if ! xcode-select --print-path &>/dev/null; then
 
@@ -106,9 +134,6 @@ if [[ $? != 0 ]]; then
   else
     ok "homebrew installed."
   fi
-
-  action "turning homebrew analytics off"
-  brew analytics off
 else
   ok
 fi
@@ -117,15 +142,15 @@ bot "Now to install some Homebrew packages."
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   action "installing homebrew packages"
-  runsh ${HOME}/dotfiles/lib/linux/brew.sh
+  run ${HOME}/dotfiles/lib/linux/brew.sh
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   action "installing homebrew packages"
-  runsh ${HOME}/dotfiles/lib/macos/brew.sh
+  run ${HOME}/dotfiles/lib/macos/brew.sh
 fi
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   action "installing apps"
-  runsh ${HOME}/dotfiles/lib/macos/mas.sh
+  run ${HOME}/dotfiles/lib/macos/mas.sh
 fi
 
 # ###########################################################
@@ -134,10 +159,10 @@ fi
 bot "Let's install some more packages."
 
 action "installing npm packages"
-runsh ${HOME}/dotfiles/lib/npm.sh
+run ${HOME}/dotfiles/lib/npm.sh
 
 action "installing pip packages"
-runsh ${HOME}/dotfiles/lib/pip.sh
+run ${HOME}/dotfiles/lib/pip.sh
 
 # ###########################################################
 # Setup zsh and vim env
@@ -164,41 +189,13 @@ else
 fi
 
 # ###########################################################
-# Stow dotfiles, save fonts, and copy preferences
-# ###########################################################
-bot "Now setting up dotfiles and fonts."
-
-action "running stow"
-stow homedir
-if [[ $? != 0 ]]; then
-  error "unable to run stow"
-  exit 2
-else
-  ok "dotfiles stowed."
-fi
-
-action "saving fonts"
-runsh ${HOME}/dotfiles/lib/fonts.sh
-
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  action "copying preferences"
-  cp ./configs/com*.plist ~/Library/Preference
-  if [[ $? != 0 ]]; then
-    error "unable to copy plist files"
-    exit 2
-  else
-    ok "preferences copied."
-  fi
-fi
-
-# ###########################################################
 # Setup Mac software
 # ###########################################################
 if [[ "$OSTYPE" == "darwin"* ]]; then
   bot "Finally, setting default apps."
 
   action "running duti"
-  runsh ${HOME}/dotfiles/lib/macos/duti/set.sh
+  run ${HOME}/dotfiles/lib/macos/duti/set.sh
 fi
 
 # ###########################################################

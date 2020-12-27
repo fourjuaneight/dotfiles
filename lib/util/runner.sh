@@ -2,7 +2,7 @@
 
 source ${HOME}/dotfiles/lib/util/echos.sh
 
-function runsh() {
+function run() {
   running "shell script: $1"
   $1 >/dev/null
   if [[ $? != 0 ]]; then
