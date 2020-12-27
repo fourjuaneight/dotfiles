@@ -434,15 +434,27 @@ gcpr() {
 # DOCKER #
 
 # find and delete docker images
-dckrm() {
-  local images
+dckrmim() {
+  local images selectedImage image imageList
   images=$(docker image list --format "table {{.ID}}\t{{.Repository}}" | sed -n '1!p') &&
   # use <TAB> to select multiple items
   selectedImage=$(echo "$images" | fzf +s -m -e) &&
   image=$(echo $selectedImage | sed -E 's/^([a-z0-9]+)[[:space:]]+.*/\1/g') &&
   # converte list to space separate string
   imageList=$(echo $image | mawk 'FNR!=1{print l}{l=$0};END{ORS="";print l}' ORS=' ') &&
-  echo $imageList
+  docker image rm $imageList
+}
+
+# find and delete docker containers
+dckrmcn() {
+  local containers selectedContainer container containerList
+  containers=$(docker image list --format "table {{.ID}}\t{{.Repository}}" | sed -n '1!p') &&
+  # use <TAB> to select multiple items
+  selectedContainer=$(echo "$containers" | fzf +s -m -e) &&
+  container=$(echo $selectedContainer | sed -E 's/^([a-z0-9]+)[[:space:]]+.*/\1/g') &&
+  # converte list to space separate string
+  containerList=$(echo $container | mawk 'FNR!=1{print l}{l=$0};END{ORS="";print l}' ORS=' ') &&
+  docker container rm $containerList
 }
 
 
