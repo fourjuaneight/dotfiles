@@ -1,9 +1,0 @@
-version: "3"
-services:
-  dotfiles:
-    build:
-      context: .
-    image: dotfiles
-    volumes:
-      - /home/docker/
-      - /home/docker/dotfiles/

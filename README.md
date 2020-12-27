@@ -41,20 +41,6 @@ cd ~/dotfiles
 - Symlinks via [Stow](https://www.gnu.org/software/stow/).
 - Defaults handlers/programs for file extensions via [duti](http://duti.org).
 
-## Testing with Docker
-
-We can use Docker to test some changes in a Linux Container.
-
-Assuming your host system has Docker & Docker Compose properly installed, run:
-
-```bash
-docker-compose run dotfiles
-```
-
-This will build the container image if it never built it before (which may take a while -- future times will be faster) and then run a zsh session inside that container for you. There you can play around, test commands, aliases, etc.
-
-Warning: this repo is primarily macOS oriented. So any support for Linux can only be done with the help of the community.
-
 ## Thanks
 
 This setup is possible thanks to some awesome developers that have
