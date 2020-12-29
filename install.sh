@@ -221,6 +221,9 @@ else
   ok "plugins installed."
 fi
 
+action "Setting Github CLI editor"
+gh config set editor vim
+
 read -r -p "run nightly cron updates? [y|N] " response
 if [[ $response =~ (y|yes|Y) ]]; then
   action "adding nightly cron updates"
