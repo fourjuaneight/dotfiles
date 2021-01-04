@@ -11,17 +11,6 @@ zplug "zdharma/fast-syntax-highlighting"
 zplug "mafredri/zsh-async"
 zplug "sindresorhus/pure"
 
-if ! zplug check --verbose; then
-  printf "Install? [y/N]: "
-
-  if read -q; then
-    echo
-    zplug install
-  else
-    echo
-  fi
-fi
-
 zplug load
 
 # Loading Pure prompt
@@ -48,12 +37,3 @@ _fzf_compgen_path() {
 
 # Load functions
 [[ -f ~/.zsh/func.zsh ]] && source ~/.zsh/func.zsh
-
-# History Configuration
-HISTSIZE=5000
-HISTFILE=~/.zsh_history
-SAVEHIST=5000
-HISTDUP=erase
-setopt appendhistory
-setopt sharehistory
-setopt incappendhistory

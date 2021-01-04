@@ -41,10 +41,6 @@ fkl() {
   fi
 }
 
-weather() {
-  curl -s http://wttr.in/$1;
-}
-
 ## hammer a service with curl for a given number of times
 curlhammer () {
   echo "curl -k -s -D - $1 -o /dev/null | grep 'HTTP/1.1' | sed 's/HTTP\/1.1 //'"
@@ -136,14 +132,6 @@ clipvid() {
   IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
   fname="${files%.*}";
   [[ -n "$files" ]] && ffmpeg -i $files -acodec libmp3lame "$fname.mp3";
-}
-
-# B2/BACKBLAZE #
-
-# b2mov
-# 1 - filename
-b2mov() {
-  b2 sync $1 helms-deep/movies/
 }
 
 
@@ -455,81 +443,4 @@ dckrmcn() {
   # converte list to space separate string
   containerList=$(echo $container | mawk 'FNR!=1{print l}{l=$0};END{ORS="";print l}' ORS=' ') &&
   docker container rm $containerList
-}
-
-
-# HOMEBREW #
-
-# Install (one or multiple) selected application(s)
-# using "brew search" as source input
-# mnemonic [B]rew [I]nstall [P]lugin
-bip() {
-  local inst=$(brew search | fzf -m)
-
-  if [[ $inst ]]; then
-    for prog in $(echo $inst);
-    do; brew install $prog; done;
-  fi
-}
-
-# Update (one or multiple) selected application(s)
-# mnemonic [B]rew [U]pdate [P]lugin
-bup() {
-  local upd=$(brew leaves | fzf -m)
-
-  if [[ $upd ]]; then
-    for prog in $(echo $upd);
-    do; brew upgrade $prog; done;
-  fi
-}
-
-# Delete (one or multiple) selected application(s)
-# mnemonic [B]rew [C]lean [P]lugin (e.g. uninstall)
-bcp() {
-  local uninst=$(brew leaves | fzf -m)
-
-  if [[ $uninst ]]; then
-    for prog in $(echo $uninst);
-    do; brew uninstall $prog; done;
-  fi
-}
-
-# Install or open the webpage for the selected application
-# using brew cask search as input source
-# and display a info quickview window for the currently marked application
-install() {
-    local token
-    token=$(brew cask search | fzf-tmux --query="$1" +m --preview 'brew cask info {}')
-
-    if [[ "x$token" != "x" ]]
-    then
-        echo "(I)nstall or open the (h)omepage of $token"
-        read input
-        if [[ $input = "i" ]] || [[ $input = "I" ]]; then
-            brew cask install $token
-        fi
-        if [[ $input = "h" ]] || [[ $input = "H" ]]; then
-            brew cask home $token
-        fi
-    fi
-}
-
-# Uninstall or open the webpage for the selected application
-# using brew list as input source (all brew cask installed applications)
-# and display a info quickview window for the currently marked application
-uninstall() {
-    local token
-    token=$(brew cask list | fzf-tmux --query="$1" +m --preview 'brew cask info {}')
-
-    if [[ "x$token" != "x" ]];
-    then
-        echo "(U)ninstall or open the (h)omepage of $token"
-        read input
-        if [[ $input = "u" ]] || [[ $input = "U" ]]; then
-            brew cask uninstall $token
-        fi
-        if [[ $input = "h" ]] || [[ $token = "h" ]]; then
-            brew cask home $token
-        fi
-    fi
 }
