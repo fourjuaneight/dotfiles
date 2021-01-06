@@ -61,7 +61,7 @@ alias tk="pkill -f tmux"
 alias tx="exit"
 alias tdevx="tmux new-session \; split-window -v -p 20 \; send-keys 'clear' C-m \; split-window -h \; send-keys 'clear' C-m \; select-pane -U \; send-keys 'vim' C-m \;"
 alias tdev="tmux new-session \; split-window -v -p 20 \; send-keys 'clear' C-m \; select-pane -U \; send-keys 'vim' C-m \;"
-alias tter="tmux new-session \; split-window -h \; send-keys 'clear' C-m \; select-pane -L \; send-keys 'clear' C-m \;"
+alias tter="tmux new-session \; split-window -h -p 40\; send-keys 'clear' C-m \; select-pane -L \; send-keys 'clear' C-m \;"
 
 # ssh
 alias rssh="sudo service ssh --full-restart"
@@ -93,7 +93,6 @@ alias psl="psql postgres -h localhost -l"
 alias ga="git add"
 alias gaa="git add --all"
 
-alias gc="git commit"
 alias gcm="git commit -S -m"
 
 alias gf="git fetch"
@@ -103,6 +102,10 @@ alias gup="git push"
 alias gp="git pull --rebase"
 
 alias gst="git status"
+
+alias gdf="git diff"
+alias gdfn="git diff --name-only"
+alias gdfs="git diff --staged"
 
 alias gsta="git stash"
 alias gstap="git stash pop"
