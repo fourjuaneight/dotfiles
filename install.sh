@@ -86,6 +86,15 @@ else
   ok "rustup installed."
 fi
 
+action "installing git-delta"
+cargo install git-delta
+if [[ $? != 0 ]]; then
+  error "unable to install git-delta"
+  exit 2
+else
+  ok "git-delta installed."
+fi
+
 # ###########################################################
 # Install non-brew various tools (PRE-BREW Installs)
 # ###########################################################
