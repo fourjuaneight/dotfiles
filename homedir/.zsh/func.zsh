@@ -436,11 +436,19 @@ dckrmim() {
 # find and delete docker containers
 dckrmcn() {
   local containers selectedContainer container containerList
-  containers=$(docker image list --format "table {{.ID}}\t{{.Repository}}" | sed -n '1!p') &&
+  containers=$(docker container list --format "table {{.ID}}\t{{.Repository}}" | sed -n '1!p') &&
   # use <TAB> to select multiple items
   selectedContainer=$(echo "$containers" | fzf +s -m -e) &&
   container=$(echo $selectedContainer | sed -E 's/^([a-z0-9]+)[[:space:]]+.*/\1/g') &&
   # converte list to space separate string
   containerList=$(echo $container | mawk 'FNR!=1{print l}{l=$0};END{ORS="";print l}' ORS=' ') &&
   docker container rm $containerList
+}
+
+# find and start docker services
+dckup() {
+  local services selectedService
+  services=$(docker-compose ps --services) &&
+  selectedService=$(echo "$services" | fzf +s -e) &&
+  clear && docker-compose up $selectedService
 }
