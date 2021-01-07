@@ -1,4 +1,4 @@
-# Vim Cheatsheet
+# Vim
 
 ## Ag
 * `<SPC>/b` - search pattern

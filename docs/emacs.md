@@ -1,4 +1,4 @@
-# Emacs Cheatsheet
+# Emacs
 
 ## Command Combos
 
