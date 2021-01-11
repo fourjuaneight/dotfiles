@@ -33,6 +33,7 @@ action "installing packages"
   cmake \
   curl \
   deno \
+  dive \
   docker \
   duti \
   homebrew-ffmpeg/ffmpeg/ffmpeg --with-fdk-aac --HEAD \
