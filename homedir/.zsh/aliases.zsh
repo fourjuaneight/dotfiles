@@ -59,9 +59,7 @@ alias tso="tmux source ~/.tmux.conf"
 alias tn="tmux -u new"
 alias tk="pkill -f tmux"
 alias tx="exit"
-alias tdevx="tmux new-session \; split-window -v -p 20 \; send-keys 'clear' C-m \; split-window -h \; send-keys 'clear' C-m \; select-pane -U \; send-keys 'vim' C-m \;"
-alias tdev="tmux new-session \; split-window -v -p 20 \; send-keys 'clear' C-m \; select-pane -U \; send-keys 'vim' C-m \;"
-alias tter="tmux new-session \; split-window -h -p 40\; send-keys 'clear' C-m \; select-pane -L \; send-keys 'clear' C-m \;"
+alias tdev="tmux new-session \; split-window -h -p 40\; send-keys 'clear' C-m \; select-pane -L \; send-keys 'clear' C-m \;"
 
 # ssh
 alias rssh="sudo service ssh --full-restart"
@@ -94,6 +92,7 @@ alias ga="git add"
 alias gaa="git add --all"
 
 alias gcm="git commit -S -m"
+alias gc="git commit -S"
 
 alias gf="git fetch"
 
