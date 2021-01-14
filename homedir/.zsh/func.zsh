@@ -405,9 +405,9 @@ ediff() {
 
 # GITHUB CLI #
 
-# git create pr, add title, select reviewer
-# (G)it(C)reate(P)(R)
-gcpr() {
+# git create new pr, add title, select reviewer
+# (G)it(N)ew(P)(R)
+gnpr() {
   git fetch
   local branches selectedBranch branch reviewers handle
   branches=$(git branch -r) &&
