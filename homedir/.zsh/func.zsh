@@ -301,10 +301,11 @@ gcbr() {
 # (G)it(C)heckout(R)emote(B)(R)anch
 gcrbr() {
   git fetch
-  local branches branch
+  local branches branch selectedBranch
   branches=$(git branch -r) &&
-  branch=$(echo "$branches" | fzf +s +m -e) &&
-  git checkout $(echo "$branch" | sed "s:.* remotes/origin/::" | sed "s:.* ::")
+  selectedBranch=$(echo "$branches" | fzf +s +m -e) &&
+	branch=$(echo "$selectedBranch" | sed "s:.* origin/::" | sed "s:.* ::")
+	git checkout $branch
 }
 
 # create git branch and add to remote
