@@ -389,7 +389,7 @@ gscl() {
 FZF-EOF"
 }
 
-# fgcm - find git commit and price selected message for new commit
+# fgcm - find git commit and print selected message for new commit
 fgcm() {
   local commits commit
   commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%N%Creset %s' --abbrev-commit --reverse) &&
