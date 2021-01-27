@@ -24,6 +24,8 @@ npm i -g @angular/cli\
   fkill-cli \
   gatsby-cli \
   glyphhanger \
+	husky \
+	lint-staged \
   ngrok \
   npm-fzf \
   postcss \
