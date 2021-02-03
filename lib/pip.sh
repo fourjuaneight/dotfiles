@@ -5,7 +5,7 @@ source ${HOME}/dotfiles/lib/util/echos.sh
 minibot "Little Gary here! Ok. Let's try to install some pips."
 
 action "installing python3 packages"
-python3 -m pip install autopep8 \
+python3 -m pip install --user autopep8 \
   b2 \
   brotli \
   flake8 \

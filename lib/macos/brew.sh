@@ -5,30 +5,30 @@ source ${HOME}/dotfiles/lib/util/echos.sh
 minibot "Little Gary here! Let's get some beers."
 
 action "turning off analytics"
-/usr/local/bin/brew analytics off
+brew analytics off
 
 action "updating homebrew directories"
-/usr/local/bin/brew update
+brew update
 
 action "installing updated GNU core utils"
-/usr/local/bin/brew install coreutils
-/usr/local/bin/brew install gnu-sed
-/usr/local/bin/brew install gnu-tar
-/usr/local/bin/brew install gnu-indent
-/usr/local/bin/brew install gnu-which
+brew install coreutils
+brew install gnu-sed
+brew install gnu-tar
+brew install gnu-indent
+brew install gnu-which
 
 action "installing GNU goodies"
-/usr/local/bin/brew install findutils
+brew install findutils
 
 action "installing latest bash"
-/usr/local/bin/brew install bash
+brew install bash
 
 action "tapping casks"
-/usr/local/bin/brew tap heroku/brew
-/usr/local/bin/brew tap homebrew-ffmpeg/ffmpeg
+brew tap heroku/brew
+brew tap homebrew-ffmpeg/ffmpeg
 
 action "installing packages"
-/usr/local/bin/brew install ack \
+brew install ack \
   certminibot \
   cmake \
   curl \
@@ -102,7 +102,7 @@ action "installing packages"
   zsh-syntax-highlighting
 
 action "installing casks"
-/usr/local/bin/brew cask install alfred \
+brew cask install alfred \
   arq-cloud-backup \
   backblaze \
   bartender \
@@ -123,7 +123,7 @@ action "installing casks"
   zoomus
 
 action "cleaning up"
-/usr/local/bin/brew cleanup --force
+brew cleanup --force
 rm -f -r /Library/Caches/Homebrew/*
 # Just to avoid a potential bug
 mkdir -p ~/Library/Caches/Homebrew/Formula
