@@ -131,7 +131,7 @@ clipvid() {
   local files fname
   IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
   fname="${files%.*}";
-  [[ -n "$files" ]] && ffmpeg -i $files -acodec libmp3lame "$fname.mp3";
+  [[ -n "$files" ]] && ffmpeg -i $files -codec:v copy -codec:a libmp3lame -q:a 2 "$fname.mp3";
 }
 
 
