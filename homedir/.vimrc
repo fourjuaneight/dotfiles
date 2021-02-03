@@ -44,7 +44,10 @@ set noswapfile
 set nowritebackup
 
 " Always use vertical diffs
-set diffopt+=vertical
+if &diff
+    set diffopt-=internal
+    set diffopt+=vertical
+endif
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
