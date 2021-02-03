@@ -4,7 +4,7 @@ if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
 fi
 
 # Auto-completion
-[[ $- == *i* ]] && source "~/.zsh/completions/completion.zsh" 2> /dev/null
+[[ $- == *i* ]] && source "${HOME}/.zsh/completions/completion.zsh" 2> /dev/null
 
 # Key bindings
-source "~/.zsh/bindings/key-bindings.zsh"
+source "${HOME}/.zsh/bindings/key-bindings.zsh"
