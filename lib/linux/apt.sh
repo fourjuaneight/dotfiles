@@ -21,7 +21,7 @@ action "installing dependencies"
 apt-get install -y apt-transport-https \
   bash \
   build-essential \
-  certminibot \
+  certbot \
   clang \
   cmake \
   coreutils \
@@ -33,7 +33,6 @@ apt-get install -y apt-transport-https \
   ghc \
   gist \
   git \
-  gnupg2 \
   gpg \
   graphicsmagick \
   htop \

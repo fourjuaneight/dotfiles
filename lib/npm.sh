@@ -11,6 +11,7 @@ npm i -g @angular/cli\
   @nestjs/cli \
   @typescript-eslint/eslint-plugin \
   @typescript-eslint/parser \
+  @vue/cli \
   apollo \
   eslint \
   eslint-config-airbnb \
@@ -24,9 +25,8 @@ npm i -g @angular/cli\
   fkill-cli \
   gatsby-cli \
   glyphhanger \
-	husky \
-	lint-staged \
-  ngrok \
+  husky \
+  lint-staged \
   npm-fzf \
   postcss \
   prettier \

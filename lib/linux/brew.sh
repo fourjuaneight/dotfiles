@@ -20,7 +20,6 @@ ${HOME}/linuxbrew/.linuxbrew/bin/brew install ack \
   fzf \
   fd \
   go \
-  hugo \
   webp \
   youtube-dl \
   zsh-autosuggestions \
