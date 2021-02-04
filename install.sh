@@ -12,16 +12,7 @@ bot "Hey, it's me Gaaary! I'm gonna install some tooling and tweak your system s
 # ###########################################################
 # Stow dotfiles, save fonts, and copy preferences
 # ###########################################################
-bot "Setting up dotfiles and fonts."
-
-action "running stow"
-stow homedir
-if [[ $? != 0 ]]; then
-  error "unable to run stow"
-  exit 2
-else
-  ok "dotfiles stowed."
-fi
+bot "Setting up fonts."
 
 action "saving fonts"
 run ${HOME}/dotfiles/lib/fonts.sh
@@ -176,6 +167,17 @@ run ${HOME}/dotfiles/lib/pip.sh
 # ###########################################################
 # Setup zsh and vim env
 # ###########################################################
+bot "Stowing dotfiles."
+
+action "running stow"
+stow homedir
+if [[ $? != 0 ]]; then
+  error "unable to run stow"
+  exit 2
+else
+  ok "dotfiles stowed."
+fi
+
 bot "Setting up zsh and vim environment."
 
 action "installing zplug"
