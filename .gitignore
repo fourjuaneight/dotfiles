@@ -2,3 +2,4 @@
 homedir/.vim/autoload
 homedir/.vim/plugged
 homedir/.vim/sessions
+homedir/.config/coc
