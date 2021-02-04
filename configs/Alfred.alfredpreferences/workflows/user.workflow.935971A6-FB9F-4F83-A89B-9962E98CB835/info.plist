@@ -8,11 +8,62 @@
 	<string>Tools</string>
 	<key>connections</key>
 	<dict>
+		<key>21641396-0315-418B-A9AA-91B3ECC4F468</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>1464579E-98E0-449A-8173-36DAB5D57494</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>31D7777F-F2F5-4995-9FEB-9D7B5DA0F206</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>86FF68B4-263C-4B63-92F4-657F7DE9751E</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>2C75AC2A-4868-44CA-9ABB-72639F867E95</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>FCF2A006-0520-4920-A2F2-A566AA31336D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>258434ED-6000-472B-90C5-2E0EC03CB715</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>D2E3065D-0A9F-4220-8306-C701C3B1E775</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>A787F5F8-9A54-42A8-BB77-906BDD8F18EE</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>63C90BA8-6A68-4D70-8E35-F4FA4843ACC6</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>7C88E654-2694-40EA-8E2E-E295830C3EF3</string>
+				<string>21641396-0315-418B-A9AA-91B3ECC4F468</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -23,13 +74,13 @@
 		</array>
 	</dict>
 	<key>createdby</key>
-	<string></string>
+	<string>Maria</string>
 	<key>description</key>
 	<string></string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>Edit Dotfiles</string>
+	<string>Edit Config</string>
 	<key>objects</key>
 	<array>
 		<dict>
@@ -51,23 +102,118 @@
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>7C88E654-2694-40EA-8E2E-E295830C3EF3</string>
+			<string>1464579E-98E0-449A-8173-36DAB5D57494</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>code ~/Library/Application Support/Code/User/settings.json</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>86FF68B4-263C-4B63-92F4-657F7DE9751E</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>dotfiles</string>
+						<key>outputlabel</key>
+						<string>Dotfiles</string>
+						<key>uid</key>
+						<string>31D7777F-F2F5-4995-9FEB-9D7B5DA0F206</string>
+					</dict>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>vscode</string>
+						<key>outputlabel</key>
+						<string>VSCode</string>
+						<key>uid</key>
+						<string>2C75AC2A-4868-44CA-9ABB-72639F867E95</string>
+					</dict>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>ssh</string>
+						<key>outputlabel</key>
+						<string>SSH</string>
+						<key>uid</key>
+						<string>258434ED-6000-472B-90C5-2E0EC03CB715</string>
+					</dict>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>gpg</string>
+						<key>outputlabel</key>
+						<string>GPG</string>
+						<key>uid</key>
+						<string>A787F5F8-9A54-42A8-BB77-906BDD8F18EE</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>else</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>21641396-0315-418B-A9AA-91B3ECC4F468</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argumenttype</key>
-				<integer>2</integer>
+				<integer>0</integer>
 				<key>keyword</key>
-				<string>dotco</string>
+				<string>conf</string>
 				<key>subtext</key>
 				<string></string>
 				<key>text</key>
-				<string>Open Dotfiles in VSCode</string>
+				<string>Edit config</string>
 				<key>withspace</key>
-				<false/>
+				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.keyword</string>
@@ -76,24 +222,106 @@
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>code ~/.ssh</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>FCF2A006-0520-4920-A2F2-A566AA31336D</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>code ~/.gnupg</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>D2E3065D-0A9F-4220-8306-C701C3B1E775</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
 	<key>uidata</key>
 	<dict>
+		<key>1464579E-98E0-449A-8173-36DAB5D57494</key>
+		<dict>
+			<key>note</key>
+			<string>Dotfiles</string>
+			<key>xpos</key>
+			<integer>520</integer>
+			<key>ypos</key>
+			<integer>25</integer>
+		</dict>
+		<key>21641396-0315-418B-A9AA-91B3ECC4F468</key>
+		<dict>
+			<key>xpos</key>
+			<integer>240</integer>
+			<key>ypos</key>
+			<integer>220</integer>
+		</dict>
 		<key>63C90BA8-6A68-4D70-8E35-F4FA4843ACC6</key>
 		<dict>
 			<key>xpos</key>
-			<integer>120</integer>
+			<integer>30</integer>
 			<key>ypos</key>
-			<integer>50</integer>
+			<integer>245</integer>
 		</dict>
-		<key>7C88E654-2694-40EA-8E2E-E295830C3EF3</key>
+		<key>86FF68B4-263C-4B63-92F4-657F7DE9751E</key>
 		<dict>
+			<key>note</key>
+			<string>VSCode Settings</string>
 			<key>xpos</key>
-			<integer>295</integer>
+			<integer>520</integer>
 			<key>ypos</key>
-			<integer>50</integer>
+			<integer>165</integer>
+		</dict>
+		<key>D2E3065D-0A9F-4220-8306-C701C3B1E775</key>
+		<dict>
+			<key>note</key>
+			<string>GPG</string>
+			<key>xpos</key>
+			<integer>520</integer>
+			<key>ypos</key>
+			<integer>445</integer>
+		</dict>
+		<key>FCF2A006-0520-4920-A2F2-A566AA31336D</key>
+		<dict>
+			<key>note</key>
+			<string>SSH</string>
+			<key>xpos</key>
+			<integer>520</integer>
+			<key>ypos</key>
+			<integer>305</integer>
 		</dict>
 	</dict>
 	<key>webaddress</key>
