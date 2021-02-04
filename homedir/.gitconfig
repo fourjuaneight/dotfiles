@@ -18,10 +18,26 @@
 [core]
   excludesfile = ~/.gitignore_global
   editor = vim
-  pager = delta --plus-color="#50fa7b" --minus-color="#ff80bf" --theme='Dracula'
+  pager = delta
+
+[delta]
+  features = side-by-side line-numbers decorations
+  whitespace-error-style = 22 reverse
+  plus-color = "#50fa7b"
+  minus-color = "#ff80bf"
+  syntax-theme = Dracula
+
+[delta "decorations"]
+  commit-decoration-style = bold yellow box ul
+  file-style = bold yellow ul
+  file-decoration-style = none
+
+[interactive]
+  diffFilter = delta --color-only
 
 [diff]
   tool = vimdiff
+  colorMoved = zebra
 
 [merge]
   tool = vimdiff
@@ -34,8 +50,14 @@
 [commit]
   gpgsign = true
 
-[gpg]
-  program = gpg
+[fetch]
+  prune = true
+
+[pull]
+  rebase = true
+
+[push]
+  default = current
 
 [filter "lfs"]
   clean = git-lfs clean -- %f
@@ -46,5 +68,5 @@
 [interactive]
   diffFilter = delta --color-only
 
-[push]
-  default = current
+[gpg]
+  program = gpg
