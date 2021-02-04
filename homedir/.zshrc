@@ -1,5 +1,12 @@
 fpath=(~/.zsh/completions $fpath)
 
+# Brew
+if [ -d "/opt/homebrew/bin" ]; then
+    export PATH="/opt/homebrew/bin:$PATH"
+    GPG_TTY=$(tty)
+    export GPG_TTY
+fi
+
 # Load zplug
 source "${HOME}/.zplug/init.zsh"
 
