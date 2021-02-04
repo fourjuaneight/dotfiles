@@ -4,7 +4,7 @@
 [user]
   name = Juan Villela
   email = juan@villela.co
-  signingkey = 3151EBD8B9970BBE034C39BF57A7B910713E6772
+  signingkey = 78D4B88F2C94648B21A1F2DA5971AC316779D86D
 
 [github]
   user = fourjuaneight
@@ -35,7 +35,7 @@
   gpgsign = true
 
 [gpg]
-  program = /usr/local/bin/gpg
+  program = gpg
 
 [filter "lfs"]
   clean = git-lfs clean -- %f
