@@ -90,6 +90,7 @@ alias psl="psql postgres -h localhost -l"
 # Git
 alias ga="git add"
 alias gaa="git add --all"
+alias gap="git add --patch"
 
 alias gcm="git commit -S -m"
 alias gc="git commit -S"
