@@ -4,10 +4,10 @@ source ${HOME}/dotfiles/lib/util/echos.sh
 
 minibot "Little Gary here! Let's setup an SSH key for Github."
 
-if [[ -f ~/.ssh/id_rsa_github ]]; then
-    minibot "Looks like you already have a key named id_rsa_github."
+if [[ -f ~/.ssh/space-maria_github ]]; then
+    minibot "Looks like you already have a key named space-maria_github."
 else
-    action "creating ssh key (id_rsa_github)"
+    action "creating ssh key (space-maria_github)"
 
     read -p "Use Git user.email [y/n]: " email
     if [[ $email == "y" ]]; then
@@ -15,8 +15,8 @@ else
     else
         read -p "Your Email: " email
     fi
-    ssh-keygen -t rsa -b 4096 -C "$email" -f ~/.ssh/id_rsa_github
-    cat ~/.ssh/id_rsa_github.pub
+    ssh-keygen -t rsa -b 4096 -C "$email" -f ~/.ssh/space-maria_github
+    cat ~/.ssh/space-maria_github.pub
     ok "add key to your Github account."
     exit 0
 fi
