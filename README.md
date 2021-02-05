@@ -1,12 +1,12 @@
 # Dotfiles
 
-Files and scripts for configuring a development and terminal enviromant on macOS and Linux.
+Files and scripts for configuring a development and terminal enviromant on macOS and Linux. Which _should_ also work with [Codespaces](https://github.com/features/codespaces) as well.
 
 ---
 
 ## Installation
 
-You can curl the install script and run `make`:
+You can curl the install script and run the script directly:
 
 ```bash
 curl get.juanvillela.dev | sh
@@ -30,11 +30,9 @@ cd ~/dotfiles
 - [nvm](https://github.com/creationix/nvm) for version management.
 - [Rust](https://www.rust-lang.org).
 - `apt-get`, `brew`, and `brew cask` dependencies, relevant to each OS.
-- [nnn](https://github.com/jarun/nnn) for Linux cli file management.
 - [zplug](https://github.com/zplug/zplug) for zsh and [plug](https://github.com/zplug/zplug) for vim plugin management.
-- Global npm and pip packages.
+- Global npm and pip packages. Some Rust binaries.
 - [rustup](https://github.com/rust-lang/rustup) nightly (with zsh completions) for tooling and version management.
-- Mac App Store apps via [mas](https://github.com/mas-cli/mas).
 
 ### Setup
 
