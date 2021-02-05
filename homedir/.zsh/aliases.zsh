@@ -107,6 +107,9 @@ alias gdf="git diff"
 alias gdfn="git diff --name-only"
 alias gdfs="git diff --staged"
 
+alias grst="git reset"
+alias grsth="git reset --hard"
+
 alias gsta="git stash"
 alias gstap="git stash pop"
 
