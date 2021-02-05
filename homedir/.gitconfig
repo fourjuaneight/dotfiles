@@ -69,4 +69,4 @@
   diffFilter = delta --color-only
 
 [gpg]
-  program = gpg
+  program = /opt/homebrew/bin/gpg
