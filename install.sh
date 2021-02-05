@@ -77,14 +77,9 @@ else
   ok "rustup installed."
 fi
 
-action "installing git-delta"
-cargo install git-delta
-if [[ $? != 0 ]]; then
-  error "unable to install git-delta"
-  exit 2
-else
-  ok "git-delta installed."
-fi
+bot "Now to install some Rust binaries."
+
+run ${HOME}/dotfiles/lib/cargo.sh
 
 # ###########################################################
 # Install non-brew various tools (PRE-BREW Installs)

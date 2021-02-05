@@ -35,7 +35,6 @@ apt-get install -y apt-transport-https \
   git \
   gpg \
   graphicsmagick \
-  htop \
   imagemagick \
   indent \
   indicator-multiload \
@@ -54,23 +53,18 @@ apt-get install -y apt-transport-https \
   mmv \
   mosh \
   ncdu \
-  neovim \
   nginx \
   npm \
   nodejs \
   perl \
-  php \
   pkg-config \
   postgresql \
-  python \
   python3 \
   python3-dev \
   python3-pip \
   python-pygments \
   rclone \
-  ripgrep \
   rsync \
-  rbenv \
   sed \
   silversearcher-ag \
   stow \

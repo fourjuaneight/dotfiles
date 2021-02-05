@@ -13,12 +13,14 @@ ${HOME}/linuxbrew/.linuxbrew/bin/brew analytics off
 action "updating homebrew directories"
 ${HOME}/linuxbrew/.linuxbrew/bin/brew update
 
+action "installing complicated packages"
+${HOME}/linuxbrew/.linuxbrew/bin/brew install homebrew-ffmpeg/ffmpeg/ffmpeg --with-fdk-aac --HEAD
+
 action "installing packages"
 ${HOME}/linuxbrew/.linuxbrew/bin/brew install ack \
-  dep \
-  homebrew-ffmpeg/ffmpeg/ffmpeg --with-fdk-aac --HEAD \
+  dive \
   fzf \
-  fd \
+  gh \
   go \
   webp \
   youtube-dl \
@@ -26,6 +28,6 @@ ${HOME}/linuxbrew/.linuxbrew/bin/brew install ack \
   zsh-syntax-highlighting
 
 action "cleaning up"
-${HOME}/linuxbrew/.linuxbrew/bin/brew cleanup --force
+${HOME}/linuxbrew/.linuxbrew/bin/brew cleanup
 
 ok "done installing brews."

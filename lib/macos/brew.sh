@@ -23,34 +23,28 @@ brew install findutils
 action "installing latest bash"
 brew install bash
 
-action "tapping casks"
+action "installing complicated packages"
+brew install homebrew-ffmpeg/ffmpeg/ffmpeg --with-fdk-aac --HEAD
 brew tap heroku/brew
-brew tap homebrew-ffmpeg/ffmpeg
+brew install heroku
 
 action "installing packages"
 brew install ack \
-  certminibot \
+  certbot \
   cmake \
   curl \
-  deno \
   dive \
   docker \
   duti \
-  homebrew-ffmpeg/ffmpeg/ffmpeg --with-fdk-aac --HEAD \
   fswatch \
   fzf \
-  fd \
   ghc \
   git \
-  git-delta \
   gh \
   gist \
   go \
   gpg \
   graphicsmagick \
-  heroku \
-  htop \
-  hugo \
   imagemagick \
   inetutils \
   jasper \
@@ -58,7 +52,6 @@ brew install ack \
   libmemcached \
   llvm \
   macvim \
-  mas \
   mawk \
   mc \
   memcached \
@@ -67,20 +60,14 @@ brew install ack \
   mosh \
   mysql \
   ncdu \
-  nhrok \
-  nnn \
+  ngrok \
   node \
-  npm \
   p7zip \
-  php \
   pkg-config \
   postgresql \
-  python \
   python3 \
-  rbenv \
   rclone \
   rename \
-  ripgrep \
   rsync \
   ruby \
   slurm \
@@ -89,15 +76,11 @@ brew install ack \
   stow \
   the_silver_searcher \
   tmux \
-  tophat/bar/yvm \
   tree \
   webp \
   wget \
   xz \
-  yarn \
   youtube-dl \
-  tophat/bar/yvm --without-node \
-  zsh \
   zsh-autosuggestions \
   zsh-syntax-highlighting
 
@@ -106,24 +89,16 @@ brew cask install alfred \
   arq-cloud-backup \
   backblaze \
   bartender \
-  choosy \
-  firefox \
-  google-chrome \
   handbrake \
   hazel \
-  imageoptim \
   iterm2 \
   moom \
   openemu \
-  screens-connect \
-  slack \
-  tower \
   transmit \
-  visual-studio-code \
-  zoomus
+  visual-studio-code
 
 action "cleaning up"
-brew cleanup --force
+brew cleanup
 rm -f -r /Library/Caches/Homebrew/*
 # Just to avoid a potential bug
 mkdir -p ~/Library/Caches/Homebrew/Formula
