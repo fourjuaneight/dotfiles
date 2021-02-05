@@ -64,6 +64,7 @@ brew install ack \
   node \
   p7zip \
   pkg-config \
+  pinentry-mac \
   postgresql \
   python3 \
   rclone \
