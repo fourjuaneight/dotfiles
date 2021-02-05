@@ -43,10 +43,10 @@ fkl() {
 
 ## hammer a service with curl for a given number of times
 curlhammer () {
-  echo "curl -k -s -D - $1 -o /dev/null | grep 'HTTP/1.1' | sed 's/HTTP\/1.1 //'"
+  echo "curl -k -s -D - $1 -o /dev/null | rg 'HTTP/1.1' | sed 's/HTTP\/1.1 //'"
   for i in {1..$2}
   do
-    curl -k -s -D - $1 -o /dev/null | grep 'HTTP/1.1' | sed 's/HTTP\/1.1 //'
+    curl -k -s -D - $1 -o /dev/null | rg 'HTTP/1.1' | sed 's/HTTP\/1.1 //'
   done
 }
 
@@ -185,7 +185,7 @@ fa() {
   local file
   local line
 
-  read -r file line <<<"$(ag --nobreak --noheading $@ | fzf -0 -1 | mawk -F: '{print $1, $2}')"
+  read -r file line <<<"$(rg --no-heading -n $@ | fzf -0 -1 | mawk -F: '{print $1, $2}')"
 
   if [[ -n $file ]]
   then
@@ -211,7 +211,7 @@ fo() {
 cf() {
   local file
 
-  file="$(locate -Ai -0 $@ | ag -z -v '~$' | fzf --read0 -0 -1)"
+  file="$(locate -Ai -0 $@ | rg -z -v '~$' | fzf --read0 -0 -1)"
 
   if [[ -n $file ]]
   then
@@ -384,7 +384,7 @@ gscl() {
       --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
   fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
       --bind "ctrl-m:execute:
-                (grep -o '[a-f0-9]\{7\}' | head -1 |
+                (rg -o '[a-f0-9]\{7\}' | head -1 |
                 xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
                 {}
 FZF-EOF"
