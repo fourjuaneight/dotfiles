@@ -180,7 +180,7 @@ fdf() {
 
 # DIRECTORIES #
 
-# fa - Open via ag with line number
+# fa - Open via rg with line number
 fa() {
   local file
   local line

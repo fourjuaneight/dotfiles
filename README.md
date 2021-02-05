@@ -1,6 +1,6 @@
 # Dotfiles
 
-Files and scripts for configuring a development and terminal enviromant on macOS and Linux. Which _should_ also work with [Codespaces](https://github.com/features/codespaces) as well.
+Files and scripts for configuring a development and terminal enviromant on macOS and Linux. Which _should_ also work with [Codespaces](https://github.com/features/codespaces). Don't @ me.
 
 ---
 
