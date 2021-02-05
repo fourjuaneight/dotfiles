@@ -63,6 +63,9 @@ packadd! dracula_pro
 let g:dracula_colorterm = 0
 colorscheme dracula_pro_van_helsing
 
+" grep
+set grepprg=rg\ --vimgrep\ --smart-case\ --hidden\ --follow
+
 """""""""""""""""""""""""""""""""""""""""""""""
 " Plugins List
 """""""""""""""""""""""""""""""""""""""""""""""
@@ -84,7 +87,7 @@ Plug 'jparise/vim-graphql',
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'lepture/vim-jinja'
 Plug 'luochen1990/rainbow'
-Plug 'mileszs/ack.vim'
+Plug 'jremmen/vim-ripgrep'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'qpkorr/vim-bufkill'
 Plug 'scrooloose/nerdcommenter'
@@ -103,10 +106,9 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Related Configs
 """""""""""""""""""""""""""""""""""""""""""""""
-" ACK
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
+" Ripgrep
+let g:rg_command = 'rg --vimgrep -S'
+let g:rg_derive_root='true'
 
 " ALE
 let g:ale_sign_warning='--'
@@ -304,17 +306,17 @@ map <leader>tn :bn<cr>
 map <leader>tp :bp<cr>
 map <leader>td :bd<cr>
 
-" ACK
-nmap <leader>/a :Ack ""<Left>
-nmap <leader>/b :Ack "" %<Left><Left><Left>
-nmap <leader>/dc :Ack! --css ""<Left>
-nmap <leader>/ds :Ack! --sass ""<Left>
-nmap <leader>/dh :Ack! --html ""<Left>
-nmap <leader>/dm :Ack! --md ""<Left>
-nmap <leader>/dj :Ack! --js ""<Left>
-nmap <leader>/djn :Ack! --json ""<Left>
-nmap <leader>/dt :Ack! --ts ""<Left>
-nmap <leader>/dtx :Ack! --tsx ""<Left>
+" Ripgrep
+nmap <leader>/a :Rg ""<Left>
+nmap <leader>/b :Rg "" %:p<Left><Left><Left><Left><Left>
+nmap <leader>/dc :Rg -t css ""<Left>
+nmap <leader>/ds :Rg -t sass ""<Left>
+nmap <leader>/dh :Rg -t html ""<Left>
+nmap <leader>/dm :Rg -t md ""<Left>
+nmap <leader>/dj :Rg -t js ""<Left>
+nmap <leader>/djn :Rg -t json ""<Left>
+nmap <leader>/dt :Rg -t ts ""<Left>
+nmap <leader>/dtx :Rg -t tsx ""<Left>
 nmap <leader>/br :cdo %s///g \| update
 " https://chrisarcand.com/vims-new-cdo-command/
 
