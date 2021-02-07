@@ -1,13 +1,16 @@
+# Completions
 fpath=(~/.zsh/completions $fpath)
 
-# Brew
+# ENV
+source "${HOME}/.zshenv"
+
 if [ -d "/opt/homebrew/bin" ]; then
     export PATH="/opt/homebrew/bin:$PATH"
     GPG_TTY=$(tty)
     export GPG_TTY
 fi
 
-# Load zplug
+# zplug
 source "${HOME}/.zplug/init.zsh"
 
 zplug "hlissner/zsh-autopair", defer:2
@@ -20,17 +23,17 @@ zplug "sindresorhus/pure"
 
 zplug load
 
-# Loading Pure prompt
+# Pure prompt
 autoload -U promptinit
 promptinit
 PURE_GIT_DOWN_ARROW='↓'
 PURE_GIT_UP_ARROW='↑'
 PURE_PROMPT_SYMBOL='λ'
 
-# Loading zsh Autosuggestions
+# Autosuggestions
 [[ -f ~/.zsh/autosuggestions.zsh ]] && source ~/.zsh/autosuggestions.zsh
 
-# Load fzf
+# fzf
 [[ -f ~/.zsh/fzf.zsh ]] && source ~/.zsh/fzf.zsh
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -39,8 +42,8 @@ _fzf_compgen_path() {
   fd --hidden --follow --exclude ".git" . "$1"
 }
 
-# Load aliases
+# Aliases
 [[ -f ~/.zsh/aliases.zsh ]] && source ~/.zsh/aliases.zsh
 
-# Load functions
+# Functions
 [[ -f ~/.zsh/func.zsh ]] && source ~/.zsh/func.zsh
