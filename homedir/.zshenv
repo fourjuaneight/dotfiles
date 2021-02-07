@@ -1,12 +1,11 @@
-# PATH
-export PATH=/usr/local/bin:$PATH
+export PATH="/opt/homebrew/bin:$PATH"
 
 # Python
 export PYTHONPATH="/usr/lib/python3/dist-packages:$PYTHONPATH"
 
 # Go
 export GOPATH=$HOME/golang
-export GOROOT="$(brew --prefix golang)/libexec"
+export GOROOT="$(/opt/homebrew/bin/brew --prefix golang)/libexec"
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
 

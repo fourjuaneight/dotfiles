@@ -4,11 +4,9 @@ fpath=(~/.zsh/completions $fpath)
 # ENV
 source "${HOME}/.zshenv"
 
-if [ -d "/opt/homebrew/bin" ]; then
-    export PATH="/opt/homebrew/bin:$PATH"
-    GPG_TTY=$(tty)
-    export GPG_TTY
-fi
+# GPG
+GPG_TTY=$(tty)
+export GPG_TTY
 
 # zplug
 source "${HOME}/.zplug/init.zsh"
