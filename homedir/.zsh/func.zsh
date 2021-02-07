@@ -1,11 +1,11 @@
 # UTILITIES #
 
-# fh - repeat history
+# repeat history
 fh() {
   print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | gsed -r 's/ *[0-9]*\*? *//' | gsed -r 's/\\/\\\\/g')
 }
 
-# fex - find and extract archives
+# find and extract archives
 fex() {
   local files fname
   IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
@@ -22,7 +22,7 @@ fex() {
       *.tgz)      tar xvzf $files   ;;
       *.zip)      unzip $files      ;;
       *.Z)        uncompress $files ;;
-      *.7z)       7z x $files    ;;
+      *.7z)       7z x $files       ;;
       *)          echo "don't know how to extract '$files'..." ;;
     esac
   else
@@ -30,18 +30,19 @@ fex() {
   fi
 }
 
-# fkill - find and kill process
-fkl() {
+# find and kill process
+fkp() {
   local pid
-  pid=$(ps axco pid,command | sed 1d | fzf -m | mawk '{print $1}')
+  pid=$(ps axco pid,command,time | sed 1d | fzf -m | mawk '{print $1}')
 
   if [[ "x$pid" != "x" ]];
   then
     echo $pid | xargs kill -${1:-9}
+    fkp
   fi
 }
 
-## hammer a service with curl for a given number of times
+# hammer a service with curl for a given number of times
 curlhammer () {
   echo "curl -k -s -D - $1 -o /dev/null | rg 'HTTP/1.1' | sed 's/HTTP\/1.1 //'"
   for i in {1..$2}
@@ -50,9 +51,15 @@ curlhammer () {
   done
 }
 
+# zsh load times
+timezsh() {
+  shell=${1-$SHELL}
+  for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
+}
+
 # FONTS #
 
-# gla - glyphhanger whitelist Latin
+# glyphhanger whitelist Latin
 gla() {
   local files fname
   IFS=$'\n' files=($(fzf-tmux --query="$1.ttf" --multi --select-1 --exit-0))
@@ -60,7 +67,7 @@ gla() {
   [[ -n "$files" ]] && glyphhanger --LATIN --formats=woff2,woff --subset=$fname.ttf
 }
 
-# glu - glyphhanger whitelist US ASCII
+# glyphhanger whitelist US ASCII
 glu() {
   local files fname
   IFS=$'\n' files=($(fzf-tmux --query="$1.ttf" --multi --select-1 --exit-0))
@@ -71,12 +78,12 @@ glu() {
 
 # YOUTUBE #
 
-# ytv - youtube-dl beat video/audio quality
+# youtube-dl beat video/audio quality
 ytv() {
   youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio:' --merge-output-format mp4 -o "%(title)s.%(ext)s" $1
 }
 
-# yta - youtube-dl beat audio (only) quality
+# youtube-dl beat audio (only) quality
 yta() {
   youtube-dl -f bestaudio[ext=m4a] $1
 }
@@ -84,12 +91,12 @@ yta() {
 
 # IMAGES #
 
-# webp - converting PNGs to webp
+# converting PNGs to webp
 wbpng() {
   fd -e png | xargs -P 8 -I {} sh -c 'cwebp -q 90 $1 -o "${1%.png}.webp"' _ {} \;
 }
 
-# webp - converting JPEGs to webp
+# converting JPEGs to webp
 wbjpg() {
   find -e jpg | xargs -P 8 -I {} sh -c 'cwebp -q 90 $1 -o "${1%.jpg}.webp"' _ {} \;
 }
@@ -137,7 +144,7 @@ clipvid() {
 
 # TMUX #
 
-# tm - create new tmux session, or switch to existing one. Works from within tmux too. (@bag-man)
+# create new tmux session, or switch to existing one. Works from within tmux too. (@bag-man)
 # `tm` will allow you to select your tmux session via fzf.
 # `tm irc` will attach to the irc session (if it exists), else it will create it.
 tm() {
@@ -171,7 +178,7 @@ fif() {
   fi
 }
 
-# fdf - find and delete files
+# find and delete files
 fdf() {
   local files
   IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
@@ -180,7 +187,7 @@ fdf() {
 
 # DIRECTORIES #
 
-# fa - Open via rg with line number
+# Open via rg with line number
 fa() {
   local file
   local line
@@ -206,7 +213,7 @@ fo() {
   fi
 }
 
-# cf - fuzzy cd from anywhere
+# fuzzy cd from anywhere
 # ex: cf word1 word2 ... (even part of a file name)
 cf() {
   local file
@@ -224,7 +231,7 @@ cf() {
   fi
 }
 
-# fcd - cd to selected directory
+# cd to selected directory
 fcd() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
@@ -232,7 +239,7 @@ fcd() {
   cd "$dir"
 }
 
-# ffmv - find file and move to another directory
+# find file and move to another directory
 ffmv() {
   local file dest
   IFS=$'\n' file=($(fzf-tmux --query="$1" --multi --select-1 --exit-0)) &&
@@ -241,7 +248,7 @@ ffmv() {
   mv "$file" "$dest"
 }
 
-# fpcd - cd to selected parent directory
+# cd to selected parent directory
 fpcd() {
   local declare dirs=()
   get_parent_dirs() {
@@ -256,14 +263,14 @@ fpcd() {
   cd "$DIR"
 }
 
-# ffcd - cd into the directory of the selected file
+# cd into the directory of the selected file
 ffcd() {
    local file
    local dir
    file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
 }
 
-# ftr - tree selected directory
+# tree selected directory
 ftr() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
@@ -271,7 +278,7 @@ ftr() {
   tree "$dir" -I node_modules
 }
 
-# fdd - find and delete directory
+# find and delete directory
 fdd() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
@@ -283,13 +290,11 @@ fdd() {
 # GIT #
 
 # git log branch
-# (G)it(L)og(B)ranch
 glb() {
   git log --pretty=oneline --abbrev-commit origin/$1
 }
 
 # checkout git local branch
-# (G)it(C)heckout(B)(R)anch
 gcbr() {
   local branches branch
   branches=$(git branch) &&
@@ -298,7 +303,6 @@ gcbr() {
 }
 
 # checkout git remote branch
-# (G)it(C)heckout(R)emote(B)(R)anch
 gcrbr() {
   git fetch
   local branches branch selectedBranch
@@ -309,7 +313,6 @@ gcrbr() {
 }
 
 # create git branch and add to remote
-# (G)it(N)ew(B)(R)anch <NEW-BRANCH-NAME>
 gnbr() {
   git fetch
   git checkout -b $1
@@ -317,7 +320,6 @@ gnbr() {
 }
 
 # delete git local branch
-# (G)it(D)elete(B)(R)anch
 gdbr() {
   local branches branch
   branches=$(git branch) &&
@@ -326,7 +328,6 @@ gdbr() {
 }
 
 # merge git local branch into current
-# (G)it(M)erge(B)(R)anch
 gmbr() {
   local branches branch
   branches=$(git branch) &&
@@ -335,7 +336,6 @@ gmbr() {
 }
 
 # rebase git local branch into current
-# (G)it(R)(E)base(B)(R)anch
 grebr() {
   local branches branch
   branches=$(git branch) &&
@@ -344,14 +344,12 @@ grebr() {
 }
 
 # git pull rebase given branch
-# (G)it(P)ull(R)ebase
 gpr() {
   [[ "$#" != 1 ]] && local b="$(git_current_branch)"
   git pull --rebase origin "${b:=$1}"
 }
 
 # git reset soft to commit id
-# (G)it(R)eset(S)oft
 grs() {
   local commits commit
   commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --reverse) &&
@@ -360,7 +358,6 @@ grs() {
 }
 
 # git reset hard to commit id
-# (G)it(R)eset(H)ard
 grh() {
   local commits commit
   commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --reverse) &&
@@ -369,7 +366,6 @@ grh() {
 }
 
 # git revert to commit
-# (G)it(R)e(V)er(T)
 grvt() {
   local commits commit
   commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --reverse) &&
@@ -377,8 +373,7 @@ grvt() {
   git revert $(echo "$commit" | sed "s/ .*//")
 }
 
-# fshow - git commit browser
-# (G)it(S)how(C)commit(L)og
+# git commit browser
 gscl() {
   git log --graph --color=always \
       --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
@@ -390,7 +385,7 @@ gscl() {
 FZF-EOF"
 }
 
-# fgcm - find git commit and print selected message for new commit
+# find git commit and print selected message for new commit
 fgcm() {
   local commits commit
   commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%N%Creset %s' --abbrev-commit --reverse) &&
@@ -407,7 +402,6 @@ ediff() {
 # GITHUB CLI #
 
 # git create new pr, add title, select reviewer
-# (G)it(N)ew(P)(R)
 gnpr() {
   git fetch
   local branches selectedBranch branch reviewers handle

@@ -8,16 +8,20 @@ source "${HOME}/.zshenv"
 GPG_TTY=$(tty)
 export GPG_TTY
 
+# Colors
+if [[ $TERM == xterm ]]; then
+  TERM=xterm-256color
+fi
+
 # zplug
 source "${HOME}/.zplug/init.zsh"
 
 zplug "hlissner/zsh-autopair", defer:2
-zplug "zsh-users/zsh-history-substring-search"
-zplug "zdharma/history-search-multi-word"
 zplug "zsh-users/zsh-completions"
 zplug "zdharma/fast-syntax-highlighting"
 zplug "mafredri/zsh-async"
 zplug "sindresorhus/pure"
+zplug "lukechilds/zsh-nvm"
 
 zplug load
 
@@ -33,7 +37,7 @@ PURE_PROMPT_SYMBOL='λ'
 
 # fzf
 [[ -f ~/.zsh/fzf.zsh ]] && source ~/.zsh/fzf.zsh
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 _fzf_compgen_path() {
@@ -45,3 +49,4 @@ _fzf_compgen_path() {
 
 # Functions
 [[ -f ~/.zsh/func.zsh ]] && source ~/.zsh/func.zsh
+zmodload zsh/zprof

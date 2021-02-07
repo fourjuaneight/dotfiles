@@ -1,7 +1,8 @@
 # common cli commands
 alias cdh="cd ~"
 alias cds="cd /Volumes/Samuel"
-alias cdr="cd /Volumes/Samuel/Repos"
+alias cdsr="cd /Volumes/Samuel/Repos"
+alias cdwr="cd ~/Work/Repos"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -16,12 +17,8 @@ alias tree="tree -I node_modules"
 
 # common variations of 'ls' command
 alias ll="ls -l"
-alias lo="ls -o"
-alias lh="ls -lh"
-alias la="ls -la"
-alias sl="ls"
+alias la="ls -a"
 alias l="ls"
-alias s="ls"
 
 # search history
 alias hgrep="history | ag"
@@ -30,7 +27,6 @@ alias hgrep="history | ag"
 alias whois="whois -h whois-servers.net"
 
 # zsh
-alias vi="vim"
 alias zco="vim ~/.zshrc"
 alias zso="source ~/.zshrc"
 
@@ -81,10 +77,7 @@ alias nvu="nvm use"
 alias nviu="nvm install && nvm use --delete-prefix"
 alias nr="npm run"
 
-# mySQL
-alias msrs="mysql.server restart"
-alias msst="mysql.server stop"
-alias mss="mysql.server start"
+# Postgres
 alias psl="psql postgres -h localhost -l"
 
 # Git

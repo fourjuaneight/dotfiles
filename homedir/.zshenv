@@ -1,8 +1,5 @@
 export PATH="/opt/homebrew/bin:$PATH"
 
-# Python
-export PYTHONPATH="/usr/lib/python3/dist-packages:$PYTHONPATH"
-
 # Go
 export GOPATH=$HOME/golang
 export GOROOT="$(/opt/homebrew/bin/brew --prefix golang)/libexec"
@@ -15,5 +12,4 @@ source "$HOME/.cargo/env"
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+export NVM_LAZY_LOAD=true
