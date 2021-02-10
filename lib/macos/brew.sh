@@ -32,6 +32,7 @@ action "installing packages"
 brew install ack \
   certbot \
   cmake \
+  cocoapods \
   curl \
   dive \
   docker \

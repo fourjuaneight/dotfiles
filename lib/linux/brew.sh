@@ -18,6 +18,7 @@ ${HOME}/linuxbrew/.linuxbrew/bin/brew install homebrew-ffmpeg/ffmpeg/ffmpeg --wi
 
 action "installing packages"
 ${HOME}/linuxbrew/.linuxbrew/bin/brew install ack \
+  cocoapods \
   dive \
   fzf \
   gh \
