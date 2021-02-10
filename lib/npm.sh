@@ -8,6 +8,7 @@ action "installing global npm dependencies"
 npm i -g @angular/cli\
   @babel/cli \
   @capacitor/cli \
+  @ionic/cli \
   @nestjs/cli \
   @typescript-eslint/eslint-plugin \
   @typescript-eslint/parser \
@@ -22,14 +23,14 @@ npm i -g @angular/cli\
   eslint-plugin-prettier \
   eslint-plugin-react \
   eslint-plugin-react-hooks \
-  fkill-cli \
   gatsby-cli \
   glyphhanger \
   husky \
+  ionic \
   lint-staged \
-  npm-fzf \
   postcss \
   prettier \
+  svelte \
   typescript \
   webpack-cli
 
