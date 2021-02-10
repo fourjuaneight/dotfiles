@@ -4,3 +4,4 @@ homedir/.vim/plugged
 homedir/.vim/sessions
 homedir/.config/coc/extensions/node_modules
 homedir/.config/gh/hosts.yml
+homedir/.config/configstore/nodemon.json
