@@ -74,9 +74,9 @@
 		</array>
 	</dict>
 	<key>createdby</key>
-	<string>Maria</string>
+	<string>Space-Maria</string>
 	<key>description</key>
-	<string></string>
+	<string>Open conf files on VSCode.</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -209,7 +209,7 @@
 				<key>keyword</key>
 				<string>conf</string>
 				<key>subtext</key>
-				<string></string>
+				<string>Open conf files on VSCode</string>
 				<key>text</key>
 				<string>Edit configs</string>
 				<key>withspace</key>
