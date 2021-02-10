@@ -63,9 +63,6 @@ packadd! dracula_pro
 let g:dracula_colorterm = 0
 colorscheme dracula_pro_van_helsing
 
-" grep
-set grepprg=rg\ --vimgrep\ --smart-case\ --hidden\ --follow
-
 """""""""""""""""""""""""""""""""""""""""""""""
 " Plugins List
 """""""""""""""""""""""""""""""""""""""""""""""
@@ -106,10 +103,6 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Related Configs
 """""""""""""""""""""""""""""""""""""""""""""""
-" Ripgrep
-let g:rg_command = 'rg --vimgrep -S'
-let g:rg_derive_root='true'
-
 " ALE
 let g:ale_sign_warning='--'
 let g:ale_sign_error='>>'
@@ -261,6 +254,10 @@ let g:NERDCustomDelimiters = { 'css': { 'left': '/*','right': '*/' } }
 " Rainbow
 let g:rainbow_active = 1 " 0 if you want to enable it later via :RainbowToggle
 
+" Ripgrep
+let g:rg_command = 'rg --vimgrep -S'
+let g:rg_derive_root='true'
+
 " Ultisnips
 " snippets location
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "snips"]
@@ -307,8 +304,9 @@ map <leader>tp :bp<cr>
 map <leader>td :bd<cr>
 
 " Ripgrep
+nmap <leader>/x <C-w>j<Bar>:bd<cr><Bar><C-w>l
 nmap <leader>/a :Rg ""<Left>
-nmap <leader>/b :Rg "" %:p<Left><Left><Left><Left><Left>
+nmap <leader>/b <C-w>l<Bar>:Rg "" %:p<Left><Left><Left><Left><Left>
 nmap <leader>/dc :Rg -t css ""<Left>
 nmap <leader>/ds :Rg -t sass ""<Left>
 nmap <leader>/dh :Rg -t html ""<Left>
@@ -367,11 +365,11 @@ nmap <leader>gr :Git reset<cr>
 nmap <leader>gdf :Gdelete<cr>
 
 " fzf
-nmap <leader>/d :FZF<cr> " search files in dir
+nmap <leader>/d <C-w>l<Bar>:FZF<cr>
 
 " NERDCommenter
-imap <leader>cc <plug>NERDCommenterComment " comment selection
-imap <leader>ct <plug>NERDCommenterToggle " toggle comment selection
+imap <leader>cc <plug>NERDCommenterComment
+imap <leader>ct <plug>NERDCommenterToggle
 
 " NERDTree
 nmap <leader>b :NERDTreeToggle<cr>
