@@ -61,9 +61,7 @@
 				<key>paths</key>
 				<array>
 					<string>/Applications/iTerm.app</string>
-					<string>/Applications/Tower.app</string>
 					<string>/Applications/Visual Studio Code.app</string>
-					<string>/Applications/Docker.app</string>
 				</array>
 				<key>toggle</key>
 				<false/>

@@ -60,10 +60,6 @@
 				<array>
 					<string>/System/Applications/Messages.app</string>
 					<string>/Applications/Safari.app</string>
-					<string>/Applications/Slack.app</string>
-					<string>/Applications/Spark.app</string>
-					<string>/Applications/Things3.app</string>
-					<string>/Applications/Microsoft Teams.app</string>
 				</array>
 				<key>toggle</key>
 				<false/>

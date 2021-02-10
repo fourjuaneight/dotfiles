@@ -91,7 +91,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>code ~/dotfiles</string>
+				<string>/usr/local/bin/code ~/dotfiles</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -114,7 +114,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>code ~/Library/Application Support/Code/User/settings.json</string>
+				<string>/usr/local/bin/code ~/Library/Application Support/Code/User/settings.json</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -142,7 +142,7 @@
 						<key>matchmode</key>
 						<integer>0</integer>
 						<key>matchstring</key>
-						<string>dotfiles</string>
+						<string>dot</string>
 						<key>outputlabel</key>
 						<string>Dotfiles</string>
 						<key>uid</key>
@@ -211,7 +211,7 @@
 				<key>subtext</key>
 				<string></string>
 				<key>text</key>
-				<string>Edit config</string>
+				<string>Edit configs</string>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -230,7 +230,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>code ~/.ssh</string>
+				<string>/usr/local/bin/code ~/.ssh</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -253,7 +253,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>code ~/.gnupg</string>
+				<string>/usr/local/bin/code ~/.gnupg</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
