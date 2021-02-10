@@ -307,14 +307,15 @@ map <leader>td :bd<cr>
 nmap <leader>/x <C-w>j<Bar>:bd<cr><Bar><C-w>l
 nmap <leader>/a :Rg ""<Left>
 nmap <leader>/b <C-w>l<Bar>:Rg "" %:p<Left><Left><Left><Left><Left>
-nmap <leader>/dc :Rg -t css ""<Left>
-nmap <leader>/ds :Rg -t sass ""<Left>
-nmap <leader>/dh :Rg -t html ""<Left>
-nmap <leader>/dm :Rg -t md ""<Left>
-nmap <leader>/dj :Rg -t js ""<Left>
-nmap <leader>/djn :Rg -t json ""<Left>
-nmap <leader>/dt :Rg -t ts ""<Left>
-nmap <leader>/dtx :Rg -t tsx ""<Left>
+nmap <leader>/bc :Rg -t css ""<Left>
+nmap <leader>/bs :Rg -t sass ""<Left>
+nmap <leader>/bh :Rg -t html ""<Left>
+nmap <leader>/bm :Rg -t md ""<Left>
+nmap <leader>/bjs :Rg -t js ""<Left>
+nmap <leader>/bjsx :Rg -t jsx ""<Left>
+nmap <leader>/bjn :Rg -t json ""<Left>
+nmap <leader>/bts :Rg -t ts ""<Left>
+nmap <leader>/btsx :Rg -t tsx ""<Left>
 nmap <leader>/br :cdo %s///g \| update
 " https://chrisarcand.com/vims-new-cdo-command/
 
