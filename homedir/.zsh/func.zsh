@@ -308,8 +308,8 @@ gcrbr() {
   local branches branch selectedBranch
   branches=$(git branch -r) &&
   selectedBranch=$(echo "$branches" | fzf +s +m -e) &&
-	branch=$(echo "$selectedBranch" | sed "s:.* origin/::" | sed "s:.* ::")
-	git checkout $branch
+  branch=$(echo "$selectedBranch" | sed "s:.* origin/::" | sed "s:.* ::")
+  git checkout $branch
 }
 
 # create git branch and add to remote
