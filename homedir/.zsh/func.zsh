@@ -431,7 +431,7 @@ gmpr() {
   else
     selectedPR=$(gh pr list | fzf --ansi --tac +s +m -e) &&
     PR=$(echo $selectedPR | sed -E 's/^([[:digit:]]+).*/\1/g') &&
-    gh pr merge $1 -s
+    gh pr merge $PR -s
   fi
 }
 
