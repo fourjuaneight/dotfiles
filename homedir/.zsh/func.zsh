@@ -422,6 +422,19 @@ gvpr() {
   gh pr view $PR
 }
 
+# git merge PR. Provide number or select from open PRs
+gmpr() {
+  git fetch
+  local selectedPR PR
+  if [[ "$1" ]]; then
+    gh pr merge $1 -s
+  else
+    selectedPR=$(gh pr list | fzf --ansi --tac +s +m -e) &&
+    PR=$(echo $selectedPR | sed -E 's/^([[:digit:]]+).*/\1/g') &&
+    gh pr merge $1 -s
+  fi
+}
+
 
 # DOCKER #
 
