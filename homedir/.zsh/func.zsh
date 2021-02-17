@@ -401,16 +401,25 @@ ediff() {
 
 # GITHUB CLI #
 
-# git create new pr, add title, select reviewer
+# git create new PR, add title, select reviewer
 gnpr() {
   git fetch
   local branches selectedBranch branch reviewers handle
   branches=$(git branch -r) &&
-  selectedBranch=$(echo "$branches" | sed 's/origin\///g' | fzf +s +m -e) &&
+  selectedBranch=$(echo "$branches" | sed 's/origin\///g' | fzf --ansi +s +m -e) &&
   branch=$(echo $selectedBranch | sed 's/^[[:space:]]*//g') &&
   reviewers=(fourjuaneight nathSierra jfbloom22) &&
   handle=$(print -l "${(@)reviewers}" | fzf --ansi --tac +s +m -e) &&
   gh pr create -B $branch -t $1 -r $handle
+}
+
+# git list PRs, then inspect
+gvpr() {
+  git fetch
+  local selectedPR PR
+  selectedPR=$(gh pr list | fzf --ansi --tac +s +m -e) &&
+  PR=$(echo $selectedPR | sed -E 's/^([[:digit:]]+).*/\1/g') &&
+  gh pr view $PR
 }
 
 
