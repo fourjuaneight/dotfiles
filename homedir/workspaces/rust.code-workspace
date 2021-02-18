@@ -1,0 +1,19 @@
+{
+  "folders": [
+    {
+      "name": "",
+      "path": "."
+    }
+  ],
+  "extensions": {
+    "recommendations": [
+      "rust-lang.rust",
+      "statiolake.vscode-rustfmt"
+    ]
+  },
+  "settings": {
+    "workbench.colorCustomizations": {
+      "statusBar.background": "#C99B3C"
+    }
+  }
+}

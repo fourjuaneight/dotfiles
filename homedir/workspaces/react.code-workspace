@@ -1,0 +1,19 @@
+{
+  "folders": [
+    {
+      "name": "",
+      "path": "."
+    }
+  ],
+  "extensions": {
+    "recommendations": [
+      "jpoissonnier.vscode-styled-components",
+      "skyran.js-jsx-snippets"
+    ]
+  },
+  "settings": {
+    "workbench.colorCustomizations": {
+      "statusBar.background": "#7ED0EF"
+    }
+  }
+}

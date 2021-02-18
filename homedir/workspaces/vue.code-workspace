@@ -1,0 +1,18 @@
+{
+  "folders": [
+    {
+      "name": "",
+      "path": "."
+    }
+  ],
+  "extensions": {
+    "recommendations": [
+      "octref.vetur"
+    ]
+  },
+  "settings": {
+    "workbench.colorCustomizations": {
+      "statusBar.background": "#64B687"
+    }
+  }
+}

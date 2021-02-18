@@ -1,0 +1,26 @@
+{
+  "folders": [
+    {
+      "name": "Oransi",
+      "path": "/Users/fourjuaneight/Work/Repos/oransi-app"
+    },
+    {
+      "name": "Geo",
+      "path": "/Users/fourjuaneight/Work/Repos/geotech-casts-mobile"
+    }
+  ],
+  "extensions": {
+    "recommendations": [
+      "angular.ng-template",
+      "fivethree.vscode-ionic-snippets",
+      "johnpapa.angular2"
+    ]
+  },
+  "settings": {
+    "angular.experimental-ivy": true,
+    "angular.trace.server": "messages",
+    "workbench.colorCustomizations": {
+      "statusBar.background": "#e23238"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "folders": [
+    {
+      "name": "Tenjin",
+      "path": "/Users/fourjuaneight/tenjin"
+    }
+  ],
+  "extensions": {
+    "recommendations": [
+      "golang.go"
+    ]
+  },
+  "settings": {
+    "workbench.colorCustomizations": {
+      "statusBar.background": "#87C2D4"
+    }
+  }
+}

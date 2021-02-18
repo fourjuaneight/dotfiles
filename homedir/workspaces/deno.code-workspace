@@ -1,0 +1,18 @@
+{
+  "folders": [
+    {
+      "name": "Data",
+      "path": "/Users/fourjuaneight/data"
+    }
+  ],
+  "extensions": {
+    "recommendations": [
+      "denoland.vscode-deno"
+    ]
+  },
+  "settings": {
+    "workbench.colorCustomizations": {
+      "statusBar.background": "#191E2D"
+    }
+  }
+}
