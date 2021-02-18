@@ -12,6 +12,7 @@
     ]
   },
   "settings": {
+    "editor.defaultFormatter": "rust-lang.rust",
     "workbench.colorCustomizations": {
       "statusBar.background": "#C99B3C"
     }

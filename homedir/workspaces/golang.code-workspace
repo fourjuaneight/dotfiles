@@ -11,6 +11,8 @@
     ]
   },
   "settings": {
+    "go.useCodeSnippetsOnFunctionSuggest": true,
+    "go.useLanguageServer": true,
     "workbench.colorCustomizations": {
       "statusBar.background": "#87C2D4"
     }
