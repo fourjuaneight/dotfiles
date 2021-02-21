@@ -51,6 +51,7 @@ brew install ack \
   jasper \
   libjpeg \
   libmemcached \
+  libvips \
   llvm \
   macvim \
   mawk \
