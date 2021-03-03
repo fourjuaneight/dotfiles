@@ -21,7 +21,6 @@ zplug "zsh-users/zsh-completions"
 zplug "zdharma/fast-syntax-highlighting"
 zplug "mafredri/zsh-async"
 zplug "sindresorhus/pure"
-zplug "lukechilds/zsh-nvm"
 
 zplug load
 
