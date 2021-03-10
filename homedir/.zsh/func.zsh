@@ -396,6 +396,11 @@ fgcm() {
   print -z $message
 }
 
+# edit commit messages
+gecm() {
+	git rebase -i HEAD~$1
+}
+
 # Emacs Diff
 ediff() {
   emacs --eval "(ediff-files \"$1\" \"$2\")";
