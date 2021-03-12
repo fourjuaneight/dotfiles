@@ -21,7 +21,7 @@
     "angular.trace.server": "messages",
     "workbench.colorCustomizations": {
       "statusBar.background": "#e23238",
-      "statusBar.foreground": "#0B0D0F"
+      "statusBar.foreground": "#263340"
     }
   }
 }
