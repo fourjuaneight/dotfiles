@@ -1,8 +1,7 @@
 {
   "folders": [
     {
-      "name": "Beacon Web",
-      "path": "/Volumes/Samuel/Repos/Beacon-MMG-Web"
+      "path": "../../../Work/Repos/Beacon-MMG-App"
     }
   ],
   "extensions": {
@@ -13,7 +12,8 @@
   },
   "settings": {
     "workbench.colorCustomizations": {
-      "statusBar.background": "#7ED0EF"
+      "statusBar.background": "#7ED0EF",
+      "statusBar.foreground": "#0B0D0F"
     }
   }
 }
