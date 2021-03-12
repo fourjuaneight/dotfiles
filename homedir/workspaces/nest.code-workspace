@@ -7,7 +7,8 @@
   ],
   "settings": {
     "workbench.colorCustomizations": {
-      "statusBar.background": "#D73E4B"
+      "statusBar.background": "#D73E4B",
+      "statusBar.foreground": "#0B0D0F"
     }
   }
 }
