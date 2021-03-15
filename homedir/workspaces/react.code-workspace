@@ -1,7 +1,12 @@
 {
   "folders": [
     {
+      "name": "Beacon App",
       "path": "../../../Work/Repos/Beacon-MMG-App"
+    },
+    {
+      "name": "Beacon Web",
+      "path": "../../../Work/Repos/Beacon-MMG-Web"
     }
   ],
   "extensions": {
