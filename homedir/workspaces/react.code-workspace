@@ -7,6 +7,9 @@
     {
       "name": "Beacon Web",
       "path": "../../../Work/Repos/Beacon-MMG-Web"
+    },
+    {
+      "path": "../../../Work/Repos/dp-website"
     }
   ],
   "extensions": {
