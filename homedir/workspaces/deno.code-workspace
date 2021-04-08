@@ -7,12 +7,16 @@
   ],
   "extensions": {
     "recommendations": [
-      "denoland.vscode-deno"
+      "denoland.vscode-deno",
+      "laurencebahiirwa.deno-std-lib-snippets"
     ]
   },
   "settings": {
     "workbench.colorCustomizations": {
       "statusBar.background": "#191E2D"
-    }
+    },
+    "deno.enable": true,
+    "deno.lint": true,
+    "deno.unstable": true
   }
 }
