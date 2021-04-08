@@ -1,0 +1,17 @@
+{
+  "folders": [
+    {
+      "name": "Archiver",
+      "path": "../../../archiver"
+    }
+  ],
+  "extensions": {
+    "recommendations": []
+  },
+  "settings": {
+    "workbench.colorCustomizations": {
+      "statusBar.background": "#e7822e",
+      "statusBar.foreground": "#0B0D0F"
+    }
+  }
+}
