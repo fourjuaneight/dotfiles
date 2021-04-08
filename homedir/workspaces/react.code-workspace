@@ -2,14 +2,15 @@
   "folders": [
     {
       "name": "Beacon App",
-      "path": "../../../Work/Repos/Beacon-MMG-App"
+      "path": "../../../../../Volumes/Samuel/Repos/Beacon-MMG-App"
     },
     {
       "name": "Beacon Web",
-      "path": "../../../Work/Repos/Beacon-MMG-Web"
+      "path": "../../../../../Volumes/Samuel/Repos/Beacon-MMG-Web"
     },
     {
-      "path": "../../../Work/Repos/dp-website"
+      "name": "Decision Point",
+      "path": "../../../../../Volumes/Samuel/Repos/dp-website"
     }
   ],
   "extensions": {
