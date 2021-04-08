@@ -9,6 +9,14 @@
       "path": "../../../../../Volumes/Samuel/Repos/Beacon-MMG-Web"
     },
     {
+      "name": "ToggleBooks",
+      "path": "../../../../../Volumes/Samuel/Repos/togglebooks-web"
+    },
+    {
+      "name": "ToggleBooks API",
+      "path": "../../../../../Volumes/Samuel/Repos/togglebooks-api"
+    },
+    {
       "name": "Decision Point",
       "path": "../../../../../Volumes/Samuel/Repos/dp-website"
     }
