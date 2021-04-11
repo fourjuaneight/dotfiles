@@ -108,3 +108,10 @@ alias gstap="git stash pop"
 
 alias gts="git tag -s"
 alias gtv="git tag | sort -V"
+
+# system update
+alias rup="rustup update"
+alias cup="cargo install-update -a"
+alias bup="brew update"
+alias bug="brew upgrade && brew cleanup"
+alias sysup="rustup update && brew update && brew upgrade && brew cleanup && cargo install-update -a"
