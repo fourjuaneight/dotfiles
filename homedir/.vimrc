@@ -63,6 +63,13 @@ packadd! dracula_pro
 let g:dracula_colorterm = 0
 colorscheme dracula_pro_van_helsing
 
+" Ignored files/directories from autocomplete (and CtrlP)
+set wildignore+=*/tmp/*
+set wildignore+=*.so
+set wildignore+=*.zip
+set wildignore+=*/vendor/bundle/*
+set wildignore+=*/node_modules/
+
 """""""""""""""""""""""""""""""""""""""""""""""
 " Plugins List
 """""""""""""""""""""""""""""""""""""""""""""""
