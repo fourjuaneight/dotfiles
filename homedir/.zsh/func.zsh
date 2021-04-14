@@ -1,3 +1,5 @@
+source ${HOME}/dotfiles/lib/util/echos.sh
+
 # UTILITIES #
 
 # repeat history
@@ -55,6 +57,30 @@ curlhammer () {
 timezsh() {
   shell=${1-$SHELL}
   for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
+}
+
+# system dependencies and tooling updates
+sysup() {
+  bot "Running dependency updates."
+
+  minibot "updating Rust"
+  rustup update
+
+  minibot "updating Brew"
+  brew update
+  brew upgrade
+  brew cleanup
+
+  minibot "updating Cargo"
+  cargo install-update -a
+
+  bot "Running tooling updates."
+
+  minibot "updating Zplug"
+  zplug update
+
+  minibot "updating Vim"
+  vim +PlugUpgrade +PlugUpdate +qa
 }
 
 # FONTS #
