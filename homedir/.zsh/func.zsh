@@ -91,8 +91,8 @@ gla() {
   IFS=$'\n' files=($(fzf-tmux --query="$1.ttf" --multi --select-1 --exit-0))
   fname="${files%.*}";
   [[ -n "$files" ]] && glyphhanger --LATIN --formats=woff2,woff --subset=$fname.ttf
-	mv $fname-subset.woff $fname.woff
-	mv $fname-subset.woff2 $fname.woff2
+  mv $fname-subset.woff $fname.woff
+  mv $fname-subset.woff2 $fname.woff2
 }
 
 # glyphhanger whitelist US ASCII
@@ -424,7 +424,7 @@ fgcm() {
 
 # edit commit messages
 gecm() {
-	git rebase -i HEAD~$1
+  git rebase -i HEAD~$1
 }
 
 # Emacs Diff
