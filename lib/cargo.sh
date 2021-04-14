@@ -9,6 +9,7 @@ cargo install deno --locked
 cargo install cargo-update \
   fd-find \
   git-delta \
-  ripgrep
+  ripgrep \
+  wrangler
 
 ok "oh hey, it worked! done installing cargos."
