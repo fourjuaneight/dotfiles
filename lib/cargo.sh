@@ -6,7 +6,8 @@ minibot "Little Gary here! Ok. Let's try to install some cargos."
 
 action "installing rust packages"
 cargo install deno --locked
-cargo install cargo-update \
+cargo install alacritty \
+  cargo-update \
   fd-find \
   git-delta \
   ripgrep \
