@@ -11,6 +11,7 @@ cargo install alacritty \
   fd-find \
   git-delta \
   ripgrep \
+  websocat \
   wrangler
 
 ok "oh hey, it worked! done installing cargos."

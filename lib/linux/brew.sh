@@ -24,6 +24,7 @@ ${HOME}/linuxbrew/.linuxbrew/bin/brew install ack \
   gh \
   go \
   webp \
+  xo/xo/usql \
   youtube-dl \
   zsh-autosuggestions \
   zsh-syntax-highlighting
