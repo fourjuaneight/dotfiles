@@ -5,8 +5,12 @@
       "path": "../../../../../Volumes/Samuel/Repos/oransi-app"
     },
     {
-      "name": "Geo",
+      "name": "Geo Mobile",
       "path": "../../../../../Volumes/Samuel/Repos/geotech-casts-mobile"
+    },
+    {
+      "name": "Geo Web",
+      "path": "../../../../../Volumes/Samuel/Repos/geotech-casts-web"
     }
   ],
   "extensions": {
