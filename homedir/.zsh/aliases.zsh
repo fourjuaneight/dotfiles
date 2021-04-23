@@ -14,7 +14,7 @@ alias .........="cd ../../../../../../../.."
 alias cl="clear"
 alias dot="cd ~/dotfiles"
 alias tree="tree -I node_modules"
-alias usesam=lsof | grep /Volumes/Samuel
+alias usesam="lsof | grep /Volumes/Samuel"
 
 # common variations of 'ls' command
 alias ll="ls -l"
