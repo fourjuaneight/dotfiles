@@ -185,20 +185,20 @@ tm() {
 
 
 # FILES #
-# select two files, but fold lines longer than 20 characters, then diff
+# select two files, but fold lines longer than 20 characters, then diff (via delta)
 diffLongSel() {
   local file1 file2
   file1=$(fzf +m -q "$1") &&
   file2=$(fzf +m -q "$1") &&
-  diff <(fold -s -w 20 $file1) <(fold -s -w 20 $file2)
+  delta <(fold -s -w 20 $file1) <(fold -s -w 20 $file2)
 }
 
-# select two files, then diff
+# select two files, then diff (via delta)
 diffSel() {
   local file1 file2
   file1=$(fzf +m -q "$1") &&
   file2=$(fzf +m -q "$1") &&
-  diff $file1 $file2
+  delta $file1 $file2
 }
 
 # fe [FUZZY PATTERN] - Open the selected file with the default editor
