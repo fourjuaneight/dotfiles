@@ -70,6 +70,18 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>9F2E81F6-9B36-4825-ACEB-2FA74CACB051</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>576B7955-81B2-4EFD-8F2A-8B51386451E1</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
 		</array>
 		<key>63C90BA8-6A68-4D70-8E35-F4FA4843ACC6</key>
 		<array>
@@ -138,6 +150,29 @@
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>86FF68B4-263C-4B63-92F4-657F7DE9751E</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>/usr/local/bin/code ~/.ssh</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>FCF2A006-0520-4920-A2F2-A566AA31336D</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -216,6 +251,20 @@
 						<key>uid</key>
 						<string>9A8AF695-3C67-4814-9141-D094B7B3A003</string>
 					</dict>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>scriptable</string>
+						<key>outputlabel</key>
+						<string>Scriptable</string>
+						<key>uid</key>
+						<string>576B7955-81B2-4EFD-8F2A-8B51386451E1</string>
+					</dict>
 				</array>
 				<key>elselabel</key>
 				<string>else</string>
@@ -226,29 +275,6 @@
 			<string>21641396-0315-418B-A9AA-91B3ECC4F468</string>
 			<key>version</key>
 			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>/usr/local/bin/code ~/.ssh</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>5</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>FCF2A006-0520-4920-A2F2-A566AA31336D</string>
-			<key>version</key>
-			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -317,6 +343,29 @@
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>/usr/local/bin/code ~/Library/Mobile Documents/iCloud~dk~simonbs~Scriptable/Documents</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>9F2E81F6-9B36-4825-ACEB-2FA74CACB051</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
@@ -336,7 +385,7 @@
 			<key>xpos</key>
 			<integer>240</integer>
 			<key>ypos</key>
-			<integer>280</integer>
+			<integer>355</integer>
 		</dict>
 		<key>497E74AA-F1E5-4DCD-AB30-0ABDE68E71FB</key>
 		<dict>
@@ -345,14 +394,14 @@
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>585</integer>
+			<integer>605</integer>
 		</dict>
 		<key>63C90BA8-6A68-4D70-8E35-F4FA4843ACC6</key>
 		<dict>
 			<key>xpos</key>
 			<integer>30</integer>
 			<key>ypos</key>
-			<integer>320</integer>
+			<integer>410</integer>
 		</dict>
 		<key>86FF68B4-263C-4B63-92F4-657F7DE9751E</key>
 		<dict>
@@ -361,7 +410,16 @@
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>165</integer>
+			<integer>170</integer>
+		</dict>
+		<key>9F2E81F6-9B36-4825-ACEB-2FA74CACB051</key>
+		<dict>
+			<key>note</key>
+			<string>Scriptable</string>
+			<key>xpos</key>
+			<integer>520</integer>
+			<key>ypos</key>
+			<integer>745</integer>
 		</dict>
 		<key>D2E3065D-0A9F-4220-8306-C701C3B1E775</key>
 		<dict>
@@ -370,7 +428,7 @@
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>445</integer>
+			<integer>460</integer>
 		</dict>
 		<key>FCF2A006-0520-4920-A2F2-A566AA31336D</key>
 		<dict>
@@ -379,7 +437,7 @@
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>305</integer>
+			<integer>315</integer>
 		</dict>
 	</dict>
 	<key>webaddress</key>
