@@ -6,6 +6,7 @@
     }
   ],
   "settings": {
+    "deno.enable": false,
     "workbench.colorCustomizations": {
       "statusBar.background": "#D73E4B",
       "statusBar.foreground": "#263340"

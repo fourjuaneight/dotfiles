@@ -23,6 +23,7 @@
   "settings": {
     "angular.experimental-ivy": true,
     "angular.trace.server": "messages",
+    "deno.enable": false,
     "workbench.colorCustomizations": {
       "statusBar.background": "#e23238",
       "statusBar.foreground": "#263340"

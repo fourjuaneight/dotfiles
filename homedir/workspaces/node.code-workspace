@@ -9,6 +9,7 @@
     "recommendations": []
   },
   "settings": {
+    "deno.enable": false,
     "workbench.colorCustomizations": {
       "statusBar.background": "#066300",
       "statusBar.foreground": "#ffffff"

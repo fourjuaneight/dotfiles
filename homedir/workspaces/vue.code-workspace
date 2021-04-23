@@ -11,6 +11,7 @@
     ]
   },
   "settings": {
+    "deno.enable": false,
     "vetur.experimental.templateInterpolationService": true,
     "workbench.colorCustomizations": {
       "statusBar.background": "#64B687",
