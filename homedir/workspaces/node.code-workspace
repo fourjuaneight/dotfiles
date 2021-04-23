@@ -3,6 +3,10 @@
     {
       "name": "Archiver",
       "path": "../../../archiver"
+    },
+    {
+      "name": "Scriptable",
+      "path": "../../../Library/Mobile Documents/iCloud~dk~simonbs~Scriptable/Documents"
     }
   ],
   "extensions": {
