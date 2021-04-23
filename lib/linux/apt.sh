@@ -26,7 +26,6 @@ apt-get install -y apt-transport-https \
   cmake \
   coreutils \
   curl \
-  diff-so-fancy \
   findutils \
   font-manager \
   fontconfig \

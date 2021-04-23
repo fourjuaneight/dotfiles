@@ -34,7 +34,6 @@ brew install ack \
   cmake \
   cocoapods \
   curl \
-  diff-so-fancy \
   dive \
   docker \
   duti \
