@@ -186,7 +186,7 @@ tm() {
 
 # FILES #
 # select two files, but fold lines longer than 20 characters, then diff
-diffLong() {
+diffLongSel() {
   local file1 file2
   file1=$(fzf +m -q "$1") &&
   file2=$(fzf +m -q "$1") &&
@@ -194,7 +194,7 @@ diffLong() {
 }
 
 # select two files, then diff
-diffLong() {
+diffSel() {
   local file1 file2
   file1=$(fzf +m -q "$1") &&
   file2=$(fzf +m -q "$1") &&
