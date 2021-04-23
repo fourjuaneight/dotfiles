@@ -5,14 +5,14 @@
 	<key>bundleid</key>
 	<string></string>
 	<key>category</key>
-	<string>Productivity</string>
+	<string>Internet</string>
 	<key>connections</key>
 	<dict>
-		<key>F21DCA09-B7E3-4E47-BD4A-5F5030BF326A</key>
+		<key>02DE36DB-0F5B-4B1D-9B25-FA9CC27F6E4B</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>CCA3B72C-F425-4F50-9E66-2CCBCA397F80</string>
+				<string>5B7D60F7-18F3-495C-84E4-2CD9C0A7FFBF</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -23,51 +23,52 @@
 		</array>
 	</dict>
 	<key>createdby</key>
-	<string>Maria</string>
+	<string>Space-Maria</string>
 	<key>description</key>
 	<string></string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>Open Testing Apps</string>
+	<string>Zoom Dev Chat</string>
 	<key>objects</key>
 	<array>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>keyword</key>
-				<string>testing</string>
-				<key>subtext</key>
+				<key>browser</key>
+				<string>com.apple.Safari</string>
+				<key>spaces</key>
 				<string></string>
-				<key>text</key>
-				<string>Testing Apps</string>
-				<key>withspace</key>
-				<false/>
+				<key>url</key>
+				<string>https://us02web.zoom.us/j/82346047649?pwd=YXVjUURKNHQyckk1R2Z3TFdlTHVMUT09</string>
+				<key>utf8</key>
+				<true/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
+			<string>alfred.workflow.action.openurl</string>
 			<key>uid</key>
-			<string>F21DCA09-B7E3-4E47-BD4A-5F5030BF326A</string>
+			<string>5B7D60F7-18F3-495C-84E4-2CD9C0A7FFBF</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>paths</key>
-				<array>
-					<string>/Applications/Firefox.app</string>
-					<string>/Applications/Google Chrome.app</string>
-				</array>
-				<key>toggle</key>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>dev chat</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Dev Channel</string>
+				<key>withspace</key>
 				<false/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.launchfiles</string>
+			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
-			<string>CCA3B72C-F425-4F50-9E66-2CCBCA397F80</string>
+			<string>02DE36DB-0F5B-4B1D-9B25-FA9CC27F6E4B</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -76,19 +77,19 @@
 	<string></string>
 	<key>uidata</key>
 	<dict>
-		<key>CCA3B72C-F425-4F50-9E66-2CCBCA397F80</key>
+		<key>02DE36DB-0F5B-4B1D-9B25-FA9CC27F6E4B</key>
 		<dict>
 			<key>xpos</key>
-			<integer>250</integer>
+			<integer>130</integer>
 			<key>ypos</key>
-			<integer>260</integer>
+			<integer>145</integer>
 		</dict>
-		<key>F21DCA09-B7E3-4E47-BD4A-5F5030BF326A</key>
+		<key>5B7D60F7-18F3-495C-84E4-2CD9C0A7FFBF</key>
 		<dict>
 			<key>xpos</key>
-			<integer>100</integer>
+			<integer>320</integer>
 			<key>ypos</key>
-			<integer>260</integer>
+			<integer>145</integer>
 		</dict>
 	</dict>
 	<key>webaddress</key>
