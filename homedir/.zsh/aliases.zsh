@@ -93,6 +93,7 @@ alias gf="git fetch"
 alias gup="git push"
 
 alias gp="git pull --rebase"
+alias gsp="git stash && git pull --rebase && git stash pop"
 
 alias gst="git status"
 
