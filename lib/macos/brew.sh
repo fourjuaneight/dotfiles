@@ -30,6 +30,7 @@ brew install heroku
 
 action "installing packages"
 brew install ack \
+  act \
   certbot \
   cmake \
   cocoapods \
