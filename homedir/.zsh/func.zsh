@@ -520,5 +520,5 @@ dckup() {
   local services selectedService
   services=$(docker-compose ps --services) &&
   selectedService=$(echo "$services" | fzf +s -e) &&
-  clear && docker-compose up $selectedService
+  clear && docker compose up $selectedService
 }
