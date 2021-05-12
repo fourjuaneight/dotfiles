@@ -119,14 +119,24 @@ yta() {
 
 # IMAGES #
 
-# converting PNGs to webp
-wbpng() {
+# converting PNG to WebP
+png2webp() {
   fd -e png | xargs -P 8 -I {} sh -c 'cwebp -q 90 $1 -o "${1%.png}.webp"' _ {} \;
 }
 
-# converting JPEGs to webp
-wbjpg() {
+# converting JPEG to WebP
+jpeg2webp() {
   find -e jpg | xargs -P 8 -I {} sh -c 'cwebp -q 90 $1 -o "${1%.jpg}.webp"' _ {} \;
+}
+
+# converting HEIC to JPEG
+heic2jpeg() {
+  fd -e heic | xargs -P 8 -I {} sh -c 'magick mogrify -format jpg "$1"' _ {} \;
+}
+
+# converting PNG to JPEG
+png2jpeg() {
+  fd -e png | xargs -P 8 -I {} sh -c 'magick mogrify -format jpg "$1"' _ {} \;
 }
 
 
