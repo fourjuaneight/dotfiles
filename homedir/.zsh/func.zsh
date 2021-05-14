@@ -139,6 +139,11 @@ png2jpeg() {
   fd -e png | xargs -P 8 -I {} sh -c 'magick mogrify -format jpg "$1"' _ {} \;
 }
 
+# converting WebP to JPEG
+webp2jpeg() {
+  fd -e webp | xargs -P 8 -I {} sh -c 'magick mogrify -format jpg "$1"' _ {} \;
+}
+
 
 # FFMPEG #
 
