@@ -11,6 +11,7 @@ cargo install alacritty \
   fd-find \
   git-delta \
   ripgrep \
+  ripgrep_all \
   websocat \
   wrangler
 
