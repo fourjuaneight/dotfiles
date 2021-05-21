@@ -47,6 +47,8 @@ apt-get install -y apt-transport-https \
   libreadline6-dev \
   libsecret-1-0 \
   libsecret-1-dev \
+  libvips \
+  libvips-dev \
   mc \
   memcached \
   mercurial \

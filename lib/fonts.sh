@@ -6,15 +6,15 @@ minibot "Little Gary here! Fonts will be saved to your local Fonts directory."
 
 action "saving fonts"
 for file in ~/dotfiles/fonts/**/*; do
-  if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    cp "$file" ~/.local/share/fonts
-  elif [[ "$OSTYPE" == "darwin"* ]]; then
+  if [[ "$OSTYPE" == "darwin"* ]]; then
     cp "$file" ~/Library/Fonts
+  else
+    cp "$file" ~/.local/share/fonts
   fi
 done
 ok "done saving fonts."
 
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
+if [[ "$OSTYPE" != "darwin"* ]]; then
   action "building font chaches"
   fc-cache -f -v
   ok "done building chaches."
