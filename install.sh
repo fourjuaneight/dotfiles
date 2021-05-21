@@ -68,8 +68,7 @@ else
 fi
 
 action "installing rustup"
-source $HOME/.cargo/env
-${HOME}/.cargo/bin/rustup toolchain install nightly --allow-downgrade --profile minimal --component clippy
+rustup toolchain install nightly --allow-downgrade --profile minimal --component clippy
 if [[ $? != 0 ]]; then
   error "unable to install rustup"
   exit 2
