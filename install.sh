@@ -244,5 +244,14 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   run ./lib/macos/default.sh
 fi
 
+action "saving VSCode themes"
+cp ./themes/vscode-dracula.vsix ~/.vscode/extensions
+if [[ $? != 0 ]]; then
+  error "unable to save theme"
+  exit 2
+else
+  ok "theme saved."
+fi
+
 bot "All done! Gary out."
 minibot "Little Gary out, too!"
