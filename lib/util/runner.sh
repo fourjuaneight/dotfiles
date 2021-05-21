@@ -11,6 +11,15 @@ function run() {
   fi
 }
 
+function runSudo() {
+  running "shell script: $1"
+  sudo $1 >/dev/null
+  if [[ $? != 0 ]]; then
+    error "unable to run $1"
+    exit 2
+  fi
+}
+
 function getSudo() {
   running "getting sudo password"
   sudo -v &> /dev/null

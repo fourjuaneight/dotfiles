@@ -109,7 +109,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   fi
 else
   action "installing linux dependencies"
-  run ./lib/linux/apt.sh
+  runSudo ./lib/linux/apt.sh
 fi
 
 # ###########################################################
