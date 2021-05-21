@@ -11,12 +11,6 @@ apt-get upgrade -y
 apt-get dist-upgrade -f
 apt-get autoremove -y
 
-action "installing snapd"
-apt install snapd
-
-action "refreshing snap directories"
-snap refresh
-
 action "installing dependencies"
 apt-get install -y apt-transport-https \
   bash \
@@ -79,11 +73,7 @@ apt-get install -y apt-transport-https \
   xz-utils \
   zsh
 
-
-action "installing snap packs"
-snap install --classic heroku
-
 action "cleaning up"
-apt autoclean -y
+apt-get autoclean -y
 
 ok "done installing dependencies."
