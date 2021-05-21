@@ -4,8 +4,8 @@
 # This script installs the dotfiles and runs all other system configuration scripts
 ###########################
 
-source ${HOME}/dotfiles/lib/util/echos.sh
-source ${HOME}/dotfiles/lib/util/runner.sh
+source ./lib/util/echos.sh
+source ./lib/util/runner.sh
 
 bot "Hey, it's me Gaaary! I'm gonna install some tooling and tweak your system settings. You've been warned!"
 
@@ -15,7 +15,7 @@ bot "Hey, it's me Gaaary! I'm gonna install some tooling and tweak your system s
 bot "Setting up fonts."
 
 action "saving fonts"
-run ${HOME}/dotfiles/lib/fonts.sh
+run ./lib/fonts.sh
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   action "copying preferences"
@@ -79,7 +79,7 @@ fi
 
 bot "Now to install some Rust binaries."
 
-run ${HOME}/dotfiles/lib/cargo.sh
+run ./lib/cargo.sh
 
 # ###########################################################
 # Install non-brew various tools (PRE-BREW Installs)
@@ -110,7 +110,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   fi
 else
   action "installing linux dependencies"
-  run ${HOME}/dotfiles/lib/linux/apt.sh
+  run ./lib/linux/apt.sh
 fi
 
 # ###########################################################
@@ -137,14 +137,14 @@ bot "Now to install some Homebrew packages."
 
 action "installing homebrew packages"
 if [[ "$OSTYPE" == "darwin" ]]; then
-  run ${HOME}/dotfiles/lib/macos/brew.sh
+  run ./lib/macos/brew.sh
 else
-  run ${HOME}/dotfiles/lib/linux/brew.sh
+  run ./lib/linux/brew.sh
 fi
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   action "installing apps"
-  run ${HOME}/dotfiles/lib/macos/mas.sh
+  run ./lib/macos/mas.sh
 fi
 
 # ###########################################################
@@ -153,10 +153,10 @@ fi
 bot "Let's install some more packages."
 
 action "installing npm packages"
-run ${HOME}/dotfiles/lib/npm.sh
+run ./lib/npm.sh
 
 action "installing pip packages"
-run ${HOME}/dotfiles/lib/pip.sh
+run ./lib/pip.sh
 
 # ###########################################################
 # Setup zsh and vim env
@@ -202,7 +202,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   bot "Finally, setting default apps."
 
   action "running duti"
-  run ${HOME}/dotfiles/lib/macos/duti/set.sh
+  run ./lib/macos/duti/set.sh
 fi
 
 # ###########################################################
@@ -242,7 +242,7 @@ fi
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   action "setting macOS defaults"
-  run ${HOME}/dotfiles/lib/macos/default.sh
+  run ./lib/macos/default.sh
 fi
 
 bot "All done! Gary out."

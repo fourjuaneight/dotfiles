@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ${HOME}/dotfiles/lib/util/echos.sh
+source ./lib/util/echos.sh
 
 signingkey=$(git config --global --get user.signingkey)
 
@@ -18,7 +18,7 @@ else
     read -p "Key |sec| rsa4096/*key* [SC]: " signingkey
     git config --global user.signingkey "$signingkey"
     gpg --armor --export $signingkey
-    sed -i "s/signingkey\s=\s.*/signingkey = $signingkey/" ${HOME}/dotfiles/homedir/.gitconfig
+    sed -i "s/signingkey\s=\s.*/signingkey = $signingkey/" ./homedir/.gitconfig
     ok "add the public key to your Github account."
     exit 0
 fi

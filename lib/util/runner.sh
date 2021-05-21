@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ${HOME}/dotfiles/lib/util/echos.sh
+source ./lib/util/echos.sh
 
 function run() {
   running "shell script: $1"
