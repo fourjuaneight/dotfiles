@@ -4,20 +4,20 @@ source ./lib/util/echos.sh
 
 minibot "Little Gary here! Let's get some beers."
 
-echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >> /home/docker/.zshrc
+echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >> .bashrc
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 action "turning off analytics"
-${HOME}/linuxbrew/.linuxbrew/bin/brew analytics off
+brew analytics off
 
 action "updating homebrew directories"
-${HOME}/linuxbrew/.linuxbrew/bin/brew update
+brew update
 
 action "installing complicated packages"
-${HOME}/linuxbrew/.linuxbrew/bin/brew install homebrew-ffmpeg/ffmpeg/ffmpeg --with-fdk-aac --HEAD
+brew install homebrew-ffmpeg/ffmpeg/ffmpeg --with-fdk-aac --HEAD
 
 action "installing packages"
-${HOME}/linuxbrew/.linuxbrew/bin/brew install ack \
+brew install ack \
   act \
   cocoapods \
   dive \
@@ -31,6 +31,6 @@ ${HOME}/linuxbrew/.linuxbrew/bin/brew install ack \
   zsh-syntax-highlighting
 
 action "cleaning up"
-${HOME}/linuxbrew/.linuxbrew/bin/brew cleanup
+brew cleanup
 
 ok "done installing brews."
