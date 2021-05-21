@@ -86,10 +86,7 @@ run ${HOME}/dotfiles/lib/cargo.sh
 # ###########################################################
 bot "Ensuring build/install tools are available."
 
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-  action "installing linux dependencies"
-  run ${HOME}/dotfiles/lib/linux/apt.sh
-elif [[ "$OSTYPE" == "darwin"* ]]; then
+if [[ "$OSTYPE" == "darwin"* ]]; then
   if ! xcode-select --print-path &>/dev/null; then
 
     # Prompt user to install the XCode Command Line Tools
@@ -111,6 +108,9 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     print_result $? 'Agree with the XCode Command Line Tools licence'
 
   fi
+else
+  action "installing linux dependencies"
+  run ${HOME}/dotfiles/lib/linux/apt.sh
 fi
 
 # ###########################################################
@@ -135,12 +135,11 @@ fi
 
 bot "Now to install some Homebrew packages."
 
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-  action "installing homebrew packages"
-  run ${HOME}/dotfiles/lib/linux/brew.sh
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-  action "installing homebrew packages"
+action "installing homebrew packages"
+if [[ "$OSTYPE" == "darwin" ]]; then
   run ${HOME}/dotfiles/lib/macos/brew.sh
+else
+  run ${HOME}/dotfiles/lib/linux/brew.sh
 fi
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
