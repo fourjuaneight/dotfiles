@@ -1,4 +1,4 @@
-source ./lib/util/echos.sh
+source ${HOME}/dotfiles/lib/util/echos.sh
 
 # UTILITIES #
 
