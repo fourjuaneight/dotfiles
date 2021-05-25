@@ -6,6 +6,7 @@ minibot "Little Gary here! Let's download the universe."
 
 action "installing global npm dependencies"
 npm i -g @angular/cli\
+  @angular/compiler-cli \
   @babel/cli \
   @capacitor/cli \
   @ionic/cli \
