@@ -2,15 +2,15 @@
   "folders": [
     {
       "name": "Oransi",
-      "path": "../../../../../Volumes/Samuel/Repos/oransi-app"
+      "path": "../../../../../Volumes/Sergio/Repos/oransi-app"
     },
     {
       "name": "Geo Mobile",
-      "path": "../../../../../Volumes/Samuel/Repos/geotech-casts-mobile"
+      "path": "../../../../../Volumes/Sergio/Repos/geotech-casts-mobile"
     },
     {
       "name": "Geo Web",
-      "path": "../../../../../Volumes/Samuel/Repos/geotech-casts-web"
+      "path": "../../../../../Volumes/Sergio/Repos/geotech-casts-web"
     }
   ],
   "extensions": {
