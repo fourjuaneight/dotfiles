@@ -6,6 +6,7 @@ minibot "Little Gary here! Let's install some Linux goodies."
 
 action "updating apt-get directories"
 add-apt-repository ppa:kellyk/emacs
+add-apt-repository ppa:wireshark-dev/stable
 apt-get update
 apt-get upgrade -y
 apt-get dist-upgrade -f
@@ -70,6 +71,7 @@ apt-get install -y apt-transport-https \
   vim \
   virtualenv \
   wget \
+  wireshark \
   xz-utils \
   zsh
 

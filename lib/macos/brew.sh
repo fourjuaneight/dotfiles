@@ -83,6 +83,7 @@ brew install ack \
   tree \
   webp \
   wget \
+  wireshark --with-qt \
   xo/xo/usq \
   xz \
   youtube-dl \
