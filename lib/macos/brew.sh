@@ -100,8 +100,8 @@ brew cask install alfred \
   iterm2 \
   moom \
   openemu \
-  transmit \
-  visual-studio-code
+  visual-studio-code \
+  wireshark
 
 action "cleaning up"
 brew cleanup
