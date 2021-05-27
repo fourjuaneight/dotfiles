@@ -14,6 +14,7 @@ alias cl="clear"
 alias dot="cd ~/dotfiles"
 alias tree="tree -I node_modules"
 alias usesam="lsof | grep /Volumes/Samuel"
+alias useserg="lsof | grep /Volumes/Sergio"
 
 # common variations of 'ls' command
 alias ll="ls -l"
@@ -25,6 +26,9 @@ alias hgrep="history | ag"
 
 # enhanced WHOIS lookups
 alias whois="whois -h whois-servers.net"
+
+# nettop status
+alias netstatus="nettop -P -k state,interface -d"
 
 # zsh
 alias zco="vim ~/.zshrc"
