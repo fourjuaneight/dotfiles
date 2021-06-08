@@ -69,7 +69,7 @@ sysup() {
   minibot "updating Brew"
   brew update
   brew upgrade
-  brew cleanup
+  brew cleanup -s
 
   minibot "updating Cargo"
   cargo install-update -a
