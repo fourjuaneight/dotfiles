@@ -1,0 +1,26 @@
+{
+  "folders": [
+    {
+      "name": "Kelda",
+      "path": "../../../../../Volumes/Sergio/Repos/kelda.io"
+    },
+    {
+      "name": "Richard Walker",
+      "path": "../../../../../Volumes/Sergio/Repos/richardwalker"
+    },
+    {
+      "name": "Weldon",
+      "path": "../../../../../Volumes/Sergio/Repos/Weldon-Hugo-Website"
+    },
+  ],
+  "extensions": {
+    "recommendations": []
+  },
+  "settings": {
+    "deno.enable": false,
+    "workbench.colorCustomizations": {
+      "statusBar.background": "#ff4088",
+      "statusBar.foreground": "#ffffff"
+    }
+  }
+}
