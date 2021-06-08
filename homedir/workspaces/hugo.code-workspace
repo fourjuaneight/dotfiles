@@ -1,6 +1,10 @@
 {
   "folders": [
     {
+      "name": "Financial Services (Glance)",
+      "path": "../../../../../Volumes/Sergio/Repos/finserv-glance"
+    },
+    {
       "name": "Kelda",
       "path": "../../../../../Volumes/Sergio/Repos/kelda.io"
     },
