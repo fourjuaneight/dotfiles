@@ -3,7 +3,11 @@
     {
       "name": "Resume",
       "path": "../../../resume"
-    }
+    },
+    {
+      "name": "JAMstack Trends",
+      "path": "../../../../../Volumes/Sergio/Repos/jamstacktrends.com"
+    },
   ],
   "extensions": {
     "recommendations": []
@@ -11,7 +15,7 @@
   "settings": {
     "deno.enable": false,
     "workbench.colorCustomizations": {
-      "statusBar.background": "#066300",
+      "statusBar.background": "#333",
       "statusBar.foreground": "#ffffff"
     }
   }
