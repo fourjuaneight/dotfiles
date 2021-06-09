@@ -1,6 +1,10 @@
 {
   "folders": [
     {
+      "name": "Glance Template",
+      "path": "../../../../../Volumes/Sergio/Repos/template"
+    },
+    {
       "name": "Financial Services (Glance)",
       "path": "../../../../../Volumes/Sergio/Repos/finserv-glance"
     },
