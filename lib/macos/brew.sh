@@ -57,6 +57,7 @@ brew install ack \
   macvim \
   mawk \
   mc \
+  mediainfo \
   memcached \
   mercurial \
   mmv \

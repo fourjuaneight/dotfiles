@@ -45,6 +45,7 @@ apt-get install -y apt-transport-https \
   libvips \
   libvips-dev \
   mc \
+  mediainfo \
   memcached \
   mercurial \
   mmv \
