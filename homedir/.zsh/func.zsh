@@ -89,18 +89,22 @@ sysup() {
 gla() {
   local files fname
   IFS=$'\n' files=($(fzf-tmux --query="$1.ttf" --multi --select-1 --exit-0))
-  fname="${files%.*}";
-  [[ -n "$files" ]] && glyphhanger --LATIN --formats=woff2,woff --subset=$fname.ttf
-  mv $fname-subset.woff $fname.woff
-  mv $fname-subset.woff2 $fname.woff2
+  fname="${files%.*}" &&
+  if [[ -n "$files" ]]; then
+    glyphhanger --LATIN --formats=woff2,woff --subset=$fname.ttf &&
+    [[ -n "$fname-subset.woff" ]] && mv $fname-subset.woff $fname.woff &&
+    [[ -n "$fname-subset.woff2" ]] && mv $fname-subset.woff2 $fname.woff2
+  fi
 }
 
 # glyphhanger whitelist US ASCII
 glu() {
   local files fname
   IFS=$'\n' files=($(fzf-tmux --query="$1.ttf" --multi --select-1 --exit-0))
-  fname="${files%.*}";
-  [[ -n "$files" ]] && glyphhanger --US_ASCII --formats=woff2,woff --subset=$fname.ttf
+  fname="${files%.*}" &&
+  if [[ -n "$files" ]]; then
+    glyphhanger --US_ASCII --formats=woff2,woff --subset=$fname.ttf
+  fi
 }
 
 
