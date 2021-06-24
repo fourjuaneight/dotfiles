@@ -19,6 +19,7 @@ brew install homebrew-ffmpeg/ffmpeg/ffmpeg --with-fdk-aac --HEAD
 action "installing packages"
 brew install ack \
   act \
+  catimg \
   cocoapods \
   dive \
   dog \
