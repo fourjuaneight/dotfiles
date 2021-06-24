@@ -21,6 +21,7 @@ brew install ack \
   act \
   cocoapods \
   dive \
+  dog \
   fzf \
   gh \
   go \

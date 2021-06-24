@@ -37,6 +37,7 @@ brew install ack \
   curl \
   dive \
   docker \
+  dog \
   duti \
   fswatch \
   fzf \
