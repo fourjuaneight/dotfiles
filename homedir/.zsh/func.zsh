@@ -130,7 +130,7 @@ png2webp() {
 
 # converting JPEG to WebP
 jpeg2webp() {
-  find -e jpg | xargs -P 8 -I {} sh -c 'cwebp -q 90 $1 -o "${1%.jpg}.webp"' _ {} \;
+  fd -e jpg | xargs -P 8 -I {} sh -c 'cwebp -q 90 $1 -o "${1%.jpg}.webp"' _ {} \;
 }
 
 # converting HEIC to JPEG
@@ -299,8 +299,7 @@ cf() {
 # cd to selected directory
 fcd() {
   local dir
-  dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -not \( -name node_modules -prune \) -print 2> /dev/null | fzf +m) &&
+  dir=$(fd -I -E node_modules -t d --prune . ./ 2> /dev/null | fzf +m) &&
   cd "$dir"
 }
 
@@ -308,8 +307,7 @@ fcd() {
 ffmv() {
   local file dest
   IFS=$'\n' file=($(fzf-tmux --query="$1" --multi --select-1 --exit-0)) &&
-  dest=$(find ~ -path '*/\.*' -prune \
-                  -o -type d -not \( -name node_modules -prune \) -print 2> /dev/null | fzf +m) &&
+  dest=$(fd -I -E node_modules -t f --prune . ./ */\.* 2> /dev/null | fzf +m) &&
   mv "$file" "$dest"
 }
 
@@ -340,7 +338,7 @@ ffcd() {
 # tree selected directory
 ftr() {
   local dir
-  dir=$(find ${1:-.} -path '*/\.*' -prune \
+  dir=$(fd ${1:-.} -path '*/\.*' -prune \
                   -o -type d -not \( -name node_modules -prune \) -print 2> /dev/null | fzf +m) &&
   tree "$dir" -I node_modules
 }
@@ -348,8 +346,7 @@ ftr() {
 # find and delete directory
 fdd() {
   local dir
-  dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -not \( -name node_modules -prune \) -print 2> /dev/null | fzf +m) &&
+  dir=$(fd -I -E node_modules -t d --prune . ./ 2> /dev/null | fzf +m) &&
   rm -rf $dir
 }
 
