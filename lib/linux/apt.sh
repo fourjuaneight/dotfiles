@@ -56,11 +56,14 @@ apt-get install -y apt-transport-https \
   nodejs \
   perl \
   pkg-config \
+  pandoc \
+  poppler-utils \
   postgresql \
   python3 \
   python3-dev \
   python3-pip \
   python-pygments \
+  ripgrep \
   rclone \
   rsync \
   sed \

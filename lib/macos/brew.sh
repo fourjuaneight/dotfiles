@@ -70,6 +70,8 @@ brew install ack \
   p7zip \
   pkg-config \
   pinentry-mac \
+  pandoc \
+  poppler \
   postgresql \
   python3 \
   rclone \
@@ -80,6 +82,7 @@ brew install ack \
   spark \
   sphinx \
   stow \
+  tesseract \
   the_silver_searcher \
   tmux \
   tree \

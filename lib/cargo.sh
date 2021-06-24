@@ -14,6 +14,7 @@ cargo install alacritty \
   git-delta \
   gitui \
   ripgrep \
+  ripgrep_all \
   websocat \
   wrangler
 
