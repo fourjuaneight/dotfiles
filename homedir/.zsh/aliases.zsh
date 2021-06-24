@@ -16,6 +16,9 @@ alias tree="tree -I node_modules"
 alias usesam="lsof | grep /Volumes/Samuel"
 alias useserg="lsof | grep /Volumes/Sergio"
 
+# common variations of 'cat' command
+alias cat="bat"
+
 # common variations of 'ls' command
 alias ls="exa"
 alias ll="exa -l"
