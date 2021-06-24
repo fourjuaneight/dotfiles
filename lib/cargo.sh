@@ -8,6 +8,7 @@ action "installing rust packages"
 cargo install deno --locked
 cargo install alacritty \
   cargo-update \
+  exa \
   fd-find \
   git-delta \
   gitui \

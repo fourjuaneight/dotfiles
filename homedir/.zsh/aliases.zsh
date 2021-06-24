@@ -17,9 +17,9 @@ alias usesam="lsof | grep /Volumes/Samuel"
 alias useserg="lsof | grep /Volumes/Sergio"
 
 # common variations of 'ls' command
-alias ll="ls -l"
-alias la="ls -a"
-alias l="ls"
+alias ls="exa"
+alias ll="exa -l"
+alias la="exa -a"
 
 # search history
 alias hgrep="history | ag"
