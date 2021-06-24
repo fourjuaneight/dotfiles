@@ -10,6 +10,7 @@ cargo install alacritty \
   cargo-update \
   fd-find \
   git-delta \
+  gitui \
   ripgrep \
   websocat \
   wrangler
