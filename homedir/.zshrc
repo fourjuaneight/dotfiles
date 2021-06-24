@@ -36,11 +36,11 @@ PURE_PROMPT_SYMBOL='λ'
 
 # fzf
 [[ -f ~/.zsh/fzf.zsh ]] && source ~/.zsh/fzf.zsh
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden --follow --glob "!.git/*"'
+export FZF_DEFAULT_COMMAND="rga --files --no-ignore-vcs --hidden --follow --glob '!.git/*'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 _fzf_compgen_path() {
-  fd --hidden --follow --exclude ".git" . "$1"
+  fd -HL -E ".git" . "$1"
 }
 
 # Aliases
