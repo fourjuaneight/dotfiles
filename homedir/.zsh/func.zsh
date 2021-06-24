@@ -46,10 +46,10 @@ fkp() {
 
 # hammer a service with curl for a given number of times
 curlhammer () {
-  echo "curl -k -s -D - $1 -o /dev/null | rg 'HTTP/1.1' | sed 's/HTTP\/1.1 //'"
+  echo "curl -k -s -D - $1 -o /dev/null | rga 'HTTP/1.1' | sed 's/HTTP\/1.1 //'"
   for i in {1..$2}
   do
-    curl -k -s -D - $1 -o /dev/null | rg 'HTTP/1.1' | sed 's/HTTP\/1.1 //'
+    curl -k -s -D - $1 -o /dev/null | rga 'HTTP/1.1' | sed 's/HTTP\/1.1 //'
   done
 }
 
@@ -234,8 +234,8 @@ fe() {
 fif() {
   if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
   local file line
-  file="$(rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}")" &&
-  line=$(rg -n $1 $file | gsed -r "s/^([[:digit:]]+)\:\s\s.*/\1/") &&
+  file="$(rga --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rga --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rga --ignore-case --pretty --context 10 '$1' {}")" &&
+  line=$(rga -n $1 $file | gsed -r "s/^([[:digit:]]+)\:\s\s.*/\1/") &&
 
   if [[ -n $file ]]
   then
@@ -252,12 +252,12 @@ fdf() {
 
 # DIRECTORIES #
 
-# Open via rg with line number
+# Open via rga with line number
 fa() {
   local file
   local line
 
-  read -r file line <<<"$(rg --no-heading -n $@ | fzf -0 -1 | mawk -F: '{print $1, $2}')"
+  read -r file line <<<"$(rga --no-heading -n $@ | fzf -0 -1 | mawk -F: '{print $1, $2}')"
 
   if [[ -n $file ]]
   then
@@ -283,7 +283,7 @@ fo() {
 cf() {
   local file
 
-  file="$(locate -Ai -0 $@ | rg -z -v '~$' | fzf --read0 -0 -1)"
+  file="$(locate -Ai -0 $@ | rga -z -v '~$' | fzf --read0 -0 -1)"
 
   if [[ -n $file ]]
   then
@@ -443,7 +443,7 @@ gscl() {
       --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
   fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
       --bind "ctrl-m:execute:
-                (rg -o '[a-f0-9]\{7\}' | head -1 |
+                (rga -o '[a-f0-9]\{7\}' | head -1 |
                 xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
                 {}
 FZF-EOF"
