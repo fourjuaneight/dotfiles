@@ -63,6 +63,9 @@ alias tk="pkill -f tmux"
 alias tx="exit"
 alias tdev="tmux new-session \; split-window -h -p 40\; send-keys 'clear' C-m \; select-pane -L \; send-keys 'clear' C-m \;"
 
+# zellij
+alias zdev="zellij --layout ~/.config/zellij/layout.dev.yaml"
+
 # ssh
 alias rssh="sudo service ssh --full-restart"
 alias stsh="sudo service ssh start"

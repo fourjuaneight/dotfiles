@@ -16,6 +16,7 @@ cargo install alacritty \
   ripgrep \
   ripgrep_all \
   websocat \
-  wrangler
+  wrangler \
+  zellij
 
 ok "oh hey, it worked! done installing cargos."
