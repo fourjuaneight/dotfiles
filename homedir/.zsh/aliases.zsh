@@ -34,8 +34,8 @@ alias whois="whois -h whois-servers.net"
 alias netstatus="nettop -P -k state,interface -d"
 
 # zsh
-alias zco="vim ~/.zshrc"
-alias zso="source ~/.zshrc"
+alias zconf="vim ~/.zshrc"
+alias zsour="source ~/.zshrc"
 
 # nnn
 alias n="nnn"
@@ -48,22 +48,16 @@ alias doom="~/.emacs.d/bin/doom"
 
 # vim
 alias vi="vim"
-alias vco="vim ~/.vimrc"
-alias vso="vim source ~/.vimrc"
+alias vconf="vim ~/.vimrc"
+alias vsour="vim source ~/.vimrc"
 
 # cron
 alias croe="crontab -e"
 alias crol="crontab -l"
 
-# tmux
-alias tco="vim ~/.tmux.conf"
-alias tso="tmux source ~/.tmux.conf"
-alias tn="tmux -u new"
-alias tk="pkill -f tmux"
-alias tx="exit"
-alias tdev="tmux new-session \; split-window -h -p 40\; send-keys 'clear' C-m \; select-pane -L \; send-keys 'clear' C-m \;"
-
 # zellij
+alias tmux="zellij"
+alias zconf="vim ~/.config/zellij/config.yml"
 alias zdev="zellij --layout ~/.config/zellij/layout.dev.yaml"
 
 # ssh
