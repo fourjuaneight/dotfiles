@@ -113,6 +113,8 @@ alias gstap="git stash pop"
 alias gts="git tag -s"
 alias gtv="git tag | sort -V"
 
+alias ggc="git gc --aggressive --prune"
+
 # system update
 alias rup="rustup update"
 alias cup="cargo install-update -a"
