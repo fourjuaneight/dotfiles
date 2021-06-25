@@ -4,7 +4,7 @@ source ./lib/util/echos.sh
 
 minibot "Little Gary here! Let's update the .gitconfig for your user info."
 
-grep 'user = GITHUBUSER' ./homedir/.gitconfig >/dev/null 2>&1
+rg 'user = GITHUBUSER' ./homedir/.gitconfig >/dev/null 2>&1
 if [[ $? = 0 ]]; then
   read -r -p "What is your git username? " githubuser
 
@@ -16,12 +16,12 @@ if [[ $? = 0 ]]; then
   fi
 
   if [[ -z $lastname ]]; then
-    lastname=$(dscl . -read /Users/$(whoami) | grep LastName | sed "s/LastName: //")
+    lastname=$(dscl . -read /Users/$(whoami) | rg LastName | sed "s/LastName: //")
   fi
   if [[ -z $firstname ]]; then
-    firstname=$(dscl . -read /Users/$(whoami) | grep FirstName | sed "s/FirstName: //")
+    firstname=$(dscl . -read /Users/$(whoami) | rg FirstName | sed "s/FirstName: //")
   fi
-  email=$(dscl . -read /Users/$(whoami) | grep EMailAddress | sed "s/EMailAddress: //")
+  email=$(dscl . -read /Users/$(whoami) | rg EMailAddress | sed "s/EMailAddress: //")
 
   if [[ ! "$firstname" ]]; then
     response='n'

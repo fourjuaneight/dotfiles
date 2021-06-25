@@ -13,8 +13,8 @@ alias .........="cd ../../../../../../../.."
 alias cl="clear"
 alias dot="cd ~/dotfiles"
 alias tree="tree -I node_modules"
-alias usesam="lsof | grep /Volumes/Samuel"
-alias useserg="lsof | grep /Volumes/Sergio"
+alias usesam="lsof | rg /Volumes/Samuel"
+alias useserg="lsof | rg /Volumes/Sergio"
 
 # common variations of 'cat' command
 alias cat="bat"
