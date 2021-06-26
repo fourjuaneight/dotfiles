@@ -31,7 +31,7 @@ alias hgrep="history | ag"
 alias whois="whois -h whois-servers.net"
 
 # nettop status
-alias netstatus="nettop -P -k state,interface -d"
+alias netstatus="sudo bandwhich -n"
 
 # zsh
 alias zconf="vim ~/.zshrc"
