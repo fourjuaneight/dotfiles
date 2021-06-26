@@ -8,7 +8,9 @@ action "installing rust packages"
 cargo install deno --locked
 cargo install --locked bat
 cargo install alacritty \
+  bandwhich \
   cargo-update \
+  diskonaut \
   exa \
   fd-find \
   git-delta \
