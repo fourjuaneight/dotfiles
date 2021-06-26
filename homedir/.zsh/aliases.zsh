@@ -27,11 +27,10 @@ alias la="exa -a"
 # search history
 alias hgrep="history | ag"
 
-# enhanced WHOIS lookups
+# networking
 alias whois="whois -h whois-servers.net"
-
-# nettop status
 alias netstatus="sudo bandwhich -n"
+alias dig="dog"
 
 # zsh
 alias zconf="vim ~/.zshrc"
