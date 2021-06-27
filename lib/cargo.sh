@@ -9,6 +9,7 @@ cargo install deno --locked
 cargo install --locked bat
 cargo install alacritty \
   bandwhich \
+  bottom \
   cargo-update \
   diskonaut \
   du-dust \

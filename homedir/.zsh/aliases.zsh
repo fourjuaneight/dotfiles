@@ -18,6 +18,8 @@ alias usesam="lsof | rg /Volumes/Samuel"
 alias useserg="lsof | rg /Volumes/Sergio"
 alias ping="gping -s"
 alias du="dust"
+alias htop="btm"
+alias gtop="btm"
 
 # common variations of 'cat' command
 alias cat="bat"
