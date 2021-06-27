@@ -3,7 +3,6 @@ fpath=(~/.zsh/completions $fpath)
 
 # ENV
 source "${HOME}/.zshenv"
-eval "$(zoxide init zsh)"
 
 # GPG
 GPG_TTY=$(tty)
@@ -50,3 +49,6 @@ _fzf_compgen_path() {
 # Functions
 [[ -f ~/.zsh/func.zsh ]] && source ~/.zsh/func.zsh
 zmodload zsh/zprof
+
+# Utils
+eval "$(zoxide init zsh)"
