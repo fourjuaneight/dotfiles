@@ -15,6 +15,7 @@ cargo install alacritty \
   fd-find \
   git-delta \
   gitui \
+  gping \
   ripgrep \
   ripgrep_all \
   websocat \

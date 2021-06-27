@@ -16,6 +16,7 @@ alias dot="z ~/dotfiles"
 alias tree="tree -I node_modules"
 alias usesam="lsof | rg /Volumes/Samuel"
 alias useserg="lsof | rg /Volumes/Sergio"
+alias ping="gping -s"
 
 # common variations of 'cat' command
 alias cat="bat"
