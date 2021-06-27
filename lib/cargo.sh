@@ -11,6 +11,7 @@ cargo install alacritty \
   bandwhich \
   cargo-update \
   diskonaut \
+  du-dust \
   exa \
   fd-find \
   git-delta \
