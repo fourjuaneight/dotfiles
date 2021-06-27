@@ -112,6 +112,24 @@ else
   runSudo ./lib/linux/apt.sh
 fi
 
+
+git clone https://github.com/uutils/coreutils ~/coreutils
+cd ~/coreutils
+cargo build --release --features macos
+if [[ $? != 0 ]]; then
+  error "unable to build coreutils"
+  exit 2
+else
+  ok "built coreutils."
+fi
+cargo install --path .
+if [[ $? != 0 ]]; then
+  error "unable to install coreutils"
+  exit 2
+else
+  ok "installed coreutils."
+fi
+
 # ###########################################################
 # Install homebrew (CLI Packages)
 # ###########################################################
