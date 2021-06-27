@@ -89,11 +89,11 @@ fzf-cd-widget() {
     return 0
   fi
   if [ -z "$BUFFER" ]; then
-    BUFFER="cd ${(q)dir}"
+    BUFFER="z ${(q)dir}"
     zle accept-line
   else
-    print -sr "cd ${(q)dir}"
-    cd "$dir"
+    print -sr "z ${(q)dir}"
+    z "$dir"
   fi
   local ret=$?
   unset dir # ensure this doesn't end up appearing in prompt expansion

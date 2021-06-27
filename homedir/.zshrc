@@ -3,6 +3,7 @@ fpath=(~/.zsh/completions $fpath)
 
 # ENV
 source "${HOME}/.zshenv"
+eval "$(zoxide init zsh)"
 
 # GPG
 GPG_TTY=$(tty)

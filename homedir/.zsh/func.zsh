@@ -275,9 +275,9 @@ cf() {
   then
      if [[ -d $file ]]
      then
-        cd -- $file
+        z -- $file
      else
-        cd -- ${file:h}
+        z -- ${file:h}
      fi
   fi
 }
@@ -286,7 +286,7 @@ cf() {
 fcd() {
   local dir
   dir=$(fd -I -E node_modules -t d --prune . ./ 2> /dev/null | fzf +m) &&
-  cd "$dir"
+  z "$dir"
 }
 
 # find file and move to another directory
@@ -309,7 +309,7 @@ fpcd() {
     fi
   }
   local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | fzf-tmux --tac)
-  cd "$DIR"
+  z "$DIR"
 }
 
 # cd into the directory of the selected file
@@ -318,7 +318,7 @@ ffcd() {
    local dir
    file=$(fzf +m -q "$1") &&
    dir=$(dirname "$file") &&
-   cd "$dir"
+   z "$dir"
 }
 
 # tree selected directory
