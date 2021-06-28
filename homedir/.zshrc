@@ -20,16 +20,8 @@ zplug "hlissner/zsh-autopair", defer:2
 zplug "zsh-users/zsh-completions"
 zplug "zdharma/fast-syntax-highlighting"
 zplug "mafredri/zsh-async"
-zplug "sindresorhus/pure"
 
 zplug load
-
-# Pure prompt
-autoload -U promptinit
-promptinit
-PURE_GIT_DOWN_ARROW='↓'
-PURE_GIT_UP_ARROW='↑'
-PURE_PROMPT_SYMBOL='λ'
 
 # Autosuggestions
 [[ -f ~/.zsh/autosuggestions.zsh ]] && source ~/.zsh/autosuggestions.zsh
@@ -52,3 +44,7 @@ zmodload zsh/zprof
 
 # Utils
 eval "$(zoxide init zsh)"
+
+# Prompt
+eval "$(starship init zsh)"
+export STARSHIP_CONFIG=~/.config/starship/config.toml

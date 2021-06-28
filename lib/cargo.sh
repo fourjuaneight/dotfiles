@@ -20,6 +20,7 @@ cargo install alacritty \
   gping \
   ripgrep \
   ripgrep_all \
+  starship \
   websocat \
   wrangler \
   zellij \
