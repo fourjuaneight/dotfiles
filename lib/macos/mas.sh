@@ -19,10 +19,6 @@ action "installing DaisyDisk"
 mas install 411643860
 action "installing Deliveries"
 mas install 924726344
-action "installing Drafts"
-mas install 1435957248
-action "installing Front and Center"
-mas install 1493996622
 action "installing GIF Brewery"
 mas install 1081413713
 action "installing GoodLinks"
@@ -35,8 +31,6 @@ action "installing PDF Expert"
 mas install 1055273043
 action "installing Service Station"
 mas install 1503136033
-action "installing Spark"
-mas install 1176895641
 action "installing The Unarchiver"
 mas install 425424353
 action "installing Things"

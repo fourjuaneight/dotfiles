@@ -116,4 +116,4 @@ rm -f -r /Library/Caches/Homebrew/*
 mkdir -p ~/Library/Caches/Homebrew/Formula
 brew doctor
 
-ok "done installing brews."
+ok "we are now proper drunk."

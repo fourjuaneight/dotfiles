@@ -4,9 +4,11 @@ source ./lib/util/echos.sh
 
 minibot "Little Gary here! Ok. Let's try to install some cargos."
 
-action "installing rust packages"
-cargo install deno --locked
+action "installing fuzzy packages"
+cargo install --locked deno
 cargo install --locked bat
+
+action "installing normal packages"
 cargo install alacritty \
   bandwhich \
   bottom \
@@ -26,4 +28,4 @@ cargo install alacritty \
   zellij \
   zoxide
 
-ok "oh hey, it worked! done installing cargos."
+ok "sweet, done with the good stuff."

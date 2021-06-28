@@ -35,4 +35,4 @@ brew install ack \
 action "cleaning up"
 brew cleanup
 
-ok "done installing brews."
+ok "we are now proper drunk."

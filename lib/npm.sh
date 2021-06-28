@@ -35,4 +35,4 @@ npm i -g @angular/cli\
   typescript \
   webpack-cli
 
-ok "done installing dependencies."
+ok "dome taking up half our storage."
