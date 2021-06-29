@@ -63,6 +63,7 @@ alias crol="crontab -l"
 alias tmux="zellij"
 alias zconf="vim ~/.config/zellij/config.yml"
 alias zdev="zellij --layout ~/.config/zellij/layout.dev.yaml"
+alias zgit="zellij --layout ~/.config/zellij/layout.git.yaml"
 
 # ssh
 alias rssh="sudo service ssh --full-restart"
