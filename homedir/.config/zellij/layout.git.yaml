@@ -3,7 +3,7 @@ direction: Horizontal
 parts:
   - direction: Horizontal
     split_size:
-      Percent: 80
+      Percent: 70
   - direction: Horizontal
     split_size:
-      Percent: 20
+      Percent: 30
