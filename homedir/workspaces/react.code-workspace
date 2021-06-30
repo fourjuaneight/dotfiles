@@ -9,6 +9,10 @@
       "path": "../../../../../Volumes/Sergio/Repos/Beacon-MMG-Web"
     },
     {
+      "name": "Live",
+      "path": "../../../../../Volumes/Sergio/Repos/live-web"
+    },
+    {
       "name": "ToggleBooks",
       "path": "../../../../../Volumes/Sergio/Repos/togglebooks-web"
     },
