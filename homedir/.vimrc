@@ -85,15 +85,15 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'airblade/vim-gitgutter'
 Plug 'alvan/vim-closetag'
-" Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'njk' }
 Plug 'jparise/vim-graphql',
+Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'lepture/vim-jinja'
 Plug 'luochen1990/rainbow'
-Plug 'jremmen/vim-ripgrep'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'qpkorr/vim-bufkill'
+Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'terryma/vim-multiple-cursors'
@@ -268,6 +268,9 @@ let g:rg_derive_root='true'
 " Ultisnips
 " snippets location
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "snips"]
+
+" Rust
+let g:rustfmt_autosave = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""
 " Key Remaps
