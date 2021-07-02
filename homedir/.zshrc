@@ -15,19 +15,14 @@ fi
 
 # Utils
 eval "$(sheldon source)"
-eval "$(zoxide init zsh)"
-
-# Prompt
 eval "$(starship init zsh)"
-export STARSHIP_CONFIG=~/.config/starship/config.toml
+eval "$(zoxide init zsh)"
 
 # Autosuggestions
 [[ -f ~/.zsh/autosuggestions.zsh ]] && source ~/.zsh/autosuggestions.zsh
 
 # fzf
 [[ -f ~/.zsh/fzf.zsh ]] && source ~/.zsh/fzf.zsh
-export FZF_DEFAULT_COMMAND="rga --files --no-ignore-vcs --hidden --follow --glob '!.git/*'"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 _fzf_compgen_path() {
   fd -HL -E ".git" . "$1"
@@ -39,3 +34,6 @@ _fzf_compgen_path() {
 # Functions
 [[ -f ~/.zsh/func.zsh ]] && source ~/.zsh/func.zsh
 zmodload zsh/zprof
+
+# nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
