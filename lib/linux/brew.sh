@@ -28,9 +28,7 @@ brew install ack \
   go \
   webp \
   xo/xo/usql \
-  youtube-dl \
-  zsh-autosuggestions \
-  zsh-syntax-highlighting
+  youtube-dl
 
 action "cleaning up"
 brew cleanup

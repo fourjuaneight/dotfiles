@@ -1,0 +1,21 @@
+shell = "zsh"
+
+[plugins.fast-syntax-highlighting]
+github = "zdharma/fast-syntax-highlighting"
+proto = "ssh"
+
+[plugins.zsh-autopair]
+github = "hlissner/zsh-autopair"
+proto = "ssh"
+
+[plugins.zsh-autosuggestions]
+github = "zsh-users/zsh-autosuggestions"
+proto = "ssh"
+
+[plugins.zsh-completions]
+github = "zsh-users/zsh-completions"
+proto = "ssh"
+
+[plugins.zsh-async]
+github = "mafredri/zsh-async"
+proto = "ssh"

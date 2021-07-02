@@ -92,9 +92,7 @@ brew install ack \
   wireshark \
   xo/xo/usq \
   xz \
-  youtube-dl \
-  zsh-autosuggestions \
-  zsh-syntax-highlighting
+  youtube-dl
 
 action "installing casks"
 brew cask install alfred \

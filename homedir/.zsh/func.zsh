@@ -76,9 +76,6 @@ sysup() {
 
   bot "Running tooling updates."
 
-  minibot "updating Zplug"
-  zplug update
-
   minibot "updating Vim"
   vim +PlugUpgrade +PlugUpdate +qa
 }

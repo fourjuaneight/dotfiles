@@ -30,7 +30,7 @@ cd ~/dotfiles
 - [nvm](https://github.com/creationix/nvm) for version management.
 - [Rust](https://www.rust-lang.org).
 - `apt-get`, `brew`, and `brew cask` dependencies, relevant to each OS.
-- [zplug](https://github.com/zplug/zplug) for zsh and [plug](https://github.com/zplug/zplug) for vim plugin management.
+- [sheldon](https://github.com/rossmacarthur/sheldon) for zsh and [plug](https://github.com/zplug/zplug) for vim plugin management.
 - Global npm and pip packages. Some Rust binaries.
 - [rustup](https://github.com/rust-lang/rustup) nightly (with zsh completions) for tooling and version management.
 

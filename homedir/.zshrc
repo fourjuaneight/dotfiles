@@ -13,15 +13,13 @@ if [[ $TERM == xterm ]]; then
   TERM=xterm-256color
 fi
 
-# zplug
-source "${HOME}/.zplug/init.zsh"
+# Utils
+eval "$(sheldon source)"
+eval "$(zoxide init zsh)"
 
-zplug "hlissner/zsh-autopair", defer:2
-zplug "zsh-users/zsh-completions"
-zplug "zdharma/fast-syntax-highlighting"
-zplug "mafredri/zsh-async"
-
-zplug load
+# Prompt
+eval "$(starship init zsh)"
+export STARSHIP_CONFIG=~/.config/starship/config.toml
 
 # Autosuggestions
 [[ -f ~/.zsh/autosuggestions.zsh ]] && source ~/.zsh/autosuggestions.zsh
@@ -41,10 +39,3 @@ _fzf_compgen_path() {
 # Functions
 [[ -f ~/.zsh/func.zsh ]] && source ~/.zsh/func.zsh
 zmodload zsh/zprof
-
-# Utils
-eval "$(zoxide init zsh)"
-
-# Prompt
-eval "$(starship init zsh)"
-export STARSHIP_CONFIG=~/.config/starship/config.toml

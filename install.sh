@@ -191,16 +191,7 @@ else
   ok "dotfiles stowed."
 fi
 
-bot "Setting up zsh and vim environment."
-
-action "installing zplug"
-curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-if [[ $? != 0 ]]; then
-  error "unable to install zplug"
-  exit 2
-else
-  ok "installed zplug."
-fi
+bot "Setting up vim environment."
 
 action "installing vim plug"
 curl -fLo ${HOME}/.vim/autoload/plug.vim --create-dirs \
@@ -226,15 +217,6 @@ fi
 # Finish setup
 # ###########################################################
 bot "Ok. Let's wrap things up."
-
-action "installing zsh plugings"
-zplug install
-if [[ $? != 0 ]]; then
-  error "unable to run zplug"
-  exit 2
-else
-  ok "plugins installed."
-fi
 
 action "installing vim plugings"
 vim +PluginInstall +qall
