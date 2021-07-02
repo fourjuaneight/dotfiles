@@ -441,9 +441,13 @@ fgcm() {
   print -z $message
 }
 
-# edit commit messages
-gecm() {
-  git rebase -i HEAD~$1
+# edit commit
+gec() {
+  local commits commit id
+  commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --reverse) &&
+  commit=$(echo "$commits" | fzf --ansi --tac +s +m -e) &&
+  id=$(echo "$commit" | sed "s/ .*//")
+  git rebase -i "$id^"
 }
 
 # GITHUB CLI #
