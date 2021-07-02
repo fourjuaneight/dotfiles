@@ -9,8 +9,7 @@ cargo install --locked deno
 cargo install --locked bat
 
 action "installing normal packages"
-cargo install alacritty \
-  bandwhich \
+cargo install bandwhich \
   bottom \
   cargo-update \
   diskonaut \
