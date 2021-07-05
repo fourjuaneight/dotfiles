@@ -57,6 +57,7 @@ brew install ack \
   libvips \
   llvm \
   macvim \
+  mas \
   mawk \
   mc \
   mediainfo \
