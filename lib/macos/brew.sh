@@ -100,6 +100,7 @@ brew cask install alfred \
   arq-cloud-backup \
   backblaze \
   bartender \
+  calibre \
   handbrake \
   hazel \
   iterm2 \
