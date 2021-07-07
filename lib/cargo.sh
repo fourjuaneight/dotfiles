@@ -19,6 +19,7 @@ cargo install bandwhich \
   git-delta \
   gitui \
   gping \
+  onefetch \
   ripgrep \
   ripgrep_all \
   sheldon \
