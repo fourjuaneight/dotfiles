@@ -1,8 +1,13 @@
-# Completions
-fpath=(~/.zsh/completions $fpath)
-
 # ENV
 source "${HOME}/.zshenv"
+
+# Utils
+eval "$(sheldon source)"
+eval "$(starship init zsh)"
+zsh-defer eval "$(zoxide init zsh)"
+
+# Rust Cargo
+zsh-defer source "$HOME/.cargo/env"
 
 # GPG
 GPG_TTY=$(tty)
@@ -13,26 +18,22 @@ if [[ $TERM == xterm ]]; then
   TERM=xterm-256color
 fi
 
-# Utils
-eval "$(sheldon source)"
-eval "$(starship init zsh)"
-eval "$(zoxide init zsh)"
 
 # Autosuggestions
-[[ -f ~/.zsh/autosuggestions.zsh ]] && source ~/.zsh/autosuggestions.zsh
+[[ -f ~/.zsh/autosuggestions.zsh ]] && zsh-defer source ~/.zsh/autosuggestions.zsh
 
 # fzf
-[[ -f ~/.zsh/fzf.zsh ]] && source ~/.zsh/fzf.zsh
+[[ -f ~/.zsh/fzf.zsh ]] && zsh-defer source ~/.zsh/fzf.zsh
 
 _fzf_compgen_path() {
   fd -HL -E ".git" . "$1"
 }
 
 # Aliases
-[[ -f ~/.zsh/aliases.zsh ]] && source ~/.zsh/aliases.zsh
+[[ -f ~/.zsh/aliases.zsh ]] && zsh-defer source ~/.zsh/aliases.zsh
 
 # Functions
-[[ -f ~/.zsh/func.zsh ]] && source ~/.zsh/func.zsh
+[[ -f ~/.zsh/func.zsh ]] && zsh-defer source ~/.zsh/func.zsh
 zmodload zsh/zprof
 
 # nvm

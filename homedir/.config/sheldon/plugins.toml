@@ -16,6 +16,10 @@ proto = "ssh"
 github = "zsh-users/zsh-completions"
 proto = "ssh"
 
+[plugins.zsh-defer]
+github = "romkatv/zsh-defer"
+proto = "ssh"
+
 [plugins.zsh-async]
 github = "mafredri/zsh-async"
 proto = "ssh"

@@ -32,6 +32,12 @@ files = ["/Users/fourjuaneight/.config/sheldon/repos/github.com/zsh-users/zsh-co
 apply = ["source"]
 
 [[plugins]]
+name = "zsh-defer"
+source_dir = "/Users/fourjuaneight/.config/sheldon/repos/github.com/romkatv/zsh-defer"
+files = ["/Users/fourjuaneight/.config/sheldon/repos/github.com/romkatv/zsh-defer/zsh-defer.plugin.zsh"]
+apply = ["source"]
+
+[[plugins]]
 name = "zsh-async"
 source_dir = "/Users/fourjuaneight/.config/sheldon/repos/github.com/mafredri/zsh-async"
 files = ["/Users/fourjuaneight/.config/sheldon/repos/github.com/mafredri/zsh-async/async.plugin.zsh"]
