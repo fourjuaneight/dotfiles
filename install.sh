@@ -218,13 +218,18 @@ fi
 # ###########################################################
 bot "Ok. Let's wrap things up."
 
+  exit 2
+else
+  ok "zsh plugins installed."
+fi
+
 action "installing vim plugings"
 vim +PluginInstall +qall
 if [[ $? != 0 ]]; then
   error "unable to run vim plug"
   exit 2
 else
-  ok "plugins installed."
+  ok "vim plugins installed."
 fi
 
 action "Setting Github CLI editor"
