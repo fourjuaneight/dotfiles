@@ -167,6 +167,7 @@ bot "Stowing dotfiles."
 action "cleaning up gitconfig GPG key"
 sed -i 's/78D4B88F2C94648B21A1F2DA5971AC316779D86D//g' homedir/.gitconfig
 action "running stow"
+cd ~/dotfiles
 stow homedir
 if [[ $? != 0 ]]; then
   error "unable to run stow"
