@@ -11,6 +11,7 @@ cargo install --locked bat
 action "installing normal packages"
 cargo install bandwhich \
   bottom \
+  cargo-cache \
   cargo-update \
   diskonaut \
   du-dust \
