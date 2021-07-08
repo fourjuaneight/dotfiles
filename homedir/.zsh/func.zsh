@@ -489,6 +489,17 @@ gmpr() {
 
 # DOCKER #
 
+# delete all containers and images
+dckclean() {
+  local dangling
+  docker system df &&
+  docker system prune -a -f &&
+  dangling=$(docker volume ls -qf dangling=true)
+  if [[ "$dangling" ]]; then
+    docker volume rm "$dangling"
+  fi
+}
+
 # find and delete docker images
 dckrmim() {
   local images selectedImage image imageList

@@ -70,9 +70,6 @@ alias rssh="sudo service ssh --full-restart"
 alias stsh="sudo service ssh start"
 alias spsh="sudo service ssh stop"
 
-# Docker
-alias dckclean="docker system df && docker system prune -a && docker volume rm $(docker volume ls -qf dangling=true)"
-
 # Webpack
 alias wpw="webpack -w"
 alias wp="webpack"
