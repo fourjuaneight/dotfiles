@@ -71,9 +71,7 @@ alias stsh="sudo service ssh start"
 alias spsh="sudo service ssh stop"
 
 # Docker
-alias dcku="clear && docker-compose up"
-alias dckb="clear && docker-compose build"
-alias dckdrm="clear && docker-compose down -s"
+alias dckclean="docker system df && docker system prune -a && docker volume rm $(docker volume ls -qf dangling=true)"
 
 # Webpack
 alias wpw="webpack -w"
