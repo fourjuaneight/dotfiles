@@ -1,5 +1,8 @@
 export PATH="/opt/homebrew/bin:$PATH"
 
+# GPG
+export GPG_TTY=$(tty)
+
 # Go
 export GOPATH=$HOME/golang
 export GOROOT="$(/opt/homebrew/bin/brew --prefix golang)/libexec"

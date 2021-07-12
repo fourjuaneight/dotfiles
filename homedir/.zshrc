@@ -9,10 +9,6 @@ zsh-defer eval "$(zoxide init zsh)"
 # Rust Cargo
 zsh-defer source "$HOME/.cargo/env"
 
-# GPG
-GPG_TTY=$(tty)
-export GPG_TTY
-
 # Colors
 if [[ $TERM == xterm ]]; then
   TERM=xterm-256color
