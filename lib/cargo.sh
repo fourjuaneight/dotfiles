@@ -13,6 +13,7 @@ cargo install bandwhich \
   bottom \
   cargo-cache \
   cargo-update \
+  czkawka_cli \
   diskonaut \
   du-dust \
   exa \

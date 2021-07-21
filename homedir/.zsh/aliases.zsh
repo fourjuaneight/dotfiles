@@ -20,6 +20,7 @@ alias ping="gping -s"
 alias du="dust"
 alias htop="btm"
 alias gtop="btm"
+alias hiccup="czkawka_cli"
 
 # common variations of 'cat' command
 alias cat="bat"
