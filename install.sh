@@ -64,6 +64,10 @@ bot "Now to install some Rust binaries."
 
 run ./lib/cargo.sh
 
+bot "And also some Go binaries."
+
+run ./lib/go/get.sh
+
 # ###########################################################
 # Install non-brew various tools (PRE-BREW Installs)
 # ###########################################################

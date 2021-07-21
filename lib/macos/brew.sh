@@ -30,18 +30,14 @@ brew install heroku
 
 action "installing packages"
 brew install ack \
-  act \
   catimg \
   certbot \
   cmake \
   cocoapods \
   curl \
-  dive \
-  docker \
   dog \
   duti \
   fswatch \
-  fzf \
   ghc \
   git \
   gh \
@@ -76,7 +72,6 @@ brew install ack \
   poppler \
   postgresql \
   python3 \
-  rclone \
   rename \
   rsync \
   ruby \
@@ -91,7 +86,6 @@ brew install ack \
   webp \
   wget \
   wireshark \
-  xo/xo/usq \
   xz \
   youtube-dl
 

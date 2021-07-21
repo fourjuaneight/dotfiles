@@ -74,6 +74,9 @@ sysup() {
   minibot "updating Cargo"
   cargo install-update -a
 
+  minibot "updating Go modules"
+  sh ~/dotfiles/lib/go/update.sh
+
   bot "Running tooling updates."
 
   minibot "updating Vim"
