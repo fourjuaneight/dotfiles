@@ -1,6 +1,9 @@
 # ENV
 source "${HOME}/.zshenv"
 
+# GPG
+export GPG_TTY=$(tty)
+
 # Utils
 eval "$(sheldon source)"
 eval "$(starship init zsh)"
