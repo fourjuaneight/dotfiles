@@ -100,22 +100,23 @@ else
   runSudo ./lib/linux/apt.sh
 fi
 
-
-git clone https://github.com/uutils/coreutils ~/coreutils
-cd ~/coreutils
-cargo build --release --features macos
-if [[ $? != 0 ]]; then
-  error "unable to build coreutils"
-  exit 2
-else
-  ok "built coreutils."
-fi
-cargo install --path .
-if [[ $? != 0 ]]; then
-  error "unable to install coreutils"
-  exit 2
-else
-  ok "installed coreutils."
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  git clone https://github.com/uutils/coreutils ~/coreutils
+  cd ~/coreutils
+  cargo build --release --features macos
+  if [[ $? != 0 ]]; then
+    error "unable to build coreutils"
+    exit 2
+  else
+    ok "built coreutils."
+  fi
+  cargo install --path .
+  if [[ $? != 0 ]]; then
+    error "unable to install coreutils"
+    exit 2
+  else
+    ok "installed coreutils."
+  fi
 fi
 
 # ###########################################################
@@ -160,8 +161,10 @@ bot "Let's install some more packages."
 action "installing npm packages"
 run ./lib/npm.sh
 
-action "installing pip packages"
-run ./lib/pip.sh
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  action "installing pip packages"
+  run ./lib/pip.sh
+fi
 
 # ###########################################################
 # Setup zsh and vim env
@@ -180,16 +183,18 @@ else
   ok "dotfiles stowed."
 fi
 
-bot "Setting up vim environment."
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  bot "Setting up vim environment."
 
-action "installing vim plug"
-curl -fLo ${HOME}/.vim/autoload/plug.vim --create-dirs \
-  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-if [[ $? != 0 ]]; then
-  error "unable to install vim plug"
-  exit 2
-else
-  ok "installed vim plug."
+  action "installing vim plug"
+  curl -fLo ${HOME}/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  if [[ $? != 0 ]]; then
+    error "unable to install vim plug"
+    exit 2
+  else
+    ok "installed vim plug."
+  fi
 fi
 
 # ###########################################################
@@ -216,13 +221,15 @@ else
   ok "zsh plugins installed."
 fi
 
-action "installing vim plugings"
-vim +PluginInstall +qall
-if [[ $? != 0 ]]; then
-  error "unable to run vim plug"
-  exit 2
-else
-  ok "vim plugins installed."
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  action "installing vim plugings"
+  vim +PluginInstall +qall
+  if [[ $? != 0 ]]; then
+    error "unable to run vim plug"
+    exit 2
+  else
+    ok "vim plugins installed."
+  fi
 fi
 
 action "Setting Github CLI editor"
