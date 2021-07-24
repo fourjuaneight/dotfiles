@@ -10,7 +10,7 @@ fh() {
 # find and extract archives
 fex() {
   local files fname
-  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
   fname="${files%.*}";
   if [ -n $files ] ; then
     case $files in
@@ -88,7 +88,7 @@ sysup() {
 # glyphhanger whitelist Latin
 gla() {
   local files fname
-  IFS=$'\n' files=($(fzf-tmux --query="$1.ttf" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(fzf --query="$1.ttf" --multi --select-1 --exit-0))
   fname="${files%.*}" &&
   if [[ -n "$files" ]]; then
     glyphhanger --LATIN --formats=woff2,woff --subset=$fname.ttf &&
@@ -100,7 +100,7 @@ gla() {
 # glyphhanger whitelist US ASCII
 glu() {
   local files fname
-  IFS=$'\n' files=($(fzf-tmux --query="$1.ttf" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(fzf --query="$1.ttf" --multi --select-1 --exit-0))
   fname="${files%.*}" &&
   if [[ -n "$files" ]]; then
     glyphhanger --US_ASCII --formats=woff2,woff --subset=$fname.ttf
@@ -162,28 +162,28 @@ clipvid() {
 
 2webm() {
   local files fname
-  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
   fname="${files%.*}";
   [[ -n "$files" ]] && ffmpeg -i $1 -c:v libvpx-vp9 -crf 10 -b:v 0 -b:a 128k -c:a libopus "$fname.webm";
 }
 
 2acc() {
   local files fname
-  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
   fname="${files%.*}";
   [[ -n "$files" ]] && ffmpeg -i $files -c:a libfdk_aac -vbr 3 -c:v copy "$fname.m4a";
 }
 
 2mp4() {
   local files fname
-  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
   fname="${files%.*}";
   [[ -n "$files" ]] && ffmpeg -i $files -q:v 0 "$fname.mp4";
 }
 
 2mp3() {
   local files fname
-  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
   fname="${files%.*}";
   [[ -n "$files" ]] && ffmpeg -i $files -codec:v copy -codec:a libmp3lame -q:a 2 "$fname.mp3";
 }
@@ -211,7 +211,7 @@ diffSel() {
 #   - Exit if there's no match (--exit-0)
 fe() {
   local files
-  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && code ${files[@]}
 }
 
@@ -232,7 +232,7 @@ fif() {
 # find and delete files
 fdf() {
   local files
-  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && rm $files
 }
 
@@ -256,7 +256,7 @@ fa() {
 #   - CTRL-E or Enter key to open with the $EDITOR
 fo() {
   local out file key
-  IFS=$'\n' out=($(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e))
+  IFS=$'\n' out=($(fzf --query="$1" --exit-0 --expect=ctrl-o,ctrl-e))
   key=$(head -1 <<< "$out")
   file=$(head -2 <<< "$out" | tail -1)
   if [[ -n "$file" ]]; then
@@ -292,7 +292,7 @@ fcd() {
 # find file and move to another directory
 ffmv() {
   local file dest
-  IFS=$'\n' file=($(fzf-tmux --query="$1" --multi --select-1 --exit-0)) &&
+  IFS=$'\n' file=($(fzf --query="$1" --multi --select-1 --exit-0)) &&
   dest=$(fd -I -E node_modules -t f --prune . ./ */\.* 2> /dev/null | fzf +m) &&
   mv "$file" "$dest"
 }
@@ -308,7 +308,7 @@ fpcd() {
       get_parent_dirs $(dirname "$1")
     fi
   }
-  local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | fzf-tmux --tac)
+  local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | fzf --tac)
   z "$DIR"
 }
 
@@ -348,7 +348,7 @@ glb() {
 gcbr() {
   local branches branch
   branches=$(git branch) &&
-  branch=$(echo "$branches" | fzf-tmux -d 15 +m) &&
+  branch=$(echo "$branches" | fzf -d 15 +m) &&
   git checkout $(echo "$branch" | sed "s/.* //")
 }
 
@@ -373,7 +373,7 @@ gnbr() {
 gdbr() {
   local branches branch
   branches=$(git branch) &&
-  branch=$(echo "$branches" | fzf-tmux -d 15 +m) &&
+  branch=$(echo "$branches" | fzf -d 15 +m) &&
   git branch -D $(echo "$branch" | sed "s/.* //")
 }
 
@@ -381,7 +381,7 @@ gdbr() {
 gmbr() {
   local branches branch
   branches=$(git branch) &&
-  branch=$(echo "$branches" | fzf-tmux -d 15 +m) &&
+  branch=$(echo "$branches" | fzf -d 15 +m) &&
   git merge $(echo "$branch" | sed "s/.* //")
 }
 
@@ -389,7 +389,7 @@ gmbr() {
 grebr() {
   local branches branch
   branches=$(git branch) &&
-  branch=$(echo "$branches" | fzf-tmux -d 15 +m) &&
+  branch=$(echo "$branches" | fzf -d 15 +m) &&
   git rebase $(echo "$branch" | sed "s/.* //")
 }
 
