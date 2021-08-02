@@ -18,6 +18,7 @@ cargo install bandwhich \
   du-dust \
   exa \
   fd-find \
+  feroxbuster \
   git-delta \
   gitui \
   gping \
