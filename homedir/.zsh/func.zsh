@@ -75,7 +75,7 @@ sysup() {
   cargo install-update -a
 
   minibot "updating Go modules"
-  sh ~/dotfiles/lib/go/update.sh
+  sh ~/dotfiles/lib/go/get.sh
 
   bot "Running tooling updates."
 
