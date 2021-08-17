@@ -382,7 +382,7 @@ gmbr() {
   local branches branch
   branches=$(git branch) &&
   branch=$(echo "$branches" | fzf -d 15 +m) &&
-  git merge $(echo "$branch" | sed "s/.* //")
+  git merge -s ort $(echo "$branch" | sed "s/.* //")
 }
 
 # rebase git local branch into current
