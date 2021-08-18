@@ -1,10 +1,5 @@
 {
-  "folders": [
-    {
-      "name": "Blog",
-      "path": "/Users/fourjuaneight/blog"
-    }
-  ],
+  "folders": [],
   "extensions": {
     "recommendations": [
       "octref.vetur"
