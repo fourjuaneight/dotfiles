@@ -1,6 +1,10 @@
 {
   "folders": [
     {
+      "name": "Blog",
+      "path": "/Users/fourjuaneight/blog"
+    },
+    {
       "name": "Glance Template",
       "path": "../../../../../Volumes/Sergio/Repos/template"
     },

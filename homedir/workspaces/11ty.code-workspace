@@ -1,10 +1,6 @@
 {
   "folders": [
     {
-      "name": "Blog",
-      "path": "/Users/fourjuaneight/blog"
-    },
-    {
       "name": "Resume",
       "path": "../../../resume"
     },
