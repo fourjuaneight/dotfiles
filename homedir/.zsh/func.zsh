@@ -462,7 +462,7 @@ gnpr() {
   branches=$(git branch -r) &&
   selectedBranch=$(echo "$branches" | sed 's/origin\///g' | fzf --ansi +s +m -e) &&
   branch=$(echo $selectedBranch | sed 's/^[[:space:]]*//g') &&
-  reviewers=(fourjuaneight nathSierra jfbloom22) &&
+  reviewers=(fourjuaneight jfbloom22 davidbbaxter baileysh9 bbohach) &&
   handle=$(print -l "${(@)reviewers}" | fzf --ansi --tac +s +m -e) &&
   gh pr create -B $branch -t $1 -r $handle
 }
