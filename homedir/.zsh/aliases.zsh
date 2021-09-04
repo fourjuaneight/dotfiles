@@ -22,13 +22,20 @@ alias htop="btm"
 alias gtop="btm"
 alias hiccup="czkawka_cli"
 
-# common variations of 'cat' command
+# alternative to 'cat'
 alias cat="bat"
 
-# common variations of 'ls' command
+# alternative to 'find'
+alias find="fd"
+
+# alternatives to 'ls'
 alias ls="exa"
 alias ll="exa -l"
 alias la="exa -a"
+
+# list files
+alias lf="fd . -t f -E .DS_Store"
+alias lfc="fd . -t f -E .DS_Store | wc -l"
 
 # search history
 alias hgrep="history | ag"

@@ -236,6 +236,13 @@ fdf() {
   [[ -n "$files" ]] && rm $files
 }
 
+# find and print files
+fpf() {
+  local files
+  IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
+  [[ -n "$files" ]] && echo $files
+}
+
 # DIRECTORIES #
 
 # Open via rga with line number
@@ -251,10 +258,24 @@ fa() {
   fi
 }
 
-# Modified version where you can press
-#   - CTRL-O to open with `open` command,
-#   - CTRL-E or Enter key to open with the $EDITOR
-fo() {
+# find and show filepath
+fsf() {
+  local IFS files directory fullpath
+  IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
+  directory=$(dirname $files)
+  fullpath="$(pwd)/$directory"
+  [[ -n "$files" ]] && open $fullpath
+}
+
+# find and open file (default app)
+fof() {
+  local files
+  IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
+  [[ -n "$files" ]] && open $files
+}
+
+# find and open file in VSCode
+fofc() {
   local out file key
   IFS=$'\n' out=($(fzf --query="$1" --exit-0 --expect=ctrl-o,ctrl-e))
   key=$(head -1 <<< "$out")
