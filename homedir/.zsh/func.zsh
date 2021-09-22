@@ -406,6 +406,14 @@ gmbr() {
   git merge -s ort $(echo "$branch" | sed "s/.* //")
 }
 
+# merge squash git local branch into current
+gmsbr() {
+  local branches branch
+  branches=$(git branch) &&
+  branch=$(echo "$branches" | fzf -d 15 +m) &&
+  git merge -s ort --squash $(echo "$branch" | sed "s/.* //")
+}
+
 # rebase git local branch into current
 grebr() {
   local branches branch
