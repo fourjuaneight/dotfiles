@@ -2,7 +2,7 @@
 alias cd="z"
 alias cdh="z ~"
 alias cdm="z /Volumes/Samuel"
-alias cdr="z /Volumes/Sergio/Repos"
+alias cdr="z /Repos"
 alias ..="z .."
 alias ...="z ../.."
 alias ....="z ../../.."

@@ -2,27 +2,27 @@
   "folders": [
     {
       "name": "Beacon App",
-      "path": "../../../../../Volumes/Sergio/Repos/Beacon-MMG-App"
+      "path": "/Users/fourjuaneight/Repos/Beacon-MMG-App"
     },
     {
       "name": "Beacon Web",
-      "path": "../../../../../Volumes/Sergio/Repos/Beacon-MMG-Web"
+      "path": "/Users/fourjuaneight/Repos/Beacon-MMG-Web"
     },
     {
       "name": "Live",
-      "path": "../../../../../Volumes/Sergio/Repos/live-web"
+      "path": "/Users/fourjuaneight/Repos/live-web"
     },
     {
       "name": "ToggleBooks",
-      "path": "../../../../../Volumes/Sergio/Repos/togglebooks-web"
+      "path": "/Users/fourjuaneight/Repos/togglebooks-web"
     },
     {
       "name": "ToggleBooks API",
-      "path": "../../../../../Volumes/Sergio/Repos/togglebooks-api"
+      "path": "/Users/fourjuaneight/Repos/togglebooks-api"
     },
     {
       "name": "Decision Point",
-      "path": "../../../../../Volumes/Sergio/Repos/dp-website"
+      "path": "/Users/fourjuaneight/Repos/dp-website"
     }
   ],
   "extensions": {

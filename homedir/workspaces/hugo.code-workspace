@@ -2,31 +2,15 @@
   "folders": [
     {
       "name": "Blog",
-      "path": "/Users/fourjuaneight/blog"
+      "path": "/Users/fourjuaneight/Repos/blog"
     },
     {
-      "name": "Personal Site",
-      "path": "../../../../../Volumes/Sergio/Repos/juan-dev"
-    },
-    {
-      "name": "Glance Template",
-      "path": "../../../../../Volumes/Sergio/Repos/template"
+      "name": "The Pancake House",
+      "path": "/Users/fourjuaneight/Repos/thepancakehouse"
     },
     {
       "name": "Financial Services (Glance)",
-      "path": "../../../../../Volumes/Sergio/Repos/finserv-glance"
-    },
-    {
-      "name": "Kelda",
-      "path": "../../../../../Volumes/Sergio/Repos/kelda.io"
-    },
-    {
-      "name": "Richard Walker",
-      "path": "../../../../../Volumes/Sergio/Repos/richardwalker"
-    },
-    {
-      "name": "Weldon",
-      "path": "../../../../../Volumes/Sergio/Repos/Weldon-Hugo-Website"
+      "path": "/Users/fourjuaneight/Repos/finserv-glance"
     },
   ],
   "extensions": {

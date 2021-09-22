@@ -2,9 +2,8 @@
   sslVerify = true
 
 [user]
-  name = Juan Villela
-  email = juan@villela.co
-  signingkey = A87C728DFB757567E2F7DC0C8E30F5DE72656410
+	name = Juan Villela
+	email = juan@villela.co
 
 [github]
   user = fourjuaneight
