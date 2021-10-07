@@ -1,0 +1,1 @@
+/Users/fourjuaneight/.fig/shell/post.fish
