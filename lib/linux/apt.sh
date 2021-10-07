@@ -78,6 +78,7 @@ apt-get install -y apt-transport-https \
   wget \
   wireshark \
   xz-utils \
+  zfsutils-linux \
   zsh
 
 action "cleaning up"
