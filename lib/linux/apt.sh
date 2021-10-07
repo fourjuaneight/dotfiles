@@ -28,6 +28,7 @@ apt-get install -y apt-transport-https \
   ghc \
   gist \
   git \
+  golang-go \
   gpg \
   graphicsmagick \
   imagemagick \

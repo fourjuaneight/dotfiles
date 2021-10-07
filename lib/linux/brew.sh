@@ -25,7 +25,6 @@ brew install ack \
   dog \
   fzf \
   gh \
-  go \
   webp \
   xo/xo/usql \
   youtube-dl
