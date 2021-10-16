@@ -1,46 +1,46 @@
 version = "0.6.4"
-home = "/Users/fourjuaneight"
-config_dir = "/Users/fourjuaneight/.config/sheldon"
-data_dir = "/Users/fourjuaneight/.config/sheldon"
-config_file = "/Users/fourjuaneight/.config/sheldon/plugins.toml"
-lock_file = "/Users/fourjuaneight/.config/sheldon/plugins.lock"
-clone_dir = "/Users/fourjuaneight/.config/sheldon/repos"
-download_dir = "/Users/fourjuaneight/.config/sheldon/downloads"
+home = "/home/fourjuaneight"
+config_dir = "/home/fourjuaneight/.config/sheldon"
+data_dir = "/home/fourjuaneight/.config/sheldon"
+config_file = "/home/fourjuaneight/.config/sheldon/plugins.toml"
+lock_file = "/home/fourjuaneight/.config/sheldon/plugins.lock"
+clone_dir = "/home/fourjuaneight/.config/sheldon/repos"
+download_dir = "/home/fourjuaneight/.config/sheldon/downloads"
 
 [[plugins]]
 name = "fast-syntax-highlighting"
-source_dir = "/Users/fourjuaneight/.config/sheldon/repos/github.com/zdharma/fast-syntax-highlighting"
-files = ["/Users/fourjuaneight/.config/sheldon/repos/github.com/zdharma/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"]
+source_dir = "/home/fourjuaneight/.config/sheldon/repos/github.com/zdharma/fast-syntax-highlighting"
+files = ["/home/fourjuaneight/.config/sheldon/repos/github.com/zdharma/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"]
 apply = ["source"]
 
 [[plugins]]
 name = "zsh-autopair"
-source_dir = "/Users/fourjuaneight/.config/sheldon/repos/github.com/hlissner/zsh-autopair"
-files = ["/Users/fourjuaneight/.config/sheldon/repos/github.com/hlissner/zsh-autopair/zsh-autopair.plugin.zsh"]
+source_dir = "/home/fourjuaneight/.config/sheldon/repos/github.com/hlissner/zsh-autopair"
+files = ["/home/fourjuaneight/.config/sheldon/repos/github.com/hlissner/zsh-autopair/zsh-autopair.plugin.zsh"]
 apply = ["source"]
 
 [[plugins]]
 name = "zsh-autosuggestions"
-source_dir = "/Users/fourjuaneight/.config/sheldon/repos/github.com/zsh-users/zsh-autosuggestions"
-files = ["/Users/fourjuaneight/.config/sheldon/repos/github.com/zsh-users/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"]
+source_dir = "/home/fourjuaneight/.config/sheldon/repos/github.com/zsh-users/zsh-autosuggestions"
+files = ["/home/fourjuaneight/.config/sheldon/repos/github.com/zsh-users/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"]
 apply = ["source"]
 
 [[plugins]]
 name = "zsh-completions"
-source_dir = "/Users/fourjuaneight/.config/sheldon/repos/github.com/zsh-users/zsh-completions"
-files = ["/Users/fourjuaneight/.config/sheldon/repos/github.com/zsh-users/zsh-completions/zsh-completions.plugin.zsh"]
+source_dir = "/home/fourjuaneight/.config/sheldon/repos/github.com/zsh-users/zsh-completions"
+files = ["/home/fourjuaneight/.config/sheldon/repos/github.com/zsh-users/zsh-completions/zsh-completions.plugin.zsh"]
 apply = ["source"]
 
 [[plugins]]
 name = "zsh-defer"
-source_dir = "/Users/fourjuaneight/.config/sheldon/repos/github.com/romkatv/zsh-defer"
-files = ["/Users/fourjuaneight/.config/sheldon/repos/github.com/romkatv/zsh-defer/zsh-defer.plugin.zsh"]
+source_dir = "/home/fourjuaneight/.config/sheldon/repos/github.com/romkatv/zsh-defer"
+files = ["/home/fourjuaneight/.config/sheldon/repos/github.com/romkatv/zsh-defer/zsh-defer.plugin.zsh"]
 apply = ["source"]
 
 [[plugins]]
 name = "zsh-async"
-source_dir = "/Users/fourjuaneight/.config/sheldon/repos/github.com/mafredri/zsh-async"
-files = ["/Users/fourjuaneight/.config/sheldon/repos/github.com/mafredri/zsh-async/async.plugin.zsh"]
+source_dir = "/home/fourjuaneight/.config/sheldon/repos/github.com/mafredri/zsh-async"
+files = ["/home/fourjuaneight/.config/sheldon/repos/github.com/mafredri/zsh-async/async.plugin.zsh"]
 apply = ["source"]
 [templates.PATH]
 value = "export PATH=\"{{ dir }}:$PATH\""
