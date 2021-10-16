@@ -1,5 +1,7 @@
 export PATH="/opt/homebrew/bin:$PATH"
 
+export PATH=$PATH:$HOME/.exo/bin
+
 # Go
 export GOPATH=$HOME/golang
 export GOROOT="$(/opt/homebrew/bin/brew --prefix golang)/libexec"
