@@ -10,3 +10,4 @@ homedir/.config/gatsby/sites
 homedir/.config/gatsby/events.json
 homedir/.config/sheldon/repos
 homedir/.config/rclone
+homedir/.config/sheldon/plugins.lock
