@@ -32,6 +32,20 @@ fex() {
   fi
 }
 
+# batch rename files with regex
+brn() {
+  local files filesMatch
+  # remove quotes
+  filesMatch=$(sed -e 's/^"//' -e 's/"$//' <<<$2)
+  # convert to list
+  IFS=$'\n' files=($(echo $filesMatch | ls))
+
+  for file in $files; do
+    new=$(echo "$file" | sed -e $1)
+    mv "$file" "$new"
+  done
+}
+
 # find and kill process
 fkp() {
   local pid
