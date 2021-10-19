@@ -45,6 +45,7 @@ brew install ack \
   go \
   gpg \
   graphicsmagick \
+  id3v2 \
   imagemagick \
   inetutils \
   jasper \

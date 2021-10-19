@@ -31,6 +31,7 @@ apt-get install -y apt-transport-https \
   golang-go \
   gpg \
   graphicsmagick \
+  id3v2 \
   imagemagick \
   indent \
   indicator-multiload \
