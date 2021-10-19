@@ -7,45 +7,6 @@ fh() {
   print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | gsed -r 's/ *[0-9]*\*? *//' | gsed -r 's/\\/\\\\/g')
 }
 
-# find and extract archives
-fex() {
-  local files fname
-  IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
-  fname="${files%.*}";
-  if [ -n $files ] ; then
-    case $files in
-      *.tar.bz2)  tar xvjf $files   ;;
-      *.tar.gz)   tar xvzf $files   ;;
-      *.bz2)      bunzip2 $files    ;;
-      *.rar)      unrar x $files    ;;
-      *.gz)       gunzip $files     ;;
-      *.tar)      tar xvf $files    ;;
-      *.tbz2)     tar xvjf $files   ;;
-      *.tgz)      tar xvzf $files   ;;
-      *.zip)      unzip $files      ;;
-      *.Z)        uncompress $files ;;
-      *.7z)       7z x $files       ;;
-      *)          echo "don't know how to extract '$files'..." ;;
-    esac
-  else
-    echo "'$files' is not a valid file!"
-  fi
-}
-
-# batch rename files with regex
-brn() {
-  local files filesMatch
-  # remove quotes
-  filesMatch=$(sed -e 's/^"//' -e 's/"$//' <<<$2)
-  # convert to list
-  IFS=$'\n' files=($(echo $filesMatch | ls))
-
-  for file in $files; do
-    new=$(echo "$file" | sed -e $1)
-    mv "$file" "$new"
-  done
-}
-
 # find and kill process
 fkp() {
   local pid
@@ -204,6 +165,73 @@ clipvid() {
 
 
 # FILES #
+
+# find and extract archives
+fex() {
+  local files fname
+  IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
+  fname="${files%.*}";
+  if [ -n $files ] ; then
+    case $files in
+      *.tar.bz2)  tar xvjf $files && rm $files   ;;
+      *.tar.gz)   tar xvzf $files && rm $files   ;;
+      *.bz2)      bunzip2 $files && rm $files    ;;
+      *.rar)      unrar x $files && rm $files    ;;
+      *.gz)       gunzip $files && rm $files     ;;
+      *.tar)      tar xvf $files && rm $files    ;;
+      *.tbz2)     tar xvjf $files && rm $files   ;;
+      *.tgz)      tar xvzf $files && rm $files   ;;
+      *.zip)      unzip $files && rm $files      ;;
+      *.Z)        uncompress $files && rm $files ;;
+      *.7z)       7z x $files && rm $files       ;;
+      *)          echo "don't know how to extract '$files'..." ;;
+    esac
+  else
+    echo "'$files' is not a valid file!"
+  fi
+}
+
+# batch rename files with regex
+brn() {
+  local files filesMatch
+  # remove quotes
+  filesMatch=$(sed -e 's/^"//' -e 's/"$//' <<<$2)
+  # convert to list
+  IFS=$'\n' files=($(echo $filesMatch | ls))
+
+  for file in $files; do
+    new=$(echo "$file" | sed -E $1) &&
+    mv "$file" "$new"
+  done
+}
+
+# batch update mp3 title with regex
+bump3() {
+  for file in $(ls *.mp3); do
+    case true in
+      $1 == "title")
+        id3v2 -t "$2" $file
+        ;;
+      $1 == "artist")
+        id3v2 -a "$2" $file
+        ;;
+      $1 == "album")
+        id3v2 -A "$2" $file
+        ;;
+      $1 == "genre")
+        id3v2 -g "$2" $file
+        ;;
+      $1 == "year")
+        id3v2 -y "$2" $file
+        ;;
+      *)
+        new=$(echo $file | sed -E $1) &&
+        id3v2 -t "$new" $file
+        ;;
+    esac
+  done
+}
+
 # select two files, but fold lines longer than 20 characters, then diff (via delta)
 diffLongSel() {
   local file1 file2
