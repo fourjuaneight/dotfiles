@@ -60,6 +60,7 @@ brew install ack \
   mediainfo \
   memcached \
   mercurial \
+  mkvtoolnix \
   mmv \
   mosh \
   mysql \

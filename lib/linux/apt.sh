@@ -50,6 +50,7 @@ apt-get install -y apt-transport-https \
   mediainfo \
   memcached \
   mercurial \
+  mkvtoolnix \
   mmv \
   mosh \
   ncdu \
