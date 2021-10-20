@@ -206,29 +206,10 @@ brn() {
 }
 
 # batch update mp3 title with regex
-bump3() {
+bump3t() {
   for file in $(ls *.mp3); do
-    case true in
-      $1 == "title")
-        id3v2 -t "$2" $file
-        ;;
-      $1 == "artist")
-        id3v2 -a "$2" $file
-        ;;
-      $1 == "album")
-        id3v2 -A "$2" $file
-        ;;
-      $1 == "genre")
-        id3v2 -g "$2" $file
-        ;;
-      $1 == "year")
-        id3v2 -y "$2" $file
-        ;;
-      *)
-        new=$(echo $file | sed -E $1) &&
-        id3v2 -t "$new" $file
-        ;;
-    esac
+    new=$(echo $file | sed -E $1) &&
+    id3v2 -t "$new" $file
   done
 }
 
