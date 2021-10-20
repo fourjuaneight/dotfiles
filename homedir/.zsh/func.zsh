@@ -213,6 +213,14 @@ bump3t() {
   done
 }
 
+# batch update mkv title from filename
+bumkvt() {
+  for file in $(ls *.mkv); do
+		new=$(echo $file | sed -E "s/[a-zA-Z_]+-S[0-9]+-E[0-9]+-(.*)\.mkv/\1/" | sed -E 's/_/ /g')  &&
+    mkvpropedit $file -e info -s title="$new"
+  done
+}
+
 # select two files, but fold lines longer than 20 characters, then diff (via delta)
 diffLongSel() {
   local file1 file2
