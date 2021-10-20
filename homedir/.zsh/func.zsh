@@ -201,6 +201,7 @@ brn() {
 
   for file in $files; do
     new=$(echo "$file" | sed -E $1) &&
+    echo "$file -> $new"
     mv "$file" "$new"
   done
 }
@@ -209,6 +210,7 @@ brn() {
 bump3t() {
   for file in $(ls *.mp3); do
     new=$(echo $file | sed -E $1) &&
+    echo "title -> $new"
     id3v2 -t "$new" $file
   done
 }
@@ -217,6 +219,7 @@ bump3t() {
 bumkvt() {
   for file in $(ls *.mkv); do
 		new=$(echo $file | sed -E "s/[a-zA-Z_]+-S[0-9]+-E[0-9]+-(.*)\.mkv/\1/" | sed -E 's/_/ /g')  &&
+		echo "title -> $new"
     mkvpropedit $file -e info -s title="$new"
   done
 }
