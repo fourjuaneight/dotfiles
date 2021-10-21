@@ -224,6 +224,21 @@ bumkvt() {
   done
 }
 
+# batch update mkv title by chapters
+bumkvc() {
+  TEMPFILE=/tmp/counter.tmp
+  echo $1 > $TEMPFILE
+
+  for file in $(ls *.mkv); do
+    COUNTER=$[$(cat $TEMPFILE) + 1]
+    echo $COUNTER > $TEMPFILE
+    echo "title -> Chapter $COUNTER"
+    mkvpropedit $file -e info -s title="Chapter $new"
+  done
+
+  unlink $TEMPFILE
+}
+
 # select two files, but fold lines longer than 20 characters, then diff (via delta)
 diffLongSel() {
   local file1 file2
