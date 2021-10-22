@@ -33,6 +33,8 @@ alias ls="exa"
 alias ll="exa -l"
 alias la="exa -a"
 
+alias cls="ls -F |grep -v / | wc -l"
+
 # list files
 alias lf="fd . -t f -E .DS_Store"
 alias lfc="fd . -t f -E .DS_Store | wc -l"
