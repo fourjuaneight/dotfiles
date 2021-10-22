@@ -218,7 +218,7 @@ bump3t() {
 # batch update mkv title from filename
 bumkvt() {
   for file in $(ls *.mkv); do
-    new=$(echo $file | sed -E "s/[a-zA-Z_]+-S[0-9]+-E[0-9]+-(.*)\.mkv/\1/" | sed -E 's/_/ /g') &&
+    new=$(echo $file | sed -E "s/[a-zA-Z_]+-S[0-9]+-E[0-9]+-(.*)\.mkv/\1/" | sed -E 's/_/ /g' | sed -E 's/-/ - /') &&
     echo "title -> $new"
     mkvpropedit $file -e info -s title="$new"
   done
