@@ -38,6 +38,12 @@ timezsh() {
 sysup() {
   bot "Running dependency updates."
 
+	if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    minibot "updating apt dependencies"
+	  sudo apt-get update
+	  sudo apt-get upgrade -y
+  fi
+
   minibot "updating Rust"
   rustup update
 
@@ -50,9 +56,7 @@ sysup() {
   cargo install-update -a
 
   minibot "updating Go modules"
-  sh ~/dotfiles/lib/go/install.sh
-
-  bot "Running tooling updates."
+  bash ~/dotfiles/lib/go/install.sh
 
   minibot "updating Vim"
   vim +PlugUpgrade +PlugUpdate +qa

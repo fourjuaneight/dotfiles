@@ -4,9 +4,7 @@ export PATH=$PATH:$HOME/.exo/bin
 
 # Go
 export GOPATH=$HOME/go
-export GOROOT=$HOME/go
 export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
 
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"

@@ -24,6 +24,7 @@ brew install ack \
   dive \
   dog \
   fzf \
+	gcc@5 \
   gh \
   webp \
   xo/xo/usql \
