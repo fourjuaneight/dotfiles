@@ -4,6 +4,7 @@
 [user]
 	name = Juan Villela
 	email = juan@villela.co
+	signingkey = D74342637DE2652F
 
 [github]
   user = fourjuaneight

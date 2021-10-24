@@ -1,10 +1,10 @@
-export PATH="/opt/homebrew/bin:$PATH"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 export PATH=$PATH:$HOME/.exo/bin
 
 # Go
-export GOPATH=$HOME/golang
-export GOROOT="$(/opt/homebrew/bin/brew --prefix golang)/libexec"
+export GOPATH=$HOME/go
+export GOROOT=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
 
