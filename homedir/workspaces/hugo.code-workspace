@@ -2,15 +2,15 @@
   "folders": [
     {
       "name": "Blog",
-      "path": "/Users/fourjuaneight/Repos/blog"
+      "path": "/home/fourjuaneight/Repos/blog"
     },
     {
       "name": "The Pancake House",
-      "path": "/Users/fourjuaneight/Repos/thepancakehouse"
+      "path": "/home/fourjuaneight/Repos/thepancakehouse"
     },
     {
       "name": "Financial Services (Glance)",
-      "path": "/Users/fourjuaneight/Repos/finserv-glance"
+      "path": "/home/fourjuaneight/Repos/finserv-glance"
     },
   ],
   "extensions": {
