@@ -85,10 +85,12 @@ alias wpw="webpack -w"
 alias wp="webpack"
 
 # nvm
-alias nvi="nvm install"
-alias nvu="nvm use"
-alias nviu="nvm install && nvm use --delete-prefix"
+alias nvm="fnm"
+alias nvi="fnm install"
+alias nvu="fnm use"
+alias nviu="fnm install && fnm use --delete-prefix"
 alias nr="npm run"
+alias wnv="bat -p .nvmrc"
 
 # Postgres
 alias psl="psql postgres -h localhost -l"
