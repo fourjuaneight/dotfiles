@@ -9,9 +9,14 @@ export PATH=$PATH:$GOPATH/bin
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
+# fnm
+export PATH=/home/fourjuaneight/.fnm:$PATH
+eval "`fnm env`"
+
 # nvm
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 export NVM_LAZY_LOAD=true
+export PATH=~/.npm-global/bin:$PATH
 
 # Sheldon
 export SHELDON_CONFIG_DIR="$HOME/.config/sheldon"

@@ -47,3 +47,7 @@ zmodload zsh/zprof
 # Please make sure this block is at the end of this file.
 [ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
 #### END FIG ENV VARIABLES ####
+
+# fnm
+export PATH=/home/fourjuaneight/.fnm:$PATH
+eval "`fnm env`"
