@@ -16,6 +16,7 @@ action "installing dependencies"
 apt-get install -y apt-transport-https \
   bash \
   build-essential \
+  ca-certificates \
   certbot \
   clang \
   cmake \
@@ -28,6 +29,7 @@ apt-get install -y apt-transport-https \
   ghc \
   gist \
   git \
+  gnupg \
   golang-go \
   gpg \
   graphicsmagick \
@@ -45,6 +47,7 @@ apt-get install -y apt-transport-https \
   libsecret-1-0 \
   libsecret-1-dev \
   libvips \
+  lsb-release \
   libvips-dev \
   mc \
   mediainfo \

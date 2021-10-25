@@ -106,6 +106,10 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   npm config set prefix '~/.npm-global'
 fi
 
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+
+fi
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
   git clone https://github.com/uutils/coreutils ~/coreutils
   cd ~/coreutils
@@ -157,6 +161,10 @@ fi
 if [[ "$OSTYPE" == "darwin"* ]]; then
   action "installing apps"
   run ./lib/macos/mas.sh
+fi
+
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  run ./lib/docker.sh
 fi
 
 # ###########################################################
