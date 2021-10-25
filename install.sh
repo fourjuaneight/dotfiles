@@ -100,6 +100,12 @@ else
   runSudo ./lib/linux/apt.sh
 fi
 
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  action "updating Node modules install directory"
+  mkdir ~/.npm-global
+  npm config set prefix '~/.npm-global'
+fi
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
   git clone https://github.com/uutils/coreutils ~/coreutils
   cd ~/coreutils
