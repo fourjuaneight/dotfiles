@@ -91,12 +91,12 @@ glu() {
 
 # youtube-dl beat video/audio quality
 ytv() {
-  youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio:' --merge-output-format mp4 -o "%(title)s.%(ext)s" $1
+  yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio:' --merge-output-format mp4 -o "%(title)s.%(ext)s" $1
 }
 
 # youtube-dl beat audio (only) quality
 yta() {
-  youtube-dl -f bestaudio[ext=m4a] $1
+  yt-dlp -f bestaudio[ext=m4a] $1
 }
 
 
