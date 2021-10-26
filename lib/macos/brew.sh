@@ -89,7 +89,7 @@ brew install ack \
   wget \
   wireshark \
   xz \
-  youtube-dl
+  yt-dlp/taps/yt-dlp
 
 action "installing casks"
 brew cask install alfred \

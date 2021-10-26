@@ -28,7 +28,7 @@ brew install ack \
   gh \
   webp \
   xo/xo/usql \
-  youtube-dl
+  yt-dlp/taps/yt-dlp
 
 action "cleaning up"
 brew cleanup
