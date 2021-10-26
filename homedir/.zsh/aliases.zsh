@@ -85,7 +85,6 @@ alias wpw="webpack -w"
 alias wp="webpack"
 
 # nvm
-alias nvm="fnm"
 alias nvi="fnm install"
 alias nvu="fnm use"
 alias nviu="fnm install && fnm use --delete-prefix"
