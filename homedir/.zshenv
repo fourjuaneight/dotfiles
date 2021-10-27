@@ -10,7 +10,7 @@ export PATH=$PATH:$GOPATH/bin
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # fnm
-export PATH=/home/fourjuaneight/.fnm:$PATH
+export PATH=$HOME/.fnm:$PATH
 eval "`fnm env`"
 
 # nvm
