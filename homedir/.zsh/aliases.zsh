@@ -21,6 +21,7 @@ alias du="dust"
 alias htop="btm"
 alias gtop="btm"
 alias hiccup="czkawka_cli"
+alias plexperm="sudo chown -R plex.plex"
 
 # alternative to 'cat'
 alias cat="bat"
