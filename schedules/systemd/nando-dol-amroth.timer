@@ -1,0 +1,13 @@
+[Unit]
+Description=Sync Nando with Dol-Amroth every 1 hour
+RefuseManualStart=no
+RefuseManualStop=no
+
+[Timer]
+Persistent=true
+OnBootSec=120
+OnUnitActiveSec=1h
+Unit=nando-dol-amroth.service 
+
+[Install]
+WantedBy=timers.target

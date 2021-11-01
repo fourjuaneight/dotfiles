@@ -1,0 +1,10 @@
+[Unit]
+Description=Sync Nando with Dol-Amroth via rclone
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/sh %h/.scripts/nando-dol-amroth.sh
+Type=oneshot
+
+[Install]
+WantedBy=multi-user.target
