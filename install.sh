@@ -263,5 +263,26 @@ else
   ok "theme saved."
 fi
 
+action "setting up scheduled tasks"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+else
+  sudo cp ~/dotfiles/schedules/systemd/* /etc/systemd/user/
+
+  action "enable services"
+  for file in ./schedules/systemd/*.service; do
+    systemctl --user enable "${file}"
+    systemctl --user start "${file}"
+  done
+
+  action "enable timers"
+  for file in ./schedules/systemd/*.timer; do
+    systemctl --user enable "${file}"
+    systemctl --user start "${file}"
+  done
+
+  action "reloading daemon"
+  systemctl --user daemon-reload
+fi
+
 bot "All done! Gary out."
 minibot "Little Gary out, too!"
