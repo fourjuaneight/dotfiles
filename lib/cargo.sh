@@ -29,6 +29,7 @@ cargo install bandwhich \
   ripgrep_all \
   sheldon \
   starship \
+	stdrename \
   websocat \
   wrangler \
   zellij \
