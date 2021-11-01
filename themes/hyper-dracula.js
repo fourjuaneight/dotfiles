@@ -1,7 +1,7 @@
 'use strict'
 
 const foregroundColor = '#f8f8f2'
-const backgroundColor = '#22212C'
+const backgroundColor = '#0B0D0F'
 const selection = '#454158'
 const comment = '#9580FF'
 const red = '#FF9580'
@@ -42,7 +42,7 @@ exports.decorateConfig = config => {
     css: `
       ${config.css || ''}
       .hyper_main {
-        border-color: #22212C !important;
+        border-color: #0B0D0F !important;
       }
       .tabs_list .tab_tab.tab_active .tab_text  {
         background: ${backgroundColor};
