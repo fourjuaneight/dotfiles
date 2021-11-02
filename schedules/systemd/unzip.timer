@@ -1,0 +1,13 @@
+[Unit]
+Description=Unzip all compressed folders from the given directory every 1 hour
+RefuseManualStart=no
+RefuseManualStop=no
+
+[Timer]
+Persistent=true
+OnBootSec=120
+OnUnitActiveSec=15min
+Unit=unzip.service 
+
+[Install]
+WantedBy=timers.target
