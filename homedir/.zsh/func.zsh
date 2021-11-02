@@ -183,17 +183,17 @@ fex() {
 
   if [ -n $files ] ; then
     case $files in
-      *.tar.bz2)  tar xvjf $files && echo "Removing '$files'..."; rm $files   ;;
-      *.tar.gz)   tar xvzf $files && echo "Removing '$files'..."; rm $files   ;;
-      *.bz2)      bunzip2 $files && echo "Removing '$files'..."; rm $files    ;;
-      *.rar)      unrar x $files && echo "Removing '$files'..."; rm $files    ;;
-      *.gz)       gunzip $files && echo "Removing '$files'..."; rm $files     ;;
-      *.tar)      tar xvf $files && echo "Removing '$files'..."; rm $files    ;;
-      *.tbz2)     tar xvjf $files && echo "Removing '$files'..."; rm $files   ;;
-      *.tgz)      tar xvzf $files && echo "Removing '$files'..."; rm $files   ;;
-      *.zip)      unzip $files && echo "Removing '$files'..."; rm $files      ;;
-      *.Z)        uncompress $files && echo "Removing '$files'..."; rm $files ;;
-      *.7z)       7z x $files && echo "Removing '$files'..."; rm $files       ;;
+      *.tar.bz2)  tar -xvjf $file && echo "Removing '$file'..."; rm $file   ;;
+      *.tar.gz)   tar -xvzf $file && echo "Removing '$file'..."; rm $file   ;;
+      *.bz2)      bunzip2 -v $file && echo "Removing '$file'..."; rm $file    ;;
+      *.rar)      unrar xv $file && echo "Removing '$file'..."; rm $file    ;;
+      *.gz)       gunzip -v $file && echo "Removing '$file'..."; rm $file     ;;
+      *.tar)      tar -xvf $file && echo "Removing '$file'..."; rm $file    ;;
+      *.tbz2)     tar -xvjf $file && echo "Removing '$file'..."; rm $file   ;;
+      *.tgz)      tar -xvzf $file && echo "Removing '$file'..."; rm $file   ;;
+      *.zip)      unzip $file && echo "Removing '$file'..."; rm $file      ;;
+      *.Z)        uncompress -v $file && echo "Removing '$file'..."; rm $file ;;
+      *.7z)       7z x $file -bb && echo "Removing '$file'..."; rm $file       ;;
       *)          echo "Don't know how to extract '$files'." ;;
     esac
   else
@@ -209,17 +209,17 @@ exta() {
 
   for file in $files; do
     case $file in
-      *.tar.bz2)  tar xvjf $file && echo "Removing '$file'..."; rm $file   ;;
-      *.tar.gz)   tar xvzf $file && echo "Removing '$file'..."; rm $file   ;;
-      *.bz2)      bunzip2 $file && echo "Removing '$file'..."; rm $file    ;;
-      *.rar)      unrar x $file && echo "Removing '$file'..."; rm $file    ;;
-      *.gz)       gunzip $file && echo "Removing '$file'..."; rm $file     ;;
-      *.tar)      tar xvf $file && echo "Removing '$file'..."; rm $file    ;;
-      *.tbz2)     tar xvjf $file && echo "Removing '$file'..."; rm $file   ;;
-      *.tgz)      tar xvzf $file && echo "Removing '$file'..."; rm $file   ;;
+      *.tar.bz2)  tar -xvjf $file && echo "Removing '$file'..."; rm $file   ;;
+      *.tar.gz)   tar -xvzf $file && echo "Removing '$file'..."; rm $file   ;;
+      *.bz2)      bunzip2 -v $file && echo "Removing '$file'..."; rm $file    ;;
+      *.rar)      unrar xv $file && echo "Removing '$file'..."; rm $file    ;;
+      *.gz)       gunzip -v $file && echo "Removing '$file'..."; rm $file     ;;
+      *.tar)      tar -xvf $file && echo "Removing '$file'..."; rm $file    ;;
+      *.tbz2)     tar -xvjf $file && echo "Removing '$file'..."; rm $file   ;;
+      *.tgz)      tar -xvzf $file && echo "Removing '$file'..."; rm $file   ;;
       *.zip)      unzip $file && echo "Removing '$file'..."; rm $file      ;;
-      *.Z)        uncompress $file && echo "Removing '$file'..."; rm $file ;;
-      *.7z)       7z x $file && echo "Removing '$file'..."; rm $file       ;;
+      *.Z)        uncompress -v $file && echo "Removing '$file'..."; rm $file ;;
+      *.7z)       7z x $file -bb && echo "Removing '$file'..."; rm $file       ;;
       *)          echo "Skipping '$file'." ;;
     esac
   done

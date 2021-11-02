@@ -85,6 +85,7 @@ brew install ack \
   the_silver_searcher \
   tmux \
   tree \
+  unrar \
   webp \
   wget \
   wireshark \

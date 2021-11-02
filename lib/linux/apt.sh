@@ -78,6 +78,7 @@ apt-get install -y apt-transport-https \
   tar \
   tmux \
   tree \
+  unrar \
   vim \
   virtualenv \
   wget \
