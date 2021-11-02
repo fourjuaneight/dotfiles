@@ -264,20 +264,21 @@ else
 fi
 
 action "setting up scheduled tasks"
+chmod +x ~/.scripts/*.sh
 if [[ "$OSTYPE" == "darwin"* ]]; then
 else
   sudo cp ~/dotfiles/schedules/systemd/* /etc/systemd/user/
 
   action "enable services"
   for file in ./schedules/systemd/*.service; do
-    systemctl --user enable "${file}"
     systemctl --user start "${file}"
+    systemctl --user enable "${file}"
   done
 
   action "enable timers"
   for file in ./schedules/systemd/*.timer; do
-    systemctl --user enable "${file}"
     systemctl --user start "${file}"
+    systemctl --user enable "${file}"
   done
 
   action "reloading daemon"
