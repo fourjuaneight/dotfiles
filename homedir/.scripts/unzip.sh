@@ -1,5 +1,7 @@
 #!/bin/sh
 
+touch ~/unzip.log || exit
+
 extract() {
   local files
   # convert to list
