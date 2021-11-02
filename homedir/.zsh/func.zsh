@@ -180,24 +180,49 @@ fex() {
   local files fname
   IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
   fname="${files%.*}";
+
   if [ -n $files ] ; then
     case $files in
-      *.tar.bz2)  tar xvjf $files && rm $files   ;;
-      *.tar.gz)   tar xvzf $files && rm $files   ;;
-      *.bz2)      bunzip2 $files && rm $files    ;;
-      *.rar)      unrar x $files && rm $files    ;;
-      *.gz)       gunzip $files && rm $files     ;;
-      *.tar)      tar xvf $files && rm $files    ;;
-      *.tbz2)     tar xvjf $files && rm $files   ;;
-      *.tgz)      tar xvzf $files && rm $files   ;;
-      *.zip)      unzip $files && rm $files      ;;
-      *.Z)        uncompress $files && rm $files ;;
-      *.7z)       7z x $files && rm $files       ;;
-      *)          echo "don't know how to extract '$files'..." ;;
+      *.tar.bz2)  tar xvjf $files && echo "Removing '$files'..."; rm $files   ;;
+      *.tar.gz)   tar xvzf $files && echo "Removing '$files'..."; rm $files   ;;
+      *.bz2)      bunzip2 $files && echo "Removing '$files'..."; rm $files    ;;
+      *.rar)      unrar x $files && echo "Removing '$files'..."; rm $files    ;;
+      *.gz)       gunzip $files && echo "Removing '$files'..."; rm $files     ;;
+      *.tar)      tar xvf $files && echo "Removing '$files'..."; rm $files    ;;
+      *.tbz2)     tar xvjf $files && echo "Removing '$files'..."; rm $files   ;;
+      *.tgz)      tar xvzf $files && echo "Removing '$files'..."; rm $files   ;;
+      *.zip)      unzip $files && echo "Removing '$files'..."; rm $files      ;;
+      *.Z)        uncompress $files && echo "Removing '$files'..."; rm $files ;;
+      *.7z)       7z x $files && echo "Removing '$files'..."; rm $files       ;;
+      *)          echo "Don't know how to extract '$files'." ;;
     esac
   else
     echo "'$files' is not a valid file!"
   fi
+}
+
+# extract all files in directory
+exta() {
+  local files
+  # convert to list
+  IFS=$'\n' files=($(ls))
+
+  for file in $files; do
+    case $file in
+      *.tar.bz2)  tar xvjf $file && echo "Removing '$file'..."; rm $file   ;;
+      *.tar.gz)   tar xvzf $file && echo "Removing '$file'..."; rm $file   ;;
+      *.bz2)      bunzip2 $file && echo "Removing '$file'..."; rm $file    ;;
+      *.rar)      unrar x $file && echo "Removing '$file'..."; rm $file    ;;
+      *.gz)       gunzip $file && echo "Removing '$file'..."; rm $file     ;;
+      *.tar)      tar xvf $file && echo "Removing '$file'..."; rm $file    ;;
+      *.tbz2)     tar xvjf $file && echo "Removing '$file'..."; rm $file   ;;
+      *.tgz)      tar xvzf $file && echo "Removing '$file'..."; rm $file   ;;
+      *.zip)      unzip $file && echo "Removing '$file'..."; rm $file      ;;
+      *.Z)        uncompress $file && echo "Removing '$file'..."; rm $file ;;
+      *.7z)       7z x $file && echo "Removing '$file'..."; rm $file       ;;
+      *)          echo "Skipping '$file'." ;;
+    esac
+  done
 }
 
 # batch rename files with regex
