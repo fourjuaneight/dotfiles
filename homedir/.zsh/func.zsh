@@ -89,14 +89,19 @@ glu() {
 
 # YOUTUBE #
 
-# youtube-dl beat video/audio quality
+# youtube-dl best video/audio quality
 ytv() {
   yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio:' --merge-output-format mp4 -o "%(title)s.%(ext)s" $1
 }
 
-# youtube-dl beat audio (only) quality
+# youtube-dl best audio (only) quality
 yta() {
   yt-dlp -f bestaudio[ext=m4a] $1
+}
+
+# upload downloaded video to b2 archives
+ytu() {
+	b2 upload-file imladris $1 Bookmarks/Videos/$1
 }
 
 

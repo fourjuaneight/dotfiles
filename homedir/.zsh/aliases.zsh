@@ -45,7 +45,7 @@ alias hgrep="history | ag"
 
 # networking
 alias whois="whois -h whois-servers.net"
-alias netstatus="sudo bandwhich -n"
+alias netstatus="sudo $HOME/.cargo/bin/bandwhich -n"
 alias dig="dog"
 
 # zsh

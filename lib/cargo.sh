@@ -19,7 +19,7 @@ cargo install bandwhich \
   exa \
   fd-find \
   feroxbuster \
-	fnm \
+  fnm \
   git-cliff \
   git-delta \
   gitui \
@@ -29,7 +29,7 @@ cargo install bandwhich \
   ripgrep_all \
   sheldon \
   starship \
-	stdrename \
+  stdrename \
   websocat \
   wrangler \
   zellij \
