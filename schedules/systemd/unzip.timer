@@ -4,9 +4,7 @@ RefuseManualStart=no
 RefuseManualStop=no
 
 [Timer]
-Persistent=true
-OnBootSec=120
-OnUnitActiveSec=15min
+OnCalendar=*:0/15
 Unit=unzip.service 
 
 [Install]

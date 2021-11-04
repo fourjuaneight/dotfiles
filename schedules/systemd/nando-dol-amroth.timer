@@ -4,9 +4,7 @@ RefuseManualStart=no
 RefuseManualStop=no
 
 [Timer]
-Persistent=true
-OnBootSec=120
-OnUnitActiveSec=1h
+OnCalendar=hourly
 Unit=nando-dol-amroth.service 
 
 [Install]
