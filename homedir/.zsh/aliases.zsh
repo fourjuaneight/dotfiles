@@ -21,6 +21,7 @@ alias du="dust"
 alias htop="btm"
 alias gtop="btm"
 alias hiccup="czkawka_cli"
+alias dupefs="czkawka_cli"
 alias plexperm="sudo chown -R plex.plex"
 
 # alternative to 'cat'
@@ -72,7 +73,7 @@ alias crol="crontab -l"
 
 # zellij
 alias tmux="zellij"
-alias zconf="vim ~/.config/zellij/config.yml"
+alias zconf="vim ~/.config/zellij/config.yaml"
 alias zdev="zellij --layout ~/.config/zellij/layout.dev.yaml"
 alias zgit="zellij --layout ~/.config/zellij/layout.git.yaml"
 
