@@ -1,0 +1,23 @@
+{
+  "folders": [
+    {
+      "name": "Bookmarker",
+      "path": "/home/fourjuaneight/Repos/bookmarker"
+    },
+  ],
+  "extensions": {
+    "recommendations": []
+  },
+  "settings": {
+    "deno.enable": true,
+    "deno.lint": true,
+    "deno.unstable": true,
+    "workbench.colorCustomizations": {
+      "statusBar.background": "#161e2e",
+      "statusBar.foreground": "#ffffff"
+    },
+    "deno.suggest.imports.hosts": {
+      "https://cdn.skypack.dev": false
+    }
+  }
+}
