@@ -38,10 +38,10 @@ timezsh() {
 sysup() {
   bot "Running dependency updates."
 
-	if [[ "$OSTYPE" == "linux-gnu" ]]; then
+  if [[ "$OSTYPE" == "linux-gnu" ]]; then
     minibot "updating apt dependencies"
-	  sudo apt-get update
-	  sudo apt-get upgrade -y
+    sudo apt-get update
+    sudo apt-get upgrade -y
   fi
 
   minibot "updating Rust"
@@ -101,7 +101,7 @@ yta() {
 
 # upload downloaded video to b2 archives
 ytu() {
-	b2 upload-file imladris $1 Bookmarks/Videos/$1
+  b2 upload-file imladris $1 Bookmarks/Videos/$1
 }
 
 
