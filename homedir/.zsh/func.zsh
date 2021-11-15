@@ -69,7 +69,7 @@ mvplex() {
 
   if [[ -d $dst_dir ]]; then
     sudo mv $file $dst
-    sudo chown -R plex.plex "$dst$file"
+    sudo chown -R plex.plex "$dst/$file"
   else
     echo "Destination directory does not exist: $dst"
   fi
