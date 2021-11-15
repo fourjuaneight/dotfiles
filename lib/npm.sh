@@ -24,6 +24,7 @@ npm i -g @angular/cli\
   eslint-plugin-prettier \
   eslint-plugin-react \
   eslint-plugin-react-hooks \
+	fkill-cli \
   gatsby-cli \
   glyphhanger \
   husky \
@@ -31,6 +32,7 @@ npm i -g @angular/cli\
   lint-staged \
   postcss \
   prettier \
+	synp \
   svelte \
   typescript \
   webpack-cli
