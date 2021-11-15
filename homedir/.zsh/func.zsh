@@ -62,6 +62,19 @@ sysup() {
   vim +PlugUpgrade +PlugUpdate +qa
 }
 
+mvplex() {
+  local file=$1
+  local dst=$2
+  local dst_dir=$(dirname $dst)
+
+  if [[ -d $dst_dir ]]; then
+    sudo mv $file $dst
+    sudo chown -R plex.plex "$dst$file"
+  else
+    echo "Destination directory does not exist: $dst"
+  fi
+}
+
 # FONTS #
 
 # glyphhanger whitelist Latin
