@@ -23,8 +23,7 @@ brew install ack \
   cocoapods \
   dive \
   dog \
-  fzf \
-	gcc@5 \
+  gcc@5 \
   gh \
   webp \
   xo/xo/usql \
