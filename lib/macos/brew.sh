@@ -75,6 +75,7 @@ brew install ack \
   postgresql \
   python3 \
   rename \
+  restic \
   rsync \
   ruby \
   slurm \

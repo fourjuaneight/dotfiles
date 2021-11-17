@@ -25,6 +25,7 @@ brew install ack \
   dog \
   gcc@5 \
   gh \
+  restic \
   webp \
   xo/xo/usql \
   yt-dlp/taps/yt-dlp
