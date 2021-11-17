@@ -62,19 +62,6 @@ sysup() {
   vim +PlugUpgrade +PlugUpdate +qa
 }
 
-mvplex() {
-  local file=$1
-  local dst=$2
-  local dst_dir=$(dirname $dst)
-
-  if [[ -d $dst_dir ]]; then
-    sudo mv $file $dst
-    sudo chown -R plex.plex "$dst/$file"
-  else
-    echo "Destination directory does not exist: $dst"
-  fi
-}
-
 # FONTS #
 
 # glyphhanger whitelist Latin
@@ -265,7 +252,7 @@ bump3t() {
 # batch update mkv title from filename
 bumkvt() {
   for file in $(ls *.mkv); do
-    new=$(echo $file | sed -E "s/[a-zA-Z_]+-S[0-9]+-E[0-9]+-(.*)\.mkv/\1/" | sed -E 's/_/ /g' | sed -E 's/-/ - /') &&
+    new=$(echo $file | sed -E "s/[a-zA-Z_'\-]+-S[0-9]+-E[0-9]+-(.*)\.mkv/\1/" | sed -E 's/_/ /g' | sed -E 's/-/ - /') &&
     echo "title -> $new"
     mkvpropedit $file -e info -s title="$new"
   done
@@ -284,6 +271,20 @@ bumkvc() {
   done
 
   unlink $TEMPFILE
+}
+
+# move files to Plex directory and set proper permissions
+mvplex() {
+  local file=$1
+  local dst=$2
+  local dst_dir=$(dirname $dst)
+
+  if [[ -d $dst_dir ]]; then
+    sudo mv $file $dst
+    sudo chown -R plex.plex "$dst/$file"
+  else
+    echo "Destination directory does not exist: $dst"
+  fi
 }
 
 # select two files, but fold lines longer than 20 characters, then diff (via delta)
