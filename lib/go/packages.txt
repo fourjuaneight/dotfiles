@@ -1,3 +1,4 @@
 github.com/nektos/act
 github.com/junegunn/fzf
 github.com/rclone/rclone
+github.com/schollz/croc/v9@latest
