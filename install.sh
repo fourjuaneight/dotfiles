@@ -52,6 +52,9 @@ else
 fi
 
 action "installing rustup"
+echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> .bashrc
+echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> .profile
+source $HOME/.cargo/env
 rustup toolchain install nightly --allow-downgrade --profile minimal --component clippy
 if [[ $? != 0 ]]; then
   error "unable to install rustup"
@@ -66,6 +69,10 @@ run ./lib/cargo.sh
 
 bot "And also some Go binaries."
 
+echo 'export GOPATH=$HOME/go' >> .bashrc
+echo 'export GOPATH=$HOME/go' >> .profile
+echo 'export PATH=$PATH:$GOPATH/bin' >> .bashrc
+echo 'export PATH=$PATH:$GOPATH/bin' >> .profile
 run ./lib/go/get.sh
 
 # ###########################################################
