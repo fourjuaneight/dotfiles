@@ -4,6 +4,10 @@
       "name": "Dotfiles",
       "path": "/home/fourjuaneight/dotfiles"
     },
+    {
+      "name": "Codespace",
+      "path": "/home/fourjuaneight/Repos/development"
+    },
   ],
   "extensions": {
     "recommendations": []
@@ -17,7 +21,7 @@
       "statusBar.foreground": "#ffffff"
     },
     "deno.suggest.imports.hosts": {
-      "https://cdn.skypack.dev": false
+      "https://cdn.skypack.dev": true
     }
   }
 }
