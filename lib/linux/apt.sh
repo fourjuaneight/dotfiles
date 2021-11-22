@@ -5,7 +5,7 @@ source ./lib/util/echos.sh
 minibot "Little Gary here! Let's install some Linux goodies."
 
 action "updating apt-get directories"
-add-apt-repository ppa:kellyk/emacs
+add-apt-repository ppa:aslatter/ppa
 add-apt-repository ppa:wireshark-dev/stable
 apt-get update
 apt-get upgrade -y
@@ -13,7 +13,8 @@ apt-get dist-upgrade -f
 apt-get autoremove -y
 
 action "installing dependencies"
-apt-get install -y apt-transport-https \
+apt-get install -y alacritty \
+  apt-transport-https \
   bash \
   build-essential \
   ca-certificates \
@@ -39,6 +40,8 @@ apt-get install -y apt-transport-https \
   indicator-multiload \
   inotify-tools \
   jasper \
+  libfontconfig1-dev \
+  libfreetype6-dev \
   libjpeg8 \
   libmemcached-tools \
   libncursesw5-dev \
@@ -46,6 +49,8 @@ apt-get install -y apt-transport-https \
   libreadline6-dev \
   libsecret-1-0 \
   libsecret-1-dev \
+  libxcb-xfixes0-dev \
+  libxkbcommon-dev \
   libvips \
   lsb-release \
   libvips-dev \

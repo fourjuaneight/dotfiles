@@ -94,7 +94,8 @@ brew install ack \
   yt-dlp/taps/yt-dlp
 
 action "installing casks"
-brew cask install alfred \
+brew install --cask alacritty \
+  alfred \
   arq-cloud-backup \
   backblaze \
   bartender \
