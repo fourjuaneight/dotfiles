@@ -15,17 +15,18 @@ action "updating homebrew directories"
 brew update
 
 action "installing complicated packages"
-brew install homebrew-ffmpeg/ffmpeg/ffmpeg --with-fdk-aac --HEAD
+brew install homebrew-ffmpeg/ffmpeg/ffmpeg --HEAD
 
 action "installing packages"
 brew install ack \
-  act \
-  catimg \
   cocoapods \
   dive \
   dog \
+  fzf \
   gcc@5 \
   gh \
+  hugo \
+  rclone \
   restic \
   webp \
   xo/xo/usql \

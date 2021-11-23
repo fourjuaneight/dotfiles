@@ -41,6 +41,7 @@ brew install ack \
   dog \
   duti \
   fswatch \
+  fzf \
   ghc \
   git \
   gh \
@@ -48,6 +49,7 @@ brew install ack \
   go \
   gpg \
   graphicsmagick \
+  hugo \
   id3v2 \
   imagemagick \
   inetutils \
@@ -77,6 +79,7 @@ brew install ack \
   poppler \
   postgresql \
   python3 \
+  rclone \
   rename \
   restic \
   rsync \
@@ -99,17 +102,12 @@ brew install ack \
 action "installing casks"
 brew install --cask alacritty \
   alfred \
-  arq-cloud-backup \
-  backblaze \
   bartender \
   calibre \
   handbrake \
   hazel \
-  iterm2 \
   moom \
-  openemu \
-  visual-studio-code \
-  wireshark
+  visual-studio-code
 
 action "cleaning up"
 brew cleanup

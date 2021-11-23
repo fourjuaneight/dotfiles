@@ -26,12 +26,10 @@ cargo install bandwhich \
   gping \
   onefetch \
   ripgrep \
-  ripgrep_all \
   sheldon \
   starship \
   stdrename \
   websocat \
-  wrangler \
   zellij \
   zoxide
 
