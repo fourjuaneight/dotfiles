@@ -33,15 +33,6 @@ fi
 # ###########################################################
 bot "Installing development tooling."
 
-action "installing nvm"
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | sh
-if [[ $? != 0 ]]; then
-  error "unable to install nvm"
-  exit 2
-else
-  ok "nvm installed."
-fi
-
 action "installing rust"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 if [[ $? != 0 ]]; then
@@ -107,17 +98,8 @@ else
   runSudo ./lib/linux/apt.sh
 fi
 
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  action "updating Node modules install directory"
-  mkdir ~/.npm-global
-  npm config set prefix '~/.npm-global'
-fi
-
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-
-fi
-
 if [[ "$OSTYPE" == "darwin"* ]]; then
+  action "installing alt coreutils"
   git clone https://github.com/uutils/coreutils ~/coreutils
   cd ~/coreutils
   cargo build --release --features macos
@@ -165,11 +147,6 @@ else
   run ./lib/linux/brew.sh
 fi
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  action "installing apps"
-  run ./lib/macos/mas.sh
-fi
-
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   run ./lib/docker.sh
 fi
@@ -179,13 +156,17 @@ fi
 # ###########################################################
 bot "Let's install some more packages."
 
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  action "updating Node modules install directory"
+  mkdir ~/.npm-global
+  npm config set prefix '~/.npm-global'
+fi
+
 action "installing npm packages"
 run ./lib/npm.sh
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  action "installing pip packages"
-  run ./lib/pip.sh
-fi
+action "installing pip packages"
+run ./lib/pip.sh
 
 # ###########################################################
 # Setup zsh and vim env
@@ -204,24 +185,25 @@ else
   ok "dotfiles stowed."
 fi
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  bot "Setting up vim environment."
+bot "Setting up vim environment."
 
-  action "installing vim plug"
-  curl -fLo ${HOME}/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  if [[ $? != 0 ]]; then
-    error "unable to install vim plug"
-    exit 2
-  else
-    ok "installed vim plug."
-  fi
+action "installing vim plug"
+curl -fLo ${HOME}/.vim/autoload/plug.vim --create-dirs \
+  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+if [[ $? != 0 ]]; then
+  error "unable to install vim plug"
+  exit 2
+else
+  ok "installed vim plug."
 fi
 
 # ###########################################################
 # Setup Mac software
 # ###########################################################
 if [[ "$OSTYPE" == "darwin"* ]]; then
+  action "installing apps"
+  run ./lib/macos/mas.sh
+
   bot "Finally, setting default apps."
 
   action "running duti"
@@ -242,15 +224,13 @@ else
   ok "zsh plugins installed."
 fi
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  action "installing vim plugings"
-  vim +PluginInstall +qall
-  if [[ $? != 0 ]]; then
-    error "unable to run vim plug"
-    exit 2
-  else
-    ok "vim plugins installed."
-  fi
+action "installing vim plugings"
+vim +PluginInstall +qall
+if [[ $? != 0 ]]; then
+  error "unable to run vim plug"
+  exit 2
+else
+  ok "vim plugins installed."
 fi
 
 action "Setting Github CLI editor"
