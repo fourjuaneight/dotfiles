@@ -30,7 +30,7 @@ export SHELDON_DOWNLOAD_DIR="$SHELDON_DATA_DIR/downloads"
 export STARSHIP_CONFIG=~/.config/starship/config.toml
 
 # fzf
-export FZF_DEFAULT_COMMAND="rga --files --no-ignore-vcs --hidden --follow --glob '!.git/*'"
+export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden --follow --glob '!.git/*'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # zellij
