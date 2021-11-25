@@ -70,3 +70,6 @@
 
 [gpg]
   program = gpg
+
+[sequence]
+  editor = interactive-rebase-tool
