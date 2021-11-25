@@ -22,6 +22,7 @@ cargo install bandwhich \
   fnm \
   git-cliff \
   git-delta \
+  git-interactive-rebase-tool \
   gitui \
   gping \
   onefetch \
