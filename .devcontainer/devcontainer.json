@@ -1,0 +1,11 @@
+{
+  "name": "Config Codespace",
+  "dockerFile": "Dockerfile",
+  "containerUser": "node",
+  "remoteUser": "node",
+  "extensions": [],
+  "settings": {
+    "terminal.integrated.automationShell.linux" : "/usr/bin/zsh",
+    "terminal.integrated.defaultProfile.linux": "zsh",
+  }
+}
