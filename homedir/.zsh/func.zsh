@@ -177,27 +177,27 @@ clipvid() {
 
 # find and extract archives
 fex() {
-  local files fname
-  IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
-  fname="${files%.*}";
+  local file fname
+  IFS=$'\n' file=($(fzf --query="$1" --select-1 --exit-0))
+  fname="${file%.*}";
 
-  if [ -n $files ] ; then
-    case $files in
-      *.tar.bz2)  tar -xvjf $file && echo "Removing '$file'..."; rm $file   ;;
-      *.tar.gz)   tar -xvzf $file && echo "Removing '$file'..."; rm $file   ;;
-      *.bz2)      bunzip2 -v $file && echo "Removing '$file'..."; rm $file    ;;
-      *.rar)      unrar xv $file && echo "Removing '$file'..."; rm $file    ;;
-      *.gz)       gunzip -v $file && echo "Removing '$file'..."; rm $file     ;;
-      *.tar)      tar -xvf $file && echo "Removing '$file'..."; rm $file    ;;
-      *.tbz2)     tar -xvjf $file && echo "Removing '$file'..."; rm $file   ;;
-      *.tgz)      tar -xvzf $file && echo "Removing '$file'..."; rm $file   ;;
-      *.zip)      unzip $file && echo "Removing '$file'..."; rm $file      ;;
-      *.Z)        uncompress -v $file && echo "Removing '$file'..."; rm $file ;;
-      *.7z)       7z x $file -bb && echo "Removing '$file'..."; rm $file       ;;
-      *)          echo "Don't know how to extract '$files'." ;;
+  if [ -n $file ] ; then
+    case $file in
+      *.tar.bz2)  tar -xvjf $file                           ;;
+      *.tar.gz)   tar -xvzf $file                           ;;
+      *.bz2)      bunzip2 -v $file                          ;;
+      *.rar)      unrar xv $file                            ;;
+      *.gz)       gunzip -v $file                           ;;
+      *.tar)      tar -xvf $file                            ;;
+      *.tbz2)     tar -xvjf $file                           ;;
+      *.tgz)      tar -xvzf $file                           ;;
+      *.zip)      unzip $file                               ;;
+      *.Z)        uncompress -v $file                       ;;
+      *.7z)       7z x $file -bb                            ;;
+      *)          echo "Don't know how to extract '$file'." ;;
     esac
   else
-    echo "'$files' is not a valid file!"
+    echo "'$file' is not a valid file!"
   fi
 }
 
@@ -209,18 +209,18 @@ exta() {
 
   for file in $files; do
     case $file in
-      *.tar.bz2)  tar -xvjf $file && echo "Removing '$file'..."; rm $file   ;;
-      *.tar.gz)   tar -xvzf $file && echo "Removing '$file'..."; rm $file   ;;
-      *.bz2)      bunzip2 -v $file && echo "Removing '$file'..."; rm $file    ;;
-      *.rar)      unrar xv $file && echo "Removing '$file'..."; rm $file    ;;
-      *.gz)       gunzip -v $file && echo "Removing '$file'..."; rm $file     ;;
-      *.tar)      tar -xvf $file && echo "Removing '$file'..."; rm $file    ;;
-      *.tbz2)     tar -xvjf $file && echo "Removing '$file'..."; rm $file   ;;
-      *.tgz)      tar -xvzf $file && echo "Removing '$file'..."; rm $file   ;;
-      *.zip)      unzip $file && echo "Removing '$file'..."; rm $file      ;;
-      *.Z)        uncompress -v $file && echo "Removing '$file'..."; rm $file ;;
-      *.7z)       7z x $file -bb && echo "Removing '$file'..."; rm $file       ;;
-      *)          echo "Skipping '$file'." ;;
+      *.tar.bz2)  tar -xvjf $file                            ;;
+      *.tar.gz)   tar -xvzf $file                            ;;
+      *.bz2)      bunzip2 -v $file                           ;;
+      *.rar)      unrar xv $file                             ;;
+      *.gz)       gunzip -v $file                            ;;
+      *.tar)      tar -xvf $file                             ;;
+      *.tbz2)     tar -xvjf $file                            ;;
+      *.tgz)      tar -xvzf $file                            ;;
+      *.zip)      unzip $file                                ;;
+      *.Z)        uncompress -v $file                        ;;
+      *.7z)       7z x $file -bb                             ;;
+      *)          echo "Don't know how to extract '$files'." ;;
     esac
   done
 }

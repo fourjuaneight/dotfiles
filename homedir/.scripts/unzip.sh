@@ -6,17 +6,17 @@ cd ~/Downloads
 
 for file in ~/Downloads/*; do
   case $file in
-    *.tar.bz2)  tar -xvjf $file && echo "Removing '$file'..."; rm $file     ;;
-    *.tar.gz)   tar -xvzf $file && echo "Removing '$file'..."; rm $file     ;;
-    *.bz2)      bunzip2 -v $file && echo "Removing '$file'..."; rm $file    ;;
-    *.rar)      unrar xv $file && echo "Removing '$file'..."; rm $file      ;;
-    *.gz)       gunzip -v $file && echo "Removing '$file'..."; rm $file     ;;
-    *.tar)      tar -xvf $file && echo "Removing '$file'..."; rm $file      ;;
-    *.tbz2)     tar -xvjf $file && echo "Removing '$file'..."; rm $file     ;;
-    *.tgz)      tar -xvzf $file && echo "Removing '$file'..."; rm $file     ;;
-    *.zip)      unzip $file && echo "Removing '$file'..."; rm $file         ;;
-    *.Z)        uncompress -v $file && echo "Removing '$file'..."; rm $file ;;
-    *.7z)       7z x $file -bb && echo "Removing '$file'..."; rm $file      ;;
+    *.tar.bz2)  tar -xvjf $file          ;;
+    *.tar.gz)   tar -xvzf $file          ;;
+    *.bz2)      bunzip2 -v $file         ;;
+    *.rar)      unrar xv $file           ;;
+    *.gz)       gunzip -v $file          ;;
+    *.tar)      tar -xvf $file           ;;
+    *.tbz2)     tar -xvjf $file          ;;
+    *.tgz)      tar -xvzf $file          ;;
+    *.zip)      unzip $file              ;;
+    *.Z)        uncompress -v $file      ;;
+    *.7z)       7z x $file -bb           ;;
     *)          echo "Skipping '$file'." ;;
   esac
 done
