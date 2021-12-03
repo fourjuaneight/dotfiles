@@ -55,9 +55,6 @@ sysup() {
   minibot "updating Cargo"
   cargo install-update -a
 
-  minibot "updating Go modules"
-  bash ~/dotfiles/lib/go/install.sh
-
   minibot "updating Vim"
   vim +PlugUpgrade +PlugUpdate +qa
 }
