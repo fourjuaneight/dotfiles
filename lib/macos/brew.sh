@@ -28,6 +28,7 @@ brew install bash
 
 action "installing complicated packages"
 brew install homebrew-ffmpeg/ffmpeg/ffmpeg --with-fdk-aac --HEAD
+brew install jesseduffield/lazygit/lazygit
 brew tap heroku/brew
 brew install heroku
 

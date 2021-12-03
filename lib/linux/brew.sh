@@ -16,6 +16,7 @@ brew update
 
 action "installing complicated packages"
 brew install homebrew-ffmpeg/ffmpeg/ffmpeg --HEAD
+brew install jesseduffield/lazygit/lazygit
 
 action "installing packages"
 brew install ack \
