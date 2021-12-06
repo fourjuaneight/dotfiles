@@ -1,0 +1,31 @@
+version: "3"
+services:
+  plex:
+    image: lscr.io/linuxserver/plex
+    container_name: plex
+    network_mode: host
+    restart: unless-stopped
+    volumes:
+      - /Library/Application Support/Plex Media Server:/config
+      - /mnt/Movies:/Movies
+      - /mnt/TV_Shows:/TV_Shows
+      - ~/Plex/Rentals:/Rentals
+      - ~/Plex/Music:/Music
+      - ~/Plex/Audiobooks:/Audiobooks
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - VERSION=docker
+      - PLEX_CLAIM= #optional
+  tautulli:
+    image: ghcr.io/tautulli/tautulli
+    container_name: tautulli
+    restart: unless-stopped
+    volumes:
+      - ~/.config/tautulli:/config
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+    ports:
+      - 8181:8181
