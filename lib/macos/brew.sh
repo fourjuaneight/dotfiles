@@ -36,6 +36,7 @@ action "installing packages"
 brew install ack \
   catimg \
   certbot \
+  chezmoi \
   cmake \
   cocoapods \
   curl \

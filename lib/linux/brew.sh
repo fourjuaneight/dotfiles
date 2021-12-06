@@ -20,6 +20,7 @@ brew install jesseduffield/lazygit/lazygit
 
 action "installing packages"
 brew install ack \
+  chezmoi \
   cocoapods \
   dive \
   dog \
