@@ -320,7 +320,7 @@ fif() {
   if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
   local file line
   file="$(rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}")" &&
-  line=$(rg -n $1 $file | gsed -r "s/^([[:digit:]]+)\:\s\s.*/\1/") &&
+  line=$(rg -n $1 $file | sed -r "s/^([[:digit:]]+)\:\s\s.*/\1/") &&
 
   if [[ -n $file ]]
   then
@@ -567,7 +567,7 @@ FZF-EOF"
 fgcm() {
   local commits commit
   commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%N%Creset %s' --abbrev-commit --reverse) &&
-  commit=$(echo "$commits" | fzf --ansi --tac +s +m -e | gsed -r "s/^[a-z0-9]+\s-\s([a-zA-z\s]+).?/\1/g") &&
+  commit=$(echo "$commits" | fzf --ansi --tac +s +m -e | sed -r "s/^[a-z0-9]+\s-\s([a-zA-z\s]+).?/\1/g") &&
   message="git commit -S -m \"$commit\""
   print -z $message
 }
