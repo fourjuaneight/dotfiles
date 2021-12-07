@@ -8,7 +8,7 @@ services:
     volumes:
       - /Library/Application Support/Plex Media Server:/config
       - /mnt/Movies:/Movies
-      - /mnt/TV_Shows:/TV_Shows
+      - /mnt/TV_Shows:/TV Shows
       - ~/Plex/Rentals:/Rentals
       - ~/Plex/Music:/Music
       - ~/Plex/Audiobooks:/Audiobooks
@@ -16,7 +16,6 @@ services:
       - PUID=1000
       - PGID=1000
       - VERSION=docker
-      - PLEX_CLAIM= #optional
   tautulli:
     image: ghcr.io/tautulli/tautulli
     container_name: tautulli
