@@ -17,6 +17,10 @@ brew update
 action "installing complicated packages"
 brew install homebrew-ffmpeg/ffmpeg/ffmpeg --HEAD
 brew install jesseduffield/lazygit/lazygit
+brew tap anchore/syft
+brew install syft
+brew tap anchore/grype
+brew install grype
 
 action "installing packages"
 brew install ack \

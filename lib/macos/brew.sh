@@ -31,6 +31,10 @@ brew install homebrew-ffmpeg/ffmpeg/ffmpeg --with-fdk-aac --HEAD
 brew install jesseduffield/lazygit/lazygit
 brew tap heroku/brew
 brew install heroku
+brew tap anchore/syft
+brew install syft
+brew tap anchore/grype
+brew install grype
 
 action "installing packages"
 brew install ack \

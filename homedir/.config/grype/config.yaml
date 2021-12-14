@@ -1,0 +1,17 @@
+check-for-app-update: true
+output: "json"
+scope: "squashed"
+quiet: false
+
+db:
+  auto-update: true
+  cache-dir: "$XDG_CACHE_HOME/grype/db"
+  update-url: "https://toolbox-data.anchore.io/grype/databases/listing.json"
+
+registry:
+  insecure-skip-tls-verify: false
+  insecure-use-http: false
+
+log:
+  level: "error"
+  structured: false

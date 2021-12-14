@@ -1,0 +1,42 @@
+output: "json"
+check-for-app-update: true
+
+package:
+  cataloger:
+    enabled: true
+    scope: "squashed"
+
+file-classification:
+  cataloger:
+    enabled: true
+    scope: "all-layers"
+
+file-contents:
+  cataloger:
+    enabled: true
+    scope: "all-layers"
+  skip-files-above-size: 262144000
+  globs: []
+
+file-metadata:
+  cataloger:
+    enabled: true
+    scope: "all-layers"
+  digests: ["sha256"]
+
+secrets:
+  cataloger:
+    enabled: true
+    scope: "all-layers"
+  reveal-values: false
+  skip-files-above-size: 262144000
+  additional-patterns: {}
+  exclude-pattern-names: []
+
+registry:
+  insecure-skip-tls-verify: false
+  insecure-use-http: false
+
+log:
+  structured: false
+  level: "error"
