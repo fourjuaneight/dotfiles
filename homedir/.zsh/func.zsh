@@ -34,6 +34,17 @@ timezsh() {
   for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
 }
 
+# generate image SBOM and scan for vulnerabilities
+sype() {
+  local image file
+  image=$1
+  fname=$(date +'%s')
+  file=~/$fname.json
+
+  syft $image > $file &&
+  bat -p $file | grype
+}
+
 # system dependencies and tooling updates
 sysup() {
   bot "Running dependency updates."
