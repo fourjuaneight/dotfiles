@@ -34,17 +34,6 @@ timezsh() {
   for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
 }
 
-# generate image SBOM and scan for vulnerabilities
-sype() {
-  local image file
-  image=$1
-  fname=$(date +'%s')
-  file=~/$fname.json
-
-  syft $image > $file &&
-  bat -p $file | grype
-}
-
 # check for open ports
 portcheck() {
   local port
@@ -681,4 +670,15 @@ dckup() {
   services=$(docker-compose ps --services) &&
   selectedService=$(echo "$services" | fzf +s -e) &&
   clear && docker compose up $selectedService
+}
+
+# generate image SBOM and scan for vulnerabilities
+dckhealth() {
+  local image file
+  image=$1
+  fname=$(date +'%s')
+  file=~/$fname.json
+
+  syft $image > $file &&
+  bat -p $file | grype
 }
