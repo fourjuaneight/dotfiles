@@ -27,4 +27,4 @@ services:
       - PGID=1000
       - TZ=America/New_York
     ports:
-      - 8181:8181
+      - 127.0.0.1:8181:8181
