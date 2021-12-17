@@ -28,6 +28,7 @@ cargo install bandwhich \
   onefetch \
   ripgrep \
   rustscan \
+  sd \
   sheldon \
   starship \
   stdrename \
