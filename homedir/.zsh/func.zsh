@@ -45,6 +45,15 @@ sype() {
   bat -p $file | grype
 }
 
+# check for open ports
+portcheck() {
+  local port
+  port=$(hostname -I | cut -f1 -d' ')
+
+  echo "Checking port $port..."
+  rustscan --top -a $port
+}
+
 # system dependencies and tooling updates
 sysup() {
   bot "Running dependency updates."
