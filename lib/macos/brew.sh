@@ -77,6 +77,7 @@ brew install ack \
   mysql \
   ncdu \
   ngrok \
+  neovim \
   node \
   p7zip \
   pkg-config \

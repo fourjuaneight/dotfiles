@@ -32,6 +32,7 @@ brew install ack \
   gcc@5 \
   gh \
   hugo \
+  neovim \
   rclone \
   restic \
   webp \

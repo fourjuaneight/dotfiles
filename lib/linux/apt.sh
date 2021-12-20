@@ -88,6 +88,7 @@ apt-get install -y alacritty \
   virtualenv \
   wget \
   wireshark \
+  xsel \
   xz-utils \
   zfsutils-linux \
   zsh
