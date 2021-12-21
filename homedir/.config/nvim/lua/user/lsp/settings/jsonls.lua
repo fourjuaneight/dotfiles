@@ -14,11 +14,6 @@ local schemas = {
     url = "https://json.schemastore.org/tsconfig.json",
   },
   {
-    description = "Lerna config",
-    fileMatch = { "lerna.json" },
-    url = "https://json.schemastore.org/lerna.json",
-  },
-  {
     description = "Babel configuration",
     fileMatch = {
       ".babelrc.json",
@@ -34,11 +29,6 @@ local schemas = {
       ".eslintrc",
     },
     url = "https://json.schemastore.org/eslintrc.json",
-  },
-  {
-    description = "Bucklescript config",
-    fileMatch = { "bsconfig.json" },
-    url = "https://raw.githubusercontent.com/rescript-lang/rescript-compiler/8.2.0/docs/docson/build-schema.json",
   },
   {
     description = "Prettier config",
@@ -64,31 +54,11 @@ local schemas = {
     url = "https://json.schemastore.org/stylelintrc",
   },
   {
-    description = "A JSON schema for the ASP.NET LaunchSettings.json files",
-    fileMatch = { "launchsettings.json" },
-    url = "https://json.schemastore.org/launchsettings.json",
-  },
-  {
-    description = "Schema for CMake Presets",
-    fileMatch = {
-      "CMakePresets.json",
-      "CMakeUserPresets.json",
-    },
-    url = "https://raw.githubusercontent.com/Kitware/CMake/master/Help/manual/presets/schema.json",
-  },
-  {
     description = "Configuration file as an alternative for configuring your repository in the settings page.",
     fileMatch = {
       ".codeclimate.json",
     },
     url = "https://json.schemastore.org/codeclimate.json",
-  },
-  {
-    description = "LLVM compilation database",
-    fileMatch = {
-      "compile_commands.json",
-    },
-    url = "https://json.schemastore.org/compile-commands.json",
   },
   {
     description = "Config file for Command Task Runner",
@@ -139,13 +109,6 @@ local schemas = {
       ["1"] = "https://json.schemastore.org/feed-1.json",
       ["1.1"] = "https://json.schemastore.org/feed.json",
     },
-  },
-  {
-    description = "Packer template JSON configuration",
-    fileMatch = {
-      "packer.json",
-    },
-    url = "https://json.schemastore.org/packer.json",
   },
   {
     description = "NPM configuration file",
