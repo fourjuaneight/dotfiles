@@ -4,6 +4,7 @@ themes:
     fg: [248, 248, 242]
     bg: [11, 13, 15]
     black: [102, 102, 102]
+    gray: [102, 102, 102]
     red: [255, 104, 104]
     green: [138, 255, 128]
     yellow: [255, 255, 128]
@@ -218,8 +219,7 @@ keybinds:
           key: [ Char: '9',]
     scroll:
         - action: [SwitchToMode: Locked,]
-          key: [Ctrl: 'r', Ctrl: 's', Char: ' ',
-          Char: "\n",]
+          key: [Ctrl: 'r', Ctrl: 's', Char: ' ', Char: "\n",]
         - action: [SwitchToMode: Tab,]
           key: [Ctrl: 't',]
         - action: [SwitchToMode: Normal,]
