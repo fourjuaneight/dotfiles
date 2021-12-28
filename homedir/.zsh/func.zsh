@@ -4,7 +4,7 @@ zsh-defer source ${HOME}/dotfiles/lib/util/echos.sh
 
 # repeat history
 fh() {
-  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -r 's/ *[0-9]*\*? *//' | sed -r 's/\\/\\\\/g')
+  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sd ' *[0-9]*\*? *' '' | sd '\\' '\\\\')
 }
 
 # find and kill process
@@ -21,10 +21,10 @@ fkp() {
 
 # hammer a service with curl for a given number of times
 curlhammer () {
-  echo "curl -k -s -D - $1 -o /dev/null | rg 'HTTP/1.1' | sed 's/HTTP\/1.1 //'"
+  echo "curl -k -s -D - $1 -o /dev/null | rg 'HTTP/1.1' | sd 'HTTP\/1.1 ' ''"
   for i in {1..$2}
   do
-    curl -k -s -D - $1 -o /dev/null | rg 'HTTP/1.1' | sed 's/HTTP\/1.1 //'
+    curl -k -s -D - $1 -o /dev/null | rg 'HTTP/1.1' | sd 'HTTP\/1.1 ' ''
   done
 }
 
@@ -235,12 +235,12 @@ exta() {
 brn() {
   local files filesMatch
   # remove quotes
-  filesMatch=$(sed -e 's/^"//' -e 's/"$//' <<<$2)
+  filesMatch=$(sd '^"(.*)"$' '$1' <<<$3)
   # convert to list
   IFS=$'\n' files=($(echo $filesMatch | ls))
 
   for file in $files; do
-    new=$(echo "$file" | sed -E $1) &&
+    new=$(echo "$file" | sd $1 $2) &&
     echo "$file -> $new"
     mv "$file" "$new"
   done
@@ -249,7 +249,7 @@ brn() {
 # batch update mp3 title with regex
 bump3t() {
   for file in $(ls *.mp3); do
-    new=$(echo $file | sed -E $1) &&
+    new=$(echo $file | sd $1 $2) &&
     echo "title -> $new"
     id3v2 -t "$new" $file
   done
@@ -258,7 +258,7 @@ bump3t() {
 # batch update mkv title from filename
 bumkvt() {
   for file in $(ls *.mkv); do
-    new=$(echo $file | sed -E "s/[a-zA-Z_'\-]+-S[0-9]+-E[0-9]+-(.*)\.mkv/\1/" | sed -E 's/_/ /g' | sed -E 's/-/ - /') &&
+    new=$(echo $file | sd "[a-zA-Z_'\-]+-S[0-9]+-E[0-9]+-(.*)\.mkv" "$1" | sd '_' ' ' | sd '-' ' - ') &&
     echo "title -> $new"
     mkvpropedit $file -e info -s title="$new"
   done
@@ -329,7 +329,7 @@ fif() {
   if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
   local file line
   file="$(rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}")" &&
-  line=$(rg -n $1 $file | sed -r "s/^([[:digit:]]+)\:\s\s.*/\1/") &&
+  line=$(rg -n $1 $file | sd "^([0-9]+)\:\s\s.*" "$1") &&
 
   if [[ -n $file ]]
   then
@@ -478,7 +478,7 @@ gcbr() {
   local branches branch
   branches=$(git branch) &&
   branch=$(echo "$branches" | fzf -d 15 +m) &&
-  git checkout $(echo "$branch" | sed "s/.* //")
+  git checkout $(echo "$branch" | sd ".* " "")
 }
 
 # checkout git remote branch
@@ -487,7 +487,7 @@ gcrbr() {
   local branches branch selectedBranch
   branches=$(git branch -r) &&
   selectedBranch=$(echo "$branches" | fzf +s +m -e) &&
-  branch=$(echo "$selectedBranch" | sed "s:.* origin/::" | sed "s:.* ::")
+  branch=$(echo "$selectedBranch" | sd '.*origin/([a-zA-Z0-9\.-_/]+)$' '$1')
   git checkout $branch
 }
 
@@ -503,7 +503,7 @@ gdbr() {
   local branches branch
   branches=$(git branch) &&
   branch=$(echo "$branches" | fzf -d 15 +m) &&
-  git branch -D $(echo "$branch" | sed "s/.* //")
+  git branch -D $(echo "$branch" | sd ".* " "")
 }
 
 # merge git local branch into current
@@ -511,7 +511,7 @@ gmbr() {
   local branches branch
   branches=$(git branch) &&
   branch=$(echo "$branches" | fzf -d 15 +m) &&
-  git merge -s ort $(echo "$branch" | sed "s/.* //")
+  git merge -s ort $(echo "$branch" | sd ".* " "")
 }
 
 # merge squash git local branch into current
@@ -519,7 +519,7 @@ gmsbr() {
   local branches branch
   branches=$(git branch) &&
   branch=$(echo "$branches" | fzf -d 15 +m) &&
-  git merge -s ort --squash $(echo "$branch" | sed "s/.* //")
+  git merge -s ort --squash $(echo "$branch" | sd ".* " "")
 }
 
 # rebase git local branch into current
@@ -527,7 +527,7 @@ grebr() {
   local branches branch
   branches=$(git branch) &&
   branch=$(echo "$branches" | fzf -d 15 +m) &&
-  git rebase $(echo "$branch" | sed "s/.* //")
+  git rebase $(echo "$branch" | sd ".* " "")
 }
 
 # git pull rebase given branch
@@ -541,7 +541,7 @@ grs() {
   local commits commit
   commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --reverse) &&
   commit=$(echo "$commits" | fzf --ansi --tac +s +m -e) &&
-  git reset --soft $(echo "$commit" | sed "s/ .*//")
+  git reset --soft $(echo "$commit" | sd ".* " "")
 }
 
 # git reset hard to commit id
@@ -549,7 +549,7 @@ grh() {
   local commits commit
   commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --reverse) &&
   commit=$(echo "$commits" | fzf --ansi --tac +s +m -e) &&
-  git reset --hard $(echo "$commit" | sed "s/ .*//")
+  git reset --hard $(echo "$commit" | sd ".* " "")
 }
 
 # git revert to commit
@@ -557,7 +557,7 @@ grvt() {
   local commits commit
   commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --reverse) &&
   commit=$(echo "$commits" | fzf --ansi --tac +s +m -e) &&
-  git revert $(echo "$commit" | sed "s/ .*//")
+  git revert $(echo "$commit" | sd ".* " "")
 }
 
 # git commit browser
@@ -576,7 +576,7 @@ FZF-EOF"
 fgcm() {
   local commits commit
   commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%N%Creset %s' --abbrev-commit --reverse) &&
-  commit=$(echo "$commits" | fzf --ansi --tac +s +m -e | sed -r "s/^[a-z0-9]+\s-\s([a-zA-z\s]+).?/\1/g") &&
+  commit=$(echo "$commits" | fzf --ansi --tac +s +m -e | sd "^[a-z0-9]+\s-\s([a-zA-z\s]+).?" "$1") &&
   message="git commit -S -m \"$commit\""
   print -z $message
 }
@@ -586,7 +586,7 @@ gec() {
   local commits commit id
   commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --reverse) &&
   commit=$(echo "$commits" | fzf --ansi --tac +s +m -e) &&
-  id=$(echo "$commit" | sed "s/ .*//")
+  id=$(echo "$commit" | sd " .*" "")
   git rebase -i "$id^"
 }
 
@@ -597,8 +597,8 @@ gnpr() {
   git fetch
   local branches selectedBranch branch reviewers handle
   branches=$(git branch -r) &&
-  selectedBranch=$(echo "$branches" | sed 's/origin\///g' | fzf --ansi +s +m -e) &&
-  branch=$(echo $selectedBranch | sed 's/^[[:space:]]*//g') &&
+  selectedBranch=$(echo "$branches" | sd 'origin\/' '' | fzf --ansi +s +m -e) &&
+  branch=$(echo $selectedBranch | sd '^\s*' '') &&
   reviewers=(fourjuaneight davidbbaxter baileysh9 bbohach) &&
   handle=$(print -l "${(@)reviewers}" | fzf --ansi --tac +s +m -e) &&
   gh pr create -B $branch -t $1 -r $handle
@@ -609,7 +609,7 @@ gvpr() {
   git fetch
   local selectedPR PR
   selectedPR=$(gh pr list | fzf --ansi --tac +s +m -e) &&
-  PR=$(echo $selectedPR | sed -E 's/^([[:digit:]]+).*/\1/g') &&
+  PR=$(echo $selectedPR | sd '^([0-9]+).*' '$1') &&
   gh pr view $PR
 }
 
@@ -621,7 +621,7 @@ gmpr() {
     gh pr merge $1 -s
   else
     selectedPR=$(gh pr list | fzf --ansi --tac +s +m -e) &&
-    PR=$(echo $selectedPR | sed -E 's/^([[:digit:]]+).*/\1/g') &&
+    PR=$(echo $selectedPR | sd '^([0-9]+).*' '$1') &&
     gh pr merge $PR -s
   fi
 }
@@ -646,7 +646,7 @@ dckrmim() {
   images=$(docker image list --format "table {{.ID}}\t{{.Repository}}" | sed -n '1!p') &&
   # use <TAB> to select multiple items
   selectedImage=$(echo "$images" | fzf +s -m -e) &&
-  image=$(echo $selectedImage | sed -E 's/^([a-z0-9]+)[[:space:]]+.*/\1/g') &&
+  image=$(echo $selectedImage | sd '^([a-z0-9]+)\s+.*' '$1') &&
   # converte list to space separate string
   imageList=$(echo $image | mawk 'FNR!=1{print l}{l=$0};END{ORS="";print l}' ORS=' ') &&
   docker image rm $imageList
@@ -658,7 +658,7 @@ dckrmcn() {
   containers=$(docker container list --format "table {{.ID}}\t{{.Repository}}" | sed -n '1!p') &&
   # use <TAB> to select multiple items
   selectedContainer=$(echo "$containers" | fzf +s -m -e) &&
-  container=$(echo $selectedContainer | sed -E 's/^([a-z0-9]+)[[:space:]]+.*/\1/g') &&
+  container=$(echo $selectedContainer | sd '^([a-z0-9]+)\s+.*' '$1') &&
   # converte list to space separate string
   containerList=$(echo $container | mawk 'FNR!=1{print l}{l=$0};END{ORS="";print l}' ORS=' ') &&
   docker container rm $containerList
