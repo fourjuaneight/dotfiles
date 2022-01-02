@@ -1,7 +1,6 @@
 # common cli commands
 alias cd="z"
 alias cdh="z ~"
-alias cdm="z /Volumes/Samuel"
 alias cdr="z /Repos"
 alias ..="z .."
 alias ...="z ../.."
@@ -13,9 +12,6 @@ alias ........="z ../../../../../../.."
 alias .........="z ../../../../../../../.."
 alias cl="clear"
 alias dot="z ~/dotfiles"
-alias tree="tree -I node_modules"
-alias usesam="lsof | rg /Volumes/Samuel"
-alias useserg="lsof | rg /Volumes/Sergio"
 alias ping="gping -s"
 alias du="dust"
 alias htop="btm"
@@ -36,11 +32,13 @@ alias ls="exa"
 alias ll="exa -l"
 alias la="exa -a"
 
-alias cls="ls -F |grep -v / | wc -l"
+# alternative to 'tree'
+alias tree="tree-rs"
 
 # list files
 alias lf="fd . -t f -E .DS_Store"
 alias lfc="fd . -t f -E .DS_Store | wc -l"
+alias cls="ls -F |grep -v / | wc -l"
 
 # search history
 alias hgrep="history | ag"

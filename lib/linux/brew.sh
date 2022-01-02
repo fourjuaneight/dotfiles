@@ -31,6 +31,7 @@ brew install ack \
   fzf \
   gcc@5 \
   gh \
+  gping \
   hugo \
   neovim \
   rclone \

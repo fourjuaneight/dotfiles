@@ -75,13 +75,11 @@ apt-get install -y alacritty \
   python3-pip \
   python-pygments \
   ripgrep \
-  rclone \
   rsync \
   sed \
   silversearcher-ag \
   stow \
   tmux \
-  tree \
   vim \
   virtualenv \
   wget \

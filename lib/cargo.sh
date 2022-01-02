@@ -32,6 +32,7 @@ cargo install bandwhich \
   sheldon \
   starship \
   stdrename \
+  tree-rs \
   websocat \
   xcompress \
   zellij \
