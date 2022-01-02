@@ -4,6 +4,9 @@
 # This script installs the dotfiles and runs all other system configuration scripts
 ###########################
 
+cp ~/dotfiles/homedir/.bashrc ~/
+source ~/.bashrc
+
 source ./lib/util/echos.sh
 source ./lib/util/runner.sh
 
@@ -43,8 +46,6 @@ else
 fi
 
 action "installing rustup"
-echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> .bashrc
-echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> .profile
 source $HOME/.cargo/env
 rustup toolchain install nightly --allow-downgrade --profile minimal --component clippy
 if [[ $? != 0 ]]; then
@@ -60,10 +61,6 @@ run ./lib/cargo.sh
 
 bot "And also some Go binaries."
 
-echo 'export GOPATH=$HOME/go' >> .bashrc
-echo 'export GOPATH=$HOME/go' >> .profile
-echo 'export PATH=$PATH:$GOPATH/bin' >> .bashrc
-echo 'export PATH=$PATH:$GOPATH/bin' >> .profile
 run ./lib/go/get.sh
 
 # ###########################################################
