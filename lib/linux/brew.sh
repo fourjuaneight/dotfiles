@@ -31,13 +31,11 @@ brew install ack \
   fzf \
   gcc@5 \
   gh \
-  gping \
   hugo \
   neovim \
   rclone \
   restic \
   webp \
-  xo/xo/usql \
   yt-dlp/taps/yt-dlp
 
 action "cleaning up"
