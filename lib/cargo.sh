@@ -25,7 +25,6 @@ cargo install bandwhich \
   git-interactive-rebase-tool \
   gitui \
   gping \
-  leftwm \
   onefetch \
   ripgrep \
   rustscan \
@@ -34,6 +33,7 @@ cargo install bandwhich \
   starship \
   stdrename \
   websocat \
+  xcompress \
   zellij \
   zoxide
 

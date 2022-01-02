@@ -80,10 +80,8 @@ apt-get install -y alacritty \
   sed \
   silversearcher-ag \
   stow \
-  tar \
   tmux \
   tree \
-  unrar \
   vim \
   virtualenv \
   wget \

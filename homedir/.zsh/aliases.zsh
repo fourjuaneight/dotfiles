@@ -23,6 +23,7 @@ alias gtop="btm"
 alias hiccup="czkawka_cli"
 alias dupefs="czkawka_cli"
 alias plexperm="sudo chown -R plex.plex"
+alias unzip="xcompress x"
 
 # alternative to 'cat'
 alias cat="bat"
