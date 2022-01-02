@@ -69,6 +69,8 @@ run ./lib/go/get.sh
 # ###########################################################
 # Install non-brew various tools (PRE-BREW Installs)
 # ###########################################################
+OS=$(~/.cargo/bin/os_info -t | sd 'OS type: ' '')
+
 bot "Ensuring build/install tools are available."
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -93,6 +95,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     print_result $? 'Agree with the XCode Command Line Tools licence'
 
   fi
+elif [[ "$OS" == "Fedora" ]]; then
+  action "installing linux dependencies"
+  runSudo ./lib/linux/dnf.sh
 else
   action "installing linux dependencies"
   runSudo ./lib/linux/apt.sh
@@ -141,14 +146,10 @@ fi
 bot "Now to install some Homebrew packages."
 
 action "installing homebrew packages"
-if [[ "$OSTYPE" == "darwin" ]]; then
+if [[ "$OSTYPE" == "darwin"* ]]; then
   run ./lib/macos/brew.sh
 else
   run ./lib/linux/brew.sh
-fi
-
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  run ./lib/docker.sh
 fi
 
 # ###########################################################
@@ -157,7 +158,7 @@ fi
 bot "Let's install some more packages."
 ~/.cargo/bin/fnm install --lts
 ~/.cargo/bin/fnm use $(~/.cargo/bin/fnm list | ~/.cargo/bin/sd "\*\s" "" | ~/.cargo/bin/sd "\n" "" | ~/.cargo/bin/sd "%" "" | ~/.cargo/bin/sd ".*v(\d+\.\d+\.\d+)\slts-.*" '$1')
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+if [[ "$OS" == "Pop" ]]; then
   action "updating Node modules install directory"
   mkdir ~/.npm-global
   npm config set prefix '~/.npm-global'
@@ -168,6 +169,11 @@ run ./lib/npm.sh
 
 action "installing pip packages"
 run ./lib/pip.sh
+
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  action "installing and setting up Docker"
+  run ./lib/docker.sh
+fi
 
 # ###########################################################
 # Setup zsh and vim env

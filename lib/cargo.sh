@@ -26,6 +26,7 @@ cargo install bandwhich \
   gitui \
   gping \
   onefetch \
+  os_info_cli \
   ripgrep \
   rustscan \
   sd \
