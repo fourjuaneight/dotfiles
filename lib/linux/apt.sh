@@ -63,8 +63,6 @@ apt-get install -y alacritty \
   mosh \
   ncdu \
   nginx \
-  npm \
-  nodejs \
   perl \
   pkg-config \
   pandoc \

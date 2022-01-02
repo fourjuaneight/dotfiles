@@ -155,7 +155,8 @@ fi
 # Install development packages
 # ###########################################################
 bot "Let's install some more packages."
-
+~/.cargo/bin/fnm install --lts
+~/.cargo/bin/fnm use $(~/.cargo/bin/fnm list | ~/.cargo/bin/sd "\*\s" "" | ~/.cargo/bin/sd "\n" "" | ~/.cargo/bin/sd "%" "" | ~/.cargo/bin/sd ".*v(\d+\.\d+\.\d+)\slts-.*" '$1')
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   action "updating Node modules install directory"
   mkdir ~/.npm-global
@@ -174,7 +175,7 @@ run ./lib/pip.sh
 bot "Stowing dotfiles."
 
 action "cleaning up gitconfig GPG key"
-sed -i 's/78D4B88F2C94648B21A1F2DA5971AC316779D86D//g' homedir/.gitconfig
+~/.cargo/bin/sd '78D4B88F2C94648B21A1F2DA5971AC316779D86D' '' homedir/.gitconfig
 action "running stow"
 cd ~/dotfiles
 stow homedir
@@ -216,7 +217,7 @@ fi
 bot "Ok. Let's wrap things up."
 
 action "installing zsh plugings"
-sheldon lock
+~/.cargo/bin/sheldon lock
 if [[ $? != 0 ]]; then
   error "unable to run sheldon lock"
   exit 2
