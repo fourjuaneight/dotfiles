@@ -22,7 +22,6 @@ dnf -y install bash \
   curl \
   dnf-plugins-core \
   findutils \
-  font-manager \
   fontconfig-devel \
   freetype-devel \
   g++ \
@@ -33,9 +32,9 @@ dnf -y install bash \
   git \
   gnupg \
   golang \
-  graphicsmagick \
+  GraphicsMagick \
   id3v2 \
-  imagemagick \
+  ImageMagick \
   indent \
   inotify-tools \
   jasper \
