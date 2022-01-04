@@ -114,7 +114,8 @@ brew install --cask alacritty \
   handbrake \
   hazel \
   moom \
-  visual-studio-code
+  visual-studio-code \
+  vlc
 
 action "cleaning up"
 brew cleanup
