@@ -3,7 +3,7 @@ Description=Unzip all compressed folders from the given directory
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/sh %h/.scripts/unzip.sh
+ExecStart=/usr/bin/sh %h/.scripts/unzip.sh &> %h/unzip.log
 Type=oneshot
 
 [Install]
