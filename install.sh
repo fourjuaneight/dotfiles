@@ -238,7 +238,7 @@ else
 fi
 
 action "Setting Github CLI editor"
-gh config set editor vim
+gh config set editor nvim
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   action "setting macOS defaults"
