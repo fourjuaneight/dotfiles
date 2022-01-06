@@ -31,7 +31,6 @@ apt-get install -y alacritty \
   gist \
   git \
   gnupg \
-  golang-go \
   gpg \
   graphicsmagick \
   id3v2 \

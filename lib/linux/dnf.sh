@@ -31,7 +31,6 @@ dnf -y install bash \
   ghc \
   git \
   gnupg \
-  golang \
   GraphicsMagick \
   id3v2 \
   ImageMagick \
