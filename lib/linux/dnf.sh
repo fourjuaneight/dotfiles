@@ -66,13 +66,17 @@ dnf -y install bash \
   stow \
   the_silver_searcher \
   tmux \
+  unzip \
   vim \
   wget \
   xsel \
   xz \
   zfs \
+  zip \
   zsh
-  
+
+yum install tar
+
 action "installing alacritty"
 dnf -y install rust-alacritty
 

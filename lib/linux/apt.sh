@@ -76,7 +76,9 @@ apt-get install -y alacritty \
   sed \
   silversearcher-ag \
   stow \
+  tar \
   tmux \
+  unrar \
   vim \
   virtualenv \
   wget \
