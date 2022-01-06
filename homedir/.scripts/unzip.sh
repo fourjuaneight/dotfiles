@@ -6,17 +6,17 @@ cd ~/Downloads
 
 for file in ~/Downloads/*; do
   case $file in
-    *.tar.bz2)  tar -xvjf $file          ;;
-    *.tar.gz)   tar -xvzf $file          ;;
-    *.bz2)      bunzip2 -v $file         ;;
-    *.rar)      unrar xv $file           ;;
-    *.gz)       gunzip -v $file          ;;
-    *.tar)      tar -xvf $file           ;;
-    *.tbz2)     tar -xvjf $file          ;;
-    *.tgz)      tar -xvzf $file          ;;
-    *.zip)      unzip $file              ;;
-    *.Z)        uncompress -v $file      ;;
-    *.7z)       7z x $file -bb           ;;
-    *)          echo "Skipping '$file'." ;;
+    *.tar.bz2)  xcompress x $file ~/Downloads  ;;
+    *.tar.gz)   xcompress x $file ~/Downloads  ;;
+    *.bz2)      xcompress x $file ~/Downloads  ;;
+    *.rar)      xcompress x $file ~/Downloads  ;;
+    *.gz)       xcompress x $file ~/Downloads  ;;
+    *.tar)      xcompress x $file ~/Downloads  ;;
+    *.tbz2)     xcompress x $file ~/Downloads  ;;
+    *.tgz)      xcompress x $file ~/Downloads  ;;
+    *.zip)      xcompress x $file ~/Downloads  ;;
+    *.Z)        xcompress x $file ~/Downloads  ;;
+    *.7z)       xcompress x $file ~/Downloads  ;;
+    *)          echo "Skipping '$file'."       ;;
   esac
 done
