@@ -9,6 +9,7 @@ services:
       - /Library/Application Support/Plex Media Server:/config
       - /mnt/Movies:/Movies
       - /mnt/TV_Shows:/TV_Shows
+      - /mnt/Anime/:/Anime
       - ~/Plex/Rentals:/Rentals
       - ~/Plex/Music:/Music
       - ~/Plex/Audiobooks:/Audiobooks
