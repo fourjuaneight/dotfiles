@@ -14,7 +14,7 @@ services:
       - "monitoring"
     restart: unless-stopped
     volumes:
-      - ./prometheus:/etc/prometheus
+      - ./config/prometheus:/etc/prometheus
       - prometheus-data:/prometheus
     command: --web.enable-lifecycle --config.file=/etc/prometheus/prometheus.yml
     labels:
@@ -44,6 +44,20 @@ services:
       - "monitoring"
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+  pihole-exporter:
+    image: ekofr/pihole-exporter:latest
+    container_name: pihole-exporter
+    ports:
+      - 127.0.0.1:9617:9617
+    networks:
+      - "monitoring"
+    environment:
+        - PIHOLE_HOSTNAME=192.168.1.151
+        - PIHOLE_PASSWORD=
+        - INTERVAL=15s
+        - PORT=9617
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
   grafana:
     image: grafana/grafana:latest
     ports:
@@ -52,7 +66,7 @@ services:
       - "monitoring"
     restart: unless-stopped
     volumes:
-      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./config/grafana:/etc/grafana/provisioning/datasources
       - grafana-data:/var/lib/grafana
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
