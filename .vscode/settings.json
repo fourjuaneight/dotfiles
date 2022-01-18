@@ -1,5 +1,13 @@
 {
   "Lua.diagnostics.globals": [
     "vim"
-  ]
+  ],
+  "yaml.schemas": {
+    "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json": [
+      "file:///home/fourjuaneight/dotfiles/homedir/.containers/monitoring.yml",
+      "file:///home/fourjuaneight/dotfiles/homedir/.containers/plex.yml",
+      "file:///home/fourjuaneight/dotfiles/homedir/.containers/resilio.yml",
+      "file:///home/fourjuaneight/dotfiles/homedir/.containers/watchtower.yml"
+    ]
+  }
 }
