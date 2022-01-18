@@ -74,6 +74,8 @@ return packer.startup(function(use)
   -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+  use "hrsh7th/nvim-cmp" -- tabnine ai autocomplete
+  use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'} -- tabnine ai autocomplete
 
   -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
