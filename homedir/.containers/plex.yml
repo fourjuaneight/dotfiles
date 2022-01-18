@@ -17,6 +17,8 @@ services:
       - PUID=1000
       - PGID=1000
       - VERSION=docker
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
   tautulli:
     image: ghcr.io/tautulli/tautulli
     container_name: tautulli
@@ -29,3 +31,5 @@ services:
       - TZ=America/New_York
     ports:
       - 127.0.0.1:8181:8181
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"

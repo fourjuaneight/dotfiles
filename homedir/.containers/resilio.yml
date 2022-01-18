@@ -15,3 +15,5 @@ services:
       - 127.0.0.1:8888:8888
       - 127.0.0.1:55555:55555
     restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
