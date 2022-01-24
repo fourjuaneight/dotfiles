@@ -276,5 +276,12 @@ else
   systemctl --user daemon-reload
 fi
 
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  action "adding systemctl util"
+  git clone https://github.com/joehillen/sysz.git
+  cd sysz
+  sudo make install # /usr/local/bin/sysz
+fi
+
 bot "All done! Gary out."
 minibot "Little Gary out, too!"
