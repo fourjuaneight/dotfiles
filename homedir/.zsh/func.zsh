@@ -207,30 +207,6 @@ fex() {
   fi
 }
 
-# extract all files in directory
-exta() {
-  local files
-  # convert to list
-  IFS=$'\n' files=($(ls))
-
-  for file in $files; do
-    case $file in
-      *.tar.bz2)  tar -xvjf $file                            ;;
-      *.tar.gz)   tar -xvzf $file                            ;;
-      *.bz2)      bunzip2 -v $file                           ;;
-      *.rar)      unrar xv $file                             ;;
-      *.gz)       gunzip -v $file                            ;;
-      *.tar)      tar -xvf $file                             ;;
-      *.tbz2)     tar -xvjf $file                            ;;
-      *.tgz)      tar -xvzf $file                            ;;
-      *.zip)      unzip $file                                ;;
-      *.Z)        uncompress -v $file                        ;;
-      *.7z)       7z x $file -bb                             ;;
-      *)          echo "Don't know how to extract '$files'." ;;
-    esac
-  done
-}
-
 # batch rename files with regex
 brn() {
   local files filesMatch
@@ -719,4 +695,3 @@ bcp() {
     do; brew uninstall $prog; done;
   fi
 }
-
