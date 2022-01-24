@@ -20,3 +20,9 @@ github = "mafredri/zsh-async"
 
 [plugins.fzf-zsh-completions]
 github = "chitoku-k/fzf-zsh-completions"
+
+[plugins.forgit]
+github = "wfxr/forgit"
+
+[plugins.ugit]
+github = "Bhupesh-V/ugit"

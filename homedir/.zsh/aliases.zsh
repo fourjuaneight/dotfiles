@@ -96,7 +96,7 @@ alias wnv="bat -p .nvmrc"
 alias psl="psql postgres -h localhost -l"
 
 # Git
-alias ga="git add"
+# alias ga="git add"
 alias gaa="git add --all"
 alias gap="git add --patch"
 
@@ -113,7 +113,7 @@ alias gsp="git stash && git pull --rebase && git stash pop"
 alias gst="git status"
 alias gstat="onefetch ."
 
-alias gdf="git diff"
+# alias gdf="git diff"
 alias gdfn="git diff --name-only"
 alias gdfs="git diff --staged"
 
