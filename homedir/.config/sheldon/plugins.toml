@@ -17,3 +17,6 @@ github = "romkatv/zsh-defer"
 
 [plugins.zsh-async]
 github = "mafredri/zsh-async"
+
+[plugins.fzf-zsh-completions]
+github = "chitoku-k/fzf-zsh-completions"
