@@ -26,6 +26,7 @@ services:
       - 127.0.0.1:8080:8080
     networks:
       - "monitoring"
+    restart: unless-stopped
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw
