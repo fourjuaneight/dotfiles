@@ -20,40 +20,39 @@ else
 fi
 
 minibot "Let's get some beers."
-eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 action "turning off analytics"
-brew analytics off
+/opt/homebrew/bin/brew analytics off
 
 action "updating homebrew directories"
-brew update
+/opt/homebrew/bin/brew update
 
 action "installing updated GNU core utils"
-brew install coreutils
-brew install gnu-sed
-brew install gnu-tar
-brew install gnu-indent
-brew install gnu-which
+/opt/homebrew/bin/brew install coreutils
+/opt/homebrew/bin/brew install gnu-sed
+/opt/homebrew/bin/brew install gnu-tar
+/opt/homebrew/bin/brew install gnu-indent
+/opt/homebrew/bin/brew install gnu-which
 
 action "installing GNU goodies"
-brew install findutils
+/opt/homebrew/bin/brew install findutils
 
 action "installing latest bash"
-brew install bash
+/opt/homebrew/bin/brew install bash
 
 action "installing complicated packages"
-brew install homebrew-ffmpeg/ffmpeg/ffmpeg --with-fdk-aac --HEAD
-brew install jesseduffield/lazygit/lazygit
-brew install --HEAD wvanlint/twf/twf
-brew tap heroku/brew
-brew install heroku
-brew tap anchore/syft
-brew install syft
-brew tap anchore/grype
-brew install grype
+/opt/homebrew/bin/brew install homebrew-ffmpeg/ffmpeg/ffmpeg --with-fdk-aac --HEAD
+/opt/homebrew/bin/brew install jesseduffield/lazygit/lazygit
+/opt/homebrew/bin/brew install --HEAD wvanlint/twf/twf
+/opt/homebrew/bin/brew tap heroku/brew
+/opt/homebrew/bin/brew install heroku
+/opt/homebrew/bin/brew tap anchore/syft
+/opt/homebrew/bin/brew install syft
+/opt/homebrew/bin/brew tap anchore/grype
+/opt/homebrew/bin/brew install grype
 
 action "installing packages"
-brew install ack \
+/opt/homebrew/bin/brew install ack \
   catimg \
   certbot \
   chezmoi \
@@ -123,7 +122,7 @@ brew install ack \
   yt-dlp/taps/yt-dlp
 
 action "installing casks"
-brew install --cask alacritty \
+/opt/homebrew/bin/brew install --cask alacritty \
   alfred \
   bartender \
   calibre \
@@ -134,10 +133,10 @@ brew install --cask alacritty \
   vlc
 
 action "cleaning up"
-brew cleanup
+/opt/homebrew/bin/brew cleanup
 rm -f -r /Library/Caches/Homebrew/*
 # Just to avoid a potential bug
 mkdir -p ~/Library/Caches/Homebrew/Formula
-brew doctor
+/opt/homebrew/bin/brew doctor
 
 ok "we are now proper drunk."
