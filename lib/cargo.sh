@@ -4,7 +4,6 @@ source ./lib/util/echos.sh
 
 minibot "Little Gary here! Ok. Let's try to install some cargos."
 source $HOME/.cargo/env
-rustup toolchain install nightly --allow-downgrade --profile minimal --component clippy
 
 action "installing fuzzy packages"
 cargo install --locked deno
