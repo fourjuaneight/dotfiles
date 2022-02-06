@@ -106,6 +106,7 @@ action "installing packages"
   restic \
   rsync \
   ruby \
+  sheldon \
   slurm \
   spark \
   sphinx \

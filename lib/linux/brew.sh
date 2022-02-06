@@ -51,6 +51,7 @@ brew install ack \
   neovim \
   rclone \
   restic \
+  sheldon \
   webp \
   yt-dlp/taps/yt-dlp
 

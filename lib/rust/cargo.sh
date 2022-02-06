@@ -31,7 +31,6 @@ cargo install bandwhich \
   ripgrep \
   rustscan \
   sd \
-  sheldon \
   starship \
   stdrename \
   tree-rs \
