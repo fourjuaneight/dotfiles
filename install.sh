@@ -4,9 +4,6 @@
 # This script installs the dotfiles and runs all other system configuration scripts
 ###########################
 
-cp ~/dotfiles/homedir/.bashrc ~/
-source ~/.bashrc
-
 source ./lib/util/echos.sh
 source ./lib/util/runner.sh
 
@@ -22,7 +19,7 @@ run ./lib/fonts.sh
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   action "copying preferences"
-  cp ./configs/com*.plist ~/Library/Preference
+  find ~/configs -type f -name "*.plist" -exec cp {} ~/Library/Preference \;
   if [[ $? != 0 ]]; then
     error "unable to copy plist files"
     exit 2
