@@ -19,7 +19,7 @@ run ./lib/fonts.sh
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   action "copying preferences"
-  find ~/configs -type f -name "*.plist" -exec cp {} ~/Library/Preference \;
+  find ~/dotfiles/configs -type f -name "*.plist" -exec cp {} ~/Library/Preferences \;
   if [[ $? != 0 ]]; then
     error "unable to copy plist files"
     exit 2
