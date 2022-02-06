@@ -10,9 +10,7 @@ running "signing in..."
 mas signin juan@villela.co "$pswd"
 
 action "installing 1Blocker"
-mas install 1107421413
-action "installing 1Password"
-mas install 1333542190
+mas install 1365531024
 action "installing Affinity Designer"
 mas install 824171161
 action "installing Grammarly"
