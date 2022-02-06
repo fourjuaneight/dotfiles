@@ -29,6 +29,9 @@ window:
   #  x: 0
   #  y: 0
 
+  # Window opacity as a floating point number from `0.0` to `1.0`.
+  opacity: 0.90
+
   # Window padding (changes require restart)
   #
   # Blank space added around the window in pixels. This padding is scaled
@@ -148,7 +151,7 @@ font:
     style: Bold Italic
 
   # Point size
-  size: 13.0
+  size: 20.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -278,13 +281,6 @@ colors: *dracula
 #  animation: EaseOutExpo
 #  duration: 0
 #  color: '#ffffff'
-
-# Background opacity
-#
-# Window opacity as a floating point number from `0.0` to `1.0`.
-# The value `0.0` is completely transparent and `1.0` is opaque.
-window:
-  opacity: 0.90
 
 #selection:
 #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
