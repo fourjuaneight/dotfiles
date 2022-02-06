@@ -122,13 +122,15 @@ action "installing packages"
   yt-dlp/taps/yt-dlp
 
 action "installing casks"
-/opt/homebrew/bin/brew install --cask alacritty \
-  alfred \
+/opt/homebrew/bin/brew install --cask 1password\
+  alacritty \
   bartender \
   calibre \
   handbrake \
   hazel \
   moom \
+  resilio-sync \
+  transmit \
   visual-studio-code \
   vlc
 
