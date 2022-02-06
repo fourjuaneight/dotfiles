@@ -16,7 +16,8 @@ else
         read -p "Your Email: " email
     fi
     ssh-keygen -t rsa -b 4096 -C "$email" -f ~/.ssh/space-maria_github
-    bat ~/.ssh/space-maria_github.pub
+    ssh-keygen -t rsa -b 4096 -C "$email" -f ~/.ssh/space-maria_bitbucket
+    bat -p ~/.ssh/space-maria_github.pub
     ok "add key to your Github account."
     exit 0
 fi
