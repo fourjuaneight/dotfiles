@@ -41,7 +41,7 @@ action "installing latest bash"
 /opt/homebrew/bin/brew install bash
 
 action "installing complicated packages"
-/opt/homebrew/bin/brew install homebrew-ffmpeg/ffmpeg/ffmpeg --with-fdk-aac --HEAD
+/opt/homebrew/bin/brew install homebrew-ffmpeg/ffmpeg/ffmpeg
 /opt/homebrew/bin/brew install jesseduffield/lazygit/lazygit
 /opt/homebrew/bin/brew install --HEAD wvanlint/twf/twf
 /opt/homebrew/bin/brew tap heroku/brew
