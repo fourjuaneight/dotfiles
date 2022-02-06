@@ -1,8 +1,25 @@
 #!/usr/bin/env bash
 
-source ./lib/util/echos.sh
+source ~/dotfiles/lib/util/echos.sh
 
-minibot "Little Gary here! Let's get some beers."
+bot "Installing Homebrew."
+
+running "checking homebrew..."
+brew_bin=$(which brew) 2>&1 >/dev/null
+if [[ $? != 0 ]]; then
+  action "installing homebrew"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  if [[ $? != 0 ]]; then
+    error "unable to install homebrew"
+    exit 2
+  else
+    ok "homebrew installed."
+  fi
+else
+  ok
+fi
+
+minibot "Let's get some beers."
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 action "turning off analytics"

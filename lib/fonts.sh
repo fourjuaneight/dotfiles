@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-source ./lib/util/echos.sh
+source ~/dotfiles/lib/util/echos.sh
 
-minibot "Little Gary here! Fonts will be saved to your local Fonts directory."
+minibot "Fonts will be saved to your local Fonts directory."
 
 action "saving fonts"
 for file in ./fonts/**/*; do

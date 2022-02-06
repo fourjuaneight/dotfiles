@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-source ./lib/util/echos.sh
+source ~/dotfiles/lib/util/echos.sh
 
-minibot "Little Gary here! Let's install some Linux goodies."
+minibot "Let's install some Linux goodies."
 
 action "updating apt-get directories"
 add-apt-repository ppa:aslatter/ppa

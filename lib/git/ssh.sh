@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ./lib/util/echos.sh
+source ~/dotfiles/lib/util/echos.sh
 
 minibot "Little Gary here! Let's setup an SSH key for Github."
 

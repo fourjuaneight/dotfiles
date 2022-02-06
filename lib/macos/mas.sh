@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-source ./lib/util/echos.sh
+source ~/dotfiles/lib/util/echos.sh
 
-minibot "Little Gary here! Let's install some apps."
+minibot "Let's install some apps."
 
 running "sign into the Mac App Store"
 read -s -p "Enter Password: " pswd

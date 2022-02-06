@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-source ./lib/util/echos.sh
+source ~/dotfiles/lib/util/echos.sh
 
-minibot "Little Gary here! Let's download the universe."
+minibot "Let's download the universe."
 eval "$(fnm env)"
 source ~/.bashrc
 ~/.cargo/bin/fnm install --lts

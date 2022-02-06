@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-source ./lib/util/echos.sh
+source ~/dotfiles/lib/util/echos.sh
 
-minibot "Little Gary here! Ok. Let's try to install some cargos."
+minibot "Let's try to install some cargos."
 source $HOME/.cargo/env
 
 action "installing fuzzy packages"
@@ -39,5 +39,24 @@ cargo install bandwhich \
   xcompress \
   zellij \
   zoxide
+
+action "installing alt coreutils"
+git clone https://github.com/uutils/coreutils ~/coreutils
+cd ~/coreutils
+cargo build --release --features macos
+if [[ $? != 0 ]]; then
+  error "unable to build coreutils"
+  exit 2
+else
+  ok "built coreutils."
+fi
+
+cargo install --path .
+if [[ $? != 0 ]]; then
+  error "unable to install coreutils"
+  exit 2
+else
+  ok "installed coreutils."
+fi
 
 ok "sweet, done with the good stuff."
