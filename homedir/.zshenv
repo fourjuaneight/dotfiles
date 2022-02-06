@@ -1,5 +1,11 @@
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# Homebrew
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  export PATH="/opt/homebrew/bin:$PATH"
+else
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
 
+# Exo
 export PATH=$PATH:$HOME/.exo/bin
 
 # Go
