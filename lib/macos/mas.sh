@@ -4,11 +4,6 @@ source ~/dotfiles/lib/util/echos.sh
 
 minibot "Let's install some apps."
 
-running "sign into the Mac App Store"
-read -s -p "Enter Password: " pswd
-running "signing in..."
-mas signin juan@villela.co "$pswd"
-
 action "installing 1Blocker"
 mas install 1365531024
 action "installing Affinity Designer"
