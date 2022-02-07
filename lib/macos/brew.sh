@@ -130,9 +130,11 @@ action "installing casks"
   hazel \
   moom \
   resilio-sync \
+  slack \
   transmit \
   visual-studio-code \
-  vlc
+  vlc \
+  zoom
 
 action "cleaning up"
 /opt/homebrew/bin/brew cleanup
