@@ -128,8 +128,8 @@ action "installing casks"
   calibre \
   handbrake \
   hazel \
-  moom \
   mullvadvpn \
+  rectangle \
   resilio-sync \
   slack \
   transmit \
