@@ -129,6 +129,7 @@ action "installing casks"
   handbrake \
   hazel \
   moom \
+  mullvadvpn \
   resilio-sync \
   slack \
   transmit \
