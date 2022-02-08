@@ -126,12 +126,14 @@ action "installing casks"
   alacritty \
   bartender \
   calibre \
+  fission \
   handbrake \
   hazel \
   mullvadvpn \
   rectangle \
   resilio-sync \
   slack \
+  soundsource \
   transmit \
   visual-studio-code \
   vlc \
