@@ -129,6 +129,7 @@ action "installing casks"
   fission \
   handbrake \
   hazel \
+  meta \
   mullvadvpn \
   rectangle \
   resilio-sync \
