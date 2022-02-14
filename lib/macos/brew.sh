@@ -130,6 +130,7 @@ action "installing casks"
   handbrake \
   hazel \
   meta \
+  monodraw \
   mullvadvpn \
   rectangle \
   resilio-sync \
