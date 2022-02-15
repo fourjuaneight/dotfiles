@@ -23,8 +23,8 @@
 [delta]
   features = side-by-side line-numbers decorations
   whitespace-error-style = 22 reverse
-  plus-color = "#50fa7b"
-  minus-color = "#ff80bf"
+  plus-color = syntax "#50fa7b"
+  minus-color = normal "#ff80bf"
   syntax-theme = Dracula
 
 [delta "decorations"]
