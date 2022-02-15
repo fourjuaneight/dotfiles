@@ -1,3 +1,16 @@
+# History
+HISTSIZE=10000
+SAVEHIST=10000
+
+setopt append_history
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups # ignore duplication command history list
+setopt hist_ignore_space
+setopt hist_verify
+setopt inc_append_history
+setopt share_history # share command history data
+
 # Fig
 [ -s ~/.fig/shell/pre.sh ] && source ~/.fig/shell/pre.sh
 
@@ -44,8 +57,10 @@ export ZELLIJ_CONFIG_DIR="$HOME/.config/zellij"
 export GPG_TTY=$(tty)
 
 # Utils
+export EDITOR=nvim
 eval "$(sheldon source)"
 eval "$(starship init zsh)"
+zsh-defer eval "$(atuin init zsh)"
 zsh-defer eval "$(zoxide init zsh)"
 
 # Rust Cargo
@@ -77,11 +92,11 @@ zmodload zsh/zprof
 # nvm
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
+# fnm
+export PATH=/home/fourjuaneight/.fnm:$PATH
+zsh-defer eval "`fnm env`"
+
 #### FIG ENV VARIABLES ####
 # Please make sure this block is at the end of this file.
 [ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
 #### END FIG ENV VARIABLES ####
-
-# fnm
-export PATH=/home/fourjuaneight/.fnm:$PATH
-eval "`fnm env`"
