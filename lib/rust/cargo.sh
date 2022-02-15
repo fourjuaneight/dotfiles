@@ -10,7 +10,8 @@ cargo install --locked deno
 cargo install --locked bat
 
 action "installing normal packages"
-cargo install bandwhich \
+cargo install atuin \
+  bandwhich \
   bottom \
   cargo-update \
   czkawka_cli \
