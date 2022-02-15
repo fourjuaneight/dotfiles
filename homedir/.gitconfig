@@ -4,7 +4,7 @@
 [user]
 	name = Juan Villela
 	email = juan@villela.co
-	signingkey = D74342637DE2652F
+	signingkey = 6BF733DA54F3B8EB
 
 [github]
   user = fourjuaneight
@@ -69,7 +69,7 @@
   diffFilter = delta --color-only
 
 [gpg]
-  program = gpg
+  program = /opt/homebrew/bin/gpg
 
 [sequence]
   editor = interactive-rebase-tool
