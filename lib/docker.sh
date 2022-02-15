@@ -29,7 +29,7 @@ if [[ "$OS" == "Fedora" ]]; then
 
   action "enable service on startup"
   sudo systemctl start docker
-else
+elif [[ "$OS" == "Ubuntu" ]] || [[ "$OS" == "Pop" ]]; then 
   action "remove older versions"
   sudo apt-get remove docker docker-engine docker.io containerd runc
 
@@ -48,23 +48,28 @@ else
   action "enable service on startup"
   sudo systemctl enable docker.service
   sudo systemctl enable containerd.service
+else
+  cd ~/Downloads/
+  wget https://desktop.docker.com/mac/main/arm64/Docker.dmg
 fi
 
-action "setup docker group"
-sudo groupadd docker
+if [[ "$OSTYPE" != "darwin"* ]]; then
+  action "setup docker group"
+  sudo groupadd docker
 
-action "add your user to the group"
-sudo usermod -aG docker $USER
+  action "add your user to the group"
+  sudo usermod -aG docker $USER
 
-action "activate changes to group"
-newgrp docker
+  action "activate changes to group"
+  newgrp docker
 
-action "test install"
-docker run hello-world
+  action "test install"
+  docker run hello-world
 
-action "install docker compose"
-sudo curl -L "https://github.com/docker/compose/releases/download/$DC_VER/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+  action "install docker compose"
+  sudo curl -L "https://github.com/docker/compose/releases/download/$DC_VER/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  sudo chmod +x /usr/local/bin/docker-compose
+  sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+fi
 
 ok "coolbeans, Docker is ready to go."
