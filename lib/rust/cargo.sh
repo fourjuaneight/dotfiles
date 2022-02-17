@@ -26,12 +26,14 @@ cargo install atuin \
   git-interactive-rebase-tool \
   gitui \
   gping \
+  jless \
   onefetch \
   os_info_cli \
   procs \
   ripgrep \
   rustscan \
   sd \
+  skim \
   starship \
   stdrename \
   tree-rs \
