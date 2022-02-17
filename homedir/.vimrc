@@ -88,7 +88,8 @@ Plug 'alvan/vim-closetag'
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'njk' }
 Plug 'jparise/vim-graphql',
 Plug 'jremmen/vim-ripgrep'
-Plug 'junegunn/fzf', { 'do': './install --bin' }
+Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
+Plug 'lotabout/skim.vim'
 Plug 'lepture/vim-jinja'
 Plug 'luochen1990/rainbow'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -180,15 +181,9 @@ function! s:check_back_space() abort
 endfunction
 let g:coc_snippet_next = '<tab>'
 
-" FZF
-" Set statusline color
-function! s:fzf_statusline()
-  highlight fzf1 ctermfg=yellow
-  highlight fzf2 ctermfg=yellow
-  highlight fzf3 ctermfg=yellow
-  setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
-endfunction
-autocmd! User FzfStatusLine call <SID>fzf_statusline()
+" Skim
+command! -bang -nargs=* Ag call fzf#vim#ag_interactive(<q-args>, fzf#vim#with_preview('right:50%:hidden', 'alt-h'))
+command! -bang -nargs=* Rg call fzf#vim#rg_interactive(<q-args>, fzf#vim#with_preview('right:50%:hidden', 'alt-h'))
 
 " Git gutter
 highlight clear SignColumn
@@ -375,7 +370,7 @@ nmap <leader>gcm :Gcommit<cr>
 nmap <leader>gr :Git reset<cr>
 nmap <leader>gdf :Gdelete<cr>
 
-" fzf
+" skim
 nmap <leader>/d <C-w>l<Bar>:FZF<cr>
 
 " NERDCommenter
