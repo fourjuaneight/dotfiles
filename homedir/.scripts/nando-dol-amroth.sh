@@ -10,3 +10,4 @@ rclone copy --log-level INFO --ignore-existing --log-file ~/nando-dol-amroth.log
 rclone copy --log-level INFO --ignore-existing --log-file ~/nando-dol-amroth.log ~/Plex/Audiobooks s3:dol-amroth/Audiobooks
 rclone copy --log-level INFO --ignore-existing --log-file ~/nando-dol-amroth.log ~/Plex/Music s3:dol-amroth/Music
 rclone copy --log-level INFO --ignore-existing --log-file ~/nando-dol-amroth.log ~/ROMs s3:dol-amroth/ROMs
+rclone copy --log-level INFO --ignore-existing --log-file ~/nando-dol-amroth.log /mnt/Anime s3:dol-amroth/Anime
