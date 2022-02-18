@@ -136,6 +136,7 @@ action "installing casks"
   resilio-sync \
   slack \
   soundsource \
+  tableplus \
   transmit \
   visual-studio-code \
   vlc \
