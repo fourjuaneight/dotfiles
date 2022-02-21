@@ -554,11 +554,12 @@ gec() {
 # git create new PR, add title, select reviewer
 gnpr() {
   local branches selectedBranch branch reviewers handle
+  users=("fourjuaneight" "davidbbaxter" "baileysh9" "bbohach")
   git fetch &&
     branches=$(git branch -r) &&
     selectedBranch=$(echo "$branches" | sd 'origin/HEAD -> .*\n' '' | sd 'origin/' '' | sk --ansi --no-sort --exact) &&
     branch=$(echo $selectedBranch | sd '^\s*' '') &&
-    handle=$(print -l "fourjuaneight davidbbaxter baileysh9 bbohach" | sk --ansi --tac --no-sort --exact) &&
+    handle=$(printf "%s\n" "${users[@]}" | sk --ansi --tac --no-sort --exact) &&
     gh pr create -B $branch -t $1 -r $handle
 }
 
