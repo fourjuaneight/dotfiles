@@ -13,7 +13,8 @@ action "adding zfs repo"
 dnf install -y https://zfsonlinux.org/fedora/zfs-release$(rpm -E %dist).noarch.rpm
 
 action "installing dependencies"
-dnf -y install bash \
+dnf -y install ansible \
+  bash \
   ca-certificates \
   certbot \
   clang \

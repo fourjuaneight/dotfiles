@@ -53,6 +53,7 @@ action "installing complicated packages"
 
 action "installing packages"
 /opt/homebrew/bin/brew install ack \
+  ansible \
   catimg \
   certbot \
   chezmoi \

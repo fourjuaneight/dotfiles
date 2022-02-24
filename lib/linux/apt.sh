@@ -5,6 +5,8 @@ source ~/dotfiles/lib/util/echos.sh
 minibot "Let's install some Linux goodies."
 
 action "updating apt-get directories"
+apt install software-properties-common
+add-apt-repository --yes --update ppa:ansible/ansible
 add-apt-repository ppa:aslatter/ppa
 add-apt-repository ppa:wireshark-dev/stable
 apt-get update
@@ -14,6 +16,7 @@ apt-get autoremove -y
 
 action "installing dependencies"
 apt-get install -y alacritty \
+  ansible \
   apt-transport-https \
   bash \
   build-essential \
