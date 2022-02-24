@@ -30,6 +30,7 @@ alias find="fd"
 alias ls="exa"
 alias ll="exa -l"
 alias la="exa -a"
+alias lc="ls | wc -l"
 
 # alternative to 'tree'
 alias tree="tree-rs"
