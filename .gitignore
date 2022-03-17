@@ -12,4 +12,4 @@ homedir/.config/gatsby/events.json
 homedir/.config/sheldon/repos
 homedir/.config/rclone
 homedir/.config/sheldon/plugins.lock
-homedir/.config/nvim/plugin/packer_compiled.lua
+homedir/.config/nvim/plugin
