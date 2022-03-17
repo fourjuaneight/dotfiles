@@ -216,6 +216,13 @@ brn() {
   done
 }
 
+b2mkv() {
+  for file in *; do
+    fname="${file%.*}"
+    ffmpeg -i $file -vcodec copy -acodec copy "$fname.mkv"
+  done
+}
+
 # batch update mp3 title with regex
 bump3t() {
   for file in $(ls *.mp3); do
