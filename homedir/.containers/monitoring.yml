@@ -54,9 +54,10 @@ services:
       - "monitoring"
     environment:
         - PIHOLE_HOSTNAME=192.168.1.151
-        - PIHOLE_PASSWORD=
+        - PIHOLE_PASSWORD=${PIHOLE_PASSWORD}
         - INTERVAL=15s
         - PORT=9617
+    env_file: .env
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
   grafana:
