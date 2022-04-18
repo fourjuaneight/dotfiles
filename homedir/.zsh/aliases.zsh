@@ -114,6 +114,9 @@ alias gsp="git stash && git pull --rebase && git stash pop"
 alias gst="git status"
 alias gstat="onefetch ."
 
+alias gai="git checkout --theirs ."
+alias gao="git checkout --ours ."
+
 # alias gdf="git diff"
 alias gdfn="git diff --name-only"
 alias gdfs="git diff --staged"
