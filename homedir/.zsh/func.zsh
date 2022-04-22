@@ -215,6 +215,28 @@ brn() {
     mv "$file" "$new"
   done
 }
+brn_count() {
+  local files filesMatch
+  TEMPFILE=/tmp/counter.tmp
+  echo "0" >$TEMPFILE
+
+  # remove quotes
+  filesMatch=$(sd '^"(.*)"$' '$1' <<<$3)
+  # convert to list
+  IFS=$'\n' files=($(echo $filesMatch | ls))
+
+  for file in $files; do
+    COUNTER=$(($(cat $TEMPFILE) + 1))
+    echo $COUNTER >$TEMPFILE
+    name=$1
+    epi+="E"
+    new+=$COUNTER
+    echo "$file -> $new"
+    mv "$file" "$new"
+  done
+
+  unlink $TEMPFILE
+}
 
 b2mkv() {
   for file in *; do
