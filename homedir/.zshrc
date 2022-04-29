@@ -11,9 +11,6 @@ setopt hist_verify
 setopt inc_append_history
 setopt share_history # share command history data
 
-# Fig
-[ -s ~/.fig/shell/pre.sh ] && source ~/.fig/shell/pre.sh
-
 # Homebrew
 if [[ "$OSTYPE" == "darwin"* ]]; then
   export PATH="/opt/homebrew/bin:$PATH"
@@ -83,8 +80,3 @@ zmodload zsh/zprof
 # fnm
 export PATH=/home/fourjuaneight/.fnm:$PATH
 zsh-defer eval "`fnm env`"
-
-#### FIG ENV VARIABLES ####
-# Please make sure this block is at the end of this file.
-[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
-#### END FIG ENV VARIABLES ####
