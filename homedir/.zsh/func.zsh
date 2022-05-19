@@ -601,7 +601,7 @@ gvpr() {
     gh pr view $PR
 }
 
-# git merge PR. Provide number or select from open PRs
+# git merge (squash and delete branch) PR. Provide number or select from open PRs
 gmpr() {
   git fetch
   local selectedPR PR
@@ -610,7 +610,7 @@ gmpr() {
   else
     selectedPR=$(gh pr list | sk --ansi --tac --no-sort --exact) &&
       PR=$(echo $selectedPR | sd '^([0-9]+).*' '$1') &&
-      gh pr merge $PR -s
+      gh pr merge $PR -s -d
   fi
 }
 
