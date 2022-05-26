@@ -70,24 +70,39 @@ sysup() {
 
 # glyphhanger whitelist Latin
 gla() {
-  local files fname
-  IFS=$'\n' files=($(sk --query "$1.ttf" --multi --select-1 --exit-0))
-  fname="${files%.*}" &&
-    if [[ -n "$files" ]]; then
-      glyphhanger --LATIN --formats=woff2,woff --subset=$fname.ttf &&
-        [[ -n "$fname-subset.woff" ]] && mv $fname-subset.woff $fname.woff &&
-        [[ -n "$fname-subset.woff2" ]] && mv $fname-subset.woff2 $fname.woff2
+  local file fname
+  IFS=$'\n' file=($(sk --multi --select-1 --exit-0))
+  fname="${file%.*}" &&
+    if [[ -n "$file" ]]; then
+      glyphhanger --LATIN --formats=woff2,woff --subset=$file &&
+      [[ -n "$fname-subset.woff" ]] && mv $fname-subset.woff $fname.woff &&
+      [[ -n "$fname-subset.woff2" ]] && mv $fname-subset.woff2 $fname.woff2
     fi
+}
+
+agla() {
+  for file in $(ls *.*tf); do
+    fname="${file%.*}"
+    glyphhanger --LATIN --formats=woff2,woff --subset=$file &&
+    [[ -n "$fname-subset.woff" ]] && mv $fname-subset.woff $fname.woff &&
+    [[ -n "$fname-subset.woff2" ]] && mv $fname-subset.woff2 $fname.woff2
+  done
 }
 
 # glyphhanger whitelist US ASCII
 glu() {
-  local files fname
-  IFS=$'\n' files=($(sk --query "$1.ttf" --multi --select-1 --exit-0))
-  fname="${files%.*}" &&
-    if [[ -n "$files" ]]; then
-      glyphhanger --US_ASCII --formats=woff2,woff --subset=$fname.ttf
+  local file fname
+  IFS=$'\n' file=($(sk --multi --select-1 --exit-0))
+  fname="${file%.*}" &&
+    if [[ -n "$file" ]]; then
+      glyphhanger --US_ASCII --formats=woff2,woff --subset=$file
     fi
+}
+
+aglu() {
+  for file in $(ls *.*tf); do
+    glyphhanger --US_ASCII --formats=woff2,woff --subset=$file
+  done
 }
 
 # YOUTUBE #
