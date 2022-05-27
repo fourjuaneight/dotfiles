@@ -8,12 +8,14 @@ source $HOME/.cargo/env
 action "installing fuzzy packages"
 cargo install --locked deno
 cargo install --locked bat
+cargo install --locked --force xplr
 
 action "installing normal packages"
 cargo install atuin \
   bandwhich \
   bottom \
   cargo-update \
+  coreutils \
   czkawka_cli \
   diskonaut \
   du-dust \
@@ -41,24 +43,5 @@ cargo install atuin \
   xcompress \
   zellij \
   zoxide
-
-action "installing alt coreutils"
-git clone https://github.com/uutils/coreutils ~/coreutils
-cd ~/coreutils
-cargo build --release --features macos
-if [[ $? != 0 ]]; then
-  error "unable to build coreutils"
-  exit 2
-else
-  ok "built coreutils."
-fi
-
-cargo install --path .
-if [[ $? != 0 ]]; then
-  error "unable to install coreutils"
-  exit 2
-else
-  ok "installed coreutils."
-fi
 
 ok "sweet, done with the good stuff."
