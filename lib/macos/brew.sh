@@ -50,6 +50,8 @@ action "installing complicated packages"
 /opt/homebrew/bin/brew install syft
 /opt/homebrew/bin/brew tap anchore/grype
 /opt/homebrew/bin/brew install grype
+/opt/homebrew/bin/brew tap helix-editor/helix
+/opt/homebrew/bin/brew install helix
 
 action "installing packages"
 /opt/homebrew/bin/brew install ack \

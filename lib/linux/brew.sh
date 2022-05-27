@@ -36,6 +36,8 @@ brew tap anchore/syft
 brew install syft
 brew tap anchore/grype
 brew install grype
+brew tap helix-editor/helix
+brew install helix
 
 action "installing packages"
 brew install ack \
