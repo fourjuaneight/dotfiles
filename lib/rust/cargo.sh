@@ -19,6 +19,7 @@ cargo install atuin \
   czkawka_cli \
   diskonaut \
   du-dust \
+  dua-cli \
   exa \
   fd-find \
   feroxbuster \
