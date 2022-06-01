@@ -50,7 +50,7 @@ export ZELLIJ_CONFIG_DIR="$HOME/.config/zellij"
 export GPG_TTY=$(tty)
 
 # Utils
-export EDITOR=helix
+export EDITOR=hx
 eval "$(sheldon source)"
 eval "$(starship init zsh)"
 zsh-defer eval "$(atuin init zsh)"

@@ -17,7 +17,7 @@
 
 [core]
   excludesfile = ~/.gitignore_global
-  editor = helix
+  editor = hx
   pager = delta
 
 [delta]

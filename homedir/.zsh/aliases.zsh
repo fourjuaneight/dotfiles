@@ -49,7 +49,7 @@ alias netstatus="sudo $HOME/.cargo/bin/bandwhich -n"
 alias dig="dog"
 
 # zsh
-alias zconf="helix ~/.zshrc"
+alias zconf="hx ~/.zshrc"
 alias zsour="source ~/.zshrc"
 
 # nnn
@@ -63,7 +63,7 @@ alias doom="~/.emacs.d/bin/doom"
 
 # vim
 alias vi="vim"
-alias vconf="helix ~/.vimrc"
+alias vconf="hx ~/.vimrc"
 alias vsour="vim source ~/.vimrc"
 
 # cron
@@ -73,7 +73,7 @@ alias crol="crontab -l"
 # zellij
 alias tmux="zellij"
 alias zj="zellij"
-alias zjconf="helix ~/.config/zellij/config.yaml"
+alias zjconf="hx ~/.config/zellij/config.yaml"
 alias zjdev="zellij --layout ~/.config/zellij/layout.dev.yaml"
 alias zjgit="zellij --layout ~/.config/zellij/layout.git.yaml"
 
