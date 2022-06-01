@@ -13,3 +13,4 @@ homedir/.config/sheldon/repos
 homedir/.config/rclone
 homedir/.config/sheldon/plugins.lock
 homedir/.config/nvim/plugin
+homedir/.config/raycast
