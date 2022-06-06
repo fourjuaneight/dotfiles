@@ -11,7 +11,7 @@ services:
       - /mnt/Audiobooks:/Audiobooks
       - /mnt/Movies:/Movies
       - /mnt/Music:/Music
-      - /mnt/Rentals:/Rentals
+      - ~/Rentals:/Rentals
       - /mnt/TV_Shows:/TV_Shows
     environment:
       - PUID=1000
