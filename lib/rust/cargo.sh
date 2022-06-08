@@ -39,6 +39,7 @@ cargo install atuin \
   skim \
   starship \
   stdrename \
+  topgrade \
   tree-rs \
   websocat \
   xcompress \
