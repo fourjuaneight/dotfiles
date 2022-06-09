@@ -30,6 +30,7 @@ cargo install atuin \
   gitui \
   gping \
   jless \
+  mprocs \
   onefetch \
   os_info_cli \
   procs \
