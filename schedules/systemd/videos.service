@@ -1,0 +1,10 @@
+[Unit]
+Description=Convert MOV videos to MP4 from the given directory every 15 minutes
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/sh %h/.scripts/videos.sh &> %h/videos.log
+Type=oneshot
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,11 @@
+[Unit]
+Description=Convert MOV videos to MP4 from the given directory every 15 minutes
+RefuseManualStart=no
+RefuseManualStop=no
+
+[Timer]
+OnCalendar=*:0/15
+Unit=unzip.service
+
+[Install]
+WantedBy=timers.target
