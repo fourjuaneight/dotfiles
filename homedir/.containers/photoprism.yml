@@ -67,5 +67,6 @@ services:
       MARIADB_USER: "photoprism"
       MARIADB_PASSWORD: "${MARIADB_PASSWORD}"
       MARIADB_ROOT_PASSWORD: "${MARIADB_ROOT_PASSWORD}"
+    env_file: .env
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
