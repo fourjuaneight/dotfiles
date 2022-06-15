@@ -8,6 +8,7 @@ source $HOME/.cargo/env
 action "installing fuzzy packages"
 cargo install --locked deno
 cargo install --locked bat
+cargo install --locked pueue
 cargo install --locked --force xplr
 
 action "installing normal packages"
