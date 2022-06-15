@@ -26,6 +26,9 @@ alias cat="bat"
 # alternative to 'find'
 alias find="fd"
 
+# alternative to 'rm'
+alias rm="rip -i"
+
 # alternatives to 'ls'
 alias ls="exa"
 alias ll="exa -l"

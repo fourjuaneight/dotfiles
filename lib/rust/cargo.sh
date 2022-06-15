@@ -36,6 +36,7 @@ cargo install atuin \
   os_info_cli \
   procs \
   ripgrep \
+  rm-improved \
   rustscan \
   sd \
   skim \
