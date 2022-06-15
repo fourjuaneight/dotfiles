@@ -53,7 +53,8 @@ alias zconf="hx ~/.zshrc"
 alias zsour="source ~/.zshrc"
 
 # nnn
-alias n="nnn"
+alias n="xplr"
+alias nnn="xplr"
 
 # emacs
 alias emacst="emacs -nw"
