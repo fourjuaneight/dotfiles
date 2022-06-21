@@ -92,7 +92,6 @@ Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
 Plug 'lotabout/skim.vim'
 Plug 'lepture/vim-jinja'
 Plug 'luochen1990/rainbow'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'qpkorr/vim-bufkill'
 Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/nerdcommenter'
@@ -154,32 +153,6 @@ let g:closetag_regions = {
 let g:closetag_shortcut = '>'
 " Add > at current position without closing the current tag, default is ''
 let g:closetag_close_shortcut = '<leader>>'
-
-" COC
-let g:coc_global_extensions = [
-\ 'coc-css',
-\ 'coc-emmet',
-\ 'coc-eslint',
-\ 'coc-html',
-\ 'coc-json',
-\ 'coc-pairs',
-\ 'coc-prettier',
-\ 'coc-snippets',
-\ 'coc-tsserver',
-\ ]
-vmap <C-j> <Plug>(coc-snippets-select)
-imap <C-j> <Plug>(coc-snippets-expand-jump)
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<cr>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-let g:coc_snippet_next = '<tab>'
 
 " Skim
 command! -bang -nargs=* Ag call fzf#vim#ag_interactive(<q-args>, fzf#vim#with_preview('right:50%:hidden', 'alt-h'))
@@ -332,31 +305,6 @@ nmap <leader>fs :ALEFixSuggest<cr> " Ale suggest fixes
 nmap <leader>bd :BD<cr> " delete a file from buffer and keep window/split
 nmap <leader>bn :BF<cr> " next buffer
 nmap <leader>bp :BB<cr> " prev buffer
-
-" CoC
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<cr>
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
 
 " Fugitive
 nmap <leader>gst :10Gstatus<cr>
