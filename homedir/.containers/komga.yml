@@ -1,0 +1,25 @@
+---
+version: "3.3"
+services:
+  komga:
+    image: gotson/komga
+    container_name: komga
+    volumes:
+      - type: bind
+        source: ~/.config/komga
+        target: /config
+      - type: bind
+        source: ~/.config/komga/data
+        target: /data
+      - type: bind
+        source: /etc/timezone
+        target: /etc/timezone
+        read_only: true
+    ports:
+      - 8080:8080
+    user: "1000:1000"
+    environment:
+      KOMGA_LIBRARIES_SCAN_STARTUP: true
+    restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
