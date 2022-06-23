@@ -101,6 +101,7 @@ action "installing packages"
   pkg-config \
   pinentry-mac \
   pandoc \
+  pnpm \
   poppler \
   postgresql \
   python3 \

@@ -51,6 +51,7 @@ brew install ack \
   go \
   hugo \
   neovim \
+  pnpm \
   rclone \
   restic \
   sheldon \
