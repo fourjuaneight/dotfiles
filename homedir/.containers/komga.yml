@@ -16,7 +16,7 @@ services:
         target: /etc/timezone
         read_only: true
     ports:
-      - 8181:8080
+      - 8787:8080
     user: "1000:1000"
     environment:
       KOMGA_LIBRARIES_SCAN_STARTUP: "true"
