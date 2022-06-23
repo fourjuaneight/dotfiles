@@ -19,7 +19,7 @@ services:
       - 8080:8080
     user: "1000:1000"
     environment:
-      KOMGA_LIBRARIES_SCAN_STARTUP: true
+      KOMGA_LIBRARIES_SCAN_STARTUP: "true"
     restart: unless-stopped
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
