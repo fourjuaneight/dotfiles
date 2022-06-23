@@ -15,6 +15,18 @@ services:
         source: /etc/timezone
         target: /etc/timezone
         read_only: true
+      - type: bind
+        source: /mnt/Books
+        target: /Books
+        read_only: true
+      - type: bind
+        source: /mnt/Comics
+        target: /Comics
+        read_only: true
+      - type: bind
+        source: /mnt/Manga
+        target: /Manga
+        read_only: true
     ports:
       - 8787:8080
     user: "1000:1000"
