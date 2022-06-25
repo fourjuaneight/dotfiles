@@ -30,18 +30,11 @@ brew update
 
 action "installing complicated packages"
 brew install homebrew-ffmpeg/ffmpeg/ffmpeg --HEAD
-brew install jesseduffield/lazygit/lazygit
-brew install --HEAD wvanlint/twf/twf
-brew tap anchore/syft
-brew install syft
-brew tap anchore/grype
-brew install grype
 brew tap helix-editor/helix
 brew install helix
 
 action "installing packages"
 brew install ack \
-  chezmoi \
   cocoapods \
   dive \
   dog \

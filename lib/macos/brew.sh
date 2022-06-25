@@ -42,23 +42,17 @@ action "installing latest bash"
 
 action "installing complicated packages"
 /opt/homebrew/bin/brew install homebrew-ffmpeg/ffmpeg/ffmpeg
-/opt/homebrew/bin/brew install jesseduffield/lazygit/lazygit
-/opt/homebrew/bin/brew install --HEAD wvanlint/twf/twf
 /opt/homebrew/bin/brew tap heroku/brew
 /opt/homebrew/bin/brew install heroku
-/opt/homebrew/bin/brew tap anchore/syft
-/opt/homebrew/bin/brew install syft
-/opt/homebrew/bin/brew tap anchore/grype
-/opt/homebrew/bin/brew install grype
 /opt/homebrew/bin/brew tap helix-editor/helix
 /opt/homebrew/bin/brew install helix
+/opt/homebrew/bin/brew tap iina/homebrew-mpv-iina
+/opt/homebrew/bin/brew install mpv-iina
 
 action "installing packages"
 /opt/homebrew/bin/brew install ack \
   ansible \
-  catimg \
   certbot \
-  chezmoi \
   cmake \
   cocoapods \
   curl \
