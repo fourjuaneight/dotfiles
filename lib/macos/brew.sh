@@ -40,15 +40,6 @@ action "installing GNU goodies"
 action "installing latest bash"
 /opt/homebrew/bin/brew install bash
 
-action "installing complicated packages"
-/opt/homebrew/bin/brew install homebrew-ffmpeg/ffmpeg/ffmpeg
-/opt/homebrew/bin/brew tap heroku/brew
-/opt/homebrew/bin/brew install heroku
-/opt/homebrew/bin/brew tap helix-editor/helix
-/opt/homebrew/bin/brew install helix
-/opt/homebrew/bin/brew tap iina/homebrew-mpv-iina
-/opt/homebrew/bin/brew install mpv-iina
-
 action "installing packages"
 /opt/homebrew/bin/brew install ack \
   ansible \
@@ -119,6 +110,15 @@ action "installing packages"
   xz \
   yt-dlp/taps/yt-dlp
 
+action "installing complicated packages"
+/opt/homebrew/bin/brew install homebrew-ffmpeg/ffmpeg/ffmpeg
+/opt/homebrew/bin/brew tap heroku/brew
+/opt/homebrew/bin/brew install heroku
+/opt/homebrew/bin/brew tap helix-editor/helix
+/opt/homebrew/bin/brew install helix
+/opt/homebrew/bin/brew tap iina/homebrew-mpv-iina
+/opt/homebrew/bin/brew install mpv-iina
+
 action "installing casks"
 /opt/homebrew/bin/brew install --cask 1password\
   alacritty \
@@ -127,9 +127,11 @@ action "installing casks"
   fission \
   handbrake \
   hazel \
+  iina \
   meta \
   monodraw \
   mullvadvpn \
+  raycast \
   rectangle \
   resilio-sync \
   slack \
@@ -137,7 +139,6 @@ action "installing casks"
   tableplus \
   transmit \
   visual-studio-code \
-  vlc \
   zoom
 
 action "cleaning up"
