@@ -8,7 +8,7 @@ DUTI_DIR=$HOME/dotfiles/lib/macos/duti
 
 action "setting default app for media files"
 while read -r ext; do
-  duti -s org.videolan.vlc "$ext" all
+  duti -s com.colliderli.iina "$ext" all
   if [[ $? != 0 ]]; then
     error "unable to set app for $ext files"
     exit 2
