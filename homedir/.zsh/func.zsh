@@ -435,6 +435,7 @@ fcdr() {
   local dir
   dir=$(fd -I -E node_modules -t d --prune . ~/Repos 2>/dev/null | sk) &&
   z "$dir" &&
+  fnm use &&
   clear &&
   code "$dir"
 }
