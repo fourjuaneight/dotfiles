@@ -499,7 +499,8 @@ gcbr() {
   local branches branch
   branches=$(git branch) &&
     branch=$(echo "$branches" | sk --delimiter 15) &&
-    git checkout $(echo "$branch" | sd ".* " "")
+    git checkout $(echo "$branch" | sd ".* " "") &&
+    git pull --rebase
 }
 
 # checkout git remote branch
@@ -509,7 +510,8 @@ gcrbr() {
   branches=$(git branch -r) &&
     selectedBranch=$(echo "$branches" | sk --no-sort --exact) &&
     branch=$(echo "$selectedBranch" | sd '.*origin/([a-zA-Z0-9\.-_/]+)$' '$1')
-  git checkout $branch
+  git checkout $branch &&
+  git pull --rebase
 }
 
 # create git branch and add to remote
