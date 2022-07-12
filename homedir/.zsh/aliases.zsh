@@ -33,6 +33,7 @@ alias rm="rip -i"
 alias ls="exa"
 alias ll="exa -l"
 alias la="exa -a"
+alias lal="exa -al"
 alias lc="ls | wc -l"
 
 # alternative to 'tree'
