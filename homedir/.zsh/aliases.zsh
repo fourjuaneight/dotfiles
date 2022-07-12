@@ -111,6 +111,7 @@ alias gc="git commit -S"
 alias gf="git fetch"
 
 alias gup="git push"
+alias gupt="git push --tags"
 
 alias gp="git pull --rebase"
 alias gsp="git stash && git pull --rebase && git stash pop"
