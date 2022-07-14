@@ -60,7 +60,7 @@ cleanup = true
 
 # Custom commands
 [commands]
-"Cleanup Trash" = "yes | rip -d;"
+"Cleanup Trash" = "yes | rip -d || true"
 
 [brew]
 #greedy_cask = true

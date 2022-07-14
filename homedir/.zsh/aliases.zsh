@@ -24,7 +24,7 @@ alias plexperm="sudo chown -R plex.plex"
 alias cat="bat"
 
 # alternative to 'find'
-alias find="fd"
+# alias find="fd"
 
 # alternative to 'rm'
 alias rm="rip -i"
