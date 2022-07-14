@@ -425,14 +425,14 @@ fcd() {
     z "$dir"
 }
 
-# cd to repo directory and open in editor
+# cd to repo directory and open in vscode
 fcdr() {
   local dir
   dir=$(fd -I -E node_modules -t d --prune . ~/Repos 2>/dev/null | sk) &&
   z "$dir" &&
   fnm use;
   clear &&
-  hx "$dir"
+  code "$dir"
 }
 
 # find file and move to another directory
