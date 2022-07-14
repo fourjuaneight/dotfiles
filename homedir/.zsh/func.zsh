@@ -307,11 +307,6 @@ mvplex() {
   fi
 }
 
-# rename show episode with title
-rnep() {
-  deno run --allow-env --allow-net --allow-read ~/.scripts/show-renamer.ts --showName=$1 --showID=$2 --season=$3
-}
-
 # select two files, but fold lines longer than 20 characters, then diff (via delta)
 diffLongSel() {
   local file1 file2
