@@ -329,10 +329,10 @@ diffSel() {
 fe() {
   local files
   IFS=$'\n' files=($(sk --query "$1" --multi --select-1 --exit-0))
-  [[ -n "$files" ]] && code ${files[@]}
+  [[ -n "$files" ]] && hx ${files[@]}
 }
 
-# using ripgrep combined with preview and open on VSCode
+# using ripgrep combined with preview and open on editor
 # find-in-file - usage: fif <searchTerm>
 fif() {
   if [ ! "$#" -gt 0 ]; then
@@ -343,7 +343,7 @@ fif() {
   file="$(rg --files-with-matches --no-messages "$1" | sk --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}")" &&
     line=$(rg -n $1 $file | sed -E 's/^([0-9]+).*/\1/') &&
     if [[ -n $file ]]; then
-      code -g $file:$line
+      hx $file:$line
     fi
 }
 
@@ -371,7 +371,7 @@ fa() {
   read -r file line <<<"$(rg --no-heading -n $@ | sk --exit-0 --select-1 | mawk -F: '{print $1, $2}')"
 
   if [[ -n $file ]]; then
-    code -g $file:$line
+    hx $file:$line
   fi
 }
 
@@ -391,14 +391,14 @@ fof() {
   [[ -n "$files" ]] && open $files
 }
 
-# find and open file in VSCode
+# find and open file in editor
 fofc() {
   local out file key
   IFS=$'\n' out=($(sk --query "$1" --exit-0 --expect ctrl-o,ctrl-e))
   key=$(head -1 <<<"$out")
   file=$(head -2 <<<"$out" | tail -1)
   if [[ -n "$file" ]]; then
-    [[ "$key" = ctrl-o ]] && code "$file" || ${EDITOR:-hx} "$file"
+    [[ "$key" = ctrl-o ]] && hx "$file"
   fi
 }
 
@@ -425,14 +425,14 @@ fcd() {
     z "$dir"
 }
 
-# cd to repo directory and open in VSCode
+# cd to repo directory and open in editor
 fcdr() {
   local dir
   dir=$(fd -I -E node_modules -t d --prune . ~/Repos 2>/dev/null | sk) &&
   z "$dir" &&
   fnm use;
   clear &&
-  code "$dir"
+  hx "$dir"
 }
 
 # find file and move to another directory
