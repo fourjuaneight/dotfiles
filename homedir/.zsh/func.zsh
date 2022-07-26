@@ -162,28 +162,28 @@ clipvid() {
 
 2webm() {
   local files fname
-  IFS=$'\n' files=($(sk --query "$1" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(sk --query "$1" --no-multi --select-1 --exit-0))
   fname="${files%.*}"
   [[ -n "$files" ]] && ffmpeg -i $1 -c:v libvpx-vp9 -crf 10 -b:v 0 -b:a 128k -c:a libopus "$fname.webm"
 }
 
 2acc() {
   local files fname
-  IFS=$'\n' files=($(sk --query "$1" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(sk --query "$1" --no-multi --select-1 --exit-0))
   fname="${files%.*}"
   [[ -n "$files" ]] && ffmpeg -i $files -c:a libfdk_aac -vbr 3 -c:v copy "$fname.m4a"
 }
 
 2mp4() {
   local files fname
-  IFS=$'\n' files=($(sk --query "$1" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(sk --query "$1" --no-multi --select-1 --exit-0))
   fname="${files%.*}"
   [[ -n "$files" ]] && ffmpeg -i $files -q:v 0 "$fname.mp4"
 }
 
 2mp3() {
   local files fname
-  IFS=$'\n' files=($(sk --query "$1" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(sk --query "$1" --no-multi --select-1 --exit-0))
   fname="${files%.*}"
   [[ -n "$files" ]] && ffmpeg -i $files -codec:v copy -codec:a libmp3lame -q:a 2 "$fname.mp3"
 }
@@ -281,6 +281,13 @@ opus2mp3() {
   done <tmp-opus2mp3.txt
 
   yes | rm tmp-opus2mp3.txt
+}
+
+chapters() {
+  local file
+  IFS=$'\n' file=($(sk --query "$1" --no-multi --select-1 --exit-0))
+
+  [[ -n "$file" ]] && ffprobe -i $file -print_format json -show_chapters
 }
 
 # FILES #
