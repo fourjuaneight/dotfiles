@@ -402,6 +402,18 @@ mvplex() {
   fi
 }
 
+mvplexdirs() {
+  find * -prune -type d | while IFS= read -r dir; do
+     mvplex "$dir" $1
+  done
+}
+
+mvplexfiles() {
+  find . -type f -print0 | while IFS= read -r -d $'\0' file; do
+     mvplex "$file" $1
+  done
+}
+
 # select two files, but fold lines longer than 20 characters, then diff (via delta)
 diffLongSel() {
   local file1 file2
