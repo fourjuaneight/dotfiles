@@ -188,6 +188,101 @@ clipvid() {
   [[ -n "$files" ]] && ffmpeg -i $files -codec:v copy -codec:a libmp3lame -q:a 2 "$fname.mp3"
 }
 
+mp3Chapterized() {
+  local track name full_file_path title
+  #initial track number
+  track=1
+  name=`echo $1 | cut -d'.' -f1`;
+  echo $name;
+  ffmpeg -i "$1" -acodec libmp3lame -ar 22050 -ab 64k "$name.mp3"
+  full_file_path="$name.mp3"
+  #split chapters
+  title=$(pwd | sed 's,^\(.*/\)\?\([^/]*\),\2,' | cut -d , -f 1)
+
+  while read -r first _ _ start _ end; do
+    if [[ "${first}" = "Chapter" ]]
+    then
+        read  # discard line with Metadata:
+        read _ _ chapter
+        chapter=$(sed -re ":r;s/\b[0-9]{1,$((1))}\b/0&/g;tr" <<<$chapter)
+        chapter_file="${title} - ${chapter}.mp3"
+        echo "processing $chapter"
+        </dev/null ffmpeg -loglevel error -stats -i "${full_file_path}" -ss "${start%?}" -to "${end}" -codec:a copy -metadata track="${chapter}" "${chapter_file}"
+        id3v2 --song "$chapter" "$chapter_file"
+        id3v2 --album "$title" "$chapter_file"
+        id3v2 --track "$track" "$chapter_file"
+        echo "$title - $chapter"
+        track=$((track+1))
+    fi
+  done
+}
+
+m4b2mp3() {
+  local track name full_file_path title
+  #initial track number
+  track=1
+  name=`echo $1 | cut -d'.' -f1`;
+  echo $name;
+  ffmpeg -i "$1" -acodec libmp3lame -ar 22050 -ab 64k "$name.mp3"
+  full_file_path="$name.mp3"
+  #split chapters
+  title=$(pwd | sed 's,^\(.*/\)\?\([^/]*\),\2,' | cut -d , -f 1)
+
+  ffmpeg -i "$full_file_path" 2> tmp-m4b2mp3.txt
+
+  while read -r first _ _ start _ end; do
+    if [[ "${first}" = "Chapter" ]]
+    then
+        read  # discard line with Metadata:
+        read _ _ chapter
+        chapter=$(sed -re ":r;s/\b[0-9]{1,$((1))}\b/0&/g;tr" <<<$chapter)
+        chapter_file="${title} - ${chapter}.mp3"
+        echo "processing $chapter"
+        </dev/null ffmpeg -loglevel error -stats -i "${full_file_path}" -ss "${start%?}" -to "${end}" -codec:a copy -metadata track="${chapter}" "${chapter_file}"
+        id3v2 --song "$chapter" "$chapter_file"
+        id3v2 --album "$title" "$chapter_file"
+        id3v2 --track "$track" "$chapter_file"
+        echo "$title - $chapter"
+        track=$((track+1))
+    fi
+  done <tmp-m4b2mp3.txt
+
+  yes | rm tmp-m4b2mp3.txt
+}
+
+opus2mp3() {
+  local track name full_file_path title
+  #initial track number
+  track=1
+  name=`echo $1 | cut -d'.' -f1`;
+  echo $name;
+  ffmpeg -i "$1" -acodec libmp3lame -ar 22050 -ab 64k "$name.mp3"
+  full_file_path="$name.mp3"
+  #split chapters
+  title=$(pwd | sed 's,^\(.*/\)\?\([^/]*\),\2,' | cut -d , -f 1)
+
+  ffmpeg -i "$full_file_path" 2> tmp-opus2mp3.txt
+
+  while read -r first _ _ start _ end; do
+    if [[ "${first}" = "Chapter" ]]
+    then
+        read  # discard line with Metadata:
+        read _ _ chapter
+        chapter=$(sed -re ":r;s/\b[0-9]{1,$((1))}\b/0&/g;tr" <<<$chapter)
+        chapter_file="${title} - ${chapter}.mp3"
+        echo "processing $chapter"
+        </dev/null ffmpeg -loglevel error -stats -i "${full_file_path}" -ss "${start%?}" -to "${end}" -codec:a copy -metadata track="${chapter}" "${chapter_file}"
+        id3v2 --song "$chapter" "$chapter_file"
+        id3v2 --album "$title" "$chapter_file"
+        id3v2 --track "$track" "$chapter_file"
+        echo "$title - $chapter"
+        track=$((track+1))
+    fi
+  done <tmp-opus2mp3.txt
+
+  yes | rm tmp-opus2mp3.txt
+}
+
 # FILES #
 
 # find and extract archives
