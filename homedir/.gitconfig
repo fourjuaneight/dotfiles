@@ -50,6 +50,9 @@
 [commit]
   gpgsign = true
 
+[tag]
+  gpgSign = true
+
 [fetch]
   prune = true
 
