@@ -1,4 +1,9 @@
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# Homebrew
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  export PATH="/opt/homebrew/bin:$PATH"
+else
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
 
 export PATH=$PATH:$HOME/.exo/bin
 
@@ -30,3 +35,24 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # zellij
 export ZELLIJ_CONFIG_DIR="$HOME/.config/zellij"
+
+# GPG
+export GPG_TTY=$(tty)
+
+# Utils
+export EDITOR=hx
+eval "$(sheldon source)"
+eval "$(starship init zsh)"
+zsh-defer eval "$(atuin init zsh)"
+zsh-defer eval "$(zoxide init zsh)"
+
+# Rust Cargo
+zsh-defer source "$HOME/.cargo/env"
+
+# Colors
+if [[ $TERM == xterm ]]; then
+  TERM=xterm-256color
+fi
+
+# SKIM
+export SKIM_DEFAULT_COMMAND="git ls-tree -r --name-only HEAD || rg --files || fd ."
