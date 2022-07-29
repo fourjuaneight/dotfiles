@@ -46,7 +46,7 @@ for i in *.m4b; do
       chapter=$(sed -re ":r;s/\b[0-9]{1,$((1))}\b/0&/g;tr" <<<$chapter)
       chapter_file="${title} - ${chapter}.mp3"
       echo "processing $chapter"
-      ffmpeg </dev/null -loglevel error -stats -i "${full_file_path}" -ss "${start%?}" -to "${end}" -codec:a copy -metadata track="${chapter}" "~/Downloads/${chapter_file}"
+      ffmpeg </dev/null -loglevel error -stats -i "${full_file_path}" -ss "${start%?}" -to "${end}" -codec:a copy -metadata track="${chapter}" "${chapter_file}"
       id3v2 --song "$chapter" "$chapter_file"
       id3v2 --album "$title" "$chapter_file"
       id3v2 --track "$track" "$chapter_file"
