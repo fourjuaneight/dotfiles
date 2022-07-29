@@ -750,6 +750,21 @@ gmpr() {
   fi
 }
 
+# NPM #
+
+# Version key/value should be on his own line
+npv() {
+  local pkg_version
+  pkg_version=$(cat package.json \
+    | grep version \
+    | head -1 \
+    | awk -F: '{ print $2 }' \
+    | sed 's/[",]//g')
+
+  echo $pkg_version
+}
+
+
 # DOCKER #
 
 # delete all containers and images

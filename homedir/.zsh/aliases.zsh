@@ -91,15 +91,18 @@ alias spsh="sudo service ssh stop"
 alias wpw="webpack -w"
 alias wp="webpack"
 
+# Postgres
+alias psl="psql postgres -h localhost -l"
+
+# NPM
+alias nvup="npm version"
+
 # nvm
 alias nvi="fnm install"
 alias nvu="fnm use"
 alias nviu="fnm install && fnm use --delete-prefix"
 alias nr="npm run"
 alias wnv="bat -p .nvmrc"
-
-# Postgres
-alias psl="psql postgres -h localhost -l"
 
 # Git
 # alias ga="git add"
