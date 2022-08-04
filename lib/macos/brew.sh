@@ -66,6 +66,7 @@ action "installing packages"
   libjpeg \
   libmemcached \
   libvips \
+  lindell/multi-gitter/multi-gitter \
   llvm \
   macvim \
   mas \

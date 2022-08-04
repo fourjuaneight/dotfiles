@@ -43,6 +43,7 @@ brew install ack \
   gh \
   go \
   hugo \
+  lindell/multi-gitter/multi-gitter \
   neovim \
   pnpm \
   rclone \

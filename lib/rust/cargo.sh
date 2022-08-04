@@ -12,7 +12,8 @@ cargo install --locked pueue
 cargo install --locked --force xplr
 
 action "installing normal packages"
-cargo install atuin \
+cargo install amber \
+  atuin \
   bandwhich \
   bottom \
   cargo-update \
