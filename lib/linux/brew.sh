@@ -42,6 +42,7 @@ brew install ack \
   gcc@5 \
   gh \
   go \
+  gum \
   hugo \
   lindell/multi-gitter/multi-gitter \
   neovim \

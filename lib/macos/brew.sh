@@ -58,6 +58,7 @@ action "installing packages"
   go \
   gpg \
   graphicsmagick \
+  gum \
   hugo \
   id3v2 \
   imagemagick \
