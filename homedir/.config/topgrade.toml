@@ -5,7 +5,7 @@ assume_yes = true
 disable = ["containers", "system"]
 
 # Ignore failures for these steps
-ignore_failures = ["npm"]
+ignore_failures = ["node"]
 
 # Run specific steps - same options as the command line flag
 #only = ["system", "emacs"]
