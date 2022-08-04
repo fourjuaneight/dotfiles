@@ -4,13 +4,13 @@ zsh-defer source ${HOME}/dotfiles/lib/util/echos.sh
 
 # repeat history
 fh() {
-  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | sk --no-sort --tac | sd ' *[0-9]*\*? *' '' | sd '\\' '\\\\')
+  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | gum choose | sd ' *[0-9]*\*? *' '' | sd '\\' '\\\\')
 }
 
 # find and kill process
 fkp() {
   local pid
-  pid=$(ps axco pid,command,time | sed 1d | sk --multi | mawk '{print $1}')
+  pid=$(ps axco pid,command,time | sed 1d | gum choose | mawk '{print $1}')
 
   if [[ "x$pid" != "x" ]]; then
     echo $pid | xargs kill -${1:-9}
@@ -71,7 +71,7 @@ sysup() {
 # glyphhanger whitelist Latin
 gla() {
   local file fname
-  IFS=$'\n' file=($(sk --multi --select-1 --exit-0))
+  IFS=$'\n' file=($(exa *.woff* | gum choose))
   fname="${file%.*}" &&
     if [[ -n "$file" ]]; then
       glyphhanger --LATIN --formats=woff2,woff --subset=$file &&
@@ -92,7 +92,7 @@ agla() {
 # glyphhanger whitelist US ASCII
 glu() {
   local file fname
-  IFS=$'\n' file=($(sk --multi --select-1 --exit-0))
+  IFS=$'\n' file=($(exa *.woff* | gum choose))
   fname="${file%.*}" &&
     if [[ -n "$file" ]]; then
       glyphhanger --US_ASCII --formats=woff2,woff --subset=$file
@@ -162,28 +162,28 @@ clipvid() {
 
 2webm() {
   local files fname
-  IFS=$'\n' files=($(sk --query "$1" --no-multi --select-1 --exit-0))
+  IFS=$'\n' files=($(exa | gum choose))
   fname="${files%.*}"
   [[ -n "$files" ]] && ffmpeg -i $1 -c:v libvpx-vp9 -crf 10 -b:v 0 -b:a 128k -c:a libopus "$fname.webm"
 }
 
 2acc() {
   local files fname
-  IFS=$'\n' files=($(sk --query "$1" --no-multi --select-1 --exit-0))
+  IFS=$'\n' files=($(exa | gum choose))
   fname="${files%.*}"
   [[ -n "$files" ]] && ffmpeg -i $files -c:a libfdk_aac -vbr 3 -c:v copy "$fname.m4a"
 }
 
 2mp4() {
   local files fname
-  IFS=$'\n' files=($(sk --query "$1" --no-multi --select-1 --exit-0))
+  IFS=$'\n' files=($(exa | gum choose))
   fname="${files%.*}"
   [[ -n "$files" ]] && ffmpeg -i $files -q:v 0 "$fname.mp4"
 }
 
 2mp3() {
   local files fname
-  IFS=$'\n' files=($(sk --query "$1" --no-multi --select-1 --exit-0))
+  IFS=$'\n' files=($(exa | gum choose))
   fname="${files%.*}"
   [[ -n "$files" ]] && ffmpeg -i $files -codec:v copy -codec:a libmp3lame -q:a 2 "$fname.mp3"
 }
@@ -285,7 +285,7 @@ opus2mp3() {
 
 chapters() {
   local file
-  IFS=$'\n' file=($(sk --query "$1" --no-multi --select-1 --exit-0))
+  IFS=$'\n' file=($(exa *.m[p4][3b] | gum choose))
 
   [[ -n "$file" ]] && ffprobe -i $file -print_format json -show_chapters
 }
@@ -295,7 +295,7 @@ chapters() {
 # find and extract archives
 fex() {
   local file fname
-  IFS=$'\n' file=($(sk --query "$1" --select-1 --exit-0))
+  IFS=$'\n' file=($(exa | gum filter))
   fname="${file%.*}"
 
   if [ -n $file ]; then
@@ -424,16 +424,16 @@ mvplexfiles() {
 # select two files, but fold lines longer than 20 characters, then diff (via delta)
 diffLongSel() {
   local file1 file2
-  file1=$(sk --query "$1") &&
-    file2=$(sk --query "$1") &&
+  file1=$(exa | gum filter --placeholder "File 1") &&
+    file2=$(exa | gum filter --placeholder "File 2") &&
     delta <(fold -s -w 20 $file1) <(fold -s -w 20 $file2)
 }
 
 # select two files, then diff (via delta)
 diffSel() {
   local file1 file2
-  file1=$(sk --query "$1") &&
-    file2=$(sk --query "$1") &&
+  file1=$(exa | gum filter --placeholder "File 1") &&
+    file2=$(exa | gum filter --placeholder "File 2") &&
     delta $file1 $file2
 }
 
@@ -442,7 +442,7 @@ diffSel() {
 #   - Exit if there's no match (--exit-0)
 fe() {
   local files
-  IFS=$'\n' files=($(sk --query "$1" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(exa | gum filter))
   [[ -n "$files" ]] && hx ${files[@]}
 }
 
@@ -464,35 +464,23 @@ fif() {
 # find and delete files
 fdf() {
   local files
-  IFS=$'\n' files=($(sk --query "$1" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(exa | gum filter))
   [[ -n "$files" ]] && rm $files
 }
 
 # find and print files
 fpf() {
   local files
-  IFS=$'\n' files=($(sk --query "$1" --multi --select-1 --exit-0))
-  [[ -n "$files" ]] && echo $files
+  IFS=$'\n' files=($(exa | gum filter))
+  [[ -n "$files" ]] && bat $files
 }
 
 # DIRECTORIES #
 
-# Open via rg with line number
-fa() {
-  local file
-  local line
-
-  read -r file line <<<"$(rg --no-heading -n $@ | sk --exit-0 --select-1 | mawk -F: '{print $1, $2}')"
-
-  if [[ -n $file ]]; then
-    hx $file:$line
-  fi
-}
-
 # find and show filepath
 fsf() {
   local IFS files directory fullpath
-  IFS=$'\n' files=($(sk --query "$1" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(exa | gum filter))
   directory=$(dirname $files)
   fullpath="$(pwd)/$directory"
   [[ -n "$files" ]] && open $fullpath
@@ -501,19 +489,8 @@ fsf() {
 # find and open file (default app)
 fof() {
   local files
-  IFS=$'\n' files=($(sk --query "$1" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(exa | gum filter))
   [[ -n "$files" ]] && open $files
-}
-
-# find and open file in editor
-fofc() {
-  local out file key
-  IFS=$'\n' out=($(sk --query "$1" --exit-0 --expect ctrl-o,ctrl-e))
-  key=$(head -1 <<<"$out")
-  file=$(head -2 <<<"$out" | tail -1)
-  if [[ -n "$file" ]]; then
-    [[ "$key" = ctrl-o ]] && hx "$file"
-  fi
 }
 
 # fuzzy cd from anywhere
@@ -521,7 +498,7 @@ fofc() {
 cf() {
   local file
 
-  file="$(locate -Ai -0 $@ | rg -z -v '~$' | sk --read0 --exit-0 --select-1)"
+  file="$(locate -i -0 $@ | rg -z -v '~$' | gum filter)"
 
   if [[ -n $file ]]; then
     if [[ -d $file ]]; then
@@ -535,14 +512,14 @@ cf() {
 # cd to selected directory
 fcd() {
   local dir
-  dir=$(fd -I -E node_modules -t d --prune . ./ 2>/dev/null | sk) &&
+  dir=$(fd -I -E node_modules -t d --prune . ./ 2>/dev/null | gum choose) &&
     z "$dir"
 }
 
 # cd to repo directory and open in vscode
 fcdr() {
   local dir
-  dir=$(fd -I -E node_modules -t d --prune . ~/Repos 2>/dev/null | sk) &&
+  dir=$(fd -I -E node_modules -t d --prune . ~/Repos 2>/dev/null | gum choose) &&
   z "$dir" &&
   fnm use;
   clear &&
@@ -552,8 +529,8 @@ fcdr() {
 # find file and move to another directory
 ffmv() {
   local file dest
-  IFS=$'\n' file=($(sk --query "$1" --multi --select-1 --exit-0)) &&
-    dest=$(fd -I -E node_modules -t f --prune . ./ */\.* 2>/dev/null | sk) &&
+  IFS=$'\n' file=($(exa | gum choose)) &&
+    dest=$(fd -I -E node_modules -t f --prune . ./ */\.* 2>/dev/null | gum choose) &&
     mv "$file" "$dest"
 }
 
@@ -568,7 +545,7 @@ fpcd() {
       get_parent_dirs $(dirname "$1")
     fi
   }
-  local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | sk --tac)
+  local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | gum choose)
   z "$DIR"
 }
 
@@ -576,7 +553,7 @@ fpcd() {
 ffcd() {
   local file
   local dir
-  file=$(sk --query "$1") &&
+  file=$(exa | gum filter) &&
     dir=$(dirname "$file") &&
     z "$dir"
 }
@@ -585,14 +562,14 @@ ffcd() {
 ftr() {
   local dir
   dir=$(fd ${1:-.} -path '*/\.*' -prune \
-    -o -type d -not \( -name node_modules -prune \) -print 2>/dev/null | sk) &&
+    -o -type d -not \( -name node_modules -prune \) -print 2>/dev/null | gum choose) &&
     tree "$dir" -I node_modules
 }
 
 # find and delete directory
 fdd() {
   local dir
-  dir=$(fd -I -E node_modules -t d --prune . ./ 2>/dev/null | sk) &&
+  dir=$(fd -I -E node_modules -t d --prune . ./ 2>/dev/null | gum choose) &&
     rm -rf $dir
 }
 
@@ -607,7 +584,7 @@ glb() {
 gcbr() {
   local branches branch
   branches=$(git branch) &&
-    branch=$(echo "$branches" | sk --delimiter 15) &&
+    branch=$(echo "$branches" | gum choose) &&
     git checkout $(echo "$branch" | sd ".* " "") &&
     git pull --rebase
 }
@@ -617,7 +594,7 @@ gcrbr() {
   git fetch
   local branches branch selectedBranch
   branches=$(git branch -r) &&
-    selectedBranch=$(echo "$branches" | sk --no-sort --exact) &&
+    selectedBranch=$(echo "$branches" | gum choose) &&
     branch=$(echo "$selectedBranch" | sd '.*origin/([a-zA-Z0-9\.-_/]+)$' '$1')
   git checkout $branch &&
   git pull --rebase
@@ -634,7 +611,7 @@ gnbr() {
 gdbr() {
   local branches branch
   branches=$(git branch) &&
-    branch=$(echo "$branches" | sk --delimiter 15) &&
+    branch=$(echo "$branches" | gum filter) &&
     git branch -D $(echo "$branch" | sd ".* " "")
 }
 
@@ -642,7 +619,7 @@ gdbr() {
 gmbr() {
   local branches branch
   branches=$(git branch) &&
-    branch=$(echo "$branches" | sk --delimiter 15) &&
+    branch=$(echo "$branches" | gum filter) &&
     git merge -s ort $(echo "$branch" | sd ".* " "")
 }
 
@@ -650,7 +627,7 @@ gmbr() {
 gmsbr() {
   local branches branch
   branches=$(git branch) &&
-    branch=$(echo "$branches" | sk --delimiter 15) &&
+    branch=$(echo "$branches" | gum filter) &&
     git merge -s ort --squash $(echo "$branch" | sd ".* " "")
 }
 
@@ -658,7 +635,7 @@ gmsbr() {
 grebr() {
   local branches branch
   branches=$(git branch) &&
-    branch=$(echo "$branches" | sk --delimiter 15) &&
+    branch=$(echo "$branches" | gum filter) &&
     git rebase $(echo "$branch" | sd ".* " "")
 }
 
@@ -672,7 +649,7 @@ gpr() {
 grs() {
   local commits commit
   commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --reverse) &&
-    commit=$(echo "$commits" | sk --ansi --tac --no-sort --exact) &&
+    commit=$(echo "$commits" | gum filter) &&
     git reset --soft $(echo "$commit" | sd ".* " "")
 }
 
@@ -680,7 +657,7 @@ grs() {
 grvt() {
   local commits commit
   commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --reverse) &&
-    commit=$(echo "$commits" | sk --ansi --tac --no-sort --exact) &&
+    commit=$(echo "$commits" | gum filter) &&
     git revert $(echo "$commit" | sd ".* " "")
 }
 
@@ -700,7 +677,7 @@ FZF-EOF"
 fgcm() {
   local commits commit
   commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%N%Creset %s' --abbrev-commit --reverse) &&
-    commit=$(echo "$commits" | sk --ansi --tac --no-sort --exact | sd "^[a-z0-9]+\s-\s([a-zA-z\s]+).?" "$1") &&
+    commit=$(echo "$commits" | gum filter | sd "^[a-z0-9]+\s-\s([a-zA-z\s]+).?" "$1") &&
     message="git commit -S -m \"$commit\""
   print -z $message
 }
@@ -709,7 +686,7 @@ fgcm() {
 gec() {
   local commits commit id
   commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --reverse) &&
-    commit=$(echo "$commits" | sk --ansi --tac --no-sort --exact) &&
+    commit=$(echo "$commits" | gum filter) &&
     id=$(echo "$commit" | sd " .*" "")
   git rebase -i "$id^"
 }
@@ -722,9 +699,9 @@ gnpr() {
   users=("fourjuaneight" "davidbbaxter" "baileysh9" "bbohach")
   git fetch &&
     branches=$(git branch -r) &&
-    selectedBranch=$(echo "$branches" | sd 'origin/HEAD -> .*\n' '' | sd 'origin/' '' | sk --ansi --no-sort --exact) &&
+    selectedBranch=$(echo "$branches" | sd 'origin/HEAD -> .*\n' '' | sd 'origin/' '' | gum filter) &&
     branch=$(echo $selectedBranch | sd '^\s*' '') &&
-    handle=$(printf "%s\n" "${users[@]}" | sk --ansi --tac --no-sort --exact) &&
+    handle=$(printf "%s\n" "${users[@]}" | gum choose) &&
     gh pr create -B $branch -t $1 -r $handle
 }
 
@@ -732,7 +709,7 @@ gnpr() {
 gvpr() {
   git fetch
   local selectedPR PR
-  selectedPR=$(gh pr list | sk --ansi --tac --no-sort --exact) &&
+  selectedPR=$(gh pr list | gum choose) &&
     PR=$(echo $selectedPR | sd '^([0-9]+).*' '$1') &&
     gh pr view $PR
 }
@@ -744,7 +721,7 @@ gmpr() {
   if [[ "$1" ]]; then
     gh pr merge $1 -s
   else
-    selectedPR=$(gh pr list | sk --ansi --tac --no-sort --exact) &&
+    selectedPR=$(gh pr list | gum choose) &&
       PR=$(echo $selectedPR | sd '^([0-9]+).*' '$1') &&
       gh pr merge $PR -s -d
   fi
@@ -783,7 +760,7 @@ dckrmim() {
   local images selectedImage image imageList
   images=$(docker image list --format "table {{.ID}}\t{{.Repository}}" | sed -n '1!p') &&
     # use <TAB> to select multiple items
-    selectedImage=$(echo "$images" | sk --no-sort --multi --exact) &&
+    selectedImage=$(echo "$images" | gum choose) &&
     image=$(echo $selectedImage | sd '^([a-z0-9]+)\s+.*' '$1') &&
     # converte list to space separate string
     imageList=$(echo $image | mawk 'FNR!=1{print l}{l=$0};END{ORS="";print l}' ORS=' ') &&
@@ -795,7 +772,7 @@ dckrmcn() {
   local containers selectedContainer container containerList
   containers=$(docker container list --format "table {{.ID}}\t{{.Repository}}" | sed -n '1!p') &&
     # use <TAB> to select multiple items
-    selectedContainer=$(echo "$containers" | sk --no-sort --multi --exact) &&
+    selectedContainer=$(echo "$containers" | gum choose) &&
     container=$(echo $selectedContainer | sd '^([a-z0-9]+)\s+.*' '$1') &&
     # converte list to space separate string
     containerList=$(echo $container | mawk 'FNR!=1{print l}{l=$0};END{ORS="";print l}' ORS=' ') &&
@@ -806,6 +783,6 @@ dckrmcn() {
 dckup() {
   local services selectedService
   services=$(docker-compose ps --services) &&
-    selectedService=$(echo "$services" | sk --no-sort --exact) &&
+    selectedService=$(echo "$services" | gum choose) &&
     clear && docker compose up $selectedService
 }
