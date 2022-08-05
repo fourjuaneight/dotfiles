@@ -512,14 +512,14 @@ cf() {
 # cd to selected directory
 fcd() {
   local dir
-  dir=$(fd -I -E node_modules -t d --prune . ./ 2>/dev/null | gum choose) &&
+  dir=$(fd -I -E node_modules -t d --prune . ./ 2>/dev/null | gum filter) &&
     z "$dir"
 }
 
 # cd to repo directory and open in vscode
 fcdr() {
   local dir
-  dir=$(fd -I -E node_modules -t d --prune . ~/Repos 2>/dev/null | gum choose) &&
+  dir=$(fd -I -E node_modules -t d --prune . ~/Repos 2>/dev/null | gum filter) &&
   z "$dir" &&
   fnm use;
   clear &&
@@ -530,7 +530,7 @@ fcdr() {
 ffmv() {
   local file dest
   IFS=$'\n' file=($(exa | gum choose)) &&
-    dest=$(fd -I -E node_modules -t f --prune . ./ */\.* 2>/dev/null | gum choose) &&
+    dest=$(fd -I -E node_modules -t f --prune . ./ */\.* 2>/dev/null | gum filter) &&
     mv "$file" "$dest"
 }
 
