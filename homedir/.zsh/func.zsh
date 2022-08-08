@@ -562,14 +562,14 @@ ffcd() {
 ftr() {
   local dir
   dir=$(fd ${1:-.} -path '*/\.*' -prune \
-    -o -type d -not \( -name node_modules -prune \) -print 2>/dev/null | gum choose) &&
+    -o -type d -not \( -name node_modules -prune \) -print 2>/dev/null | gum filter) &&
     tree "$dir" -I node_modules
 }
 
 # find and delete directory
 fdd() {
   local dir
-  dir=$(fd -I -E node_modules -t d --prune . ./ 2>/dev/null | gum choose) &&
+  dir=$(fd -I -E node_modules -t d --prune . ./ 2>/dev/null | gum filter) &&
     rm -rf $dir
 }
 
@@ -584,7 +584,7 @@ glb() {
 gcbr() {
   local branches branch
   branches=$(git branch) &&
-    branch=$(echo "$branches" | gum choose) &&
+    branch=$(echo "$branches" | gum filter) &&
     git checkout $(echo "$branch" | sd ".* " "") &&
     git pull --rebase
 }
@@ -594,7 +594,7 @@ gcrbr() {
   git fetch
   local branches branch selectedBranch
   branches=$(git branch -r) &&
-    selectedBranch=$(echo "$branches" | gum choose) &&
+    selectedBranch=$(echo "$branches" | gum filter) &&
     branch=$(echo "$selectedBranch" | sd '.*origin/([a-zA-Z0-9\.-_/]+)$' '$1')
   git checkout $branch &&
   git pull --rebase
@@ -701,7 +701,7 @@ gnpr() {
     branches=$(git branch -r) &&
     selectedBranch=$(echo "$branches" | sd 'origin/HEAD -> .*\n' '' | sd 'origin/' '' | gum filter) &&
     branch=$(echo $selectedBranch | sd '^\s*' '') &&
-    handle=$(printf "%s\n" "${users[@]}" | gum choose) &&
+    handle=$(printf "%s\n" "${users[@]}" | gum filter) &&
     gh pr create -B $branch -t $1 -r $handle
 }
 
@@ -709,7 +709,7 @@ gnpr() {
 gvpr() {
   git fetch
   local selectedPR PR
-  selectedPR=$(gh pr list | gum choose) &&
+  selectedPR=$(gh pr list | gum filter) &&
     PR=$(echo $selectedPR | sd '^([0-9]+).*' '$1') &&
     gh pr view $PR
 }
@@ -721,7 +721,7 @@ gmpr() {
   if [[ "$1" ]]; then
     gh pr merge $1 -s
   else
-    selectedPR=$(gh pr list | gum choose) &&
+    selectedPR=$(gh pr list | gum filter) &&
       PR=$(echo $selectedPR | sd '^([0-9]+).*' '$1') &&
       gh pr merge $PR -s -d
   fi
