@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  dim:
+    container_name: dim
+    image: ghcr.io/dusk-labs/dim:dev
+    restart: unless-stopped
+    ports:
+      - 8484:8484
+    volumes:
+      - ~/.config/dim:/opt/dim/config
+      - /mnt/Movies:/movies
+      - ~/Rentals:/rentals
+      - /mnt/TV_Shows:/tv_shows
+      - /mnt/Anime:/anime
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
