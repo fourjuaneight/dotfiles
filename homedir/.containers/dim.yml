@@ -5,7 +5,7 @@ services:
     image: ghcr.io/dusk-labs/dim:dev
     restart: unless-stopped
     ports:
-      - 8484:8484
+      - 8484:8000
     volumes:
       - ~/.config/dim:/opt/dim/config
       - /mnt/Movies:/movies
