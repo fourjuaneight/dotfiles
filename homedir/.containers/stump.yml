@@ -5,6 +5,7 @@ services:
     container_name: stump
     volumes:
       - ~/.config/stump:/config
+      - ~/.config/stump/data:/data
       - /mnt/Books:/books
       - /mnt/Comics:/comics
       - /mnt/Manga:/manga
