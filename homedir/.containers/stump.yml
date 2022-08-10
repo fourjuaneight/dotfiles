@@ -12,6 +12,9 @@ services:
     ports:
       - 10801:10801
     user: "1000:1000"
+    environment:
+      - STUMP_LOG_VERBOSITY=4
+      - RUST_BACKTRACE=1
     restart: unless-stopped
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
