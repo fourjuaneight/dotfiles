@@ -1,0 +1,16 @@
+version: "3.3"
+services:
+  stump:
+    image: aaronleopold/stump-preview
+    container_name: stump
+    volumes:
+      - ~/.config/stump:/config
+      - /mnt/Books:/books
+      - /mnt/Comics:/comics
+      - /mnt/Manga:/manga
+    ports:
+      - 10801:10801
+    user: "1000:1000"
+    restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
