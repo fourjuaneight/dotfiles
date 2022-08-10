@@ -4,13 +4,13 @@ zsh-defer source ${HOME}/dotfiles/lib/util/echos.sh
 
 # repeat history
 fh() {
-  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | gum choose | sd ' *[0-9]*\*? *' '' | sd '\\' '\\\\')
+  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | gum filter | sd ' *[0-9]*\*? *' '' | sd '\\' '\\\\')
 }
 
 # find and kill process
 fkp() {
   local pid
-  pid=$(ps axco pid,command,time | sed 1d | gum choose | mawk '{print $1}')
+  pid=$(ps axco pid,command,time | sed 1d | gum filter | mawk '{print $1}')
 
   if [[ "x$pid" != "x" ]]; then
     echo $pid | xargs kill -${1:-9}
