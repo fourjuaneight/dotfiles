@@ -575,6 +575,16 @@ fdd() {
 
 # GIT #
 
+# run command on multiple repos
+mg() {
+  local selections
+  selections=$(fd -I -E node_modules -t d --prune . ~/Repos 2>/dev/null | gum choose --no-limit) &&
+
+  echo "$selections" | while IFS= read -r repo; do
+    pushd && z "$repo" && eval "$1" && popd;
+  done
+}
+
 # git log branch
 glb() {
   git log --pretty=oneline --abbrev-commit origin/$1
