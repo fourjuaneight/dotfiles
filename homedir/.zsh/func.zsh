@@ -581,6 +581,7 @@ mg() {
   selections=$(fd -I -E node_modules -t d --prune . ~/Repos 2>/dev/null | gum choose --no-limit) &&
 
   echo "$selections" | while IFS= read -r repo; do
+    echo "Running on $repo:" &&
     pushd && z "$repo" && eval "$1" && popd;
   done
 }
