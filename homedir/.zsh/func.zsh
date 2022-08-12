@@ -71,7 +71,7 @@ sysup() {
 # glyphhanger whitelist Latin
 gla() {
   local file fname
-  IFS=$'\n' file=($(sk --multi --select-1 --exit-0))
+  IFS=$'\n' file=($(gum choose --no-limit))
   fname="${file%.*}" &&
     if [[ -n "$file" ]]; then
       glyphhanger --LATIN --formats=woff2,woff --subset=$file &&
@@ -92,7 +92,7 @@ agla() {
 # glyphhanger whitelist US ASCII
 glu() {
   local file fname
-  IFS=$'\n' file=($(sk --multi --select-1 --exit-0))
+  IFS=$'\n' file=($(gum choose --no-limit))
   fname="${file%.*}" &&
     if [[ -n "$file" ]]; then
       glyphhanger --US_ASCII --formats=woff2,woff --subset=$file
@@ -752,6 +752,12 @@ gmpr() {
 
 # NPM #
 
+fnr() {
+  local scripts
+  script="$(jq -r '.scripts | keys | .[]' package.json | gum filter)"
+  npm run $script
+}
+
 # Version key/value should be on his own line
 npv() {
   local pkg_version
@@ -783,7 +789,7 @@ dckrmim() {
   local images selectedImage image imageList
   images=$(docker image list --format "table {{.ID}}\t{{.Repository}}" | sed -n '1!p') &&
     # use <TAB> to select multiple items
-    selectedImage=$(echo "$images" | sk --no-sort --multi --exact) &&
+    selectedImage=$(echo "$images" | gum filter) &&
     image=$(echo $selectedImage | sd '^([a-z0-9]+)\s+.*' '$1') &&
     # converte list to space separate string
     imageList=$(echo $image | mawk 'FNR!=1{print l}{l=$0};END{ORS="";print l}' ORS=' ') &&
@@ -795,7 +801,7 @@ dckrmcn() {
   local containers selectedContainer container containerList
   containers=$(docker container list --format "table {{.ID}}\t{{.Repository}}" | sed -n '1!p') &&
     # use <TAB> to select multiple items
-    selectedContainer=$(echo "$containers" | sk --no-sort --multi --exact) &&
+    selectedContainer=$(echo "$containers" | gum filter) &&
     container=$(echo $selectedContainer | sd '^([a-z0-9]+)\s+.*' '$1') &&
     # converte list to space separate string
     containerList=$(echo $container | mawk 'FNR!=1{print l}{l=$0};END{ORS="";print l}' ORS=' ') &&
@@ -806,6 +812,6 @@ dckrmcn() {
 dckup() {
   local services selectedService
   services=$(docker-compose ps --services) &&
-    selectedService=$(echo "$services" | sk --no-sort --exact) &&
+    selectedService=$(echo "$services" | gum filter) &&
     clear && docker compose up $selectedService
 }
