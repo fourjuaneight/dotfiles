@@ -195,6 +195,17 @@ chapters() {
   [[ -n "$file" ]] && ffprobe -v quiet -print_format json -show_format -show_chapters $file | jq -r '.chapters[]'
 }
 
+loopChapters() {
+  local track data
+  track=0
+  data=$(chapters)
+
+  for chapter in $data; do
+    track=$((track + 1))
+    echo "$track $chapter"
+  done
+}
+
 chapterize() {
   local name chapter start end file
   name=$(echo $2 | cut -d'.' -f1)
@@ -202,7 +213,7 @@ chapterize() {
   start=$(echo $1 | jq -r '.start')
   end=$(echo $1 | jq -r '.end')
   file="$name-$3.mp3"
-  
+
   echo "$chapter $start $end"
 }
 
