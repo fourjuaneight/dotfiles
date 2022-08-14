@@ -4,7 +4,7 @@ services:
     image: lscr.io/linuxserver/plex
     container_name: plex
     network_mode: host
-    user: plex
+    user: 998
     restart: unless-stopped
     volumes:
       - /Library/Application Support/Plex Media Server:/config
@@ -23,7 +23,7 @@ services:
   tautulli:
     image: ghcr.io/tautulli/tautulli
     container_name: tautulli
-    user: plex
+    user: 998
     restart: unless-stopped
     volumes:
       - ~/.config/tautulli:/config
