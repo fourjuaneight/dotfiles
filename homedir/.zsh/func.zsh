@@ -195,6 +195,17 @@ chapters() {
   [[ -n "$file" ]] && ffprobe -v quiet -print_format json -show_format -show_chapters $file | jq -r '.chapters[]'
 }
 
+chapters() {
+  local name chapter start end file
+  name=$(echo $2 | cut -d'.' -f1)
+  chapter=$(echo $1 | jq -r '.tags.title')
+  start=$(echo $1 | jq -r '.start')
+  end=$(echo $1 | jq -r '.end')
+  file="$name-$3.mp3"
+  
+  echo "$chapter $start $end"
+}
+
 # FILES #
 
 # find and extract archives
