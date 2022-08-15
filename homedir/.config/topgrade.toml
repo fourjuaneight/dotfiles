@@ -56,8 +56,8 @@ cleanup = true
 
 # Commands to run before anything
 [pre_commands]
-#"Emacs Snapshot" = "rm -rf ~/.emacs.d/elpa.bak && cp -rl ~/.emacs.d/elpa ~/.emacs.d/elpa.bak"
 "npm Version" = "fnm use 16.13.2"
+"npm Cleanup" = "find '~/Library/Application Support/fnm/node-versions/v16.13.2/installation/lib/node_modules' -name '.DS_Store' -type f -print -delete"
 
 # Custom commands
 [commands]
