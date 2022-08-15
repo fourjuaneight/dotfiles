@@ -13,7 +13,7 @@ interface ChapterData {
 const msToTime = (value: number): string => {
   const pad = (n: number, z: number) => {
     z = z || 2;
-    return ('00' + n).slice(-z);
+    return ("00" + n).slice(-z);
   };
 
   let newValue = value;
@@ -33,13 +33,13 @@ const secToTime = (value: number): string => {
   let seconds = value - hours * 3600 - minutes * 60;
 
   if (hours < 10) {
-    hours = '0' + hours;
+    hours = "0" + hours;
   }
   if (minutes < 10) {
-    minutes = '0' + minutes;
+    minutes = "0" + minutes;
   }
   if (seconds < 10) {
-    seconds = '0' + seconds;
+    seconds = "0" + seconds;
   }
 
   return `${hours}:${minutes}:${seconds}`;
@@ -67,27 +67,27 @@ const ffmpeg = async (
     console.info(`[ffmpeg]: Converting ${output} from ${start} to ${end}...`);
 
     const cmd = [
-      'ffmpeg',
-      '-i',
+      "ffmpeg",
+      "-i",
       file,
-      '-ss',
+      "-ss",
       start,
-      '-to',
+      "-to",
       end,
-      '-codec:a',
-      'copy',
-      '-ar',
-      '22050',
-      '-ab',
-      '64k',
-      '-metadata',
+      "-codec:a",
+      "copy",
+      "-ar",
+      "22050",
+      "-ab",
+      "64k",
+      "-metadata",
       `track="${metadata.tags.title}"`,
       output,
     ];
-    const proc = Deno.run({ cmd, stderr: 'piped' });
+    const proc = Deno.run({ cmd, stderr: "piped" });
 
     await proc.status();
-    await handleErr(proc, 'ffmpeg');
+    await handleErr(proc, "ffmpeg");
   } catch (error) {
     throw `${error}`;
   }
@@ -99,11 +99,11 @@ const id3v2 = async (name: string, metadata: ChapterData): Promise<void> => {
 
     console.info(`[id3v2]: Renaming ${file}...`);
 
-    const cmd = ['id3v2', '--song', `"${metadata.tags.title}"`, file];
-    const proc = Deno.run({ cmd, stderr: 'piped' });
+    const cmd = ["id3v2", "--song", `"${metadata.tags.title}"`, file];
+    const proc = Deno.run({ cmd, stderr: "piped" });
 
     await proc.status();
-    await handleErr(proc, 'id3v2');
+    await handleErr(proc, "id3v2");
   } catch (error) {
     throw `${error}`;
   }
@@ -112,8 +112,8 @@ const id3v2 = async (name: string, metadata: ChapterData): Promise<void> => {
 (async () => {
   try {
     const input = Deno.args;
-    const name = input[0].replace(/(.*)\.(mp3|m4b)/g, '$1');
-    const metadata = await Deno.readTextFile('./chapters.json', 'utf8');
+    const name = input[0].replace(/(.*)\.(mp3|m4b)/g, "$1");
+    const metadata = await Deno.readTextFile("./chapters.json", "utf8");
     const chapters: ChapterData[] = JSON.parse(metadata);
 
     for (const chapter of chapters) {
