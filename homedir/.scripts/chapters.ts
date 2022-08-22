@@ -62,14 +62,14 @@ const ffmpeg = async (
     const end_time: number = parseFloat(metadata.end_time);
     const start: string = secToTime(start_time);
     const end: string = secToTime(end_time);
-    const output = `${name}-${metadata.id}.mp3`;
+    const output = `${name}-${metadata.id + 1}.mp3`;
 
     console.info(`[ffmpeg]: Converting ${output} from ${start} to ${end}...`);
 
     const cmd = [
       "ffmpeg",
       "-i",
-      file,
+      `"${file}"`,
       "-ss",
       start,
       "-to",
@@ -82,7 +82,7 @@ const ffmpeg = async (
       "64k",
       "-metadata",
       `track="${metadata.tags.title}"`,
-      output,
+      `"${output}"`,
     ];
     const proc = Deno.run({ cmd, stderr: "piped" });
 
@@ -95,11 +95,11 @@ const ffmpeg = async (
 
 const id3v2 = async (name: string, metadata: ChapterData): Promise<void> => {
   try {
-    const file = `${name}-${metadata.id}.mp3`;
+    const file = `${name}-${metadata.id + 1}.mp3`;
 
     console.info(`[id3v2]: Renaming ${file}...`);
 
-    const cmd = ["id3v2", "--song", `"${metadata.tags.title}"`, file];
+    const cmd = ["id3v2", "--song", `"${metadata.tags.title}"`, `"${file}"`];
     const proc = Deno.run({ cmd, stderr: "piped" });
 
     await proc.status();
