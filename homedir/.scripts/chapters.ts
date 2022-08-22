@@ -1,3 +1,5 @@
+import { ensureFileSync } from "https://deno.land/std@0.105.0/fs/mod.ts";
+
 interface ChapterData {
   id: number;
   time_base: string;
@@ -84,10 +86,13 @@ const ffmpeg = async (
       `track="${metadata.tags.title}"`,
       `"${output}"`,
     ];
-    const proc = Deno.run({ cmd, stderr: "piped" });
 
-    await proc.status();
-    await handleErr(proc, "ffmpeg");
+    if (!ensureFileSync(output)) {
+      const proc = Deno.run({ cmd, stderr: "piped" });
+
+      await proc.status();
+      await handleErr(proc, "ffmpeg");
+    }
   } catch (error) {
     throw `${error}`;
   }
