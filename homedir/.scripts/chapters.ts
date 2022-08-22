@@ -1,4 +1,4 @@
-import { ensureFileSync } from "https://deno.land/std@0.105.0/fs/mod.ts";
+import { existsSync } from "https://deno.land/std@0.105.0/fs/mod.ts";
 
 interface ChapterData {
   id: number;
@@ -47,11 +47,18 @@ const secToTime = (value: number): string => {
   return `${hours}:${minutes}:${seconds}`;
 };
 
-const handleErr = async (proc, method: string) => {
+const handleOutput = async (proc, method: string) => {
+  const { code } = await proc.status();
+  const rawOutput = await proc.output();
   const rawError = await proc.stderrOutput();
-  const errorString = new TextDecoder().decode(rawError);
 
-  throw `[${method}]: ${errorString}`;
+  if (code === 0) {
+    await Deno.stdout.write(rawOutput);
+  } else {
+    const errorString = new TextDecoder().decode(rawError);
+
+    throw `[${method}]: ${errorString}`;
+  }
 };
 
 const ffmpeg = async (
@@ -66,12 +73,10 @@ const ffmpeg = async (
     const end: string = secToTime(end_time);
     const output = `${name}-${metadata.id + 1}.mp3`;
 
-    console.info(`[ffmpeg]: Converting ${output} from ${start} to ${end}...`);
-
     const cmd = [
       "ffmpeg",
       "-i",
-      `"${file}"`,
+      file,
       "-ss",
       start,
       "-to",
@@ -84,15 +89,19 @@ const ffmpeg = async (
       "64k",
       "-metadata",
       `track="${metadata.tags.title}"`,
-      `"${output}"`,
+      "-max_muxing_queue_size",
+      "9999",
+      output,
     ];
 
-    if (!ensureFileSync(output)) {
-      const proc = Deno.run({ cmd, stderr: "piped" });
-
-      await handleErr(proc, "ffmpeg");
-    } else {
+    if (existsSync(output)) {
       console.info(`[ffmpeg]: ${output} already exists.`);
+    } else {
+      console.info(`[ffmpeg]: Converting ${output} from ${start} to ${end}...`);
+
+      const proc = Deno.run({ cmd, stderr: "piped", stdout: "piped" });
+
+      await handleOutput(proc, "ffmpeg");
     }
   } catch (error) {
     throw `${error}`;
@@ -105,10 +114,10 @@ const id3v2 = async (name: string, metadata: ChapterData): Promise<void> => {
 
     console.info(`[id3v2]: Renaming ${file}...`);
 
-    const cmd = ["id3v2", "--song", `"${metadata.tags.title}"`, `"${file}"`];
-    const proc = Deno.run({ cmd, stderr: "piped" });
+    const cmd = ["id3v2", "--song", `"${metadata.tags.title}"`, file];
+    const proc = Deno.run({ cmd, stderr: "piped", stdout: "piped" });
 
-    await handleErr(proc, "id3v2");
+    await handleOutput(proc, "id3v2");
   } catch (error) {
     throw `${error}`;
   }
