@@ -90,8 +90,9 @@ const ffmpeg = async (
     if (!ensureFileSync(output)) {
       const proc = Deno.run({ cmd, stderr: "piped" });
 
-      await proc.status();
       await handleErr(proc, "ffmpeg");
+    } else {
+      console.info(`[ffmpeg]: ${output} already exists.`);
     }
   } catch (error) {
     throw `${error}`;
@@ -107,7 +108,6 @@ const id3v2 = async (name: string, metadata: ChapterData): Promise<void> => {
     const cmd = ["id3v2", "--song", `"${metadata.tags.title}"`, `"${file}"`];
     const proc = Deno.run({ cmd, stderr: "piped" });
 
-    await proc.status();
     await handleErr(proc, "id3v2");
   } catch (error) {
     throw `${error}`;
