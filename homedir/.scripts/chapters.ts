@@ -122,6 +122,6 @@ const id3v2 = async (name: string, metadata: ChapterData): Promise<void> => {
     }
   } catch (error) {
     console.error(error);
-    process.exit(1);
+    Deno.exit(1);
   }
 })();
