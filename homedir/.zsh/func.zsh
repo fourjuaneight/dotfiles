@@ -192,7 +192,7 @@ chapters() {
   local file
   IFS=$'\n' file=($(sk --query "$1" --no-multi --select-1 --exit-0))
 
-  [[ -n "$file" ]] && ffprobe -v quiet -print_format json -show_format -show_chapters $file | jq -r '.chapters[]'
+  [[ -n "$file" ]] && ffprobe -v quiet -print_format json -show_format -show_chapters $file | jq -r '[.chapters[]]'
 }
 
 # FILES #
