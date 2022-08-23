@@ -69,6 +69,7 @@ action "installing packages"
   libvips \
   lindell/multi-gitter/multi-gitter \
   llvm \
+  lux \
   macvim \
   mas \
   mawk \

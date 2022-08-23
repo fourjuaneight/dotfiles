@@ -45,6 +45,7 @@ brew install ack \
   gum \
   hugo \
   lindell/multi-gitter/multi-gitter \
+  lux \
   neovim \
   pnpm \
   rclone \
