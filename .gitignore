@@ -16,3 +16,5 @@ homedir/.config/nvim/plugin
 homedir/.config/raycast
 homedir/.config/database
 homedir/.config/storage
+homedir/.config/stump/data
+homedir/.config/stump/Stump.log
