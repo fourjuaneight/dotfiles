@@ -31,6 +31,7 @@ cargo install amber \
   git-interactive-rebase-tool \
   gitui \
   gping \
+  inlyne \
   jless \
   mprocs \
   onefetch \

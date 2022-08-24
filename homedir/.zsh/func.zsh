@@ -197,6 +197,11 @@ chapters() {
 
 # FILES #
 
+# render markdown files
+rmd() {
+  inlyne $1 --theme dark
+}
+
 # find and extract archives
 fex() {
   local file fname
