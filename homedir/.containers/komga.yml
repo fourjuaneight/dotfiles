@@ -1,15 +1,10 @@
 ---
 version: "3.8"
-networks:
-  komga:
-    driver: bridge
 services:
   rclone:
     image: rclone/rclone
     container_name: rclone
     restart: unless-stopped
-    networks:
-      - komga
     network_mode: host
     environment:
       - PUID=${PUID}
@@ -37,8 +32,6 @@ services:
     image: gotson/komga
     container_name: komga
     restart: unless-stopped
-    networks:
-      - komga
     depends_on:
       - rclone
     volumes:
