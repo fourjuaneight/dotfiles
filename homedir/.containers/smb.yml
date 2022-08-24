@@ -20,7 +20,7 @@ services:
     tty: true
     volumes:
       - /mnt:/mnt
-    command: '"Media;/mnt2;yes;no;no;fourjuaneight" -u "fourjuaneight;admin" -p'
+    command: '-s "Media;/mnt;yes;no;no;fourjuaneight" -u "fourjuaneight;Admin" -p'
 
 networks:
   default:
