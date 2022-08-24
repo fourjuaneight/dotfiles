@@ -23,6 +23,8 @@ services:
       - /mnt/Comics:/Comics
       - /mnt/Manga:/Manga
     command: '-s "Books;/mnt/Books;yes;no;no;fourjuaneight" -s "Comics;/mnt/Comics;yes;no;no;fourjuaneight" -s "Manga;/mnt/Manga;yes;no;no;fourjuaneight" -u "fourjuaneight;admin" -p'
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
 
 networks:
   default:
