@@ -18,3 +18,4 @@ homedir/.config/database
 homedir/.config/storage
 homedir/.config/stump/data
 homedir/.config/stump/Stump.log
+homedir/.config/lvim/plugin/packer_compiled.lua
