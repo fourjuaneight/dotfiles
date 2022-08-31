@@ -1,6 +1,7 @@
 {
   "Lua.diagnostics.globals": [
-    "vim"
+    "vim",
+    "lvim"
   ],
   "yaml.schemas": {
     "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json": [
