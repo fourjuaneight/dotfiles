@@ -5,7 +5,21 @@ end
 
 local lspconfig = require("lspconfig")
 
-local servers = { "jsonls", "sumneko_lua" }
+local servers = { 
+	"angularls",
+	"cssls",
+	"cssmodules_ls",
+	"eslint",
+	"golangci_lint_ls",
+	"gopls",
+	"graphql",
+	"html",
+	"jsonls",
+	"sqlls",
+	"sumneko_lua",
+	"tailwindcss",
+	"tsserver"
+}
 
 lsp_installer.setup({
 	ensure_installed = servers,
