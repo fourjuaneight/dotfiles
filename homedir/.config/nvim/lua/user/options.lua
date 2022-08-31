@@ -31,8 +31,7 @@ local options = {
   signcolumn = "yes",                      -- always show the sign column, otherwise it would shift the text each time
   wrap = false,                            -- display lines as one long line
   scrolloff = 8,                           -- is one of my fav
-  sidescrolloff = 8,
-  guifont = "JetBrainsMono Nerd Font:h17",               -- the font used in graphical neovim applications
+  sidescrolloff = 8
 }
 
 vim.opt.shortmess:append "c"
