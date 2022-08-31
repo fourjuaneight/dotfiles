@@ -5,6 +5,6 @@ source ~/dotfiles/lib/util/echos.sh
 minibot "Ok. Let's try to install some pips."
 
 action "installing python3 packages"
-python3 -m pip install --user b2 brotli fonttools zopfli Pygments
+python3 -m pip install --user b2 brotli fonttools pynvim zopfli Pygments
 
 ok "oh hey, it worked! done installing pips."
