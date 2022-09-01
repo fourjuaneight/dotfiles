@@ -132,8 +132,16 @@ local mappings = {
     name = "LSP",
     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
     d = {
-      "<cmd>Telescope lsp_document_diagnostics<cr>",
-      "Document Diagnostics",
+      "<cmd>lua vim.lsp.buf.definition()<cr>",
+      "Jump to Definition",
+    },
+    D = {
+      "<cmd>lua vim.lsp.buf.declaration()<cr>",
+      "Jump to Declaration",
+    },
+    m = {
+      "<cmd>lua vim.lsp.buf.implementation()<cr>",
+      "Jump to Implementation",
     },
     w = {
       "<cmd>Telescope lsp_workspace_diagnostics<cr>",
