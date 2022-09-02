@@ -67,9 +67,9 @@ alias emacst="emacs -nw"
 alias doom="~/.emacs.d/bin/doom"
 
 # vim
-alias vi="vim"
+alias vi="nvim"
 alias vconf="hx ~/.vimrc"
-alias vsour="vim source ~/.vimrc"
+alias vsour="nvim source ~/.vimrc"
 
 # cron
 alias croe="crontab -e"
