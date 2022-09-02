@@ -36,11 +36,9 @@
   diffFilter = delta --color-only
 
 [diff]
-  tool = vimdiff
   colorMoved = zebra
 
 [merge]
-  tool = vimdiff
   conflictstyle = diff3
 
 [mergetool]
