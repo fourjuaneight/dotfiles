@@ -29,7 +29,7 @@ if [[ "$OS" == "Fedora" ]]; then
 
   action "enable service on startup"
   sudo systemctl start docker
-elif [[ "$OS" == "Ubuntu" ]] || [[ "$OS" == "Pop" ]]; then 
+elif [[ "$OS" == "Ubuntu" ]] || [[ "$OS" == "Pop!_OS" ]]; then 
   action "remove older versions"
   sudo apt-get remove docker docker-engine docker.io containerd runc
 
