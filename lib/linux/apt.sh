@@ -56,6 +56,7 @@ apt-get install -y alacritty \
   libvips \
   lsb-release \
   libvips-dev \
+  lua5.4 \
   mc \
   mediainfo \
   memcached \
