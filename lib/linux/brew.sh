@@ -50,7 +50,6 @@ brew install ack \
   pnpm \
   rclone \
   restic \
-  sheldon \
   webp \
   yt-dlp/taps/yt-dlp
 

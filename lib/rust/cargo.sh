@@ -6,9 +6,11 @@ minibot "Let's try to install some cargos."
 source $HOME/.cargo/env
 
 action "installing fuzzy packages"
-cargo install --locked deno
 cargo install --locked bat
+cargo install --locked deno
 cargo install --locked pueue
+cargo install --locked sheldon
+cargo install --locked starship
 cargo install --locked --force xplr
 
 action "installing normal packages"
@@ -42,7 +44,6 @@ cargo install amber \
   rustscan \
   sd \
   skim \
-  starship \
   stdrename \
   topgrade \
   tree-rs \
