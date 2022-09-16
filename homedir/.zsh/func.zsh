@@ -386,6 +386,14 @@ fpf() {
   [[ -n "$files" ]] && echo $files
 }
 
+# find and print files
+fcf() {
+  local IFS file dist
+  IFS=$'\n' file=($(sk --query "$1" --multi --select-1 --exit-0))
+  IFS=$'\n' dist=($(fd -t d . ~/ 2>/dev/null | sk --query "$1" --multi --select-1 --exit-0))
+  cp $file $dist
+}
+
 # DIRECTORIES #
 
 # Open via rg with line number
