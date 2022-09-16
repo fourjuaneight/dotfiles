@@ -447,21 +447,41 @@ fcd() {
     z "$dir"
 }
 
-# cd to repo directory and open in vscode
+# cd to directory and open with selected action
+fcdc() {
+  local dir action
+  dir=$(fd -t d . ~/ 2>/dev/null | sk) &&
+  action=$(gum choose "cd" "code" "nvim" "hx") &&
+  z "$dir" &&
+  fnm use;
+  if [[ $action == "cd" ]]; then
+    echo "cd $dir";
+  elif [[ $action == "code" ]]; then
+    code "$dir";
+  elif [[ $action == "nvim" ]]; then
+    nvim "$dir";
+  elif [[ $action == "hx" ]]; then
+    hx "$dir";
+  fi
+  clear &&
+}
+# cd to repo directory and open with selected action
 fcdr() {
   local dir action
   dir=$(fd -t d --prune . ~/Repos 2>/dev/null | sk) &&
-  action=$(gum choose "cd" "code" "nvim") &&
+  action=$(gum choose "cd" "code" "nvim" "hx") &&
   z "$dir" &&
   fnm use;
-  clear &&
   if [[ $action == "cd" ]]; then
-    echo "cd $dir"
+    echo "cd $dir";
   elif [[ $action == "code" ]]; then
-    code "$dir"
+    code "$dir";
   elif [[ $action == "nvim" ]]; then
-    nvim "$dir"
+    nvim "$dir";
+  elif [[ $action == "hx" ]]; then
+    hx "$dir";
   fi
+  clear &&
 }
 
 # find file and move to another directory
