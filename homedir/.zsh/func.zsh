@@ -449,12 +449,19 @@ fcd() {
 
 # cd to repo directory and open in vscode
 fcdr() {
-  local dir
+  local dir action
   dir=$(fd -t d --prune . ~/Repos 2>/dev/null | sk) &&
+  action=$(gum choose "cd" "code" "nvim") &&
   z "$dir" &&
   fnm use;
   clear &&
-  code "$dir"
+  if [[ $action == "cd" ]]; then
+    echo "cd $dir"
+  elif [[ $action == "code" ]]; then
+    code "$dir"
+  elif [[ $action == "nvim" ]]; then
+    nvim "$dir"
+  fi
 }
 
 # find file and move to another directory
