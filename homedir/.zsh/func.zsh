@@ -403,10 +403,10 @@ fa() {
 # find and show filepath
 fsf() {
   local IFS files directory fullpath
-  IFS=$'\n' files=($(sk --query "$1" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(fd -t d . ~/ 2>/dev/null | sk --query "$1" --multi --select-1 --exit-0))
   directory=$(dirname $files)
   fullpath="$(pwd)/$directory"
-  [[ -n "$files" ]] && open $fullpath
+  [[ -n "$files" ]] && print $fullpath
 }
 
 # find and open file (default app)
@@ -435,14 +435,14 @@ cf() {
 # cd to selected directory
 fcd() {
   local dir
-  dir=$(fd -I -E node_modules -t d --prune . ./ 2>/dev/null | sk) &&
+  dir=$(fd -t d --prune . ./ 2>/dev/null | sk) &&
     z "$dir"
 }
 
 # cd to repo directory and open in vscode
 fcdr() {
   local dir
-  dir=$(fd -I -E node_modules -t d --prune . ~/Repos 2>/dev/null | sk) &&
+  dir=$(fd -t d --prune . ~/Repos 2>/dev/null | sk) &&
   z "$dir" &&
   fnm use;
   clear &&
@@ -453,7 +453,7 @@ fcdr() {
 ffmv() {
   local file dest
   IFS=$'\n' file=($(sk --query "$1" --multi --select-1 --exit-0)) &&
-    dest=$(fd -I -E node_modules -t f --prune . ./ */\.* 2>/dev/null | sk) &&
+    dest=$(fd -t f --prune . ./ */\.* 2>/dev/null | sk) &&
     mv "$file" "$dest"
 }
 
@@ -492,7 +492,7 @@ ftr() {
 # find and delete directory
 fdd() {
   local dir
-  dir=$(fd -I -E node_modules -t d --prune . ./ 2>/dev/null | sk) &&
+  dir=$(fd -t d --prune . ./ 2>/dev/null | sk) &&
     rm -rf $dir
 }
 
@@ -501,7 +501,7 @@ fdd() {
 # run command on multiple repos
 mg() {
   local selections
-  selections=$(fd -I -E node_modules -t d --prune . ~/Repos 2>/dev/null | sk --multi) &&
+  selections=$(fd -t d --prune . ~/Repos 2>/dev/null | sk --multi) &&
 
   echo "$selections" | while IFS= read -r repo; do
     echo "Running on $repo:" &&
