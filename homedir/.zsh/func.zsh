@@ -630,6 +630,16 @@ grvt() {
     git revert $(echo "$commit" | sd ".* " "")
 }
 
+# git checkout commit
+gccm() {
+  local commits commit id
+  commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --reverse) &&
+    commit=$(echo "$commits" | sk --ansi --tac --no-sort --exact) &&
+    id=$(echo "$commit" | sd "^([a-zA-Z0-9]+)\s.*" '$1') &&
+    git checkout $id
+    
+}
+
 # git commit browser
 gscl() {
   git log --graph --color=always \
