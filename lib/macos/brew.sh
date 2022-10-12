@@ -43,6 +43,7 @@ action "installing latest bash"
 action "installing packages"
 /opt/homebrew/bin/brew install ack \
   ansible \
+  aom \
   certbot \
   cmake \
   cocoapods \

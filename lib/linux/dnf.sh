@@ -39,6 +39,7 @@ dnf -y install ansible \
   inotify-tools \
   jasper \
   kernel-devel \
+  libaom \
   libjpeg \
   libmemcached-awesome \
   libsecret \

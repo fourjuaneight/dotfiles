@@ -42,6 +42,7 @@ apt-get install -y alacritty \
   indicator-multiload \
   inotify-tools \
   jasper \
+  libaom-dev \
   libfontconfig1-dev \
   libfreetype6-dev \
   libjpeg8 \
@@ -51,6 +52,7 @@ apt-get install -y alacritty \
   libreadline6-dev \
   libsecret-1-0 \
   libsecret-1-dev \
+  libx265-dev \
   libxcb-xfixes0-dev \
   libxkbcommon-dev \
   libvips \
