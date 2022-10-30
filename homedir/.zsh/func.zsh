@@ -152,12 +152,20 @@ webp2jpeg() {
 # FFMPEG #
 
 # ffmpeg clip video
-# 1 - input file
-# 2 - start time
-# 3 - stop time
+# 1 - start time
+# 2 - stop time
 clipvid() {
-  fname="${files%-clipped.*}"
-  ffmpeg -ss $2 -i $1 -c copy -t $3 $fname
+  local IFS file output
+  IFS=$'\n' file=($(fd -t f -e 'mp4' -e 'mkv' 2>/dev/null | gum choose)) &&
+  output=$(basename $file | sd '(\.[a-z0-9]+)' '_clipped$1') &&
+  ffmpeg -i $file -ss $1 -t $2 -c:v copy -c:a copy $output
+}
+
+vidaudio() {
+  local IFS file output
+  IFS=$'\n' file=($(fd -t f -e 'mp4' -e 'mkv' 2>/dev/null | gum choose)) &&
+  output=$(basename $file | sd '(\.[a-z0-9]+)' '_audio.mp3') &&
+  ffmpeg -i $file -q:a 0 -map a $output
 }
 
 2webm() {
