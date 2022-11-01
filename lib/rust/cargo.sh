@@ -7,7 +7,6 @@ source $HOME/.cargo/env
 
 action "installing fuzzy packages"
 cargo install --locked bat
-cargo install --locked deno
 cargo install --locked pueue
 cargo install --locked sheldon
 cargo install --locked starship
@@ -26,7 +25,6 @@ cargo install amber \
   dua-cli \
   exa \
   fd-find \
-  feroxbuster \
   fnm \
   git-cliff \
   git-delta \
@@ -34,10 +32,6 @@ cargo install amber \
   gitui \
   gping \
   inlyne \
-  jless \
-  mprocs \
-  onefetch \
-  os_info_cli \
   procs \
   ripgrep \
   rm-improved \
@@ -47,7 +41,6 @@ cargo install amber \
   stdrename \
   topgrade \
   tree-rs \
-  websocat \
   xcompress \
   zellij \
   zoxide
