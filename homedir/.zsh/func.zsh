@@ -673,7 +673,7 @@ fgcm() {
 fgcp() {
   local commits commit
   commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%N%Creset %s' --abbrev-commit --reverse) &&
-  commit=$(echo "$commits" | sk --ansi --tac --no-sort --exact | sd "^([a-z0-9]+)\s-\s([a-zA-z\s]+).?" "$1") &&
+  commit=$(echo "$commits" | sk --ansi --tac --no-sort --exact | sd "^([a-z0-9]+)\s-\s.*" "$1") &&
   git show $commit
 }
 
