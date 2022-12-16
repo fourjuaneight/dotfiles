@@ -121,10 +121,9 @@ action "installing complicated packages"
 /opt/homebrew/bin/brew tap helix-editor/helix
 /opt/homebrew/bin/brew install helix
 /opt/homebrew/bin/brew tap iina/homebrew-mpv-iina
-/opt/homebrew/bin/brew install mpv-iina
 
 action "installing casks"
-/opt/homebrew/bin/brew install --cask 1password\
+/opt/homebrew/bin/brew install --cask 1password \
   alacritty \
   bartender \
   calibre \

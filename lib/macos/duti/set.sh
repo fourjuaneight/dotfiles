@@ -8,7 +8,7 @@ DUTI_DIR=$HOME/dotfiles/lib/macos/duti
 
 action "setting default app for media files"
 while read -r ext; do
-  duti -s com.colliderli.iina "$ext" all
+  /opt/homebrew/bin/duti -s com.colliderli.iina "$ext" all
   if [[ $? != 0 ]]; then
     error "unable to set app for $ext files"
     exit 2
@@ -18,7 +18,7 @@ ok "app for media files set."
 
 action "setting default app for code files"
 while read -r ext; do
-  duti -s com.microsoft.VSCode "$ext" all
+  /opt/homebrew/bin/duti -s com.microsoft.VSCode "$ext" all
   if [[ $? != 0 ]]; then
     error "unable to set app for $ext files"
     exit 2
