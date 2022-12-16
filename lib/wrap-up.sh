@@ -36,18 +36,6 @@ else
   ok "dotfiles stowed."
 fi
 
-bot "Setting up vim environment."
-
-action "installing vim plug"
-curl -fLo ${HOME}/.vim/autoload/plug.vim --create-dirs \
-  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-if [[ $? != 0 ]]; then
-  error "unable to install vim plug"
-  exit 2
-else
-  ok "installed vim plug."
-fi
-
 # ###########################################################
 # Finish setup
 # ###########################################################
@@ -62,20 +50,11 @@ else
   ok "zsh plugins installed."
 fi
 
-action "installing vim plugings"
-vim +PluginInstall +qall
-if [[ $? != 0 ]]; then
-  error "unable to run vim plug"
-  exit 2
-else
-  ok "vim plugins installed."
-fi
-
 action "Setting Github CLI editor"
-gh config set editor nvim
+gh config set editor hx
 
 action "saving VSCode themes"
-cp ./themes/vscode-dracula.vsix ~/.vscode/extensions
+cp ./themes/dracula-pro.vsix ~/.vscode/extensions
 if [[ $? != 0 ]]; then
   error "unable to save theme"
   exit 2
