@@ -6,8 +6,8 @@
 defaults write com.apple.finder AppleShowAllFiles TRUE
 
 # list view as default
-# Four-letter codes for the other view modes: `icnv`, `clmv`, `glyv`
-defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+# Four-letter codes for the other view modes: `icnv`, `clmv`, `glyv`, `Nlsv`
+defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
 find /usr/local -name '.DS_Store' -type f -print -delete
 find /opt/homebrew/lib -name '.DS_Store' -type f -print -delete
 
