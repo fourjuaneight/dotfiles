@@ -50,12 +50,6 @@ export STARSHIP_CONFIG=~/.config/starship/config.toml
 # zellij
 export ZELLIJ_CONFIG_DIR="$HOME/.config/zellij"
 
-### Codex CLI setup - start
-export CODEX_CLI_PATH="$HOME/Codex-CLI"
-source "$CODEX_CLI_PATH/scripts/zsh_plugin.zsh"
-bindkey '^Y' create_completion
-### Codex CLI setup - end
-
 # GPG
 export GPG_TTY=$(tty)
 
