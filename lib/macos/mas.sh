@@ -16,8 +16,6 @@ action "installing Grammarly"
 /opt/homebrew/bin/mas install 1462114288
 action "installing PDF Expert"
 /opt/homebrew/bin/mas install 1055273043
-action "installing Prism"
-/opt/homebrew/bin/mas install 1335007451
 action "installing Service Station"
 /opt/homebrew/bin/mas install 1503136033
 action "installing The Unarchiver"
