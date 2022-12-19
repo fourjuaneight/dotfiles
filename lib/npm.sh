@@ -2,6 +2,10 @@
 
 source ~/dotfiles/lib/util/echos.sh
 
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  softwareupdate --install-rosetta
+fi
+
 minibot "Let's download the universe."
 eval "$(fnm env)"
 
