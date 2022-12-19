@@ -8,8 +8,8 @@ defaults write com.apple.finder AppleShowAllFiles TRUE
 # list view as default
 # Four-letter codes for the other view modes: `icnv`, `clmv`, `glyv`, `Nlsv`
 defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
-find /usr/local -name '.DS_Store' -type f -print -delete
-find /opt/homebrew/lib -name '.DS_Store' -type f -print -delete
+find /usr/local -name '.DS_Store' -type f -print -delete;
+find /opt/homebrew/lib -name '.DS_Store' -type f -print -delete;
 
 # restart
 killall Finder
@@ -45,4 +45,4 @@ killall Dock
 # DISK UTILITY #
 
 # no warning on "unsecurely" removing media
-defaults write /Library/Preferences/SystemConfiguration/com.apple.DiskArbitration.diskarbitrationd.plist DADisableEjectNotification -bool YES && sudo pkill diskarbitrationd
+defaults write /Library/Preferences/SystemConfiguration/com.apple.DiskArbitration.diskarbitrationd.plist DADisableEjectNotification -bool YES && sudo pkill diskarbitrationd;
