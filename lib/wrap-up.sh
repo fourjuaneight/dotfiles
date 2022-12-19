@@ -52,7 +52,7 @@ fi
 
 action "Setting Github CLI editor"
 gh config set editor hx
-
+git lfs install
 action "saving VSCode themes"
 cp ./themes/dracula-pro.vsix ~/.vscode/extensions
 if [[ $? != 0 ]]; then

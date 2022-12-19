@@ -33,6 +33,7 @@ apt-get install -y alacritty \
   ghc \
   gist \
   git \
+  git-lfs \
   gnupg \
   gpg \
   graphicsmagick \

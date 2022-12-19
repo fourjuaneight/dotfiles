@@ -31,6 +31,7 @@ dnf -y install ansible \
   gcc-c++ \
   ghc \
   git \
+  git-lfs \
   gnupg \
   GraphicsMagick \
   id3v2 \

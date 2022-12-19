@@ -54,6 +54,7 @@ action "installing packages"
   fzf \
   ghc \
   git \
+  git-lfs \
   gh \
   gist \
   go \
