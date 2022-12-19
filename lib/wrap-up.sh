@@ -66,5 +66,11 @@ action "Install Golang Language Server"
 go install github.com/nametake/golangci-lint-langserver@latest
 go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.42.1
 
+action "Install Tenjin"
+cd ~
+git clone git@github.com:fourjuaneight/tenjin.git
+cd ~/tenjin
+make install
+
 bot "All done! Gary out."
 minibot "Little Gary out, too!"
