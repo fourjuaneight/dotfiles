@@ -96,13 +96,16 @@ alias psl="psql postgres -h localhost -l"
 
 # NPM
 alias nvup="npm version"
+alias nr="npm run"
 
 # nvm
 alias nvi="fnm install"
 alias nvu="fnm use"
 alias nviu="fnm install && fnm use --delete-prefix"
-alias nr="npm run"
 alias wnv="bat -p .nvmrc"
+
+# dev
+alias start="fnm use || fnm use 16 && clear && npm run clean; npm run start"
 
 # Git
 # alias ga="git add"
