@@ -85,6 +85,12 @@ else
 fi
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
+  action "Downloading UpWork"
+  cd ~/Downloads
+  curl -O https://upwork-usw2-desktopapp.upwork.com/binaries/v5_8_0_24_aef0dc8c37cf46a8/Upwork.dmg
+fi
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
   action "Downloading Doppler"
   cd ~/Downloads
   curl -O https://updates.brushedtype.co/doppler-macos/download

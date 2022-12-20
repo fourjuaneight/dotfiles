@@ -132,6 +132,7 @@ action "installing casks"
   handbrake \
   hazel \
   iina \
+  keyboard-maestro \
   meta \
   monodraw \
   mullvadvpn \
