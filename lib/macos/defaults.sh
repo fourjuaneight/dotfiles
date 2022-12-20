@@ -1,9 +1,29 @@
 #!/usr/bin/env bash
 
+# DOCS: https://macos-defaults.com
+
+# set computer name
+sudo scutil --set HostName "SpaceMaria"
+
 # FINDER #
 
 # always show hidden
 defaults write com.apple.finder AppleShowAllFiles TRUE
+
+# show exntensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool TRUE
+
+# show path bar
+defaults write com.apple.finder ShowPathbar -bool TRUE
+
+# show status bar
+defaults write com.apple.finder ShowStatusBar -bool TRUE
+
+# keep folders on top
+defaults write com.apple.finder _FXSortFoldersFirst -bool TRUE
+
+# remove the delay when hovering the toolbar title
+defaults write NSGlobalDomain "NSToolbarTitleViewRolloverDelay" -float "0"
 
 # list view as default
 # Four-letter codes for the other view modes: `icnv`, `clmv`, `glyv`, `Nlsv`
@@ -16,6 +36,9 @@ killall Finder
 
 
 # DOCK #
+
+# auto-hide
+defaults write com.apple.dock autohide -bool TRUE
 
 # no delay on auto-hide
 defaults write com.apple.dock autohide-delay -float 0
