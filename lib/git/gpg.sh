@@ -28,9 +28,14 @@ cd ~
 mkdir -p ~/.gnupg
 touch ~/.gnupg/gpg-agent.conf
 echo "pinentry-program /opt/homebrew/bin/pinentry-mac" >> ~/.gnupg/gpg-agent.conf
-echo "enable-ssh-support" >> ~/.gnupg/gpg-agent.conf"
+echo "enable-ssh-support" >> ~/.gnupg/gpg-agent.conf
 
-action "testing config..."
-echo "Test" | gpg -as
+read -p "Did you add the key to GitHub? [y/n]: " added
+if [[ $email == "y" ]]; then
+    action "testing config..."
+    echo "Test" | gpg -as
 
-ok "gpg setup complete!"
+    ok "gpg setup complete!"
+else
+    ok "make sure to add the key to your Github account."
+fi
