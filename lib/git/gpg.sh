@@ -22,3 +22,15 @@ else
     ok "add the public key to your Github account."
     exit 0
 fi
+
+action "creating config file"
+cd ~
+mkdir -p ~/.gnupg
+touch ~/.gnupg/gpg-agent.conf
+echo "pinentry-program /opt/homebrew/bin/pinentry-mac" >> ~/.gnupg/gpg-agent.conf
+echo "enable-ssh-support" >> ~/.gnupg/gpg-agent.conf"
+
+action "testing config..."
+echo "Test" | gpg -as
+
+ok "gpg setup complete!"
