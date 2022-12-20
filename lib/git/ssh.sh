@@ -21,3 +21,29 @@ else
     ok "add key to your Github account."
     exit 0
 fi
+
+action "creating config file"
+cd ~
+mkdir -p ~/.ssh
+touch ~/.ssh/config
+echo "
+Host github.com
+  User git
+  Hostname github.com
+  PreferredAuthentications publickey
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/space-maria_github
+" >> ~/.ssh/config
+
+read -p "Did you add the key to GitHub? [y/n]: " added
+if [[ $email == "y" ]]; then
+    action "testing config..."
+    eval "$(ssh-agent -s)"
+    ssh-add --apple-use-keychain ~/.ssh/space-maria_github
+    ssh -vT git@github.com
+
+    ok "ssh setup complete!"
+else
+    ok "make sure to add the key to your Github account."
+fi
