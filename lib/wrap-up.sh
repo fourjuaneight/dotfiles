@@ -72,5 +72,23 @@ git clone git@github.com:fourjuaneight/tenjin.git
 cd ~/tenjin
 make install
 
+action "Downloading Google Chrome"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  cd ~/Downloads
+  curl -O https://dl.google.com/chrome/mac/universal/stable/GGRO/googlechrome.dmg
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  cd ~
+  curl -O https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+else
+  cd ~
+  curl -O https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+fi
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  action "Downloading Doppler"
+  cd ~/Downloads
+  curl -O https://updates.brushedtype.co/doppler-macos/download
+fi
+
 bot "All done! Gary out."
 minibot "Little Gary out, too!"
