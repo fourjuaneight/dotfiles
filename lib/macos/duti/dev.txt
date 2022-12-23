@@ -27,6 +27,8 @@
 .swift
 .toml
 .tml
+.ts
+.tsx
 .txt
 .xml
 .yaml
