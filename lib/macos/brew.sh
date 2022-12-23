@@ -50,6 +50,7 @@ action "installing packages"
   curl \
   dog \
   duti \
+  flyctl \
   fswatch \
   fzf \
   ghc \

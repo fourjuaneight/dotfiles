@@ -38,6 +38,7 @@ brew install ack \
   cocoapods \
   dive \
   dog \
+  flyctl \
   fzf \
   gcc@5 \
   gh \
