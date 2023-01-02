@@ -48,6 +48,7 @@ brew install ack \
   lindell/multi-gitter/multi-gitter \
   lux \
   neovim \
+  osv-scanner \
   pnpm \
   rclone \
   restic \

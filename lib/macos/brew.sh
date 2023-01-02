@@ -89,6 +89,7 @@ action "installing packages"
   ngrok \
   neovim \
   node \
+  osv-scanner \
   p7zip \
   pkg-config \
   pinentry-mac \
