@@ -130,6 +130,7 @@ action "installing casks"
   alacritty \
   bartender \
   calibre \
+  discord \
   fission \
   handbrake \
   hazel \
