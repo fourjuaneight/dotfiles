@@ -87,7 +87,7 @@
 										<key>MacroActionType</key>
 										<string>ScrollWheelEvent</string>
 										<key>ScrollAmountExpression</key>
-										<string>30</string>
+										<string>90</string>
 										<key>ScrollDirection</key>
 										<string>Up</string>
 									</dict>
@@ -179,7 +179,7 @@
 										<key>MacroActionType</key>
 										<string>ScrollWheelEvent</string>
 										<key>ScrollAmountExpression</key>
-										<string>30</string>
+										<string>90</string>
 										<key>ScrollDirection</key>
 										<string>Up</string>
 									</dict>
@@ -271,7 +271,7 @@
 										<key>MacroActionType</key>
 										<string>ScrollWheelEvent</string>
 										<key>ScrollAmountExpression</key>
-										<string>30</string>
+										<string>90</string>
 										<key>ScrollDirection</key>
 										<string>Up</string>
 									</dict>
@@ -490,7 +490,7 @@
 										<key>MacroActionType</key>
 										<string>ScrollWheelEvent</string>
 										<key>ScrollAmountExpression</key>
-										<string>30</string>
+										<string>90</string>
 										<key>ScrollDirection</key>
 										<string>Up</string>
 									</dict>
@@ -568,57 +568,6 @@
 									</dict>
 									<dict>
 										<key>ActionUID</key>
-										<integer>463</integer>
-										<key>Actions</key>
-										<array>
-											<dict>
-												<key>ActionUID</key>
-												<integer>464</integer>
-												<key>MacroActionType</key>
-												<string>ScrollWheelEvent</string>
-												<key>ScrollAmountExpression</key>
-												<string>60</string>
-												<key>ScrollDirection</key>
-												<string>Down</string>
-											</dict>
-											<dict>
-												<key>ActionUID</key>
-												<integer>465</integer>
-												<key>MacroActionType</key>
-												<string>Pause</string>
-												<key>Time</key>
-												<string>2</string>
-												<key>TimeOutAbortsMacro</key>
-												<true/>
-											</dict>
-											<dict>
-												<key>ActionUID</key>
-												<integer>466</integer>
-												<key>MacroActionType</key>
-												<string>ScrollWheelEvent</string>
-												<key>ScrollAmountExpression</key>
-												<string>30</string>
-												<key>ScrollDirection</key>
-												<string>Up</string>
-											</dict>
-											<dict>
-												<key>ActionUID</key>
-												<integer>467</integer>
-												<key>MacroActionType</key>
-												<string>Pause</string>
-												<key>Time</key>
-												<string>2</string>
-												<key>TimeOutAbortsMacro</key>
-												<true/>
-											</dict>
-										</array>
-										<key>MacroActionType</key>
-										<string>Group</string>
-										<key>TimeOutAbortsMacro</key>
-										<true/>
-									</dict>
-									<dict>
-										<key>ActionUID</key>
 										<integer>460</integer>
 										<key>MacroActionType</key>
 										<string>Pause</string>
@@ -633,7 +582,7 @@
 										<key>MacroActionType</key>
 										<string>ScrollWheelEvent</string>
 										<key>ScrollAmountExpression</key>
-										<string>30</string>
+										<string>90</string>
 										<key>ScrollDirection</key>
 										<string>Up</string>
 									</dict>
@@ -927,7 +876,7 @@
 				<key>CreationDate</key>
 				<real>693262608.93504906</real>
 				<key>ModificationDate</key>
-				<real>693268924.80868304</real>
+				<real>694557766.88374996</real>
 				<key>Name</key>
 				<string>UpWork</string>
 				<key>Triggers</key>
