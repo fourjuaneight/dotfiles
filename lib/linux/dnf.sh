@@ -19,6 +19,7 @@ dnf -y install ansible \
   certbot \
   clang \
   cmake \
+  conda \
   coreutils \
   curl \
   dnf-plugins-core \

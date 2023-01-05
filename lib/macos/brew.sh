@@ -137,6 +137,7 @@ action "installing casks"
   iina \
   keyboard-maestro \
   meta \
+  miniconda \
   monodraw \
   mullvadvpn \
   raycast \
