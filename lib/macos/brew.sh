@@ -67,6 +67,7 @@ action "installing packages"
   imagemagick \
   inetutils \
   jasper \
+  jq \
   libjpeg \
   libmemcached \
   libvips \
