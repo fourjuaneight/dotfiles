@@ -7,6 +7,7 @@ source $HOME/.cargo/env
 
 action "installing fuzzy packages"
 cargo install --locked bat
+cargo install --locked deno
 cargo install --locked pueue
 cargo install --locked sheldon
 cargo install --locked starship
@@ -31,6 +32,7 @@ cargo install amber \
   git-interactive-rebase-tool \
   gitui \
   gping \
+  hurl \
   inlyne \
   procs \
   ripgrep \
