@@ -22,6 +22,9 @@ action "installing Dark Noise"
 action "installing Data Jar"
 /opt/homebrew/bin/mas install 1453273600
 
+action "installing Drafts"
+/opt/homebrew/bin/mas install 1435957248
+
 action "installing GoodLinks"
 /opt/homebrew/bin/mas install 1474335294
 
