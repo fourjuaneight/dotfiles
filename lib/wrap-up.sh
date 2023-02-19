@@ -41,7 +41,12 @@ fi
 # ###########################################################
 bot "Ok. Let's wrap things up."
 
-action "installing zsh plugings"
+if [[ "$OSTYPE" != "darwin"* ]]; then
+  action "setting zsh"
+  chsh -s /bin/zsh root
+fi
+
+action "installing zsh plugins"
 ~/.cargo/bin/sheldon lock
 if [[ $? != 0 ]]; then
   error "unable to run sheldon lock"
