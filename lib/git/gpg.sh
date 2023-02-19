@@ -20,7 +20,6 @@ else
     gpg --armor --export $signingkey
     sed -i "s/signingkey\s=\s.*/signingkey = $signingkey/" ./homedir/.gitconfig
     ok "add the public key to your Github account."
-    exit 0
 fi
 
 action "creating config file"
