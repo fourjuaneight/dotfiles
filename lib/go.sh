@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+source ~/dotfiles/lib/util/echos.sh
+
 minibot "Let's GO."
 
 wget https://golang.org/dl/go1.19.1.linux-amd64.tar.gz
