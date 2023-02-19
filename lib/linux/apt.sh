@@ -77,7 +77,6 @@ apt-get install -y alacritty \
   python3 \
   python3-dev \
   python3-pip \
-  python3-pygments \
   ripgrep \
   rsync \
   sed \
