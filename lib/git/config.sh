@@ -4,6 +4,8 @@ source ~/dotfiles/lib/util/echos.sh
 
 minibot "Little Gary here! Let's update the .gitconfig for your user info."
 
+cp -f ~/dotfiles/homedir/.gitconfig ~/
+
 rg 'user = GITHUBUSER' ./homedir/.gitconfig >/dev/null 2>&1
 if [[ $? = 0 ]]; then
   read -r -p "What is your git username? " githubuser
