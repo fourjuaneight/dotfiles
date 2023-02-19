@@ -43,7 +43,7 @@ bot "Ok. Let's wrap things up."
 
 if [[ "$OSTYPE" != "darwin"* ]]; then
   action "setting zsh"
-  chsh -s /bin/zsh root
+  sudo chsh -s /bin/zsh root
 fi
 
 action "installing zsh plugins"
