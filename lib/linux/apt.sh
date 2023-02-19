@@ -53,6 +53,7 @@ apt-get install -y alacritty \
   libreadline6-dev \
   libsecret-1-0 \
   libsecret-1-dev \
+  libusb-dev \
   libx265-dev \
   libxcb-xfixes0-dev \
   libxkbcommon-dev \
