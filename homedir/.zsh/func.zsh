@@ -328,9 +328,29 @@ mvplex() {
   fi
 }
 
+# merge files to Plex directory and set proper permissions
+mrgplex() {
+  local file=$1
+  local dst=$2
+  local dst_dir=$(dirname $dst)
+
+  if [[ -d $dst_dir ]]; then
+    sudo rsync -av $file $dst
+    sudo chown -R plex.plex "$dst/$file"
+  else
+    echo "Destination directory does not exist: $dst"
+  fi
+}
+
 mvplexdirs() {
   find * -prune -type d | while IFS= read -r dir; do
      mvplex "$dir" $1
+  done
+}
+
+mrgplexdirs() {
+  find * -prune -type d | while IFS= read -r dir; do
+     mrgplex "$dir" $1
   done
 }
 
