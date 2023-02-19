@@ -7,7 +7,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 minibot "Let's download the universe."
-eval "$(fnm env)"
+eval "$(~/.cargo/bin/fnm env)"
 
 ~/.cargo/bin/fnm install --lts
 ~/.cargo/bin/fnm use $(~/.cargo/bin/fnm list | ~/.cargo/bin/sd "\*\s" "" | ~/.cargo/bin/sd "\n" "" | ~/.cargo/bin/sd "%" "" | ~/.cargo/bin/sd ".*v(\d+\.\d+\.\d+)\slts-.*" '$1')
