@@ -5,10 +5,10 @@ source ~/dotfiles/lib/util/echos.sh
 minibot "Let's install some Linux goodies."
 
 action "updating pacman"
-pacman -Syu
+sudo pacman -Syu
 
 action "installing dependencies"
-pacman -S aom \
+sudo pacman -S aom \
   bash \
   ca-certificates \
   certbot \
