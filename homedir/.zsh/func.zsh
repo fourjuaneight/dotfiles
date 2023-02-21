@@ -342,6 +342,21 @@ mrgplex() {
   fi
 }
 
+# replace files to Plex directory and set proper permissions
+rpplex() {
+  local file=$1
+  local dst=$2
+  local dst_dir=$(dirname $dst)
+
+  if [[ -d $dst_dir ]]; then
+    yes | sudo rm "$dst/$file" &&
+    sudo mv $file $dst &&
+    sudo chown -R plex.plex "$dst/$file"
+  else
+    echo "Destination directory does not exist: $dst"
+  fi
+}
+
 mvplexdirs() {
   find * -prune -type d | while IFS= read -r dir; do
      mvplex "$dir" $1
