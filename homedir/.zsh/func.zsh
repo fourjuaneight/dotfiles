@@ -375,6 +375,12 @@ mvplexfiles() {
   done
 }
 
+rpplexfiles() {
+  find . -type f -print0 | while IFS= read -r -d $'\0' file; do
+     rpplex "$file" $1
+  done
+}
+
 # select two files, but fold lines longer than 20 characters, then diff (via delta)
 diffLongSel() {
   local file1 file2
