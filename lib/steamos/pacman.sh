@@ -5,6 +5,7 @@ source ~/dotfiles/lib/util/echos.sh
 minibot "Let's install some Linux goodies."
 
 action "updating pacman"
+sudo pacman -S archlinux-keyring
 sudo pacman -Syu
 
 action "installing dependencies"
