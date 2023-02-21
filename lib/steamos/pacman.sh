@@ -29,6 +29,7 @@ sudo pacman -S --noconfirm aom \
   gcc \
   ghc \
   git \
+  git-lfs \
   glibc \
   gnupg \
   go \
