@@ -131,12 +131,15 @@ action "installing casks"
   alacritty \
   bartender \
   calibre \
+  diffusionbee \
   discord \
   fission \
   handbrake \
   hazel \
   iina \
+  imageoptim \
   keyboard-maestro \
+  loopback \
   meta \
   miniconda \
   monodraw \

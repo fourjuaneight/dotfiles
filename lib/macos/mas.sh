@@ -2,7 +2,7 @@
 
 source ~/dotfiles/lib/util/echos.sh
 
-minibot "Let's install some apps."
+minibot "Let's install some stuff from the App Store."
 
 action "installing 1Blocker"
 /opt/homebrew/bin/mas install 1365531024
@@ -13,17 +13,26 @@ action "installing 1Password Extension"
 action "installing Affinity Designer"
 /opt/homebrew/bin/mas install 824171161
 
+action "installing Affinity Photo"
+/opt/homebrew/bin/mas install 824183456
+
 action "installing Baking Soda Extension"
 /opt/homebrew/bin/mas install 1601151613
 
 action "installing Dark Noise"
 /opt/homebrew/bin/mas install 1465439395
 
+action "installing Darkroom"
+/opt/homebrew/bin/mas install 953286746
+
 action "installing Data Jar"
 /opt/homebrew/bin/mas install 1453273600
 
 action "installing Drafts"
 /opt/homebrew/bin/mas install 1435957248
+
+action "installing Fantastical"
+/opt/homebrew/bin/mas install 975937182
 
 action "installing GoodLinks"
 /opt/homebrew/bin/mas install 1474335294
@@ -33,6 +42,9 @@ action "installing Grammarly"
 
 action "installing HomeCam"
 /opt/homebrew/bin/mas install 1292995895
+
+action "installing Homecomming for Mastodon"
+/opt/homebrew/bin/mas install 1666139593
 
 action "installing iA Writer"
 /opt/homebrew/bin/mas install 775737590
@@ -64,4 +76,4 @@ action "installing Tot"
 action "installing Vinegar Extension"
 /opt/homebrew/bin/mas install 1591303229
 
-ok "done installing apps."
+ok "done with the App Store."

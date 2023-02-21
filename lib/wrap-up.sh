@@ -55,10 +55,11 @@ else
   ok "zsh plugins installed."
 fi
 
-action "Setting Github CLI editor"
+action "setting Github CLI editor"
 gh config set editor hx
 git lfs install
 action "saving VSCode themes"
+mkdir ~/.vscode/extensions/
 cp ./themes/dracula-pro.vsix ~/.vscode/extensions
 if [[ $? != 0 ]]; then
   error "unable to save theme"
@@ -67,13 +68,7 @@ else
   ok "theme saved."
 fi
 
-action "Install Tenjin"
-cd ~
-git clone git@github.com:fourjuaneight/tenjin.git
-cd ~/tenjin
-make install
-
-action "Downloading Google Chrome"
+action "downloading Google Chrome"
 if [[ "$OSTYPE" == "darwin"* ]]; then
   cd ~/Downloads
   curl -O https://dl.google.com/chrome/mac/universal/stable/GGRO/googlechrome.dmg
@@ -83,18 +78,6 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
 else
   cd ~
   curl -O https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-fi
-
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  action "Downloading UpWork"
-  cd ~/Downloads
-  curl -O https://upwork-usw2-desktopapp.upwork.com/binaries/v5_8_0_24_aef0dc8c37cf46a8/Upwork.dmg
-fi
-
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  action "Downloading Doppler"
-  cd ~/Downloads
-  curl -O https://updates.brushedtype.co/doppler-macos/download
 fi
 
 bot "All done! Gary out."

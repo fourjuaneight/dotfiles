@@ -24,7 +24,7 @@ if [[ "$OS" == "Fedora" ]]; then
     --add-repo \
     https://download.docker.com/linux/fedora/docker-ce.repo
 
-  action "install docker"
+  action "installing docker"
   dnf -y install docker-ce docker-ce-cli containerd.io
 
   action "enable service on startup"
@@ -41,7 +41,7 @@ elif [[ "$OS" == "Ubuntu" ]] || [[ "$OS" == "Pop!_OS" ]]; then
     "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
     $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-  action "install docker"
+  action "installing docker"
   sudo apt-get update
   sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 
@@ -66,7 +66,7 @@ if [[ "$OSTYPE" != "darwin"* ]]; then
   action "test install"
   docker run hello-world
 
-  action "install docker compose"
+  action "installing docker compose"
   sudo curl -L "https://github.com/docker/compose/releases/download/$DC_VER/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
   sudo chmod +x /usr/local/bin/docker-compose
   sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
