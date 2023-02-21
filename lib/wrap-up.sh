@@ -68,17 +68,8 @@ else
   ok "theme saved."
 fi
 
-action "downloading Google Chrome"
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  cd ~/Downloads
-  curl -O https://dl.google.com/chrome/mac/universal/stable/GGRO/googlechrome.dmg
-elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  cd ~
-  curl -O https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-else
-  cd ~
-  curl -O https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-fi
+action "enableing steam readonly mode"
+sudo steamos-readonly enable;
 
 bot "All done! Gary out."
 minibot "Little Gary out, too!"

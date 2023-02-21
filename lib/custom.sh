@@ -19,4 +19,16 @@ read -p 'TMDB API KEY: ' tmdb_api_key &&
 echo "TMDB_KEY=$tmdb_api_key" >> .env &&
 make install
 
+action "downloading Google Chrome"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  cd ~/Downloads
+  curl -O https://dl.google.com/chrome/mac/universal/stable/GGRO/googlechrome.dmg
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  cd ~
+  curl -O https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+else
+  cd ~
+  curl -O https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+fi
+
 ok "listo"

@@ -4,6 +4,9 @@ source ~/dotfiles/lib/util/echos.sh
 
 minibot "Let's install some Linux goodies."
 
+action "disableing steam readonly mode"
+sudo steamos-readonly disable
+
 action "updating pacman"
 sudo pacman -S archlinux-keyring
 sudo pacman -Syu
@@ -12,6 +15,7 @@ action "installing dependencies"
 sudo pacman-key --init
 sudo pacman -Sy aom \
   bash \
+  base-devel \
   ca-certificates \
   certbot \
   clang \
@@ -24,6 +28,7 @@ sudo pacman -Sy aom \
   ghc \
   git \
   gnupg \
+  go \
   jasper \
   libconfig \
   libjpeg-turbo \
