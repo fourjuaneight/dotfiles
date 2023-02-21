@@ -8,12 +8,13 @@ action "disableing steam readonly mode"
 sudo steamos-readonly disable
 
 action "updating pacman"
-sudo pacman -S archlinux-keyring
+sudo pacman -S --noconfirm archlinux-keyring
 sudo pacman -Syu
 
 action "installing dependencies"
 sudo pacman-key --init
-sudo pacman -Sy aom \
+sudo pacman-key --populate archlinux
+sudo pacman -S --noconfirm aom \
   bash \
   base-devel \
   ca-certificates \
@@ -22,11 +23,13 @@ sudo pacman -Sy aom \
   cmake \
   coreutils \
   curl \
+  fakeroot \
   findutils \
   gawk \
   gcc \
   ghc \
   git \
+  glibc \
   gnupg \
   go \
   jasper \
@@ -36,10 +39,17 @@ sudo pacman -Sy aom \
   libsecret \
   libxcb \
   libxkbcommon \
+  linux-api-headers \
+  linux-neptune-headers \
   mediainfo \
+  mlocate \
+  ncdu \
   neovim \
+  ninja \
+  openssl \
   perl \
   pkgconf \
+  podman \
   python \
   python-pip \
   readline \
@@ -56,6 +66,7 @@ sudo pacman -Sy aom \
   xsel \
   xz \
   zip \
+  zlib \
   zsh
 
 action "cleaning up"

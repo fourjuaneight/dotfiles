@@ -28,7 +28,11 @@ brew analytics off
 action "updating homebrew directories"
 brew update
 
+action "install gcc"
+brew install gcc
+
 action "installing complicated packages"
+python3.10 -m pip install Brotli
 brew install homebrew-ffmpeg/ffmpeg/ffmpeg --HEAD
 brew tap helix-editor/helix
 brew install helix
@@ -40,8 +44,7 @@ brew install ack \
   gum \
   pnpm \
   rclone \
-  webp \
-  yt-dlp/taps/yt-dlp
+  webp
 
 action "cleaning up"
 brew cleanup

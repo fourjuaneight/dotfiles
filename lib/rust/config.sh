@@ -18,6 +18,7 @@ fi
 action "installing rustup"
 source $HOME/.cargo/env
 rustup toolchain install nightly --allow-downgrade --profile minimal --component clippy
+rustup default nightly
 if [[ $? != 0 ]]; then
   error "unable to install rustup"
   exit 2
