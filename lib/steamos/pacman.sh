@@ -8,7 +8,8 @@ action "updating pacman"
 sudo pacman -Syu
 
 action "installing dependencies"
-sudo pacman -S aom \
+sudo pacman-key --init
+sudo pacman -Sy aom \
   bash \
   ca-certificates \
   certbot \
