@@ -4,53 +4,43 @@ source ~/dotfiles/lib/util/echos.sh
 
 minibot "Let's install some Linux goodies."
 
-action "updating dnf directories"
-dnf check-update
-dnf -y upgrade
-dnf -y autoremove
-
-action "adding zfs repo"
-dnf install -y https://zfsonlinux.org/fedora/zfs-release$(rpm -E %dist).noarch.rpm
+action "updating pacman"
+pacman -Syu
 
 action "installing dependencies"
-dnf -y install bash \
+pacman -S aom \
+  bash \
   ca-certificates \
   certbot \
   clang \
   cmake \
-  conda \
   coreutils \
   curl \
-  dnf-plugins-core \
   findutils \
-  g++ \
   gawk \
   gcc \
-  gcc-c++ \
   ghc \
   git \
-  git-lfs \
   gnupg \
-  indent \
-  inotify-tools \
   jasper \
-  kernel-devel \
-  libaom \
-  libjpeg \
+  libconfig \
+  libjpeg-turbo \
   libmemcached-awesome \
   libsecret \
-  libxcb-devel \
-  libxkbcommon-devel \
+  libxcb \
+  libxkbcommon \
   mediainfo \
+  neovim \
   perl \
   pkgconf \
-  python3 \
-  python3-pip \
+  python \
+  python-pip \
   readline \
   ripgrep \
   rsync \
   sed \
   stow \
+  tar \
   the_silver_searcher \
   tmux \
   unzip \
@@ -61,12 +51,7 @@ dnf -y install bash \
   zip \
   zsh
 
-yum install tar
-
-action "installing alacritty"
-dnf -y install rust-alacritty
-
 action "cleaning up"
-dnf clean all
+sudo pacman -Sc
 
 ok "done installing dependencies."
