@@ -4,9 +4,9 @@ source ~/dotfiles/lib/util/echos.sh
 
 minibot "Little Gary here! Let's update the .gitconfig for your user info."
 
-cp -f ~/dotfiles/homedir/.gitconfig ~/
+cp -f .gitconfig ~/
 
-rg 'user = GITHUBUSER' ./homedir/.gitconfig >/dev/null 2>&1
+rg 'user = GITHUBUSER' .gitconfig >/dev/null 2>&1
 if [[ $? = 0 ]]; then
   read -r -p "What is your git username? " githubuser
 
@@ -59,20 +59,20 @@ if [[ $? = 0 ]]; then
 
   # test if gnu-sed or MacOS sed
 
-  sed -i "s/name\s=\s.*/name = $firstname $lastname/" ./homedir/.gitconfig >/dev/null 2>&1 | true
+  sed -i "s/name\s=\s.*/name = $firstname $lastname/" .gitconfig >/dev/null 2>&1 | true
   if [[ ${PIPESTATUS[0]} != 0 ]]; then
     echo
     running "looks like you are using MacOS sed rather than gnu-sed, accommodating..."
-    sed -i '' "s/name\s=\s.*/name = $firstname $lastname/" ./homedir/.gitconfig
-    sed -i '' 's/email\s=\s.*/email = '$email'/' ./homedir/.gitconfig
-    sed -i '' 's/user\s=\s.*/user = '$githubuser'/' ./homedir/.gitconfig
+    sed -i '' "s/name\s=\s.*/name = $firstname $lastname/" .gitconfig
+    sed -i '' 's/email\s=\s.*/email = '$email'/' .gitconfig
+    sed -i '' 's/user\s=\s.*/user = '$githubuser'/' .gitconfig
     ok
     exit 0
   else
     echo
     minibot "Looks like you are already using gnu-sed. woot!"
-    sed -i 's/email\s=\s.*/email = '$email'/' ./homedir/.gitconfig
-    sed -i 's/user\s=\s.*/user = '$githubuser'/' ./homedir/.gitconfig
+    sed -i 's/email\s=\s.*/email = '$email'/' .gitconfig
+    sed -i 's/user\s=\s.*/user = '$githubuser'/' .gitconfig
     exit 0
   fi
 fi

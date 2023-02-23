@@ -24,8 +24,6 @@ fi
 # ###########################################################
 bot "Stowing dotfiles."
 
-action "cleaning up gitconfig GPG key"
-~/.cargo/bin/sd '78D4B88F2C94648B21A1F2DA5971AC316779D86D' '' homedir/.gitconfig
 action "running stow"
 cd ~/dotfiles
 stow homedir --adopt
