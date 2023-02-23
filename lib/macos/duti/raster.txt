@@ -1,0 +1,7 @@
+.png
+.jpg
+.jpeg
+.webp
+.avif
+.tiff
+.dng
