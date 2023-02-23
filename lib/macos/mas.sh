@@ -55,11 +55,11 @@ action "installing Logger"
 action "installing Noir Extension"
 /opt/homebrew/bin/mas install 1592917505
 
+action "installing Paste"
+/opt/homebrew/bin/mas install 967805235
+
 action "installing PDF Expert"
 /opt/homebrew/bin/mas install 1055273043
-
-action "installing Service Station"
-/opt/homebrew/bin/mas install 1503136033
 
 action "installing Spark"
 /opt/homebrew/bin/mas install 1176895641
