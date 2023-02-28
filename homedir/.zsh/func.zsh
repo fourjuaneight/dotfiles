@@ -518,13 +518,15 @@ fcdc() {
 fcdr() {
   local dir action
   dir=$(fd -t d --prune . ~/Repos 2>/dev/null | sk) &&
-  action=$(gum choose "cd" "code" "nvim" "hx") &&
+  action=$(gum choose "cd" "code" "fleet" "nvim" "hx") &&
   z "$dir" &&
   fnm use;
   if [[ $action == "cd" ]]; then
     echo "cd $dir";
   elif [[ $action == "code" ]]; then
     code "$dir";
+  elif [[ $action == "fleet" ]]; then
+    fleet "$dir";
   elif [[ $action == "nvim" ]]; then
     nvim "$dir";
   elif [[ $action == "hx" ]]; then
