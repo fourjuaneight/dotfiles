@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+  roonserver:
+    image: steefdebruijn/docker-roonserver:latest
+    container_name: roonserver
+    build:
+      context: .
+      dockerfile: Dockerfile.roon
+    network_mode: host
+    environment:
+      TZ: "America/New_York"
+    volumes:
+      - ./roon-app:/app
+      - ./roon-data:/data
+      - ./roon-backups:/backup
+      - ~/Library/Mobile Documents/com~apple~CloudDocs/Documents/Music:/music
+    restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
