@@ -524,9 +524,9 @@ fcdr() {
   if [[ $action == "cd" ]]; then
     echo "cd $dir";
   elif [[ $action == "code" ]]; then
-    code "$dir";
+    gittower "$dir" && code "$dir";
   elif [[ $action == "fleet" ]]; then
-    fleet "$dir";
+    gittower "$dir" && fleet "$dir";
   elif [[ $action == "nvim" ]]; then
     nvim "$dir";
   elif [[ $action == "hx" ]]; then
