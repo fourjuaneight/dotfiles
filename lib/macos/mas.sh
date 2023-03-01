@@ -61,6 +61,9 @@ action "installing Paste"
 action "installing PDF Expert"
 /opt/homebrew/bin/mas install 1055273043
 
+action "installing Pixelmator Pro"
+/opt/homebrew/bin/mas install 1289583905
+
 action "installing Spark"
 /opt/homebrew/bin/mas install 1176895641
 
