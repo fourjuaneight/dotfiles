@@ -10,10 +10,10 @@ services:
     environment:
       TZ: "America/New_York"
     volumes:
-      - ./roon-app:/app
-      - ./roon-data:/data
-      - ./roon-backups:/backup
-      - ~/Library/Mobile Documents/com~apple~CloudDocs/Documents/Music:/music
+      - ~/roon/app:/app
+      - ~/roon/data:/data
+      - ~/roon/backups:/backup
+      - /mnt/Music:/music
     restart: unless-stopped
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
