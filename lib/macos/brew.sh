@@ -144,6 +144,7 @@ action "installing casks"
   miniconda \
   monodraw \
   mullvadvpn \
+  rapidapi \
   raycast \
   rectangle \
   resilio-sync \
