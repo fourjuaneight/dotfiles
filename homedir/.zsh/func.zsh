@@ -2,6 +2,19 @@ zsh-defer source ${HOME}/dotfiles/lib/util/echos.sh
 
 # UTILITIES #
 
+# choose from different zellij layouts
+zj() {
+  local action
+  action=$(gum choose "dev" "git") &&
+
+  if [[ $action == "dev" ]]; then
+    zellij --layout ~/.config/zellij/layout.dev.yaml;
+  elif [[ $action == "git" ]]; then
+    zellij --layout ~/.config/zellij/layout.git.yaml;
+  fi
+  clear &&
+}
+
 # repeat history
 fh() {
   print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | sk --no-sort --tac | sd ' *[0-9]*\*? *' '' | sd '\\' '\\\\')
