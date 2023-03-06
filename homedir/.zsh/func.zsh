@@ -8,9 +8,9 @@ zjl() {
   action=$(gum choose "dev" "git") &&
 
   if [[ $action == "dev" ]]; then
-    zellij --layout ~/.config/zellij/layout.dev.yaml;
+    zellij --layout ~/.config/zellij/layout.dev.kdl;
   elif [[ $action == "git" ]]; then
-    zellij --layout ~/.config/zellij/layout.git.yaml;
+    zellij --layout ~/.config/zellij/layout.git.kdl;
   fi
   clear &&
 }
