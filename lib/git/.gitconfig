@@ -40,6 +40,9 @@
 [merge]
   conflictstyle = diff3
 
+[absorb]
+    maxStack=150
+
 [mergetool]
   keepBackup = true
   prompt = false

@@ -27,6 +27,7 @@ cargo install amber \
   exa \
   fd-find \
   fnm \
+  git-absorb \
   git-cliff \
   git-delta \
   git-interactive-rebase-tool \
