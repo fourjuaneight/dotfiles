@@ -49,6 +49,9 @@ action "installing Homecomming for Mastodon"
 action "installing iA Writer"
 /opt/homebrew/bin/mas install 775737590
 
+action "installing iFlicks"
+/opt/homebrew/bin/mas install 1274494218
+
 action "installing Logger"
 /opt/homebrew/bin/mas install 1611554653
 
