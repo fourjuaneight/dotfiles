@@ -1,6 +1,7 @@
 # Homebrew
 if [[ "$OSTYPE" == "darwin"* ]]; then
   export PATH="/opt/homebrew/bin:$PATH"
+  export JAVA_HOME=$(/usr/libexec/java_home
 else
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
