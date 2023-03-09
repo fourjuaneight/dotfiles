@@ -18,6 +18,10 @@ else
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
+# Java
+export JAVA_HOME=$(/usr/libexec/java_home)
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
 # Exo
 export PATH=$PATH:$HOME/.exo/bin
 

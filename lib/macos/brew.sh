@@ -67,6 +67,7 @@ action "installing packages"
   imagemagick \
   inetutils \
   jasper \
+  java \
   jq \
   libjpeg \
   libmemcached \
@@ -119,7 +120,7 @@ action "installing packages"
   yt-dlp/taps/yt-dlp
 
 action "installing complicated packages"
-/opt/homebrew/bin/brew install homebrew-ffmpeg/ffmpeg/ffmpeg
+/opt/homebrew/bin/brew install homebrew-ffmpeg/ffmpeg/ffmpeg --with-xvid --with-fdk-aac
 /opt/homebrew/bin/brew tap heroku/brew
 /opt/homebrew/bin/brew install heroku
 /opt/homebrew/bin/brew tap helix-editor/helix
@@ -161,5 +162,8 @@ rm -f -r /Library/Caches/Homebrew/*
 # Just to avoid a potential bug
 mkdir -p ~/Library/Caches/Homebrew/Formula
 /opt/homebrew/bin/brew doctor
+
+# Symlink openjdk to the proper place
+sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
 
 ok "we are now proper drunk."

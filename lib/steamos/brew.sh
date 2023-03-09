@@ -33,7 +33,7 @@ brew install gcc
 
 action "installing complicated packages"
 python3.10 -m pip install Brotli
-brew install homebrew-ffmpeg/ffmpeg/ffmpeg --HEAD
+brew install homebrew-ffmpeg/ffmpeg/ffmpeg --with-xvid --with-fdk-aac
 brew tap helix-editor/helix
 brew install helix
 
