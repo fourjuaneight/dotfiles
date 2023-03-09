@@ -63,6 +63,7 @@ action "cleaning up"
 sudo apt-get autoclean -y
 
 action "installing binary"
+cd ~
 git clone git@github.com:HandBrake/HandBrake.git && cd HandBrake
 ./configure --launch-jobs=$(nproc) --launch &&
 sudo make --directory=build install;
