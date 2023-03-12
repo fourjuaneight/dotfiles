@@ -22,6 +22,7 @@ cargo install atuin \
   fnm \
   git-delta \
   git-interactive-rebase-tool \
+  halp \
   ripgrep \
   rm-improved \
   sd \

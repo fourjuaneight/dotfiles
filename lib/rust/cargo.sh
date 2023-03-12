@@ -33,6 +33,7 @@ cargo install amber \
   git-interactive-rebase-tool \
   gitui \
   gping \
+  halp \
   hurl \
   inlyne \
   os_info_cli \
