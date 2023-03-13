@@ -13,6 +13,6 @@ eval "$(~/.cargo/bin/fnm env)"
 ~/.cargo/bin/fnm use $(~/.cargo/bin/fnm list | ~/.cargo/bin/sd "\*\s" "" | ~/.cargo/bin/sd "\n" "" | ~/.cargo/bin/sd "%" "" | ~/.cargo/bin/sd ".*v(\d+\.\d+\.\d+)\slts-.*" '$1')
 
 action "installing global npm dependencies"
-npm i -g cssmodules-language-server eslint fkill-cli glyphhanger neovim prettier serve typescript typescript-language-server vscode-langservers-extracted @angular/language-server @tailwindcss/language-server
+pnpm i -g @githubnext/github-copilot-cli cssmodules-language-server eslint fkill-cli glyphhanger neovim prettier serve typescript typescript-language-server vscode-langservers-extracted @angular/language-server @tailwindcss/language-server
 
 ok "dome taking up half our storage."
