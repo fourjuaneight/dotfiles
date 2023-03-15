@@ -527,6 +527,7 @@ fcdc() {
   fi
   clear &&
 }
+
 # cd to repo directory and open with selected action
 fcdr() {
   local dir action
@@ -537,9 +538,9 @@ fcdr() {
   if [[ $action == "cd" ]]; then
     echo "cd $dir";
   elif [[ $action == "code" ]]; then
-    gittower "$dir" && code "$dir";
+    code "$dir";
   elif [[ $action == "fleet" ]]; then
-    gittower "$dir" && fleet "$dir";
+    fleet "$dir";
   elif [[ $action == "nvim" ]]; then
     nvim "$dir";
   elif [[ $action == "hx" ]]; then
