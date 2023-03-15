@@ -718,7 +718,7 @@ FZF-EOF"
 }
 
 # find git commit and print selected message for new commit
-fgcm() {
+gpcm() {
   local commits commit
   commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%N%Creset %s' --abbrev-commit --reverse) &&
     commit=$(echo "$commits" | sk --ansi --tac --no-sort --exact | sd "^[a-z0-9]+\s-\s([a-zA-z\s]+).?" "$1") &&
@@ -727,7 +727,7 @@ fgcm() {
 }
 
 # find git commit and print details
-fgcp() {
+gscm() {
   local commits commit
   commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%N%Creset %s' --abbrev-commit --reverse) &&
   commit=$(echo "$commits" | sk --ansi --tac --no-sort --exact | sd "^([a-z0-9]+)\s-\s.*" "$1") &&
@@ -735,7 +735,7 @@ fgcp() {
 }
 
 # edit commit
-gec() {
+gecm() {
   local commits commit id
   commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --reverse) &&
     commit=$(echo "$commits" | sk --ansi --tac --no-sort --exact) &&
