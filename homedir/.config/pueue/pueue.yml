@@ -3,12 +3,8 @@ shared:
   pueue_directory: ~/.local/share/pueue
   use_unix_socket: true
   runtime_directory: null
-  unix_socket_path: ~/.local/share/pueue/pueue_your_user.socket
   host: "localhost"
   port: "6924"
-  daemon_cert: ~/.local/share/pueue/certs/daemon.cert
-  daemon_key: ~/.local/share/pueue/certs/daemon.key
-  shared_secret_path: ~/.local/share/pueue/shared_secret
 
 client:
   restart_in_place: false
