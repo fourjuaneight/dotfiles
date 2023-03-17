@@ -1,7 +1,6 @@
 ---
 shared:
-  pueue_directory: ~/.local/share/pueue
-  use_unix_socket: true
+  use_unix_socket: false
   runtime_directory: null
   host: "localhost"
   port: "6924"
