@@ -22,5 +22,3 @@ daemon:
   pause_all_on_failure: false
   callback: "\"Task {{ id }}\nCommand: {{ command }}\nPath: {{ path }}\nFinished with status '{{ result }}'\""
   callback_log_lines: 10
-  groups:
-    default: 1
