@@ -79,9 +79,9 @@ alias crol="crontab -l"
 # zellij
 alias tmux="zellij"
 alias zj="zellij"
-alias zjconf="hx ~/.config/zellij/config.yaml"
-alias zjdev="zellij --layout ~/.config/zellij/layout.dev.yaml"
-alias zjgit="zellij --layout ~/.config/zellij/layout.git.yaml"
+alias zjconf="hx ~/.config/zellij/config.kdl"
+alias zjdev="zellij --layout ~/.config/zellij/layout.dev.kdl"
+alias zjgit="zellij --layout ~/.config/zellij/layout.git.kdl"
 
 # ssh
 alias rssh="sudo service ssh --full-restart"
