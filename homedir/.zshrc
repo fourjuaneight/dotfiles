@@ -36,6 +36,9 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH=$HOME/.fnm:$PATH
 eval "`fnm env`"
 
+# frum
+eval "$(frum init)"
+
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"

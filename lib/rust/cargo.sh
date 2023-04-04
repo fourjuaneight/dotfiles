@@ -27,6 +27,7 @@ cargo install amber \
   exa \
   fd-find \
   fnm \
+  frum \
   git-absorb \
   git-cliff \
   git-delta \
