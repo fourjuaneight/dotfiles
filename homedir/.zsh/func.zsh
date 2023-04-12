@@ -860,6 +860,14 @@ dckrmcn() {
     docker container rm $containerList
 }
 
+# find and build docker services
+dckbd() {
+  local services selectedService
+  services=$(yq -M '.services | keys' docker-compose.yml | sd '\-\s' '') &&
+  selectedService=$(echo "$services" | gum choose) &&
+  clear && docker compose build $selectedService
+}
+
 # find and start docker services
 dckup() {
   local services selectedService
