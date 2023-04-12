@@ -269,6 +269,24 @@ brn() {
   done
 }
 
+# batch rename files to lowercase
+brnl() {
+  local files filesMatch
+  # remove quotes
+  filesMatch=$(sd '^"(.*)"$' '$1' <<<$3)
+  # convert to list
+  IFS=$'\n' files=($(echo $filesMatch | ls))
+
+  for file in $files; do
+    new=$(echo "$file" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$file" != "$lowercase_file" ]; then
+      mv "$file" "$new" &&
+      echo "$file -> $new"
+    fi
+  done
+}
+
 brn_count() {
   local files filesMatch
   TEMPFILE=/tmp/counter.tmp
