@@ -53,6 +53,7 @@ brew install ack \
   rclone \
   restic \
   webp \
+  yq \
   yt-dlp/taps/yt-dlp
 
 action "cleaning up"

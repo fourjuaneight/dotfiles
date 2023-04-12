@@ -863,7 +863,7 @@ dckrmcn() {
 # find and start docker services
 dckup() {
   local services selectedService
-  services=$(docker-compose ps --services) &&
-    selectedService=$(echo "$services" | gum filter) &&
-    clear && docker compose up $selectedService
+  services=$(yq -M '.services | keys' docker-compose.yml | sd '\-\s' '') &&
+  selectedService=$(echo "$services" | gum choose) &&
+  clear && docker compose up $selectedService
 }

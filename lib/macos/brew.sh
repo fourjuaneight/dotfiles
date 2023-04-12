@@ -117,6 +117,7 @@ action "installing packages"
   wget \
   wireshark \
   xz \
+  yq \
   yt-dlp/taps/yt-dlp
 
 action "installing complicated packages"
