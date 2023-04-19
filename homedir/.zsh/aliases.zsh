@@ -119,6 +119,7 @@ alias gc="git commit -S"
 alias gf="git fetch"
 
 alias gup="git push"
+alias gupf="git push --force"
 alias gupt="git push --tags"
 
 alias gp="git pull --rebase"
