@@ -67,6 +67,9 @@ action "installing PDF Expert"
 action "installing Pixelmator Pro"
 /opt/homebrew/bin/mas install 1289583905
 
+action "installing Refined GitHub"
+/opt/homebrew/bin/mas install 1519867270
+
 action "installing Spark"
 /opt/homebrew/bin/mas install 1176895641
 
