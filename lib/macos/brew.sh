@@ -133,6 +133,7 @@ action "installing casks"
   alacritty \
   bartender \
   calibre \
+  clickup \
   diffusionbee \
   discord \
   fission \
@@ -143,13 +144,10 @@ action "installing casks"
   keyboard-maestro \
   loopback \
   meta \
-  miniconda \
   monodraw \
   mullvadvpn \
   rapidapi \
   raycast \
-  rectangle \
-  resilio-sync \
   slack \
   soundsource \
   tableplus \
