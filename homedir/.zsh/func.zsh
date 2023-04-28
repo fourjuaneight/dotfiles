@@ -48,10 +48,14 @@ timezsh() {
 # check for open ports
 portcheck() {
   local port
-  port=$(hostname -I | cut -f1 -d' ')
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    port=$(ipconfig getifaddr en0 || ipconfig getifaddr en1)
+  else
+    port=$(hostname -I | cut -f1 -d' ')
+  fi
 
   echo "Checking port $port..."
-  rustscan --top -a $port
+  rustscan -n --top -a $port
 }
 
 # system dependencies and tooling updates
