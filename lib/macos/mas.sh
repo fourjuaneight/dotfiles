@@ -19,6 +19,9 @@ action "installing Affinity Photo"
 action "installing Baking Soda Extension"
 /opt/homebrew/bin/mas install 1601151613
 
+action "installing Better JSON Extension"
+/opt/homebrew/bin/mas install 1511935951
+
 action "installing Dark Noise"
 /opt/homebrew/bin/mas install 1465439395
 
@@ -27,6 +30,9 @@ action "installing Darkroom"
 
 action "installing Data Jar"
 /opt/homebrew/bin/mas install 1453273600
+
+action "installing Deliveries"
+/opt/homebrew/bin/mas install 290986013
 
 action "installing Drafts"
 /opt/homebrew/bin/mas install 1435957248
