@@ -134,6 +134,7 @@ action "installing casks"
   bartender \
   calibre \
   clickup \
+  cron \
   diffusionbee \
   discord \
   fission \

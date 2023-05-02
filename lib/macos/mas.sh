@@ -31,9 +31,6 @@ action "installing Data Jar"
 action "installing Drafts"
 /opt/homebrew/bin/mas install 1435957248
 
-action "installing Fantastical"
-/opt/homebrew/bin/mas install 975937182
-
 action "installing GoodLinks"
 /opt/homebrew/bin/mas install 1474335294
 
