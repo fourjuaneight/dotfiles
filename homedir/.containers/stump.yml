@@ -6,9 +6,7 @@ services:
     volumes:
       - ~/.config/stump:/config
       - ~/.config/stump/data:/data
-      - ~/Books:/books
-      - ~/Comics:/comics
-      - ~/Manga:/manga
+      - ~/Media:/Media
     ports:
       - 10801:10801
     user: "1000:1000"

@@ -16,16 +16,8 @@ services:
         target: /etc/timezone
         read_only: true
       - type: bind
-        source: ~/Books
-        target: /books
-        read_only: true
-      - type: bind
-        source: ~/Comics
-        target: /comics
-        read_only: true
-      - type: bind
-        source: ~/Manga
-        target: /manga
+        source: ~/Media
+        target: /media
         read_only: true
     ports:
       - 8787:8080

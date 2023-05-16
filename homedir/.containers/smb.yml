@@ -19,11 +19,9 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - ~/Books:/books
-      - ~/Comics:/comics
-      - ~/Manga:/manga
+      - ~/Media:/Media
     env_file: .env
-    command: '-s "Media;/mnt;yes;no;no;fourjuaneight" -u "fourjuaneight;${SMB_PASSWORD}" -p'
+    command: '-s "Media;~/Media;yes;no;no;fourjuaneight" -u "fourjuaneight;${SMB_PASSWORD}" -p'
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
 
