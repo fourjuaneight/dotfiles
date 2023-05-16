@@ -19,7 +19,9 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - /mnt:/mnt
+      - ~/Books:/books
+      - ~/Comics:/comics
+      - ~/Manga:/manga
     env_file: .env
     command: '-s "Media;/mnt;yes;no;no;fourjuaneight" -u "fourjuaneight;${SMB_PASSWORD}" -p'
     labels:

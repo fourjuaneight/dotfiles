@@ -1,18 +1,20 @@
 version: "3.3"
 services:
   stump:
-    image: aaronleopold/stump-preview
+    image: aaronleopold/stump
     container_name: stump
     volumes:
       - ~/.config/stump:/config
       - ~/.config/stump/data:/data
-      - /mnt/Books:/books
-      - /mnt/Comics:/comics
-      - /mnt/Manga:/manga
+      - ~/Books:/books
+      - ~/Comics:/comics
+      - ~/Manga:/manga
     ports:
       - 10801:10801
     user: "1000:1000"
     environment:
+      - PUID=1000
+      - PGID=1000
       - STUMP_LOG_VERBOSITY=4
       - RUST_BACKTRACE=1
     restart: unless-stopped

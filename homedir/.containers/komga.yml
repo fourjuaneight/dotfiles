@@ -1,39 +1,9 @@
 ---
-version: "3.8"
+version: "3.3"
 services:
-  rclone:
-    image: rclone/rclone
-    container_name: rclone
-    restart: unless-stopped
-    network_mode: host
-    environment:
-      - PUID=1000
-      - PGID=1000
-    volumes:
-      - /etc/passwd:/etc/passwd:ro
-      - /etc/group:/etc/group:ro
-      - ~/.config/rclone:/config/rclone
-      - ~/.config/rclone/log:/log
-      - ~/.config/rclone/cache:/cache
-      - type: bind
-        source: /media/rclone
-        target: /helms-deep
-        bind:
-          propagation: shared
-    privileged: true
-    cap_add:
-      - SYS_ADMIN
-    devices:
-      - /dev/fuse
-    security_opt:
-      - apparmor:unconfined
-    command: "mount b2:helms-deep/Media /helms-deep/Media --allow-non-empty --log-level DEBUG --read-only --allow-other --umask 002 --drive-pacer-min-sleep 10ms --drive-pacer-burst 200 --vfs-cache-mode full --cache-dir ~/.config/rclone/cache --vfs-cache-max-size 250G --vfs-cache-max-age 5000h --bwlimit-file 32M"
   komga:
     image: gotson/komga
     container_name: komga
-    restart: unless-stopped
-    depends_on:
-      - rclone
     volumes:
       - type: bind
         source: ~/.config/komga
@@ -46,12 +16,22 @@ services:
         target: /etc/timezone
         read_only: true
       - type: bind
-        source: /media/rclone
-        target: /rclone
-        bind:
-          propagation: rslave
+        source: ~/Books
+        target: /books
+        read_only: true
+      - type: bind
+        source: ~/Comics
+        target: /comics
+        read_only: true
+      - type: bind
+        source: ~/Manga
+        target: /manga
+        read_only: true
     ports:
       - 8787:8080
     user: "1000:1000"
     environment:
       KOMGA_LIBRARIES_SCAN_STARTUP: "true"
+    restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
