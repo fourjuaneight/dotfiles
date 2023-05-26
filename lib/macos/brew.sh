@@ -130,6 +130,7 @@ action "installing complicated packages"
 
 action "installing casks"
 /opt/homebrew/bin/brew install --cask 1password \
+  1password/tap/1password-cli \
   alacritty \
   bartender \
   calibre \
