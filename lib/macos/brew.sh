@@ -139,6 +139,7 @@ action "installing casks"
   diffusionbee \
   discord \
   fission \
+  glow \
   handbrake \
   hazel \
   iina \
