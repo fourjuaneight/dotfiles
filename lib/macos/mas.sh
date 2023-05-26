@@ -22,6 +22,9 @@ action "installing Baking Soda Extension"
 action "installing Better JSON Extension"
 /opt/homebrew/bin/mas install 1511935951
 
+action "installing Cascadea Extension"
+/opt/homebrew/bin/mas install 1432182561
+
 action "installing Dark Noise"
 /opt/homebrew/bin/mas install 1465439395
 
