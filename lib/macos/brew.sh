@@ -133,6 +133,7 @@ action "installing casks"
   alacritty \
   bartender \
   calibre \
+  charmbracelet/tap/mods \
   clickup \
   cron \
   diffusionbee \

@@ -35,6 +35,7 @@ brew install helix
 
 action "installing packages"
 brew install ack \
+  charmbracelet/tap/mods \
   cocoapods \
   dive \
   dog \
