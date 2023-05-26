@@ -879,3 +879,16 @@ dckup() {
   selectedService=$(echo "$services" | gum choose) &&
   clear && docker compose up $selectedService
 }
+
+# AI #
+mds() {
+  local file prompt key
+  IFS=$'\n' file=($(sk --query "$1" --no-multi --select-1 --exit-0))
+  prompt=$(gum input --placeholder "Prompt")
+  key=$(op item get OpenAI --vault Personal --fields label="api key")
+
+  if [[ -n "$file" ]]; then
+    export OPENAI_API_KEY=key &&
+    mods -f "$prompt" < $file | glow
+  fi
+}
