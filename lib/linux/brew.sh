@@ -47,6 +47,7 @@ brew install ack \
   go \
   gum \
   hugo \
+  jesseduffield/lazydocker/lazydocker \
   lindell/multi-gitter/multi-gitter \
   lux \
   neovim \

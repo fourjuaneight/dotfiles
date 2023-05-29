@@ -147,6 +147,9 @@ alias gtv="git tag | sort -V"
 
 alias ggc="git gc --aggressive --prune"
 
+# Docker
+alias lzd="lazydocker"
+
 # system update
 alias rup="rustup update"
 alias cup="cargo install-update -a"
