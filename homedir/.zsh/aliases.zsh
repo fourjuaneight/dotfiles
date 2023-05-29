@@ -53,6 +53,7 @@ alias hgrep="history | ag"
 alias whois="whois -h whois-servers.net"
 alias netstatus="sudo $HOME/.cargo/bin/bandwhich -n"
 alias dig="dog"
+alias sniffnet="sudo ~/.cargo/bin/sniffnet"
 
 # zsh
 alias zconf="hx ~/.zshrc"
