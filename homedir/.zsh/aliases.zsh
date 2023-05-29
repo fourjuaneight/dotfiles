@@ -20,6 +20,7 @@ alias hiccup="czkawka_cli"
 alias dupefs="czkawka_cli"
 alias plexperm="sudo chown -R plex.plex"
 alias pueue="pueue -c ~/.config/pueue/pueue.yml"
+alias srip="sudo ~/.cargo/bin/rip -d"
 
 # alternative to 'cat'
 alias cat="bat"
