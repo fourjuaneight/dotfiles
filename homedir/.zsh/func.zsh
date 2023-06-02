@@ -3,7 +3,7 @@ zsh-defer source ${HOME}/dotfiles/lib/util/echos.sh
 # UTILITIES #
 
 # choose from different zellij layouts
-zjl() {
+zlj() {
   local action
   action=$(gum choose "dev" "git") &&
 
