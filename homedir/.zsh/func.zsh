@@ -2,6 +2,10 @@ zsh-defer source ${HOME}/dotfiles/lib/util/echos.sh
 
 # UTILITIES #
 
+puewget() {
+  pueue -c ~/.config/pueue/pueue.yml add "wget $1"
+}
+
 # choose from different zellij layouts
 zlj() {
   local action
