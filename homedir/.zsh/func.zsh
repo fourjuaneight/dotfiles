@@ -7,7 +7,7 @@ puewget() {
   prompt=$(gum input --placeholder "Magnet") &&
   
   if [[ -n "$prompt" ]]; then
-    pueue -c ~/.config/pueue/pueue.yml add "wget $prompt"
+    pueue add "wget $prompt"
   else
     echo "No magnet link provided."
   fi
