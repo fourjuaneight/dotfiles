@@ -2,7 +2,7 @@
 
 # Required parameters:
 # @raycast.schemaVersion 1
-# @raycast.title Clean Name
+# @raycast.title Clean String
 # @raycast.mode silent
 # @raycast.refreshTime 1h
 
