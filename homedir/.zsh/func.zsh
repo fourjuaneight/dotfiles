@@ -3,7 +3,14 @@ zsh-defer source ${HOME}/dotfiles/lib/util/echos.sh
 # UTILITIES #
 
 puewget() {
-  pueue -c ~/.config/pueue/pueue.yml add "wget $1"
+  local prompt
+  prompt=$(gum input --placeholder "Magnet") &&
+  
+  if [[ -n "$prompt" ]]; then
+    pueue -c ~/.config/pueue/pueue.yml add "wget $prompt"
+  else
+    echo "No magnet link provided."
+  fi
 }
 
 # choose from different zellij layouts
