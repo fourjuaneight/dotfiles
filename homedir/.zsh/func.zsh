@@ -94,11 +94,6 @@ sysup() {
   vim +PlugUpgrade +PlugUpdate +qa
 }
 
-puewget() {
-  local url=$1
-  [[ -n "$url" ]] && pueue add "wget $1"
-}
-
 # FONTS #
 
 # glyphhanger whitelist Latin
