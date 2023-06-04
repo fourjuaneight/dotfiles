@@ -70,6 +70,8 @@ apt-get install -y alacritty \
   mosh \
   ncdu \
   nginx \
+  p7zip-full \
+  p7zip-rar \
   perl \
   pkg-config \
   pandoc \
