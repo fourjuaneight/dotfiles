@@ -586,7 +586,7 @@ fcdr() {
 ffmv() {
   local file dest
   IFS=$'\n' file=($(sk --query "$1" --multi --select-1 --exit-0)) &&
-    dest=$(fd -t f --prune . ./ */\.* 2>/dev/null | sk) &&
+    dest=$(fd -t d --prune . ~ 2>/dev/null | sk) &&
     mv "$file" "$dest"
 }
 
