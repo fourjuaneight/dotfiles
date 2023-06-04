@@ -109,6 +109,7 @@ action "installing packages"
   spark \
   sphinx \
   stow \
+  syncthing \
   tesseract \
   the_silver_searcher \
   tmux \
@@ -155,6 +156,7 @@ action "installing casks"
   raycast \
   slack \
   soundsource \
+  syncthing \
   tableplus \
   transmit \
   visual-studio-code \

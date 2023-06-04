@@ -55,6 +55,7 @@ brew install ack \
   pnpm \
   rclone \
   restic \
+  syncthing \
   webp \
   yq \
   yt-dlp/taps/yt-dlp
