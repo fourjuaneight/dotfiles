@@ -26,6 +26,7 @@ const { exec } = require("child_process");
 const fileNameFmt = (name) => {
   const cleanName = name
     .replace(/^\s/g, "")
+    .replace(/([a-zA-Z0-9])\.([a-zA-Z0-9])/g, "$1_$2")
     .replace(/\.$/g, "")
     .replace(/\?$/g, "")
     .replace(/!$/g, "")
