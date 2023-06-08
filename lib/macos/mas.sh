@@ -67,6 +67,9 @@ action "installing Noir Extension"
 action "installing Paste"
 /opt/homebrew/bin/mas install 967805235
 
+action "installing Photomator"
+/opt/homebrew/bin/mas install 1444636541
+
 action "installing PDF Expert"
 /opt/homebrew/bin/mas install 1055273043
 
