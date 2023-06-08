@@ -7,7 +7,6 @@ services:
     restart: unless-stopped
     volumes:
       - /Library/Application Support/Plex Media Server:/config
-      - /media/Anime/:/Anime
       - /media/Audiobooks:/Audiobooks
       - /media/Movies:/Movies
       - /media/Music:/Music
