@@ -76,6 +76,9 @@ action "installing Pixelmator Pro"
 action "installing Refined GitHub"
 /opt/homebrew/bin/mas install 1519867270
 
+action "installing Re:Toot"
+/opt/homebrew/bin/mas install 1661697436
+
 action "installing Spark"
 /opt/homebrew/bin/mas install 1176895641
 
