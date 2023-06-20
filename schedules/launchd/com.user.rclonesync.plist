@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.user.rclonesync</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>/opt/homebrew/bin/rclone</string>
+      <string>sync</string>
+      <string>~/Documents</string>
+      <string>helms-deep:</string>
+      <string>--exclude</string>
+      <string>~/Documents/Audiobooks</string>
+      <string>--exclude</string>
+      <string>~/Documents/Books</string>
+      <string>--exclude</string>
+      <string>~/Documents/Comics</string>
+      <string>--exclude</string>
+      <string>~/Documents/Emulation</string>
+      <string>--exclude</string>
+      <string>~/Documents/Manga</string>
+      <string>--exclude</string>
+      <string>~/Documents/Music</string>
+      <string>--progress</string>
+      <string>-v</string>
+      <string>--log-file=~/.logs/com.user.rclonesync.log</string>
+    </array>
+    <key>StartInterval</key>
+    <integer>900</integer>
+  </dict>
+</plist>

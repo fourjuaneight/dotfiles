@@ -5,7 +5,23 @@ source ~/dotfiles/lib/util/echos.sh
 action "setting up scheduled tasks"
 
 chmod +x ~/.scripts/*.sh
+
+mkdir ~/.logs;
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
+  for file in ./schedules/launchd/*.plist; do
+    cp $file ~/Library/LaunchAgents
+  done
+
+  for file in ./schedules/launchd/*.plist; do
+    # remove .plist extension
+    filename=$(basename "$file")
+    filename="${filename%.*}"
+
+    touch ~/.logs/$filename.log
+    launchctl load ~/Library/LaunchAgents/$file
+    launchctl start $filename
+  done
 else
   sudo cp ~/dotfiles/schedules/systemd/* /etc/systemd/user/
 
