@@ -362,13 +362,19 @@ bumkvc() {
 
 # move files to Plex directory and set proper permissions
 mvplex() {
-  local file=$1
+  local src=$1
   local dst=$2
   local dst_dir=$(dirname $dst)
 
   if [[ -d $dst_dir ]]; then
-    sudo mv $file $dst
-    sudo chown -R plex.plex "$dst/$file"
+    if [[ -d $src ]]; then
+      sudo mv $src $dst
+      sudo chmod 644 plex.plex "$dst/$src/**/*"
+      sudo chown -R plex.plex "$dst/$src"
+    elif [ -f "$src" ]; then
+      sudo mv $src $dst
+      sudo chown -R plex.plex "$dst/$src"
+    fi
   else
     echo "Destination directory does not exist: $dst"
   fi
