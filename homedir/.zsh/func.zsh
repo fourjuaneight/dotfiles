@@ -369,7 +369,7 @@ mvplex() {
   if [[ -d $dst_dir ]]; then
     if [[ -d $src ]]; then
       sudo mv $src $dst
-      sudo chmod 644 plex.plex "$dst/$src/**/*"
+      sudo chmod 644 "$dst/$src/**/*"
       sudo chown -R plex.plex "$dst/$src"
     elif [ -f "$src" ]; then
       sudo mv $src $dst
