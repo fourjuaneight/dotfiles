@@ -120,8 +120,6 @@ echo "deb [signed-by=/usr/share/keyrings/syncthing-archive-keyring.gpg] https://
 # update and install Syncthing
 sudo apt-get update
 sudo apt-get install syncthing
-systemctl enable "syncthing@$(hostname).service"
-systemctl start "syncthing@$(hostname).service"
 
 action "cleaning up"
 apt-get autoclean -y

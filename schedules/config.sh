@@ -37,6 +37,10 @@ else
     systemctl --user enable "${file}"
   done
 
+  action "autostart syncthing"
+  systemctl enable "syncthing@$(hostname).service"
+  systemctl start "syncthing@$(hostname).service"
+
   action "reloading daemon"
   systemctl --user daemon-reload
 fi
