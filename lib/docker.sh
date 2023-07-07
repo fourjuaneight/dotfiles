@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ~/dotfiles/lib/util/echos.sh
+source ~/dotfiles/util/echos.sh
 
 OS=$(~/.cargo/bin/os_info -t | sd 'OS type: ' '')
 DC_VER=$(/home/linuxbrew/.linuxbrew/bin/gh release list -R docker/compose -L 1 | sd "v([0-9\.]+).*" '$1' )

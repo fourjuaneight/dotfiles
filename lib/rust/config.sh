@@ -4,7 +4,7 @@
 # This script installs the dotfiles and runs all other system configuration scripts
 ###########################
 
-source ~/dotfiles/lib/util/echos.sh
+source ~/dotfiles/util/echos.sh
 
 bot "Installing Rust."
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y

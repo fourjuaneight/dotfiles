@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ~/dotfiles/lib/util/echos.sh
+source ~/dotfiles/util/echos.sh
 
 minibot "Fonts will be saved to your local Fonts directory."
 

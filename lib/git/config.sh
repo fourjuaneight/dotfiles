@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ~/dotfiles/lib/util/echos.sh
+source ~/dotfiles/util/echos.sh
 
 minibot "Little Gary here! Let's update the .gitconfig for your user info."
 

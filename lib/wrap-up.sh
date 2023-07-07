@@ -4,7 +4,7 @@
 # This script installs the dotfiles and runs all other system configuration scripts
 ###########################
 
-source ~/dotfiles/lib/util/echos.sh
+source ~/dotfiles/util/echos.sh
 
 bot "Hey, it's me Gaaary! I'm gonna install some tooling and tweak your system settings. You've been warned!"
 
