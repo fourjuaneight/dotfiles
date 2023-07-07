@@ -4,25 +4,45 @@ Files and scripts for configuring a development and terminal enviromant on macOS
 
 ---
 
-## Installation
+All of these are set up for **my** computers. Install at your own risk.
 
-You can curl the install script and run the script directly:
+## Install
 
-```bash
-curl get.juanvillela.dev | sh
-cd ~/dotfiles
-./install.sh
-```
-
-Or manually clone the repo:
+Manually clone the repo:
 
 ```bash
 git clone https://github.com/fourjuaneight/dotfiles.git
 cd ~/dotfiles
-./install.sh
 ```
 
 ## Bootstrapping
+
+There is no single install script. Everyone system has it's quirks, so it's best to install things in batches. All bootstraping scripts are in the `bash lib` directory. Some subfolders are OS specific, others are software specific. Here's my recomemded install approach:
+
+```sh
+bash lib/git/ssh.sh
+bash lib/git/gpg.sh
+bash lib/git/config.sh
+# macOS  #
+bash lib/macos/brew.sh
+bash lib/macos/mas.sh
+# Ubuntu #
+bash lib/macos/apt.sh
+bash lib/macos/brew.sh
+##########
+bash lib/rust/config.sh
+bash lib/rust/cargo.sh
+bash lib/go.sh
+bash lib/node.sh
+bash lib/python.sh
+bash lib/fonts.sh
+bash lib/docker.sh
+bash lib/wrap-up.sh
+# macOS  #
+bash lib/macos/duti/set.sh
+bash lib/macos/defaults.sh
+##########
+```
 
 ### Installs
 
@@ -31,8 +51,8 @@ cd ~/dotfiles
 - [Rust](https://www.rust-lang.org).
 - `apt-get`, `brew`, and `brew cask` dependencies, relevant to each OS.
 - [sheldon](https://github.com/rossmacarthur/sheldon) for zsh and [plug](https://github.com/zplug/zplug) for vim plugin management.
-- Global npm and pip packages. Some Rust binaries.
 - [rustup](https://github.com/rust-lang/rustup) nightly (with zsh completions) for tooling and version management.
+- Global npm and pip packages. Some Rust binaries.
 
 ### Setup
 
