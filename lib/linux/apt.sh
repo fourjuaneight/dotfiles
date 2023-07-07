@@ -98,6 +98,7 @@ apt-get install -y alacritty \
   zsh
 
 action "installing complicated packages"
+action "1Password CLI..."
 # add 1Password PGP keys
 curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
 # add the 1Password apt repository
@@ -111,6 +112,7 @@ curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --d
 sudo apt update
 sudo apt install 1password-cli
 
+action "Syncthing..."
 # add Syncthing PGP keys
 sudo curl -o /usr/share/keyrings/syncthing-archive-keyring.gpg https://syncthing.net/release-key.gpg
 # add the "stable" channel to your apt sources
@@ -118,6 +120,8 @@ echo "deb [signed-by=/usr/share/keyrings/syncthing-archive-keyring.gpg] https://
 # update and install Syncthing
 sudo apt-get update
 sudo apt-get install syncthing
+systemctl enable "syncthing@$(hostname).service"
+systemctl start "syncthing@$(hostname).service"
 
 action "cleaning up"
 apt-get autoclean -y
