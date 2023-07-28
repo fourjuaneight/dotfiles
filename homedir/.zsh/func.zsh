@@ -731,7 +731,7 @@ grvt() {
   local commits commit
   commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --reverse) &&
     commit=$(echo "$commits" | sk --ansi --tac --no-sort --exact) &&
-    git revert $(echo "$commit" | sd ".* " "")
+    git revert -n $(echo "$commit" | sd ".* " "")
 }
 
 # git checkout commit
