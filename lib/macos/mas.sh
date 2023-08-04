@@ -58,6 +58,9 @@ action "installing iA Writer"
 action "installing iFlicks"
 /opt/homebrew/bin/mas install 1274494218
 
+action "installing Little Snitch Mini"
+/opt/homebrew/bin/mas install 1629008763
+
 action "installing Logger"
 /opt/homebrew/bin/mas install 1611554653
 

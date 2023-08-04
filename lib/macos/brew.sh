@@ -146,6 +146,7 @@ action "installing casks"
   hazel \
   iina \
   imageoptim \
+  istat-menus \
   jesseduffield/lazydocker/lazydocker \
   keyboard-maestro \
   loopback \
