@@ -578,13 +578,12 @@ fcdr() {
     echo "cd $dir";
   elif [[ $action == "code" ]]; then
     code "$dir";
-  elif [[ $action == "fleet" ]]; then
-    fleet "$dir";
   elif [[ $action == "nvim" ]]; then
     nvim "$dir";
   elif [[ $action == "hx" ]]; then
     hx "$dir";
   fi
+  git pull --rebase &&
   clear &&
 }
 
