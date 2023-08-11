@@ -571,7 +571,7 @@ fcdc() {
 fcdr() {
   local dir action
   dir=$(fd -t d --prune . ~/Repos 2>/dev/null | sk) &&
-  action=$(gum choose "cd" "code" "fleet" "nvim" "hx") &&
+  action=$(gum choose "cd" "code" "nvim" "hx") &&
   z "$dir" &&
   fnm use;
   if [[ $action == "cd" ]]; then
