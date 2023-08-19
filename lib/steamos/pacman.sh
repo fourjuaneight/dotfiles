@@ -5,15 +5,15 @@ source ~/dotfiles/util/echos.sh
 minibot "Let's install some Linux goodies."
 
 action "disableing steam readonly mode"
-sudo steamos-readonly disable
+sudo steamos-readonly disable &&
 
 action "updating pacman"
-sudo pacman -S --noconfirm archlinux-keyring
-sudo pacman -Syu
+sudo pacman -S --noconfirm archlinux-keyring &&
+sudo pacman -Syu &&
 
 action "installing dependencies"
-sudo pacman-key --init
-sudo pacman-key --populate archlinux
+sudo pacman-key --init &&
+sudo pacman-key --populate archlinux &&
 sudo pacman -S --noconfirm aom \
   bash \
   base-devel \
@@ -41,6 +41,7 @@ sudo pacman -S --noconfirm aom \
   libxcb \
   libxkbcommon \
   linux-api-headers \
+  linux-headers \
   linux-neptune-headers \
   mediainfo \
   mlocate \
