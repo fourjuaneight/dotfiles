@@ -13,6 +13,6 @@ eval "$(~/.cargo/bin/fnm env)"
 ~/.cargo/bin/fnm use 16
 
 action "installing global npm dependencies"
-pnpm i -g @angular/cli eslint fkill-cli glyphhanger next prettier serve tailwindcss typescript
+npm i -g @angular/cli eslint fkill-cli glyphhanger next prettier serve tailwindcss typescript
 
 ok "done taking up half our storage."

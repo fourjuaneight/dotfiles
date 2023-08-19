@@ -23,19 +23,18 @@ minibot "Let's get some beers."
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 action "turning off analytics"
-brew analytics off
+brew analytics off &&
 
 action "updating homebrew directories"
-brew update
+brew update &&
 
 action "install gcc"
-brew install gcc
+brew install gcc &&
 
 action "installing complicated packages"
-python3.10 -m pip install Brotli
-brew install homebrew-ffmpeg/ffmpeg/ffmpeg --with-xvid --with-fdk-aac --with-libbluray --with-rav1e --with-svt-av1
-brew tap helix-editor/helix
-brew install helix
+brew install homebrew-ffmpeg/ffmpeg/ffmpeg --with-xvid --with-fdk-aac --with-libbluray --with-rav1e --with-svt-av1;
+brew tap helix-editor/helix &&
+brew install helix &&
 
 action "installing packages"
 brew install ack \
@@ -44,7 +43,10 @@ brew install ack \
   gum \
   pnpm \
   rclone \
-  webp
+  syncthing \
+  webp &&
+
+brew services start syncthing
 
 action "cleaning up"
 brew cleanup

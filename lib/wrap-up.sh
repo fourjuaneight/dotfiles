@@ -55,16 +55,6 @@ fi
 
 action "setting Github CLI editor"
 gh config set editor hx
-git lfs install
-action "saving VSCode themes"
-mkdir ~/.vscode/extensions/
-cp ./themes/dracula-pro.vsix ~/.vscode/extensions
-if [[ $? != 0 ]]; then
-  error "unable to save theme"
-  exit 2
-else
-  ok "theme saved."
-fi
 
 action "enableing steam readonly mode"
 sudo steamos-readonly enable;

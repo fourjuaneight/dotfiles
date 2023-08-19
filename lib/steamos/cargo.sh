@@ -2,19 +2,13 @@
 
 source ~/dotfiles/util/echos.sh
 
-action "installing arch essentials"
-sudo pacman -S base-devel
-
 minibot "Let's try to install some cargos."
 source $HOME/.cargo/env
 export GIT_DISCOVERY_ACROSS_FILESYSTEM=1
 
-action "installing fuzzy packages"
-cargo install --locked bat
-cargo install --locked starship
-
 action "installing normal packages"
 cargo install atuin \
+  bat \
   cargo-update \
   coreutils \
   du-dust \
@@ -30,6 +24,7 @@ cargo install atuin \
   sd \
   sheldon \
   skim \
+  starship \
   topgrade \
   tree-rs \
   zoxide

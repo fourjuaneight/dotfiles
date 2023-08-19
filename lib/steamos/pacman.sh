@@ -71,6 +71,8 @@ sudo pacman -S --noconfirm aom \
   zlib \
   zsh
 
+sudo ln -s /usr/include/asm-generic /usr/include/asm &&
+
 action "cleaning up"
 sudo pacman -Sc
 
