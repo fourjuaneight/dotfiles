@@ -4,7 +4,7 @@ source ~/dotfiles/util/echos.sh
 
 minibot "Little Gary here! Let's update the .gitconfig for your user info."
 
-cp -f .gitconfig ~/
+cp -f ~/dotfiles/lib/git/.gitconfig ~/
 
 rg 'user = GITHUBUSER' .gitconfig >/dev/null 2>&1
 if [[ $? = 0 ]]; then
