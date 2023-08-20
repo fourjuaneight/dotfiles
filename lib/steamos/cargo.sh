@@ -18,6 +18,7 @@ cargo install atuin \
   git-delta \
   git-interactive-rebase-tool \
   halp \
+  os_info_cli \
   pueue \
   ripgrep \
   rm-improved \
