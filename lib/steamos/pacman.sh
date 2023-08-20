@@ -76,4 +76,6 @@ sudo ln -s /usr/include/asm-generic /usr/include/asm &&
 action "cleaning up"
 sudo pacman -Sc
 
+sudo mv ~/dotfiles/lib/steamos/Vapor.profile /usr/share/konsole/
+
 ok "done installing dependencies."
