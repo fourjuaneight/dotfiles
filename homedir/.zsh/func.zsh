@@ -866,7 +866,7 @@ dckrmim() {
 # find and delete docker containers
 dckrmcn() {
   local containers selectedContainer container containerList
-  containers=$(docker container list --format "table {{.ID}}\t{{.Repository}}" | sed -n '1!p') &&
+  containers=$(docker container list --format "table {{.ID}}\t{{.Image}}" | sed -n '1!p') &&
     # use <TAB> to select multiple items
     selectedContainer=$(echo "$containers" | gum filter) &&
     container=$(echo $selectedContainer | sd '^([a-z0-9]+)\s+.*' '$1') &&
