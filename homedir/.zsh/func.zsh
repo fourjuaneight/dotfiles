@@ -99,7 +99,7 @@ sysup() {
 # glyphhanger whitelist Latin
 gla() {
   local file fname
-  IFS=$'\n' file=($(gum choose --no-limit))
+  IFS=$'\n' file=($(fd -t f -e 'ttf' -e 'mkv' 2>/dev/null | gum choose --no-limit))
   fname="${file%.*}" &&
     if [[ -n "$file" ]]; then
       glyphhanger --LATIN --formats=woff2,woff --subset=$file &&
@@ -120,7 +120,7 @@ agla() {
 # glyphhanger whitelist US ASCII
 glu() {
   local file fname
-  IFS=$'\n' file=($(gum choose --no-limit))
+  IFS=$'\n' file=($(fd -t f -e 'ttf' -e 'mkv' 2>/dev/null | gum choose --no-limit))
   fname="${file%.*}" &&
     if [[ -n "$file" ]]; then
       glyphhanger --US_ASCII --formats=woff2,woff --subset=$file
