@@ -141,6 +141,7 @@ action "installing casks"
   diffusionbee \
   discord \
   fission \
+  gemini \
   glow \
   handbrake \
   hazel \
