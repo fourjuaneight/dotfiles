@@ -160,6 +160,7 @@ action "installing casks"
   soundsource \
   syncthing \
   tableplus \
+  tpm \
   transmit \
   visual-studio-code \
   zoom

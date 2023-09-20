@@ -52,10 +52,6 @@ export SHELDON_CLONE_DIR="$SHELDON_DATA_DIR/repos"
 export SHELDON_DOWNLOAD_DIR="$SHELDON_DATA_DIR/downloads"
 
 # Starship
-export STARSHIP_CONFIG=~/.config/starship/config.toml
-
-# zellij
-export ZELLIJ_CONFIG_DIR="$HOME/.config/zellij"
 
 # GPG
 export GPG_TTY=$(tty)

@@ -44,6 +44,7 @@ brew install ack \
   pnpm \
   rclone \
   syncthing \
+  tpm \
   webp &&
 
 brew services start syncthing

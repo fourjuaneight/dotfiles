@@ -80,12 +80,9 @@ alias vsour="nvim source ~/.vimrc"
 alias croe="crontab -e"
 alias crol="crontab -l"
 
-# zellij
-alias tmux="zellij"
-alias zj="zellij"
-alias zjconf="hx ~/.config/zellij/config.kdl"
-alias zjdev="zellij --layout ~/.config/zellij/layout.dev.kdl"
-alias zjgit="zellij --layout ~/.config/zellij/layout.git.kdl"
+# tmux
+alias tmux="tmux -2"
+alias tconf="hx ~/.config/tmux/tmux.conf"
 
 # ssh
 alias rssh="sudo service ssh --full-restart"

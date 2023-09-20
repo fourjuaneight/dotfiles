@@ -34,9 +34,6 @@ export STARSHIP_CONFIG=~/.config/starship/config.toml
 export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden --follow --glob '!.git/*'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-# zellij
-export ZELLIJ_CONFIG_DIR="$HOME/.config/zellij"
-
 # GPG
 export GPG_TTY=$(tty)
 

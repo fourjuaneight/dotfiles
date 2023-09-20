@@ -49,7 +49,6 @@ cargo install amber \
   topgrade \
   tree-rs \
   xcompress \
-  zellij \
   zoxide
 
 ok "sweet, done with the good stuff."
