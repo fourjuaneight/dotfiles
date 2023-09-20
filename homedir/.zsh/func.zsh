@@ -28,13 +28,13 @@ zlj() {
 
 # repeat history
 fh() {
-  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | sk --no-sort --tac | sd ' *[0-9]*\*? *' '' | sd '\\' '\\\\')
+  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf --no-sort --tac | sd ' *[0-9]*\*? *' '' | sd '\\' '\\\\')
 }
 
 # find and kill process
 fkp() {
   local pid
-  pid=$(ps axco pid,command,time | sed 1d | sk --multi | mawk '{print $1}')
+  pid=$(ps axco pid,command,time | sed 1d | fzf --multi | mawk '{print $1}')
 
   if [[ "x$pid" != "x" ]]; then
     echo $pid | xargs kill -${1:-9}
@@ -198,35 +198,35 @@ vidaudio() {
 
 2webm() {
   local files fname
-  IFS=$'\n' files=($(sk --query "$1" --no-multi --select-1 --exit-0))
+  IFS=$'\n' files=($(fzf --query "$1" --no-multi --select-1 --exit-0))
   fname="${files%.*}"
   [[ -n "$files" ]] && ffmpeg -i $1 -c:v libvpx-vp9 -crf 10 -b:v 0 -b:a 128k -c:a libopus "$fname.webm"
 }
 
 2acc() {
   local files fname
-  IFS=$'\n' files=($(sk --query "$1" --no-multi --select-1 --exit-0))
+  IFS=$'\n' files=($(fzf --query "$1" --no-multi --select-1 --exit-0))
   fname="${files%.*}"
   [[ -n "$files" ]] && ffmpeg -i $files -c:a libfdk_aac -vbr 3 -c:v copy "$fname.m4a"
 }
 
 2mp4() {
   local files fname
-  IFS=$'\n' files=($(sk --query "$1" --no-multi --select-1 --exit-0))
+  IFS=$'\n' files=($(fzf --query "$1" --no-multi --select-1 --exit-0))
   fname="${files%.*}"
   [[ -n "$files" ]] && ffmpeg -i $files -q:v 0 "$fname.mp4"
 }
 
 2mp3() {
   local files fname
-  IFS=$'\n' files=($(sk --query "$1" --no-multi --select-1 --exit-0))
+  IFS=$'\n' files=($(fzf --query "$1" --no-multi --select-1 --exit-0))
   fname="${files%.*}"
   [[ -n "$files" ]] && ffmpeg -i $files -codec:v copy -codec:a libmp3lame -q:a 2 "$fname.mp3"
 }
 
 chapters() {
   local file
-  IFS=$'\n' file=($(sk --query "$1" --no-multi --select-1 --exit-0))
+  IFS=$'\n' file=($(fzf --query "$1" --no-multi --select-1 --exit-0))
 
   [[ -n "$file" ]] && ffprobe -v quiet -print_format json -show_format -show_chapters $file | jq -r '[.chapters[]]'
 }
@@ -241,7 +241,7 @@ rmd() {
 # find and extract archives
 fex() {
   local file fname
-  IFS=$'\n' file=($(sk --query "$1" --select-1 --exit-0))
+  IFS=$'\n' file=($(fzf --query "$1" --select-1 --exit-0))
   fname="${file%.*}"
 
   if [ -n $file ]; then
@@ -436,16 +436,16 @@ rpplexfiles() {
 # select two files, but fold lines longer than 20 characters, then diff (via delta)
 diffLongSel() {
   local file1 file2
-  file1=$(sk --query "$1") &&
-    file2=$(sk --query "$1") &&
+  file1=$(fzf --query "$1") &&
+    file2=$(fzf --query "$1") &&
     delta <(fold -s -w 20 $file1) <(fold -s -w 20 $file2)
 }
 
 # select two files, then diff (via delta)
 diffSel() {
   local file1 file2
-  file1=$(sk --query "$1") &&
-    file2=$(sk --query "$1") &&
+  file1=$(fzf --query "$1") &&
+    file2=$(fzf --query "$1") &&
     delta $file1 $file2
 }
 
@@ -454,7 +454,7 @@ diffSel() {
 #   - Exit if there's no match (--exit-0)
 fe() {
   local files
-  IFS=$'\n' files=($(sk --query "$1" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(fzf --query "$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && hx ${files[@]}
 }
 
@@ -466,7 +466,7 @@ fif() {
     return 1
   fi
   local file line
-  file="$(rg --files-with-matches --no-messages "$1" | sk --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}")" &&
+  file="$(rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}")" &&
     line=$(rg -n $1 $file | sed -E 's/^([0-9]+).*/\1/') &&
     if [[ -n $file ]]; then
       hx $file:$line
@@ -476,22 +476,22 @@ fif() {
 # find and delete files
 fdf() {
   local files
-  IFS=$'\n' files=($(sk --query "$1" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(fzf --query "$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && rm $files
 }
 
 # find and print files
 fpf() {
   local files
-  IFS=$'\n' files=($(sk --query "$1" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(fzf --query "$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && echo $files
 }
 
 # find and print files
 fcf() {
   local IFS file dist
-  IFS=$'\n' file=($(sk --query "$1" --multi --select-1 --exit-0))
-  IFS=$'\n' dist=($(fd -t d . ~/ 2>/dev/null | sk --query "$1" --multi --select-1 --exit-0))
+  IFS=$'\n' file=($(fzf --query "$1" --multi --select-1 --exit-0))
+  IFS=$'\n' dist=($(fd -t d . ~/ 2>/dev/null | fzf --query "$1" --multi --select-1 --exit-0))
   cp $file $dist
 }
 
@@ -502,7 +502,7 @@ fa() {
   local file
   local line
 
-  read -r file line <<<"$(rg --no-heading -n $@ | sk --exit-0 --select-1 | mawk -F: '{print $1, $2}')"
+  read -r file line <<<"$(rg --no-heading -n $@ | fzf --exit-0 --select-1 | mawk -F: '{print $1, $2}')"
 
   if [[ -n $file ]]; then
     hx $file:$line
@@ -512,7 +512,7 @@ fa() {
 # find and show filepath
 fsf() {
   local IFS files directory fullpath
-  IFS=$'\n' files=($(fd -t d . ~/ 2>/dev/null | sk --query "$1" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(fd -t d . ~/ 2>/dev/null | fzf --query "$1" --multi --select-1 --exit-0))
   directory=$(dirname $files)
   fullpath="$(pwd)/$directory"
   [[ -n "$files" ]] && print $fullpath
@@ -521,7 +521,7 @@ fsf() {
 # find and open file (default app)
 fof() {
   local files
-  IFS=$'\n' files=($(sk --query "$1" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(fzf --query "$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && open $files
 }
 
@@ -530,7 +530,7 @@ fof() {
 cf() {
   local file
 
-  file="$(locate -Ai -0 $@ | rg -z -v '~$' | sk --read0 --exit-0 --select-1)"
+  file="$(locate -Ai -0 $@ | rg -z -v '~$' | fzf --read0 --exit-0 --select-1)"
 
   if [[ -n $file ]]; then
     if [[ -d $file ]]; then
@@ -544,14 +544,14 @@ cf() {
 # cd to selected directory
 fcd() {
   local dir
-  dir=$(fd -t d --prune . ./ 2>/dev/null | sk) &&
+  dir=$(fd -t d --prune . ./ 2>/dev/null | fzf) &&
     z "$dir"
 }
 
 # cd to directory and open with selected action
 fcdc() {
   local dir action
-  dir=$(fd -t d . ~/ 2>/dev/null | sk) &&
+  dir=$(fd -t d . ~/ 2>/dev/null | fzf) &&
   action=$(gum choose "cd" "code" "nvim" "hx") &&
   z "$dir" &&
   fnm use;
@@ -570,7 +570,7 @@ fcdc() {
 # cd to repo directory and open with selected action
 fcdr() {
   local dir action
-  dir=$(fd -t d --prune . ~/Repos 2>/dev/null | sk) &&
+  dir=$(fd -t d --prune . ~/Repos 2>/dev/null | fzf) &&
   action=$(gum choose "cd" "code" "nvim" "hx") &&
   z "$dir" &&
   fnm use;
@@ -590,8 +590,8 @@ fcdr() {
 # find file and move to another directory
 ffmv() {
   local file dest
-  IFS=$'\n' file=($(sk --query "$1" --multi --select-1 --exit-0)) &&
-    dest=$(fd -t d --prune . ~ 2>/dev/null | sk) &&
+  IFS=$'\n' file=($(fzf --query "$1" --multi --select-1 --exit-0)) &&
+    dest=$(fd -t d --prune . ~ 2>/dev/null | fzf) &&
     mv "$file" "$dest"
 }
 
@@ -606,7 +606,7 @@ fpcd() {
       get_parent_dirs $(dirname "$1")
     fi
   }
-  local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | sk --tac)
+  local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | fzf --tac)
   z "$DIR"
 }
 
@@ -614,7 +614,7 @@ fpcd() {
 ffcd() {
   local file
   local dir
-  file=$(sk --query "$1") &&
+  file=$(fzf --query "$1") &&
     dir=$(dirname "$file") &&
     z "$dir"
 }
@@ -623,14 +623,14 @@ ffcd() {
 ftr() {
   local dir
   dir=$(fd ${1:-.} -path '*/\.*' -prune \
-    -o -type d -not \( -name node_modules -prune \) -print 2>/dev/null | sk) &&
+    -o -type d -not \( -name node_modules -prune \) -print 2>/dev/null | fzf) &&
     tree "$dir" -I node_modules
 }
 
 # find and delete directory
 fdd() {
   local dir
-  dir=$(fd -t d --prune . ./ 2>/dev/null | sk) &&
+  dir=$(fd -t d --prune . ./ 2>/dev/null | fzf) &&
     rm -rf $dir
 }
 
@@ -639,7 +639,7 @@ fdd() {
 # run command on multiple repos
 mg() {
   local selections
-  selections=$(fd -t d --prune . ~/Repos 2>/dev/null | sk --multi) &&
+  selections=$(fd -t d --prune . ~/Repos 2>/dev/null | fzf --multi) &&
 
   echo "$selections" | while IFS= read -r repo; do
     echo "Running on $repo:" &&
@@ -656,7 +656,7 @@ glb() {
 gcbr() {
   local branches branch
   branches=$(git branch) &&
-    branch=$(echo "$branches" | sk --delimiter 15) &&
+    branch=$(echo "$branches" | fzf --delimiter 15) &&
     git checkout $(echo "$branch" | sd ".* " "") &&
     git pull --rebase
 }
@@ -666,7 +666,7 @@ gcrbr() {
   git fetch
   local branches branch selectedBranch
   branches=$(git branch -r) &&
-    selectedBranch=$(echo "$branches" | sk --no-sort --exact) &&
+    selectedBranch=$(echo "$branches" | fzf --no-sort --exact) &&
     branch=$(echo "$selectedBranch" | sd '.*origin/([a-zA-Z0-9\.-_/]+)$' '$1')
   git checkout $branch &&
   git pull --rebase
@@ -683,7 +683,7 @@ gnbr() {
 gdbr() {
   local branches branch
   branches=$(git branch) &&
-    branch=$(echo "$branches" | sk --delimiter 15) &&
+    branch=$(echo "$branches" | fzf --delimiter 15) &&
     git branch -D $(echo "$branch" | sd ".* " "")
 }
 
@@ -691,7 +691,7 @@ gdbr() {
 gmbr() {
   local branches branch
   branches=$(git branch) &&
-    branch=$(echo "$branches" | sk --delimiter 15) &&
+    branch=$(echo "$branches" | fzf --delimiter 15) &&
     git merge -s ort $(echo "$branch" | sd ".* " "")
 }
 
@@ -699,7 +699,7 @@ gmbr() {
 gmsbr() {
   local branches branch
   branches=$(git branch) &&
-    branch=$(echo "$branches" | sk --delimiter 15) &&
+    branch=$(echo "$branches" | fzf --delimiter 15) &&
     git merge -s ort --squash $(echo "$branch" | sd ".* " "")
 }
 
@@ -707,7 +707,7 @@ gmsbr() {
 grebr() {
   local branches branch
   branches=$(git branch) &&
-    branch=$(echo "$branches" | sk --delimiter 15) &&
+    branch=$(echo "$branches" | fzf --delimiter 15) &&
     git rebase $(echo "$branch" | sd ".* " "")
 }
 
@@ -721,7 +721,7 @@ gpr() {
 grs() {
   local commits commit
   commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --reverse) &&
-    commit=$(echo "$commits" | sk --ansi --tac --no-sort --exact) &&
+    commit=$(echo "$commits" | fzf --ansi --tac --no-sort --exact) &&
     git reset --soft $(echo "$commit" | sd ".* " "")
 }
 
@@ -729,7 +729,7 @@ grs() {
 grvt() {
   local commits commit
   commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --reverse) &&
-    commit=$(echo "$commits" | sk --ansi --tac --no-sort --exact) &&
+    commit=$(echo "$commits" | fzf --ansi --tac --no-sort --exact) &&
     git revert -n $(echo "$commit" | sd ".* " "")
 }
 
@@ -737,7 +737,7 @@ grvt() {
 gccm() {
   local commits commit id
   commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --reverse) &&
-    commit=$(echo "$commits" | sk --ansi --tac --no-sort --exact) &&
+    commit=$(echo "$commits" | fzf --ansi --tac --no-sort --exact) &&
     id=$(echo "$commit" | sd "^([a-zA-Z0-9]+)\s.*" '$1') &&
     git checkout $id
     
@@ -747,7 +747,7 @@ gccm() {
 gscl() {
   git log --graph --color=always \
     --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
-    sk --ansi --no-sort --reverse --tiebreak index --bind ctrl-s:toggle-sort \
+    fzf --ansi --no-sort --reverse --tiebreak index --bind ctrl-s:toggle-sort \
       --bind "ctrl-m:execute:
                 (rg -o '[a-f0-9]\{7\}' | head -1 |
                 xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
@@ -759,7 +759,7 @@ FZF-EOF"
 gpcm() {
   local commits commit
   commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%N%Creset %s' --abbrev-commit --reverse) &&
-    commit=$(echo "$commits" | sk --ansi --tac --no-sort --exact | sd "^[a-z0-9]+\s-\s([a-zA-z\s]+).?" "$1") &&
+    commit=$(echo "$commits" | fzf --ansi --tac --no-sort --exact | sd "^[a-z0-9]+\s-\s([a-zA-z\s]+).?" "$1") &&
     message="git commit -S -m \"$commit\""
   print -z $message
 }
@@ -768,7 +768,7 @@ gpcm() {
 gscm() {
   local commits commit
   commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%N%Creset %s' --abbrev-commit --reverse) &&
-  commit=$(echo "$commits" | sk --ansi --tac --no-sort --exact | sd "^([a-z0-9]+)\s-\s.*" "$1") &&
+  commit=$(echo "$commits" | fzf --ansi --tac --no-sort --exact | sd "^([a-z0-9]+)\s-\s.*" "$1") &&
   git show $commit
 }
 
@@ -776,7 +776,7 @@ gscm() {
 gecm() {
   local commits commit id
   commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --reverse) &&
-    commit=$(echo "$commits" | sk --ansi --tac --no-sort --exact) &&
+    commit=$(echo "$commits" | fzf --ansi --tac --no-sort --exact) &&
     id=$(echo "$commit" | sd " .*" "")
   git rebase -i "$id^"
 }
@@ -789,9 +789,9 @@ gnpr() {
   users=("fourjuaneight" "davidbbaxter" "baileysh9" "bbohach")
   git fetch &&
     branches=$(git branch -r) &&
-    selectedBranch=$(echo "$branches" | sd 'origin/HEAD -> .*\n' '' | sd 'origin/' '' | sk --ansi --no-sort --exact) &&
+    selectedBranch=$(echo "$branches" | sd 'origin/HEAD -> .*\n' '' | sd 'origin/' '' | fzf --ansi --no-sort --exact) &&
     branch=$(echo $selectedBranch | sd '^\s*' '') &&
-    handle=$(printf "%s\n" "${users[@]}" | sk --ansi --tac --no-sort --exact) &&
+    handle=$(printf "%s\n" "${users[@]}" | fzf --ansi --tac --no-sort --exact) &&
     gh pr create -B $branch -t $1 -r $handle
 }
 
@@ -799,7 +799,7 @@ gnpr() {
 gvpr() {
   git fetch
   local selectedPR PR
-  selectedPR=$(gh pr list | sk --ansi --tac --no-sort --exact) &&
+  selectedPR=$(gh pr list | fzf --ansi --tac --no-sort --exact) &&
     PR=$(echo $selectedPR | sd '^([0-9]+).*' '$1') &&
     gh pr view $PR
 }
@@ -811,7 +811,7 @@ gmpr() {
   if [[ "$1" ]]; then
     gh pr merge $1 -s
   else
-    selectedPR=$(gh pr list | sk --ansi --tac --no-sort --exact) &&
+    selectedPR=$(gh pr list | fzf --ansi --tac --no-sort --exact) &&
       PR=$(echo $selectedPR | sd '^([0-9]+).*' '$1') &&
       gh pr merge $PR -s -d
   fi
@@ -894,7 +894,7 @@ dckup() {
 # AI #
 mds() {
   local file prompt key
-  IFS=$'\n' file=($(sk --query "$1" --no-multi --select-1 --exit-0))
+  IFS=$'\n' file=($(fzf --query "$1" --no-multi --select-1 --exit-0))
   prompt=$(gum input --placeholder "Prompt")
   key=$(op item get OpenAI --vault Personal --fields label="api key")
 
