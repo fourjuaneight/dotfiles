@@ -186,73 +186,6 @@ font:
 draw_bold_text_with_bright_colors: true
 
 #######################################
-##      START OF COLOR SCHEMES       ##
-#######################################
-schemes:
-  ### Dracula ###
-  dracula: &dracula
-    primary:
-      background: "#0B0D0F"
-      foreground: "#f8f8f2"
-    cursor:
-      text: CellBackground
-      cursor: CellForeground
-    vi_mode_cursor:
-      text: CellBackground
-      cursor: CellForeground
-    search:
-      matches:
-        background: "#50fa7b"
-        foreground: "#44475a"
-      focused_match:
-        foreground: "#44475a"
-        background: "#ffb86c"
-      footer_bar:
-        background: "#282a36"
-        foreground: "#f8f8f2"
-    line_indicator:
-      foreground: None
-      background: None
-    selection:
-      text: CellForeground
-      background: "#44475a"
-    normal:
-      black: "#000000"
-      red: "#FF9580"
-      green: "#8AFF80"
-      yellow: "#FFFF80"
-      blue: "#bd93f9"
-      magenta: "#FF80BF"
-      cyan: "#80FFEA"
-      white: "#bfbfbf"
-    bright:
-      black: "#4d4d4d"
-      red: "#ff6e67"
-      green: "#5af78e"
-      yellow: "#f4f99d"
-      blue: "#caa9fa"
-      magenta: "#ff92d0"
-      cyan: "#9aedfe"
-      white: "#e6e6e6"
-    dim:
-      black: "#14151b"
-      red: "#ff2222"
-      green: "#1ef956"
-      yellow: "#ebf85b"
-      blue: "#4d5b86"
-      magenta: "#ff46b0"
-      cyan: "#59dffc"
-      white: "#e6e6d1"
-
-######################################################################
-## SET THEME: Choose ONE color scheme from those in the above list. ##
-## ###################################################################
-# Available themes are:
-# *dracula
-
-colors: *dracula
-
-#######################################
 ##       END OF COLOR SCHEMES        ##
 #######################################
 
@@ -538,3 +471,6 @@ key_bindings:
   - { key: PageDown, mods: None, action: ScrollPageDown, mode: ~Alt }
   - { key: Home, mods: Shift, action: ScrollToTop, mode: ~Alt }
   - { key: End, mods: Shift, action: ScrollToBottom, mode: ~Alt }
+
+import:
+  - ~/.config/alacritty/dracula/dracula.yml

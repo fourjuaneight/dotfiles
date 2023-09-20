@@ -13,6 +13,8 @@ homedir/.config/sheldon/repos
 homedir/.config/rclone
 homedir/.config/sheldon/plugins.lock
 homedir/.config/nvim/plugin
+homedir/.config/alacritty/dracula
+homedir/.config/starship/dracula
 homedir/.config/raycast
 homedir/.config/database
 homedir/.config/storage

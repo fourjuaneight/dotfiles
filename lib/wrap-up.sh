@@ -20,6 +20,18 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 # ###########################################################
+# Themes
+# ###########################################################
+
+action "installing dracula for alacritty"
+git clone git@github.com:dracula/alacritty.git ~/.config/alacritty/dracula
+
+action "installing dracula for starship"
+git clone git@github.com:dracula/starship.git ~/.config/starship/dracula
+cp -f ~/.config/starship/dracula/starship.toml ~/.config/starship/starship.toml
+
+
+# ###########################################################
 # Setup zsh and vim env
 # ###########################################################
 bot "Stowing dotfiles."
