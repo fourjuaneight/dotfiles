@@ -19,3 +19,9 @@ end
 dofile(vim.g.base46_cache .. "defaults")
 vim.opt.rtp:prepend(lazypath)
 require "plugins"
+
+vim.g.dap_virtual_text = true
+vim.opt.colorcolumn = "80"
+
+-- Disable persistent undo
+vim.opt.undofile = false
