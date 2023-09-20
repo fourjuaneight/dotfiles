@@ -25,6 +25,17 @@ local default_plugins = {
       require("core.utils").load_mappings "nvterm"
     end,
     config = function(_, opts)
+      opts.terminals = {
+        type_opts = {
+          float = {
+            row = 0.5,
+            col = 0.2,
+            width = 0.6,
+            height = 0.8,
+          },
+        }
+      }
+
       require "base46.term"
       require("nvterm").setup(opts)
     end,
