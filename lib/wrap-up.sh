@@ -22,7 +22,10 @@ fi
 # ###########################################################
 # Setup zsh and vim env
 # ###########################################################
-bot "Stowing dotfiles."
+bot "Setting up nvim and stowing dotfiles."
+
+action "installing nvchad"
+git clone git@github.com:NvChad/NvChad.git ~/.config/nvim --depth 1 && nvim
 
 action "running stow"
 cd ~/dotfiles
