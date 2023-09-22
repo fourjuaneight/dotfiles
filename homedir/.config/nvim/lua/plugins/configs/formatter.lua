@@ -3,9 +3,6 @@ local M = {
     css = {
       require("formatter.filetypes.css").prettier
     },
-    html = {
-      require("formatter.filetypes.html").prettier
-    },
     javascript = {
       require("formatter.filetypes.javascript").prettier
     },
