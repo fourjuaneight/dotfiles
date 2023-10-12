@@ -133,11 +133,12 @@ action "installing casks"
 /opt/homebrew/bin/brew install --cask 1password \
   1password/tap/1password-cli \
   alacritty \
+  audio-hijack \
   bartender \
   calibre \
   charmbracelet/tap/mods \
   clickup \
-  cron \
+  contexts \
   diffusionbee \
   discord \
   fission \
@@ -148,7 +149,6 @@ action "installing casks"
   iina \
   imageoptim \
   istat-menus \
-  jesseduffield/lazydocker/lazydocker \
   keyboard-maestro \
   loopback \
   meta \
