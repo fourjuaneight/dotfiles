@@ -133,6 +133,7 @@ action "installing casks"
 /opt/homebrew/bin/brew install --cask 1password \
   1password/tap/1password-cli \
   alacritty \
+  arc \
   audio-hijack \
   bartender \
   calibre \
