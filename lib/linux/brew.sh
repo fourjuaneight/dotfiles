@@ -40,6 +40,7 @@ brew install ack \
   dive \
   dog \
   flyctl \
+  fx \
   fzf \
   gcc@5 \
   gh \

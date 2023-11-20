@@ -52,6 +52,7 @@ action "installing packages"
   duti \
   flyctl \
   fswatch \
+  fx \
   fzf \
   ghc \
   git \
