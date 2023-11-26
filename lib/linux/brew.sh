@@ -34,7 +34,6 @@ brew install homebrew-ffmpeg/ffmpeg/ffmpeg --with-xvid --with-fdk-aac --with-lib
 
 action "tapping 3rd party repos"
 brew tap helix-editor/helix
-brew tap teamookla/speedtest
 
 action "installing packages"
 brew install ack \
@@ -60,7 +59,6 @@ brew install ack \
   pnpm \
   rclone \
   restic \
-  speedtest \
   syncthing \
   tpm \
   webp \

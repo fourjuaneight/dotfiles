@@ -91,4 +91,8 @@ modprobe zfs
 action "cleaning up"
 dnf clean all
 
+action "installing speedtest-cli"
+curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.rpm.sh | sudo bash
+sudo yum install speedtest
+
 ok "done installing dependencies."
