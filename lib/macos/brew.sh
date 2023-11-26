@@ -40,6 +40,9 @@ action "installing GNU goodies"
 action "installing latest bash"
 /opt/homebrew/bin/brew install bash
 
+action "tapping 3rd party repos"
+/opt/homebrew/bin/brew tap teamookla/speedtest
+
 action "installing packages"
 /opt/homebrew/bin/brew install ack \
   ansible \
@@ -109,6 +112,7 @@ action "installing packages"
   slurm \
   spark \
   sphinx \
+  speedtest \
   stow \
   syncthing \
   tesseract \
