@@ -3,7 +3,7 @@
 assume_yes = true
 
 # Disable specific steps - same options as the command line flag
-disable = ["containers", "gem", "mas", "ruby_gems", "vim", "system"]
+disable = ["containers", "gem", "mas", "ruby_gems", "vim", "vscode", "system"]
 
 # Ignore failures for these steps
 ignore_failures = ["node"]
@@ -50,7 +50,7 @@ repos = [
 #pull_predefined = false
 
 # Arguments to pass Git when pulling Repositories
-arguments = "--rebase --autostash"
+pull_arguments = "--rebase --autostash"
 
 [composer]
 #self_update = true
