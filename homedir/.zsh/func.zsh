@@ -2,6 +2,7 @@ zsh-defer source ${HOME}/dotfiles/lib/util/echos.sh
 
 # UTILITIES #
 
+# run wget inside pueue as a background job
 puewget() {
   local prompt
   prompt=$(gum input --placeholder "Magnet") &&
@@ -41,8 +42,6 @@ fkts () {
 }
 
 # select selected tmux session
-# - Bypass fuzzy finder if there's only one match (--select-1)
-# - Exit if there's no match (--exit-0)
 fst() {
   local session
   session=$(tmux list-sessions -F "#{session_name}" | \
@@ -50,7 +49,7 @@ fst() {
   tmux switch-client -t "$session"
 }
 
-# ftpane - find and switch tmux pane
+# find and switch tmux pane
 fstp() {
   local panes current_window current_pane target target_window target_pane
   panes=$(tmux list-panes -s -F '#I:#P - #{pane_current_path} #{pane_current_command}')
@@ -140,7 +139,7 @@ sysup() {
 
 # FONTS #
 
-# glyphhanger whitelist Latin
+# glyphhanger whitelist Latin charset
 gla() {
   local file fname
   IFS=$'\n' file=($(fd -t f -e 'ttf' -e 'mkv' 2>/dev/null | gum choose --no-limit))
@@ -152,6 +151,7 @@ gla() {
     fi
 }
 
+# select all ttf files and run glyphhanger whitelist Latin charset
 agla() {
   for file in $(ls *.*tf); do
     fname="${file%.*}"
@@ -161,7 +161,7 @@ agla() {
   done
 }
 
-# glyphhanger whitelist US ASCII
+# glyphhanger whitelist US ASCII charset
 glu() {
   local file fname
   IFS=$'\n' file=($(fd -t f -e 'ttf' -e 'mkv' 2>/dev/null | gum choose --no-limit))
@@ -171,6 +171,7 @@ glu() {
     fi
 }
 
+# select all ttf files and run glyphhanger whitelist US ASCII charset
 aglu() {
   for file in $(ls *.*tf); do
     glyphhanger --US_ASCII --formats=woff2,woff --subset=$file
@@ -179,12 +180,12 @@ aglu() {
 
 # YOUTUBE #
 
-# youtube-dl best video/audio quality
+# yt-dlp best video/audio quality
 ytv() {
   yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio:' --merge-output-format mp4 -o "%(title)s.%(ext)s" $1
 }
 
-# youtube-dl best audio (only) quality
+# yt-dlp best audio (only) quality
 yta() {
   yt-dlp -f bestaudio[ext=m4a] $1
 }
@@ -196,27 +197,27 @@ ytu() {
 
 # IMAGES #
 
-# converting PNG to WebP
+# convert PNG to WebP
 png2webp() {
   fd -e png | xargs -P 8 -I {} sh -c 'cwebp -q 90 $1 -o "${1%.png}.webp"' _ {} \;
 }
 
-# converting JPEG to WebP
+# convert JPEG to WebP
 jpeg2webp() {
   fd -e jpg | xargs -P 8 -I {} sh -c 'cwebp -q 90 $1 -o "${1%.jpg}.webp"' _ {} \;
 }
 
-# converting HEIC to JPEG
+# convert HEIC to JPEG
 heic2jpeg() {
   fd -e heic | xargs -P 8 -I {} sh -c 'magick mogrify -format jpg "$1"' _ {} \;
 }
 
-# converting PNG to JPEG
+# convert PNG to JPEG
 png2jpeg() {
   fd -e png | xargs -P 8 -I {} sh -c 'magick mogrify -format jpg "$1"' _ {} \;
 }
 
-# converting WebP to JPEG
+# convert WebP to JPEG
 webp2jpeg() {
   fd -e webp | xargs -P 8 -I {} sh -c 'magick mogrify -format jpg "$1"' _ {} \;
 }
@@ -224,8 +225,6 @@ webp2jpeg() {
 # FFMPEG #
 
 # ffmpeg clip video
-# 1 - start time
-# 2 - stop time
 clipvid() {
   local IFS file output
   IFS=$'\n' file=($(fd -t f -e 'mp4' -e 'mkv' 2>/dev/null | gum choose)) &&
@@ -233,6 +232,7 @@ clipvid() {
   ffmpeg -i $file -ss $1 -t $2 -c:v copy -c:a copy $output
 }
 
+# extract audio from video (mp4 or mkv) and save it as mp3 with the same name
 vidaudio() {
   local IFS file output
   IFS=$'\n' file=($(fd -t f -e 'mp4' -e 'mkv' 2>/dev/null | gum choose)) &&
@@ -240,6 +240,7 @@ vidaudio() {
   ffmpeg -i $file -q:a 0 -map a $output
 }
 
+# convert video to the webM
 2webm() {
   local files fname
   IFS=$'\n' files=($(fzf --query "$1" --no-multi --select-1 --exit-0))
@@ -247,6 +248,7 @@ vidaudio() {
   [[ -n "$files" ]] && ffmpeg -i $1 -c:v libvpx-vp9 -crf 10 -b:v 0 -b:a 128k -c:a libopus "$fname.webm"
 }
 
+# convert selected audio to acc
 2acc() {
   local files fname
   IFS=$'\n' files=($(fzf --query "$1" --no-multi --select-1 --exit-0))
@@ -254,6 +256,7 @@ vidaudio() {
   [[ -n "$files" ]] && ffmpeg -i $files -c:a libfdk_aac -vbr 3 -c:v copy "$fname.m4a"
 }
 
+# convert selected audio to mp4
 2mp4() {
   local files fname
   IFS=$'\n' files=($(fzf --query "$1" --no-multi --select-1 --exit-0))
@@ -261,6 +264,7 @@ vidaudio() {
   [[ -n "$files" ]] && ffmpeg -i $files -q:v 0 "$fname.mp4"
 }
 
+# convert selected audio to mp3
 2mp3() {
   local files fname
   IFS=$'\n' files=($(fzf --query "$1" --no-multi --select-1 --exit-0))
@@ -268,6 +272,7 @@ vidaudio() {
   [[ -n "$files" ]] && ffmpeg -i $files -codec:v copy -codec:a libmp3lame -q:a 2 "$fname.mp3"
 }
 
+# select file and retrieve the chapters using ffprobe and jq
 chapters() {
   local file
   IFS=$'\n' file=($(fzf --query "$1" --no-multi --select-1 --exit-0))
@@ -323,54 +328,6 @@ brn() {
   done
 }
 
-# batch rename files to lowercase
-brnl() {
-  local files filesMatch
-  # remove quotes
-  filesMatch=$(sd '^"(.*)"$' '$1' <<<$3)
-  # convert to list
-  IFS=$'\n' files=($(echo $filesMatch | ls))
-
-  for file in $files; do
-    new=$(echo "$file" | tr '[:upper:]' '[:lower:]')
-
-    if [ "$file" != "$lowercase_file" ]; then
-      mv "$file" "$new" &&
-      echo "$file -> $new"
-    fi
-  done
-}
-
-brn_count() {
-  local files filesMatch
-  TEMPFILE=/tmp/counter.tmp
-  echo "0" >$TEMPFILE
-
-  # remove quotes
-  filesMatch=$(sd '^"(.*)"$' '$1' <<<$3)
-  # convert to list
-  IFS=$'\n' files=($(echo $filesMatch | ls))
-
-  for file in $files; do
-    COUNTER=$(($(cat $TEMPFILE) + 1))
-    echo $COUNTER >$TEMPFILE
-    name=$1
-    epi+="E"
-    new+=$COUNTER
-    echo "$file -> $new"
-    mv "$file" "$new"
-  done
-
-  unlink $TEMPFILE
-}
-
-b2mkv() {
-  for file in *; do
-    fname="${file%.*}"
-    ffmpeg -i $file -vcodec copy -acodec copy "$fname.mkv"
-  done
-}
-
 # batch update mp3 title with regex
 bump3t() {
   for file in $(ls *.mp3); do
@@ -404,26 +361,6 @@ bumkvc() {
   unlink $TEMPFILE
 }
 
-# move files to Plex directory and set proper permissions
-mvplex() {
-  local src=$1
-  local dst=$2
-  local dst_dir=$(dirname $dst)
-
-  if [[ -d $dst_dir ]]; then
-    if [[ -d $src ]]; then
-      sudo chmod -R 755 $src;
-      sudo mv $src $dst
-      sudo chown -R plex.plex "$dst/$src"
-    elif [ -f "$src" ]; then
-      sudo mv $src $dst
-      sudo chown -R plex.plex "$dst/$src"
-    fi
-  else
-    echo "Destination directory does not exist: $dst"
-  fi
-}
-
 # merge files to Plex directory and set proper permissions
 mrgplex() {
   local file=$1
@@ -453,27 +390,44 @@ rpplex() {
   fi
 }
 
+# replace all files to Plex directory and set proper permissions
+rpplexfiles() {
+  find . -type f -print0 | while IFS= read -r -d $'\0' file; do
+     rpplex "$file" $1
+  done
+}
+
+# move files to Plex directory and set proper permissions
+mvplex() {
+  local src=$1
+  local dst=$2
+  local dst_dir=$(dirname $dst)
+
+  if [[ -d $dst_dir ]]; then
+    if [[ -d $src ]]; then
+      sudo chmod -R 755 $src;
+      sudo mv $src $dst
+      sudo chown -R plex.plex "$dst/$src"
+    elif [ -f "$src" ]; then
+      sudo mv $src $dst
+      sudo chown -R plex.plex "$dst/$src"
+    fi
+  else
+    echo "Destination directory does not exist: $dst"
+  fi
+}
+
+# move all directories to Plex directory and set proper permissions
 mvplexdirs() {
   find * -prune -type d | while IFS= read -r dir; do
      mvplex "$dir" $1
   done
 }
 
-mrgplexdirs() {
-  find * -prune -type d | while IFS= read -r dir; do
-     mrgplex "$dir" $1
-  done
-}
-
+# move all files to Plex directory and set proper permissions
 mvplexfiles() {
   find . -type f -print0 | while IFS= read -r -d $'\0' file; do
      mvplex "$file" $1
-  done
-}
-
-rpplexfiles() {
-  find . -type f -print0 | while IFS= read -r -d $'\0' file; do
-     rpplex "$file" $1
   done
 }
 
@@ -493,9 +447,7 @@ diffSel() {
     delta $file1 $file2
 }
 
-# fe [FUZZY PATTERN] - Open the selected file with the default editor
-#   - Bypass fuzzy finder if there's only one match (--select-1)
-#   - Exit if there's no match (--exit-0)
+# open the selected file with the default editor
 fe() {
   local files
   IFS=$'\n' files=($(fzf --query "$1" --multi --select-1 --exit-0))
@@ -503,7 +455,6 @@ fe() {
 }
 
 # using ripgrep combined with preview and open on editor
-# find-in-file - usage: fif <searchTerm>
 fif() {
   if [ ! "$#" -gt 0 ]; then
     echo "Need a string to search for!"
@@ -570,7 +521,6 @@ fof() {
 }
 
 # fuzzy cd from anywhere
-# ex: cf word1 word2 ... (even part of a file name)
 cf() {
   local file
 
@@ -863,13 +813,14 @@ gmpr() {
 
 # NPM #
 
+# find npm script and run
 fnr() {
   local scripts
   script="$(jq -r '.scripts | keys | .[]' package.json | gum filter)"
   npm run $script
 }
 
-# Version key/value should be on his own line
+# version key/value should be on his own line
 npv() {
   local pkg_version
   pkg_version=$(cat package.json \
@@ -936,14 +887,20 @@ dckup() {
 }
 
 # AI #
+
+# find file and run ChatGPT query on it
 mds() {
   local file prompt key
   IFS=$'\n' file=($(fzf --query "$1" --no-multi --select-1 --exit-0))
   prompt=$(gum input --placeholder "Prompt")
   key=$(op item get OpenAI --vault Personal --fields label="api key")
 
-  if [[ -n "$file" ]]; then
-    export OPENAI_API_KEY=key &&
+  if [[ -z "$file" ]]; then
+    echo "No file selected!"
+  elif [[ -z "$key" ]]; then
+    echo "No key provided!"
+  else
+    export OPENAI_API_KEY=$key &&
     mods -f "$prompt" < $file | glow
   fi
 }
