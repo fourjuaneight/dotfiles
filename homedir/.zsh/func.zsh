@@ -2,6 +2,16 @@ zsh-defer source ${HOME}/dotfiles/lib/util/echos.sh
 
 # UTILITIES #
 
+# search for a command in the pet database and run it
+petrun() {
+  local command
+  command=$(pet search --color)
+
+  if [[ -n "$command" ]]; then
+    eval $command
+  fi
+}
+
 # run wget inside pueue as a background job
 puewget() {
   local prompt
@@ -831,7 +841,6 @@ npv() {
 
   echo $pkg_version
 }
-
 
 # DOCKER #
 

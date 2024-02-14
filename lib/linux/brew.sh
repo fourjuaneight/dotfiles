@@ -52,6 +52,7 @@ brew install ack \
   helix \
   hugo \
   jesseduffield/lazydocker/lazydocker \
+  knqyf263/pet/pet \
   lindell/multi-gitter/multi-gitter \
   lux \
   neovim \

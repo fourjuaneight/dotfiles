@@ -156,6 +156,7 @@ action "installing casks"
   imageoptim \
   istat-menus \
   keyboard-maestro \
+  knqyf263/pet/pet \
   loopback \
   meta \
   monodraw \

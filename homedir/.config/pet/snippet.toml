@@ -1,0 +1,359 @@
+[[snippets]]
+  command = "petrun"
+  description = "search for a command in the pet database and run it"
+
+[[snippets]]
+  command = "puewget"
+  description = "run wget inside pueue as a background job"
+
+[[snippets]]
+  command = "tmlo"
+  description = "choose from different tmux layouts"
+
+[[snippets]]
+  command = "fkts"
+  description = "find and kill tmux sessions"
+
+[[snippets]]
+  command = "fst"
+  description = "select selected tmux session"
+
+[[snippets]]
+  command = "fstp"
+  description = "find and switch tmux pane"
+
+[[snippets]]
+  command = "fh"
+  description = "repeat history"
+
+[[snippets]]
+  command = "fkp"
+  description = "find and kill process"
+
+[[snippets]]
+  command = "curlhammer"
+  description = "hammer a service with curl for a given number of times"
+
+[[snippets]]
+  command = "timezsh"
+  description = "zsh load times"
+
+[[snippets]]
+  command = "portcheck"
+  description = "check for open ports"
+
+[[snippets]]
+  command = "sysup"
+  description = "system dependencies and tooling updates"
+
+[[snippets]]
+  command = "gla"
+  description = "glyphhanger whitelist Latin charset"
+
+[[snippets]]
+  command = "agla"
+  description = "select all ttf files and run glyphhanger whitelist Latin charset"
+
+[[snippets]]
+  command = "glu"
+  description = "glyphhanger whitelist US ASCII charset"
+
+[[snippets]]
+  command = "aglu"
+  description = "select all ttf files and run glyphhanger whitelist US ASCII charset"
+
+[[snippets]]
+  command = "ytv"
+  description = "yt-dlp best video/audio quality"
+
+[[snippets]]
+  command = "yta"
+  description = "yt-dlp best audio (only) quality"
+
+[[snippets]]
+  command = "ytu"
+  description = "upload downloaded video to b2 archives"
+
+[[snippets]]
+  command = "png2webp"
+  description = "convert PNG to WebP"
+
+[[snippets]]
+  command = "jpeg2webp"
+  description = "convert JPEG to WebP"
+
+[[snippets]]
+  command = "heic2jpeg"
+  description = "convert HEIC to JPEG"
+
+[[snippets]]
+  command = "png2jpeg"
+  description = "convert PNG to JPEG"
+
+[[snippets]]
+  command = "webp2jpeg"
+  description = "convert WebP to JPEG"
+
+[[snippets]]
+  command = "clipvid"
+  description = "ffmpeg clip video"
+
+[[snippets]]
+  command = "vidaudio"
+  description = "extract audio from video (mp4 or mkv) and save it as mp3 with the same name"
+
+[[snippets]]
+  command = "2webm"
+  description = "convert video to the webM"
+
+[[snippets]]
+  command = "2acc"
+  description = "convert selected audio to acc"
+
+[[snippets]]
+  command = "2mp4"
+  description = "convert selected audio to mp4"
+
+[[snippets]]
+  command = "2mp3"
+  description = "convert selected audio to mp3"
+
+[[snippets]]
+  command = "chapters"
+  description = "select file and retrieve the chapters using ffprobe and jq"
+
+[[snippets]]
+  command = "rmd"
+  description = "render markdown files"
+
+[[snippets]]
+  command = "fex"
+  description = "find and extract archives"
+
+[[snippets]]
+  command = "brn"
+  description = "batch rename files with regex"
+
+[[snippets]]
+  command = "bump3t"
+  description = "batch update mp3 title with regex"
+
+[[snippets]]
+  command = "bumkvt"
+  description = "batch update mkv title from filename"
+
+[[snippets]]
+  command = "bumkvc"
+  description = "batch update mkv title by chapters"
+
+[[snippets]]
+  command = "mrgplex"
+  description = "merge files to Plex directory and set proper permissions"
+
+[[snippets]]
+  command = "rpplex"
+  description = "replace files to Plex directory and set proper permissions"
+
+[[snippets]]
+  command = "rpplexfiles"
+  description = "replace all files to Plex directory and set proper permissions"
+
+[[snippets]]
+  command = "mvplex"
+  description = "move files to Plex directory and set proper permissions"
+
+[[snippets]]
+  command = "mvplexdirs"
+  description = "move all directories to Plex directory and set proper permissions"
+
+[[snippets]]
+  command = "mvplexfiles"
+  description = "move all files to Plex directory and set proper permissions"
+
+[[snippets]]
+  command = "diffLongSel"
+  description = "select two files, but fold lines longer than 20 characters, then diff (via delta)"
+
+[[snippets]]
+  command = "diffSel"
+  description = "select two files, then diff (via delta)"
+
+[[snippets]]
+  command = "fe"
+  description = "open the selected file with the default editor"
+
+[[snippets]]
+  command = "fif"
+  description = "using ripgrep combined with preview and open on editor"
+
+[[snippets]]
+  command = "fdf"
+  description = "find and delete files"
+
+[[snippets]]
+  command = "fpf"
+  description = "find and print files"
+
+[[snippets]]
+  command = "fcf"
+  description = "find and print files"
+
+[[snippets]]
+  command = "fa"
+  description = "Open via rg with line number"
+
+[[snippets]]
+  command = "fsf"
+  description = "find and show filepath"
+
+[[snippets]]
+  command = "fof"
+  description = "find and open file (default app)"
+
+[[snippets]]
+  command = "cf"
+  description = "fuzzy cd from anywhere"
+
+[[snippets]]
+  command = "fcd"
+  description = "cd to selected directory"
+
+[[snippets]]
+  command = "fcdc"
+  description = "cd to directory and open with selected action"
+
+[[snippets]]
+  command = "fcdr"
+  description = "cd to repo directory and open with selected action"
+
+[[snippets]]
+  command = "ffmv"
+  description = "find file and move to another directory"
+
+[[snippets]]
+  command = "fpcd"
+  description = "cd to selected parent directory"
+
+[[snippets]]
+  command = "ffcd"
+  description = "cd into the directory of the selected file"
+
+[[snippets]]
+  command = "ftr"
+  description = "tree selected directory"
+
+[[snippets]]
+  command = "fdd"
+  description = "find and delete directory"
+
+[[snippets]]
+  command = "mg"
+  description = "run command on multiple repos"
+
+[[snippets]]
+  command = "glb"
+  description = "git log branch"
+
+[[snippets]]
+  command = "gcbr"
+  description = "checkout git local branch"
+
+[[snippets]]
+  command = "gcrbr"
+  description = "checkout git remote branch"
+
+[[snippets]]
+  command = "gnbr"
+  description = "create git branch and add to remote"
+
+[[snippets]]
+  command = "gdbr"
+  description = "delete git local branch"
+
+[[snippets]]
+  command = "gmbr"
+  description = "merge git local branch into current"
+
+[[snippets]]
+  command = "gmsbr"
+  description = "merge squash git local branch into current"
+
+[[snippets]]
+  command = "grebr"
+  description = "rebase git local branch into current"
+
+[[snippets]]
+  command = "gpr"
+  description = "git pull rebase given branch"
+
+[[snippets]]
+  command = "grs"
+  description = "git reset soft to commit id"
+
+[[snippets]]
+  command = "grvt"
+  description = "git revert to commit"
+
+[[snippets]]
+  command = "gccm"
+  description = "git checkout commit"
+
+[[snippets]]
+  command = "gscl"
+  description = "git commit browser"
+
+[[snippets]]
+  command = "gpcm"
+  description = "find git commit and print selected message for new commit"
+
+[[snippets]]
+  command = "gscm"
+  description = "find git commit and print details"
+
+[[snippets]]
+  command = "gecm"
+  description = "edit commit"
+
+[[snippets]]
+  command = "gnpr"
+  description = "git create new PR, add title, select reviewer"
+
+[[snippets]]
+  command = "gvpr"
+  description = "git list PRs, then inspect"
+
+[[snippets]]
+  command = "gmpr"
+  description = "git merge (squash and delete branch) PR. Provide number or select from open PRs"
+
+[[snippets]]
+  command = "fnr"
+  description = "find npm script and run"
+
+[[snippets]]
+  command = "npv"
+  description = "version key/value should be on his own line"
+
+[[snippets]]
+  command = "dckclean"
+  description = "delete all containers and images"
+
+[[snippets]]
+  command = "dckrmim"
+  description = "find and delete docker images"
+
+[[snippets]]
+  command = "dckrmcn"
+  description = "find and delete docker containers"
+
+[[snippets]]
+  command = "dckbd"
+  description = "find and build docker services"
+
+[[snippets]]
+  command = "dckup"
+  description = "find and start docker services"
+
+[[snippets]]
+  command = "mds"
+  description = "find file and run ChatGPT query on it"

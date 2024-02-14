@@ -1,0 +1,14 @@
+[General]
+  snippetfile = "/Users/fourjuaneight/.config/pet/snippet.toml"
+  editor = "hx"
+  column = 40
+  selectcmd = "fzf --ansi --layout=reverse --border --height=90% --pointer='*' --cycle --prompt='Snippets: '"
+  backend = "gist"
+  sortby = "command"
+
+[Gist]
+  file_name = "pet-snippet.toml"
+  access_token = ""
+  gist_id = ""
+  public = true
+  auto_sync = true
