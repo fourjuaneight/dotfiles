@@ -41,7 +41,7 @@
   conflictstyle = diff3
 
 [absorb]
-    maxStack=150
+  maxStack=150
 
 [mergetool]
   keepBackup = true
@@ -61,6 +61,9 @@
 
 [push]
   default = current
+
+[branch]
+  sort = -committerdate
 
 [filter "lfs"]
   clean = git-lfs clean -- %f
