@@ -327,6 +327,10 @@
   description = "git merge (squash and delete branch) PR. Provide number or select from open PRs"
 
 [[snippets]]
+  command = "glmf"
+  description = "git select commit and list all modified files since"
+
+[[snippets]]
   command = "fnr"
   description = "find npm script and run"
 

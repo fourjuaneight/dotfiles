@@ -34,7 +34,7 @@ tmlo() {
   elif [[ $action == "git" ]]; then
     tmux new-session \; split-window -v \;
   fi
-  clear &&
+  clear;
 }
 
 # find and kill tmux sessions
@@ -818,6 +818,22 @@ gmpr() {
     selectedPR=$(gh pr list | fzf --ansi --tac --no-sort --exact) &&
       PR=$(echo $selectedPR | sd '^([0-9]+).*' '$1') &&
       gh pr merge $PR -s -d
+  fi
+}
+
+# git select commit and list all modified files since
+glmf() {
+  local commits commit id modFiles cleanFiles
+  commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --reverse) &&
+  commit=$(echo "$commits" | fzf --ansi --tac --no-sort --exact) &&
+  id=$(echo "$commit" | sd " .*" "")
+  modFiles=$(git log --pretty=format:"" --name-only --abbrev-commit $id..HEAD) &&
+  cleanFiles=$(echo "$modFiles" | sed '/^$/d' | sort -u) &&
+
+  if [[ -n $cleanFiles ]]; then
+    echo "$cleanFiles"
+  else
+    echo "No modified files found!"
   fi
 }
 
