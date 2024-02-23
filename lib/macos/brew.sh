@@ -48,6 +48,7 @@ action "installing packages"
   ansible \
   aom \
   certbot \
+  charmbracelet/tap/mods \
   cmake \
   cocoapods \
   curl \
@@ -73,6 +74,7 @@ action "installing packages"
   jasper \
   java \
   jq \
+  knqyf263/pet/pet \
   libjpeg \
   libmemcached \
   libvips \
@@ -141,11 +143,7 @@ action "installing casks"
   arc \
   audio-hijack \
   bartender \
-  calibre \
-  charmbracelet/tap/mods \
-  clickup \
   contexts \
-  diffusionbee \
   discord \
   fission \
   gemini \
@@ -155,13 +153,9 @@ action "installing casks"
   iina \
   imageoptim \
   istat-menus \
-  keyboard-maestro \
-  knqyf263/pet/pet \
   loopback \
   meta \
-  monodraw \
   mullvadvpn \
-  rapidapi \
   raycast \
   slack \
   soundsource \
