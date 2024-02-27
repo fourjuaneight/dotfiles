@@ -62,6 +62,7 @@ brew install ack \
   restic \
   syncthing \
   tpm \
+  uv \
   webp \
   yq \
   yt-dlp/taps/yt-dlp

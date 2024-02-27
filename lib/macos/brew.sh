@@ -121,6 +121,7 @@ action "installing packages"
   the_silver_searcher \
   tmux \
   tree \
+  uv \
   webp \
   wget \
   wireshark \
