@@ -196,7 +196,7 @@
 
 [[snippets]]
   command = "fcf"
-  description = "find and print files"
+  description = "find files and copy to another directory"
 
 [[snippets]]
   command = "fa"

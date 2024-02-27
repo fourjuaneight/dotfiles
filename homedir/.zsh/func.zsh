@@ -492,7 +492,7 @@ fpf() {
   [[ -n "$files" ]] && echo $files
 }
 
-# find and print files
+# find files and copy to another directory
 fcf() {
   local IFS file dist
   IFS=$'\n' file=($(fzf --query "$1" --multi --select-1 --exit-0))
