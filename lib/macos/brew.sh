@@ -44,7 +44,8 @@ action "tapping 3rd party repos"
 /opt/homebrew/bin/brew tap teamookla/speedtest
 
 action "installing packages"
-/opt/homebrew/bin/brew install ack \
+/opt/homebrew/bin/brew install 1password-cli \
+  ack \
   ansible \
   aom \
   certbot \
@@ -63,6 +64,7 @@ action "installing packages"
   git-lfs \
   gh \
   gist \
+  glow \
   go \
   gpg \
   graphicsmagick \
@@ -120,6 +122,7 @@ action "installing packages"
   tesseract \
   the_silver_searcher \
   tmux \
+  tpm \
   tree \
   uv \
   webp \
@@ -139,7 +142,6 @@ action "installing complicated packages"
 
 action "installing casks"
 /opt/homebrew/bin/brew install --cask 1password \
-  1password/tap/1password-cli \
   alacritty \
   arc \
   audio-hijack \
@@ -148,7 +150,6 @@ action "installing casks"
   discord \
   fission \
   gemini \
-  glow \
   handbrake \
   hazel \
   iina \
@@ -156,13 +157,13 @@ action "installing casks"
   istat-menus \
   loopback \
   meta \
+  microsoft-teams \
   mullvadvpn \
   raycast \
   slack \
   soundsource \
   syncthing \
   tableplus \
-  tpm \
   transmit \
   visual-studio-code \
   zoom
