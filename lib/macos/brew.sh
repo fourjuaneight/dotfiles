@@ -147,7 +147,6 @@ action "installing casks"
   audio-hijack \
   bartender \
   contexts \
-  discord \
   fission \
   gemini \
   handbrake \
@@ -157,16 +156,13 @@ action "installing casks"
   istat-menus \
   loopback \
   meta \
-  microsoft-teams \
   mullvadvpn \
   raycast \
-  slack \
   soundsource \
   syncthing \
   tableplus \
   transmit \
-  visual-studio-code \
-  zoom
+  visual-studio-code
 
 action "cleaning up"
 /opt/homebrew/bin/brew cleanup
