@@ -7,7 +7,7 @@
   description = "run wget inside pueue as a background job"
 
 [[snippets]]
-  command = "tmlo"
+  command = "stl"
   description = "choose from different tmux layouts"
 
 [[snippets]]

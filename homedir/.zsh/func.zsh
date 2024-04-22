@@ -25,7 +25,7 @@ puewget() {
 }
 
 # choose from different tmux layouts
-tmlo() {
+stl() {
   local action
   action=$(gum choose "dev" "git") &&
 
@@ -40,12 +40,12 @@ tmlo() {
 # find and kill tmux sessions
 fkts () {
     local sessions
-    sessions="$(tmux ls|fzf --exit-0 --multi)"  || return $?
+    sessions="$(tmux ls | gum choose )" || return $?
     local i
     for i in "${(f@)sessions}"
     do
         [[ $i =~ '([^:]*):.*' ]] && {
-            echo "Killing $match[1]"
+            echo "Killing $match[1]";
             tmux kill-session -t "$match[1]"
         }
     done
@@ -54,8 +54,7 @@ fkts () {
 # select selected tmux session
 fst() {
   local session
-  session=$(tmux list-sessions -F "#{session_name}" | \
-    fzf --query="$1" --select-1 --exit-0) &&
+  session=$(tmux list-sessions -F "#{session_name}" | gum choose ) &&
   tmux switch-client -t "$session"
 }
 
