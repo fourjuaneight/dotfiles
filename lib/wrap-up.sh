@@ -20,12 +20,15 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 # ###########################################################
-# Setup zsh and vim env
+# Setup zsh, tmux, and vim env
 # ###########################################################
 bot "Setting up nvim and stowing dotfiles."
 
 action "installing nvchad"
 git clone git@github.com:NvChad/NvChad.git ~/.config/nvim --depth 1 && nvim
+
+action "installing tpm"
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 action "running stow"
 cd ~/dotfiles

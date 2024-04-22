@@ -51,7 +51,7 @@ fkts () {
     done
 }
 
-# select selected tmux session
+# find and select tmux session
 fst() {
   local session
   session=$(tmux list-sessions -F "#{session_name}" | gum choose ) &&
