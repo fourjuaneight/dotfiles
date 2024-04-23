@@ -55,7 +55,7 @@ fkts () {
 fst() {
   local session
   session=$(tmux list-sessions -F "#{session_name}" | gum choose ) &&
-  tmux switch-client -t "$session"
+  tmux a -t "$session"
 }
 
 # find and switch tmux pane
