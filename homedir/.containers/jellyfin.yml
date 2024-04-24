@@ -6,7 +6,7 @@ services:
     network_mode: host
     restart: unless-stopped
     volumes:
-      - /Library/Application Support/Plex Media Server:/config
+      - ~/.config/jellyfin:/config
       - /media/Movies:/data/movies
       - /media/Rentals:/data/rentals
       - /media/TV_Shows:/data/tvshows
