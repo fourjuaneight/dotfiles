@@ -1,0 +1,17 @@
+---
+services:
+  sftp:
+    image: atmoz/sftp
+    volumes:
+      - ~/.ssh/sftp_docker_ed25519:/etc/ssh/sftp_docker_ed25519
+      - /media/Audiobooks:/home/admin/Audiobooks
+      - /media/Books:/home/admin/Books
+      - /media/Comics:/home/admin/Comics
+      - /media/Emulation:/home/admin/Emulation
+      - /media/Manga:/home/admin/Manga
+      - /media/Music:/home/admin/Music
+    command: admin::1001
+    ports:
+      - 2020:22
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
