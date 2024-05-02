@@ -4,7 +4,7 @@ services:
     image: drakkan/sftpgo:latest
     container_name: sftpgo
     ports:
-      - "22:22"
+      - "22:2020"
       - "8080:8080" # Optional: Web management interface
     volumes:
       - ./sftpgo_data:/data
