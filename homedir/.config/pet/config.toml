@@ -1,5 +1,5 @@
 [General]
-  snippetfile = "/Users/fourjuaneight/.config/pet/snippet.toml"
+  snippetfile = "/home/fourjuaneight/.config/pet/snippet.toml"
   editor = "hx"
   column = 40
   selectcmd = "fzf --ansi --layout=reverse --border --height=90% --pointer='*' --cycle --prompt='Snippets: '"
