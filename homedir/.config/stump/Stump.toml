@@ -1,5 +1,0 @@
-rocket_profile = "release"
-rocket_port = 10801
-stump_log_verbosity = 4
-stump_client_dir = "/app/client"
-stump_config_dir = "/config"
