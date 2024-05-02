@@ -1,15 +1,16 @@
-version: "3.3"
+---
 services:
   stump:
-    image: aaronleopold/stump
+    image: aaronleopold/stump:nightly
     container_name: stump
     volumes:
       - ~/.config/stump:/config
       - ~/.config/stump/data:/data
-      - ~/Media:/Media
+      - /media/Books:/Books
+      - /media/Comics:/Comics
+      - /media/Manga:/Manga
     ports:
       - 10801:10801
-    user: "1000:1000"
     environment:
       - PUID=1000
       - PGID=1000
