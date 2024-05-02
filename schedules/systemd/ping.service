@@ -1,0 +1,10 @@
+[Unit]
+Description=Ping local router
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/sh %h/.scripts/ping.sh &> %h/ping.log
+Type=oneshot
+
+[Install]
+WantedBy=multi-user.target

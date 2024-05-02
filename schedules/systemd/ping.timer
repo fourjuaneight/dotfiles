@@ -1,0 +1,11 @@
+[Unit]
+Description=Ping local router every 1 hour
+RefuseManualStart=no
+RefuseManualStop=no
+
+[Timer]
+OnCalendar=*:0/15
+Unit=ping.service
+
+[Install]
+WantedBy=timers.target
