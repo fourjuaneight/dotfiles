@@ -146,6 +146,7 @@ action "installing casks"
   arc \
   audio-hijack \
   bartender \
+  burn \
   contexts \
   fission \
   gemini \
