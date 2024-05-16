@@ -26,10 +26,12 @@ apt-get install -y alacritty \
   cmake \
   coreutils \
   curl \
+  dvd+rw-tools \
   findutils \
   font-manager \
   fontconfig \
   gawk \
+  genisoimage \
   ghc \
   gist \
   git \
@@ -43,6 +45,7 @@ apt-get install -y alacritty \
   indicator-multiload \
   inotify-tools \
   jasper \
+  k3b \
   libaom-dev \
   libfontconfig1-dev \
   libfreetype6-dev \
