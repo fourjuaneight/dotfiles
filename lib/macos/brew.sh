@@ -130,10 +130,10 @@ action "installing packages"
   wireshark \
   xz \
   yq \
-  yt-dlp/taps/yt-dlp
+  yt-dlp
 
 action "installing complicated packages"
-/opt/homebrew/bin/brew install homebrew-ffmpeg/ffmpeg/ffmpeg --with-fdk-aac --with-libbluray --with-rav1e --with-svt-av1
+/opt/homebrew/bin/brew install homebrew-ffmpeg/ffmpeg/ffmpeg
 /opt/homebrew/bin/brew tap heroku/brew
 /opt/homebrew/bin/brew install heroku
 /opt/homebrew/bin/brew tap helix-editor/helix
@@ -156,6 +156,7 @@ action "installing casks"
   imageoptim \
   istat-menus \
   loopback \
+  keka \
   meta \
   mullvadvpn \
   raycast \
