@@ -26,7 +26,7 @@ done <"${DUTI_DIR}/vector.txt"
 
 action "setting default app for raster image files"
 while read -r ext; do
-  /opt/homebrew/bin/duti -s com.seriflabs.affinityphoto "$ext" all
+  /opt/homebrew/bin/duti -s com.pixelmatorteam.pixelmator.x "$ext" all
   if [[ $? != 0 ]]; then
     error "unable to set app for $ext files"
     exit 2
