@@ -9,10 +9,11 @@ fi
 minibot "Let's download the universe."
 eval "$(~/.cargo/bin/fnm env)"
 
-~/.cargo/bin/fnm install 16
-~/.cargo/bin/fnm use 16
+~/.cargo/bin/fnm install 18
+~/.cargo/bin/fnm use 18
 
 action "installing global npm dependencies"
-npm i -g @angular/cli eslint fkill-cli glyphhanger next prettier serve tailwindcss typescript
+export PUPPETEER_SKIP_DOWNLOAD='true';
+npm i -g eslint fkill-cli glyphhanger next prettier serve tailwindcss typescript
 
 ok "done taking up half our storage."
