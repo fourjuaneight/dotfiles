@@ -311,8 +311,16 @@
   description = "find git commit and print details"
 
 [[snippets]]
+  command = "gdcm"
+  description = "find git commit and show diff"
+
+[[snippets]]
   command = "gecm"
   description = "edit commit"
+
+[[snippets]]
+  command = "glmf"
+  description = "git select commit and list all modified files since"
 
 [[snippets]]
   command = "gnpr"
@@ -325,10 +333,6 @@
 [[snippets]]
   command = "gmpr"
   description = "git merge (squash and delete branch) PR. Provide number or select from open PRs"
-
-[[snippets]]
-  command = "glmf"
-  description = "git select commit and list all modified files since"
 
 [[snippets]]
   command = "fnr"

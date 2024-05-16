@@ -775,6 +775,14 @@ gscm() {
   git show $commit
 }
 
+# find git commit and show diff
+gdcm() {
+  local commits commit
+  commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%N%Creset %s' --abbrev-commit --reverse) &&
+  commit=$(echo "$commits" | fzf --ansi --tac --no-sort --exact | sd "^([a-z0-9]+)\s-\s.*" "$1") &&
+  git diff $commit
+}
+
 # edit commit
 gecm() {
   local commits commit id
