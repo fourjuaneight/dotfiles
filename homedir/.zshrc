@@ -62,13 +62,10 @@ eval "$(sheldon source)"
 eval "$(starship init zsh)"
 zsh-defer eval "$(atuin init zsh)"
 zsh-defer eval "$(zoxide init zsh)"
-zsh-defer eval "$(github-copilot-cli alias -- "$0")"
+# zsh-defer eval "$(github-copilot-cli alias -- "$0")"
 
 # Rust Cargo
 zsh-defer source "$HOME/.cargo/env"
-
-# Conda
-zsh-defer eval "$($HOME/anaconda3/bin/conda shell.zsh hook)"
 
 # Colors
 if [[ $TERM == xterm ]]; then
