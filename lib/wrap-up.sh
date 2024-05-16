@@ -62,8 +62,5 @@ fi
 action "setting Github CLI editor"
 gh config set editor hx
 
-action "enableing steam readonly mode"
-sudo steamos-readonly enable;
-
 bot "All done! Gary out."
 minibot "Little Gary out, too!"
