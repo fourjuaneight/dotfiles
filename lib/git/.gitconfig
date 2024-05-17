@@ -3,7 +3,7 @@
 
 [user]
   name = Juan Villela
-  email = juan@villela.co
+  email = fourjuaneight@users.noreply.github.com
 
 [github]
   user = fourjuaneight
@@ -41,7 +41,7 @@
   conflictstyle = diff3
 
 [absorb]
-  maxStack=150
+  maxStack = 150
 
 [mergetool]
   keepBackup = true
@@ -73,9 +73,6 @@
 
 [interactive]
   diffFilter = delta --color-only
-
-[gpg]
-  program = gpg
 
 [sequence]
   editor = interactive-rebase-tool

@@ -33,7 +33,7 @@ dnf -y install ansible \
   ghc \
   git \
   git-lfs \
-  gnupg \
+  gnupg2 \
   GraphicsMagick \
   id3v2 \
   ImageMagick \
@@ -58,6 +58,7 @@ dnf -y install ansible \
   perl \
   pkgconf \
   pandoc \
+  pinentry-curses \
   poppler \
   postgresql \
   python3 \

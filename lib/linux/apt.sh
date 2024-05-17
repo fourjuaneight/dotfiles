@@ -36,7 +36,7 @@ apt-get install -y alacritty \
   gist \
   git \
   git-lfs \
-  gnupg \
+  gnupg2 \
   gpg \
   graphicsmagick \
   id3v2 \
@@ -78,6 +78,7 @@ apt-get install -y alacritty \
   perl \
   pkg-config \
   pandoc \
+  pinentry-curses \
   poppler-utils \
   postgresql \
   python3 \

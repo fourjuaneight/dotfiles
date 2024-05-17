@@ -26,8 +26,19 @@ action "creating config file"
 cd ~
 mkdir -p ~/.gnupg
 touch ~/.gnupg/gpg-agent.conf
-echo "pinentry-program /opt/homebrew/bin/pinentry-mac" >> ~/.gnupg/gpg-agent.conf
-echo "enable-ssh-support" >> ~/.gnupg/gpg-agent.conf
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    echo "pinentry-program /opt/homebrew/bin/pinentry-mac" >> ~/.gnupg/gpg-agent.conf
+    echo "enable-ssh-support" >> ~/.gnupg/gpg-agent.conf
+    git config --global gpg.program gpg
+
+else
+    echo "pinentry-program /usr/bin/pinentry-curses" >> ~/.gnupg/gpg-agent.conf
+    echo "enable-ssh-support" >> ~/.gnupg/gpg-agent.conf
+
+    git config --global gpg.program gpg2
+fi
+
+gpgconf --kill gpg-agent
 
 read -p "Did you add the key to GitHub? [y/n]: " added
 if [[ $email == "y" ]]; then
