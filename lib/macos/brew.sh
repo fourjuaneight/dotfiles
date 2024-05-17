@@ -156,10 +156,12 @@ action "installing casks"
   imageoptim \
   istat-menus \
   loopback \
+  jordanbaird-ice \
   keka \
   meta \
   mullvadvpn \
   raycast \
+  sloth \
   soundsource \
   syncthing \
   tableplus \
