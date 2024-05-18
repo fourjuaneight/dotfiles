@@ -158,6 +158,7 @@ action "installing casks"
   loopback \
   jordanbaird-ice \
   keka \
+  maccy \
   meta \
   mullvadvpn \
   raycast \
