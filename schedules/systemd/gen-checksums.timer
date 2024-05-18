@@ -1,0 +1,11 @@
+[Unit]
+Description=Generate checksums for media files
+RefuseManualStart=no
+RefuseManualStop=no
+
+[Timer]
+OnCalendar=*:0/15
+Unit=gen-checksums.service
+
+[Install]
+WantedBy=timers.target
