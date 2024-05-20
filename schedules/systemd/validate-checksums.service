@@ -1,0 +1,11 @@
+[Unit]
+Description=Validate checksums for media files
+
+[Service]
+Type=simple
+WorkingDirectory=/media
+ExecStart=/usr/bin/sh %h/.scripts/validateChecksums.sh &> %h/validateChecksums.log
+Type=oneshot
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,11 @@
+[Unit]
+Description=Validate checksums for media files
+RefuseManualStart=no
+RefuseManualStop=no
+
+[Timer]
+OnCalendar=weekly
+Unit=validate-checksums.service
+
+[Install]
+WantedBy=timers.target
