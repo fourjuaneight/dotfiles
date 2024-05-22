@@ -62,6 +62,7 @@ brew install ack \
   rclone \
   restic \
   syncthing \
+  tako8ki/tap/gobang \
   tpm \
   uv \
   webp \

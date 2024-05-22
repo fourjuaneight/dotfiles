@@ -120,6 +120,7 @@ action "installing packages"
   speedtest \
   stow \
   syncthing \
+  tako8ki/tap/gobang \
   tesseract \
   the_silver_searcher \
   tmux \
