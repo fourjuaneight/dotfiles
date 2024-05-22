@@ -146,18 +146,18 @@ action "installing casks"
   alacritty \
   arc \
   audio-hijack \
-  bartender \
   burn \
   contexts \
   fission \
   gemini \
   handbrake \
   hazel \
+  hiddenbar \
   iina \
   imageoptim \
   istat-menus \
   loopback \
-  jordanbaird-ice \
+  hiddenbar \
   keka \
   maccy \
   meta \
