@@ -4,8 +4,7 @@ RefuseManualStart=no
 RefuseManualStop=no
 
 [Timer]
-# every day midnight
-OnCalendar=00 00 * * *
+OnCalendar=daily
 Unit=gen-files-list.service
 
 [Install]
