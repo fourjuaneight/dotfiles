@@ -4,7 +4,7 @@ RefuseManualStart=no
 RefuseManualStop=no
 
 [Timer]
-OnCalendar=*:0/15
+OnCalendar=hourly
 Unit=gen-checksums.service
 
 [Install]
