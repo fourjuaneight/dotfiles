@@ -58,6 +58,7 @@ brew install ack \
   neovim \
   osv-scanner \
   pnpm \
+  pyenv \
   rclone \
   restic \
   syncthing \

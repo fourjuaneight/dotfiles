@@ -107,6 +107,7 @@ action "installing packages"
   pnpm \
   poppler \
   postgresql \
+  pyenv \
   python3 \
   rclone \
   rename \
