@@ -152,12 +152,11 @@ action "installing casks"
   gemini \
   handbrake \
   hazel \
-  hiddenbar \
   iina \
   imageoptim \
   istat-menus \
   loopback \
-  hiddenbar \
+  jordanbaird-ice \
   keka \
   maccy \
   meta \
