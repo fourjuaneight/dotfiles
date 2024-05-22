@@ -20,4 +20,4 @@ generate_checksum() {
 export -f generate_checksum
 
 # Find all files (excluding .sha256 files and the script itself) and compute checksums
-find . -type f ! -name "*.sha256" -exec bash -c 'generate_checksum "{}"' \;
+find . -type f ! -name "*.sha256" ! -name "*.db" -exec bash -c 'generate_checksum "{}"' \;

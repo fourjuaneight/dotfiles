@@ -18,4 +18,4 @@ validate_checksums() {
 export -f validate_checksums
 
 # Find all sha256 files and validate checksums
-find . -type f ! -name "*.sha256" -exec bash -c 'validate_checksums "{}"' \;
+find . -type f ! -name "*.sha256" ! -name "*.db" -exec bash -c 'validate_checksums "{}"' \;
