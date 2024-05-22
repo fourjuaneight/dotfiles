@@ -43,7 +43,7 @@ def insert_or_update_file_info(file):
 # Walk the directory and find files
 for root, dirs, files in os.walk('.'):
     for file in files:
-        if not file.endswith(".sha256"):
+        if not file.endswith((".sha256", ".db")):
             file_path = os.path.join(root, file)
             insert_or_update_file_info(file_path)
 
