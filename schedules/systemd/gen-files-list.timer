@@ -1,0 +1,12 @@
+[Unit]
+Description=Generate a list of files and save it to a local DB
+RefuseManualStart=no
+RefuseManualStop=no
+
+[Timer]
+# every day midnight
+OnCalendar=00 00 * * *
+Unit=gen-files-list.service
+
+[Install]
+WantedBy=timers.target

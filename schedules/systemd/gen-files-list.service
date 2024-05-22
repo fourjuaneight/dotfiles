@@ -1,0 +1,11 @@
+[Unit]
+Description=Generate a list of files and save it to a local DB
+
+[Service]
+Type=simple
+WorkingDirectory=/media
+ExecStart= /home/linuxbrew/.linuxbrew/bin/python3 %h/.scripts/genFilesList.py &> %h/genFilesList.log
+Type=oneshot
+
+[Install]
+WantedBy=multi-user.target
