@@ -6,7 +6,7 @@
 validate_checksums() {
   local file="$1"
   local checksum_file="${file}.sha256"
-  local expected_checksum=$(cat "$checksum_file")
+  local expected_checksum=$(cat "$checksum_file" | awk '{ print $1 }')
   local actual_checksum=$(shasum -a 256 "$file" | awk '{ print $1 }')
 
   if [ "$expected_checksum" != "$actual_checksum" ]; then
