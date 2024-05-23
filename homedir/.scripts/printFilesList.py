@@ -13,11 +13,11 @@ conn = sqlite3.connect(db_file)
 cursor = conn.cursor()
 
 # Execute a query to fetch all data from the 'files' table
-cursor.execute("SELECT name, path, size FROM files")
+cursor.execute("SELECT name, path, size, disc FROM files")
 rows = cursor.fetchall()
 
 # Define the header for the CSV file
-header = ["name", "path", "size"]
+header = ["name", "path", "size", "disc"]
 
 # Write the data to a CSV file
 with open(csv_file, 'w', newline='') as csvfile:
