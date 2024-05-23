@@ -15,7 +15,8 @@ cursor.execute("""
     CREATE TABLE IF NOT EXISTS files (
         name TEXT,
         path TEXT,
-        size INTEGER
+        size INTEGER,
+        disc TEXT
     )
 """)
 
@@ -24,20 +25,21 @@ def insert_or_update_file_info(file):
     file_name = os.path.basename(file)
     directory_path = os.path.dirname(os.path.realpath(file))
     file_size = os.path.getsize(file)
+    disc = ""
 
     # Check if the file already exists in the database
-    cursor.execute("SELECT size FROM files WHERE path=? AND name=?", (directory_path, file_name))
+    cursor.execute("SELECT size FROM files WHERE path=? AND name=? AND disc=?", (directory_path, file_name, disc))
     result = cursor.fetchone()
     
     if result:
         # If the file exists and its size has changed, update the existing entry
         if result[0] != file_size:
-            cursor.execute("UPDATE files SET size=? WHERE path=? AND name=?", (file_size, directory_path, file_name))
+            cursor.execute("UPDATE files SET size=? WHERE path=? AND name=? AND disc=?", (file_size, directory_path, file_name, disc))
             print(f"Updated {file_name} in database.")
     else:
         # If the file does not exist, insert a new entry
-        cursor.execute("INSERT INTO files (name, path, size) VALUES (?, ?, ?)",
-                       (file_name, directory_path, file_size))
+        cursor.execute("INSERT INTO files (name, path, size, disc) VALUES (?, ?, ?, ?)",
+                       (file_name, directory_path, file_size, disc))
         print(f"Inserted {file_name} into database.")
 
 # Walk the directory and find files
