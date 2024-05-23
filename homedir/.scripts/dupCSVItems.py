@@ -2,7 +2,7 @@ import argparse
 import csv
 from collections import defaultdict
 
-# Function to parse command line arguments
+# Parse command line arguments
 def parse_args():
     parser = argparse.ArgumentParser(description="Find duplicates in CSV files.")
     parser.add_argument('inputFile', type=str, help='Path to input CSV file')

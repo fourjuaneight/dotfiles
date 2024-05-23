@@ -1,7 +1,7 @@
 import argparse
 import csv
 
-# Function to parse command line arguments
+# Parse command line arguments
 def parse_args():
     parser = argparse.ArgumentParser(description="Merge two CSV files.")
     parser.add_argument('fileA', type=str, help='Path to the first input CSV file')
