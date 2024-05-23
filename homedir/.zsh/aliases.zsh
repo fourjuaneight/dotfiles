@@ -38,7 +38,7 @@ alias ls="exa"
 alias ll="exa -l"
 alias la="exa -a"
 alias lal="exa -al"
-alias lc="ls | wc -l"
+alias lc="find . -type f ! -name "*.sha256" ! -name ".DS_Store*" ! -name ".localized*" | wc -l"
 
 # alternative to 'tree'
 alias tree="tree-rs"
