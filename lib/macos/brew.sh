@@ -119,6 +119,7 @@ action "installing packages"
   sphinx \
   speedtest \
   stow \
+  superfile \
   syncthing \
   tako8ki/tap/gobang \
   tesseract \

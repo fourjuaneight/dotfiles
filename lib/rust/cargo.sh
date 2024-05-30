@@ -44,6 +44,7 @@ cargo install amber \
   rustscan \
   sd \
   skim \
+  sigrs \
   sniffnet \
   stdrename \
   topgrade \

@@ -61,6 +61,7 @@ brew install ack \
   pyenv \
   rclone \
   restic \
+  superfile \
   syncthing \
   tako8ki/tap/gobang \
   tpm \
