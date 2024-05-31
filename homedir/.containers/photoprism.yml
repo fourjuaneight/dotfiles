@@ -1,4 +1,4 @@
-version: '3.5'
+version: '3.7'
 networks:
   photoslibrary:
     driver: bridge
@@ -31,7 +31,7 @@ services:
       PHOTOPRISM_DISABLE_TENSORFLOW: "false"
       PHOTOPRISM_DISABLE_FACES: "false"
       PHOTOPRISM_DISABLE_CLASSIFICATION: "false"
-      PHOTOPRISM_DISABLE_RAW: "false"
+      PHOTOPRISM_DISABLE_RAW: "true"
       PHOTOPRISM_RAW_PRESETS: "false"
       PHOTOPRISM_JPEG_QUALITY: 100
       PHOTOPRISM_DETECT_NSFW: "true"
@@ -52,7 +52,7 @@ services:
      - "/dev/dri:/dev/dri"
     working_dir: "/photoprism"
     volumes:
-      - "~/Pictures/Library:/photoprism/originals"
+      - "/media/Photos:/photoprism/originals"
       - "./storage:/photoprism/storage"
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
