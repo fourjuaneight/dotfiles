@@ -11,11 +11,9 @@ cargo install --locked deno
 cargo install --locked pueue
 cargo install --locked sheldon
 cargo install --locked starship
-cargo install --locked --force xplr
 
 action "installing normal packages"
-cargo install amber \
-  atuin \
+cargo install atuin \
   bandwhich \
   bottom \
   cargo-update \
@@ -35,13 +33,13 @@ cargo install amber \
   gitui \
   gping \
   halp \
-  hurl \
   inlyne \
   os_info_cli \
   procs \
   ripgrep \
   rm-improved \
   rustscan \
+  scriptisto \
   sd \
   skim \
   sigrs \
