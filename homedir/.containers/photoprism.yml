@@ -53,7 +53,7 @@ services:
     working_dir: "/photoprism"
     volumes:
       - "/media/Photos:/photoprism/originals"
-      - "./storage:/photoprism/storage"
+      - "~/.config/photoprism/storage:/photoprism/storage"
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
   mariadb:
@@ -66,7 +66,7 @@ services:
       - apparmor:unconfined
     command: mysqld --innodb-buffer-pool-size=128M --transaction-isolation=READ-COMMITTED --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --max-connections=512 --innodb-rollback-on-timeout=OFF --innodb-lock-wait-timeout=120
     volumes:
-      - "./database:/var/lib/mysql"
+      - "~/.config/photoprism/database:/var/lib/mysql"
     environment:
       MARIADB_AUTO_UPGRADE: "1"
       MARIADB_INITDB_SKIP_TZINFO: "1"
