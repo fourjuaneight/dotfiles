@@ -32,20 +32,26 @@ action "install gcc"
 brew install gcc &&
 
 action "installing complicated packages"
-brew install homebrew-ffmpeg/ffmpeg/ffmpeg --with-xvid --with-fdk-aac --with-libbluray --with-rav1e --with-svt-av1;
+brew install homebrew-ffmpeg/ffmpeg/ffmpeg &&
 brew tap helix-editor/helix &&
 brew install helix &&
 
 action "installing packages"
 brew install ack \
+  charmbracelet/tap/mods \
   fzf \
   gh \
+  glow \
   gum \
+  knqyf263/pet/pet \
   pnpm \
   rclone \
+  rsync \
+  superfile \
   syncthing \
   tpm \
-  webp &&
+  webp \
+  yt-dlp &&
 
 brew services start syncthing
 
