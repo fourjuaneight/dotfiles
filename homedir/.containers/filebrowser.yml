@@ -3,7 +3,7 @@ version: '3.7'
 
 services:
   filebrowser:
-    image: filebrowser/filebrowser:s6
+    image: filebrowser/filebrowser
     ports:
       - "8080:80"
     volumes:
@@ -13,6 +13,6 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-    user: "1000:1000"
+    user: "0"
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
