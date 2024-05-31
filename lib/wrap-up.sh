@@ -24,8 +24,8 @@ fi
 # ###########################################################
 bot "Setting up nvim and stowing dotfiles."
 
-action "installing nvchad"
-git clone git@github.com:NvChad/NvChad.git ~/.config/nvim --depth 1 && nvim
+# action "installing nvchad"
+# git clone git@github.com:NvChad/NvChad.git ~/.config/nvim --depth 1 && nvim
 
 action "installing tpm"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
