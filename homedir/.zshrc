@@ -69,7 +69,7 @@ zsh-defer source "$HOME/.cargo/env"
 
 # Colors
 if [[ $TERM == xterm ]]; then
-  TERM=xterm-256color
+  export TERM=xterm-256color
 fi
 
 # Autosuggestions
