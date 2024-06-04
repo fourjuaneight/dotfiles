@@ -9,9 +9,15 @@ services:
       - "443:443"
     volumes:
       - ~/.containers/Caddyfile:/etc/caddy/Caddyfile
+      - ~/.config/caddy_data:/data
+      - ~/.config/caddy_config:/config
     networks:
       - caddy_net
     restart: unless-stopped
+
+volumes:
+  caddy_data:
+  caddy_config:
 
 networks:
   caddy_net:
