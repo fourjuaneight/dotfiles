@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  yarr:
+    build:
+      context: .
+      dockerfile: Dockerfile.yarr
+    ports:
+      - "7070:7070"
+    volumes:
+      - yarr_data:/data
+    environment:
+      - YARR_ADDR=0.0.0.0:7070
+      - YARR_DB=/data/yarr.db
+    entrypoint: ["/usr/local/bin/yarr"]
+    command: ["-addr", "0.0.0.0:7070", "-db", "/data/yarr.db"]
+
+volumes:
+  yarr_data:
