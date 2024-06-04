@@ -33,5 +33,11 @@ services:
     environment:
       KOMGA_LIBRARIES_SCAN_STARTUP: "true"
     restart: unless-stopped
+    networks:
+      - caddy_net
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+
+networks:
+  caddy_net:
+    external: true

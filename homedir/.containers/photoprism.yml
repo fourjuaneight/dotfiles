@@ -1,7 +1,5 @@
 version: '3.7'
-networks:
-  photoslibrary:
-    driver: bridge
+
 services:
   photoprism:
     image: photoprism/photoprism:latest
@@ -15,7 +13,8 @@ services:
     ports:
       - "2342:2342"
     networks:
-      - "photoslibrary"
+      - photoslibrary
+      - caddy_net
     environment:
       PHOTOPRISM_ADMIN_PASSWORD: "${PHOTOPRISM_ADMIN_PASSWORD}"
       PHOTOPRISM_SITE_URL: "http://localhost:2342/"
@@ -56,6 +55,7 @@ services:
       - "~/.config/photoprism/storage:/photoprism/storage"
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+
   mariadb:
     restart: unless-stopped
     image: mariadb:10.7
@@ -77,3 +77,9 @@ services:
     env_file: .env
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+
+networks:
+  photoslibrary:
+    driver: bridge
+  caddy_net:
+    external: true
