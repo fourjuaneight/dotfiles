@@ -24,3 +24,4 @@ homedir/.containers/storage
 homedir/.vim/autoload
 homedir/.vim/plugged
 homedir/.vim/sessions
+Caddyfile
