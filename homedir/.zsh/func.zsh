@@ -18,7 +18,7 @@ puewget() {
   prompt=$(gum input --placeholder "Magnet") &&
   
   if [[ -n "$prompt" ]]; then
-    pueue add "wget $prompt"
+    pueue add "wget $prompt --no-check-certificate"
   else
     echo "No magnet link provided."
   fi
