@@ -22,7 +22,9 @@ alias dupefs="czkawka_cli"
 alias plexpermf="sudo chown -R 755"
 alias plexperm="sudo chown -R plex.plex"
 alias pueue="pueue -c ~/.config/pueue/pueue.yml"
-alias srip="sudo ~/.cargo/bin/rip -i"
+alias srm="sudo ~/.cargo/bin/rip -i"
+alias scat="sudo ~/.cargo/bin/bat"
+alias sls="sudo ~/.cargo/bin/exa"
 
 # alternative to 'cat'
 alias cat="bat"
