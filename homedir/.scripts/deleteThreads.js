@@ -48,9 +48,12 @@
   const processElementsSequentially = async () => {
     const elements = document.querySelectorAll("div.x1c1b4dv > div.x78zum5");
 
+    console.info("TOTAL:", elements.length);
+
     for (let i = 0; i < elements.length; i++) {
       await processElement(elements[i]);
-      await delay(3000);
+      console.info("COUNT:", i + 1);
+      await delay(1500);
     }
   };
 
