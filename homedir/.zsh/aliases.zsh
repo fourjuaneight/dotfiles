@@ -111,9 +111,6 @@ alias wnv="bat -p .nvmrc"
 # dev
 alias start="fnm use || fnm use 16 && clear && npm run clean; npm run start"
 
-# pip
-alias pip="uv pip"
-
 # Git
 # alias ga="git add"
 alias gaa="git add --all"
