@@ -26,10 +26,8 @@ puewget() {
 
 # run unzip inside pueue as a background job
 pueunzip() {
-  local prompt
-  prompt=$(gum input --placeholder "Magnet") &&
   local file
-  IFS=$'\n' file=($(fd -t f . ~/ 2>/dev/null | gum choose))
+  IFS=$'\n' file=($(fd -t f -e 'zip' . ~/ 2>/dev/null | gum choose))
   
   if [[ -n "$file" ]]; then
     pueue add "unzip $file"
@@ -170,7 +168,7 @@ sysup() {
 # glyphhanger whitelist Latin charset
 gla() {
   local file fname
-  IFS=$'\n' file=($(fd -t f -e 'ttf' -e 'mkv' 2>/dev/null | gum choose --no-limit))
+  IFS=$'\n' file=($(fd -t f -e 'ttf' 2>/dev/null | gum choose --no-limit))
   fname="${file%.*}" &&
 
   if [[ -n "$file" ]]; then
@@ -195,7 +193,7 @@ agla() {
 # glyphhanger whitelist US ASCII charset
 glu() {
   local file fname
-  IFS=$'\n' file=($(fd -t f -e 'ttf' -e 'mkv' 2>/dev/null | gum choose --no-limit))
+  IFS=$'\n' file=($(fd -t f -e 'ttf' 2>/dev/null | gum choose --no-limit))
   fname="${file%.*}" &&
 
   if [[ -n "$file" ]]; then
