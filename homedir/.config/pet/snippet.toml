@@ -7,6 +7,10 @@
   description = "run wget inside pueue as a background job"
 
 [[snippets]]
+  command = "pueunzip"
+  description = "run unzip inside pueue as a background job"
+
+[[snippets]]
   command = "stl"
   description = "choose from different tmux layouts"
 

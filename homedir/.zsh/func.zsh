@@ -24,6 +24,20 @@ puewget() {
   fi
 }
 
+# run unzip inside pueue as a background job
+pueunzip() {
+  local prompt
+  prompt=$(gum input --placeholder "Magnet") &&
+  local file
+  IFS=$'\n' file=($(fd -t f . ~/ 2>/dev/null | gum choose))
+  
+  if [[ -n "$file" ]]; then
+    pueue add "unzip $file"
+  else
+    echo "No files provided."
+  fi
+}
+
 # choose from different tmux layouts
 stl() {
   local action
