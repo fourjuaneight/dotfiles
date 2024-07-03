@@ -40,7 +40,7 @@ stl() {
 # find and kill tmux sessions
 fkts () {
     local sessions
-    sessions="$(tmux ls | gum choose )" || return $?
+    sessions="$(tmux ls | gum choose)" || return $?
     local i
     for i in "${(f@)sessions}"
     do
@@ -55,7 +55,12 @@ fkts () {
 fst() {
   local session
   session=$(tmux list-sessions -F "#{session_name}" | gum choose ) &&
-  tmux a -t "$session"
+
+  if [[ -n $session ]]; then
+    tmux a -t "$session"
+  else
+    echo "No session selected."
+  fi
 }
 
 # find and switch tmux pane
@@ -153,11 +158,14 @@ gla() {
   local file fname
   IFS=$'\n' file=($(fd -t f -e 'ttf' -e 'mkv' 2>/dev/null | gum choose --no-limit))
   fname="${file%.*}" &&
-    if [[ -n "$file" ]]; then
-      glyphhanger --LATIN --formats=woff2,woff --subset=$file &&
-      [[ -n "$fname-subset.woff" ]] && mv $fname-subset.woff $fname.woff &&
-      [[ -n "$fname-subset.woff2" ]] && mv $fname-subset.woff2 $fname.woff2
-    fi
+
+  if [[ -n "$file" ]]; then
+    glyphhanger --LATIN --formats=woff2,woff --subset=$file &&
+    [[ -n "$fname-subset.woff" ]] && mv $fname-subset.woff $fname.woff &&
+    [[ -n "$fname-subset.woff2" ]] && mv $fname-subset.woff2 $fname.woff2
+  else
+    echo "No files selected."
+  fi
 }
 
 # select all ttf files and run glyphhanger whitelist Latin charset
@@ -175,9 +183,12 @@ glu() {
   local file fname
   IFS=$'\n' file=($(fd -t f -e 'ttf' -e 'mkv' 2>/dev/null | gum choose --no-limit))
   fname="${file%.*}" &&
-    if [[ -n "$file" ]]; then
-      glyphhanger --US_ASCII --formats=woff2,woff --subset=$file
-    fi
+
+  if [[ -n "$file" ]]; then
+    glyphhanger --US_ASCII --formats=woff2,woff --subset=$file
+  else
+    echo "No files selected."
+  fi
 }
 
 # select all ttf files and run glyphhanger whitelist US ASCII charset
@@ -191,17 +202,38 @@ aglu() {
 
 # yt-dlp best video/audio quality
 ytv() {
-  yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio:' --merge-output-format mp4 -o "%(title)s.%(ext)s" $1
+  local prompt
+  prompt=$(gum input --placeholder "Link") &&
+
+  if [[ -n "$prompt" ]]; then
+    pueue add "yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio:' --merge-output-format mp4 -o "%(title)s.%(ext)s" $prompt"
+  else
+    echo "No link provided."
+  fi
 }
 
 # yt-dlp best audio (only) quality
 yta() {
-  yt-dlp -f bestaudio[ext=m4a] $1
+  local prompt
+  prompt=$(gum input --placeholder "Link") &&
+
+  if [[ -n "$prompt" ]]; then
+    pueue add "yt-dlp -f bestaudio[ext=m4a] $prompt"
+  else
+    echo "No link provided."
+  fi
 }
 
 # upload downloaded video to b2 archives
 ytu() {
-  b2 upload-file imladris $1 Bookmarks/Videos/$1
+  local file
+  IFS=$'\n' file=($(fd -t f -e 'ttf' -e 'mkv' 2>/dev/null | gum choose))
+
+  if [[ -n "$file" ]]; then
+    pueue add "b2 upload-file imladris $1 Bookmarks/Videos/$file"
+  else
+    echo "No file selected."
+  fi
 }
 
 # IMAGES #
@@ -237,16 +269,26 @@ webp2jpeg() {
 clipvid() {
   local IFS file output
   IFS=$'\n' file=($(fd -t f -e 'mp4' -e 'mkv' 2>/dev/null | gum choose)) &&
-  output=$(basename $file | sd '(\.[a-z0-9]+)' '_clipped$1') &&
-  ffmpeg -i $file -ss $1 -t $2 -c:v copy -c:a copy $output
+
+  if [[ -n "$file" ]]; then
+    output=$(basename $file | sd '(\.[a-z0-9]+)' '_clipped$1') &&
+    ffmpeg -i $file -ss $1 -t $2 -c:v copy -c:a copy $output
+  else
+    echo "No file selected."
+  fi
 }
 
 # extract audio from video (mp4 or mkv) and save it as mp3 with the same name
 vidaudio() {
   local IFS file output
   IFS=$'\n' file=($(fd -t f -e 'mp4' -e 'mkv' 2>/dev/null | gum choose)) &&
-  output=$(basename $file | sd '(\.[a-z0-9]+)' '_audio.mp3') &&
-  ffmpeg -i $file -q:a 0 -map a $output
+
+  if [[ -n "$file" ]]; then
+    output=$(basename $file | sd '(\.[a-z0-9]+)' '_audio.mp3') &&
+    ffmpeg -i $file -q:a 0 -map a $output
+  else
+    echo "No file selected."
+  fi
 }
 
 # convert video to the webM
@@ -374,12 +416,17 @@ bumkvc() {
 mrgplex() {
   local dst=$2
   local dst_dir=$(dirname $dst)
-  local file
-  IFS=$'\n' file=($(fd -t f . ~/ 2>/dev/null | fzf --query "$1" --no-multi --select-1 --exit-0))
+  local src type
+  type=$(gum choose "f" "d")
+  IFS=$'\n' src=($(fd -t $type . 2>/dev/null | gum choose))
 
   if [[ -d $dst_dir ]]; then
-    sudo rsync -av $file $dst
-    sudo chown -R plex.plex "$dst/$file"
+    if [[ -n $src ]]; then
+      sudo rsync -av $src $dst
+      sudo chown -R plex.plex "$dst/$src"
+    else
+      echo "No source selected."
+    fi
   else
     echo "Destination directory does not exist: $dst"
   fi
@@ -390,7 +437,7 @@ rpplex() {
   local dst=$1
   local dst_dir=$(dirname $dst)
   local file
-  IFS=$'\n' file=($(fd -t f . ~/ 2>/dev/null | fzf --query "$1" --no-multi --select-1 --exit-0))
+  IFS=$'\n' file=($(fd -t f . 2>/dev/null | gum choose))
 
   if [[ -d $dst_dir ]]; then
     yes | sudo rm "$dst/$file" &&
@@ -412,17 +459,17 @@ rpplexfiles() {
 mvplex() {
   local dst=$1
   local dst_dir=$(dirname $dst)
-  local file
-  IFS=$'\n' file=($(fd -t f . ~/ 2>/dev/null | fzf --query "$1" --no-multi --select-1 --exit-0))
+  local src type
+  type=$(gum choose "f" "d")
+  IFS=$'\n' src=($(fd -t $type . 2>/dev/null | gum choose))
 
   if [[ -d $dst_dir ]]; then
-    if [[ -d $file ]]; then
-      sudo chmod -R 755 $file;
-      sudo mv $file $dst
-      sudo chown -R plex.plex "$dst/$file"
-    elif [ -f "$file" ]; then
-      sudo mv $file $dst
-      sudo chown -R plex.plex "$dst/$file"
+    if [[ -n $src ]]; then
+      sudo chmod -R 755 $src;
+      sudo mv $src $dst
+      sudo chown -R plex.plex "$dst/$src"
+    else
+      echo "No source selected."
     fi
   else
     echo "Destination directory does not exist: $dst"
@@ -910,7 +957,12 @@ dckbd() {
   local services selectedService
   services=$(yq -M '.services | keys' docker-compose.yml | sd '\-\s' '') &&
   selectedService=$(echo "$services" | gum choose) &&
-  clear && docker compose build $selectedService
+
+  if [[ -n $selectedService ]]; then
+    clear && docker compose build $selectedService
+  else
+    echo "No service selected."
+  fi
 }
 
 # find and start docker services
@@ -918,7 +970,12 @@ dckup() {
   local services selectedService
   services=$(yq -M '.services | keys' docker-compose.yml | sd '\-\s' '') &&
   selectedService=$(echo "$services" | gum choose) &&
-  clear && docker compose up $selectedService
+
+  if [[ -n $selectedService ]]; then
+    clear && docker compose up $selectedService
+  else
+    echo "No service selected."
+  fi
 }
 
 # AI #
