@@ -27,7 +27,7 @@ puewget() {
 # run unzip inside pueue as a background job
 pueunzip() {
   local file
-  IFS=$'\n' file=($(fd -t f -e 'zip' . ~/ 2>/dev/null | gum choose))
+  IFS=$'\n' file=($(fd -t f -e 'zip' . 2>/dev/null | gum choose))
   
   if [[ -n "$file" ]]; then
     pueue add "unzip $file"
