@@ -372,9 +372,10 @@ bumkvc() {
 
 # merge files to Plex directory and set proper permissions
 mrgplex() {
-  local file=$1
   local dst=$2
   local dst_dir=$(dirname $dst)
+  local file
+  IFS=$'\n' file=($(fd -t f . ~/ 2>/dev/null | fzf --query "$1" --no-multi --select-1 --exit-0))
 
   if [[ -d $dst_dir ]]; then
     sudo rsync -av $file $dst
@@ -386,9 +387,10 @@ mrgplex() {
 
 # replace files to Plex directory and set proper permissions
 rpplex() {
-  local file=$1
-  local dst=$2
+  local dst=$1
   local dst_dir=$(dirname $dst)
+  local file
+  IFS=$'\n' file=($(fd -t f . ~/ 2>/dev/null | fzf --query "$1" --no-multi --select-1 --exit-0))
 
   if [[ -d $dst_dir ]]; then
     yes | sudo rm "$dst/$file" &&
@@ -408,18 +410,19 @@ rpplexfiles() {
 
 # move files to Plex directory and set proper permissions
 mvplex() {
-  local src=$1
-  local dst=$2
+  local dst=$1
   local dst_dir=$(dirname $dst)
+  local file
+  IFS=$'\n' file=($(fd -t f . ~/ 2>/dev/null | fzf --query "$1" --no-multi --select-1 --exit-0))
 
   if [[ -d $dst_dir ]]; then
-    if [[ -d $src ]]; then
-      sudo chmod -R 755 $src;
-      sudo mv $src $dst
-      sudo chown -R plex.plex "$dst/$src"
-    elif [ -f "$src" ]; then
-      sudo mv $src $dst
-      sudo chown -R plex.plex "$dst/$src"
+    if [[ -d $file ]]; then
+      sudo chmod -R 755 $file;
+      sudo mv $file $dst
+      sudo chown -R plex.plex "$dst/$file"
+    elif [ -f "$file" ]; then
+      sudo mv $file $dst
+      sudo chown -R plex.plex "$dst/$file"
     fi
   else
     echo "Destination directory does not exist: $dst"
@@ -444,22 +447,22 @@ mvplexfiles() {
 diffLongSel() {
   local file1 file2
   file1=$(fzf --query "$1") &&
-    file2=$(fzf --query "$1") &&
-    delta <(fold -s -w 20 $file1) <(fold -s -w 20 $file2)
+  file2=$(fzf --query "$1") &&
+delta <(fold -s -w 20 $file1) <(fold -s -w 20 $file2)
 }
 
 # select two files, then diff (via delta)
 diffSel() {
   local file1 file2
   file1=$(fzf --query "$1") &&
-    file2=$(fzf --query "$1") &&
-    delta $file1 $file2
+  file2=$(fzf --query "$1") &&
+  delta $file1 $file2
 }
 
 # open the selected file with the default editor
 fe() {
   local files
-  IFS=$'\n' files=($(fzf --query "$1" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(fd -t f . ~/ 2>/dev/null | fzf --query "$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && hx ${files[@]}
 }
 
@@ -480,22 +483,22 @@ fif() {
 # find and delete files
 fdf() {
   local files
-  IFS=$'\n' files=($(fzf --query "$1" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(fd -t f . ~/ 2>/dev/null | fzf --query "$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && rm $files
 }
 
 # find and print files
 fpf() {
   local files
-  IFS=$'\n' files=($(fzf --query "$1" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(fd -t f . ~/ 2>/dev/null | fzf --query "$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && echo $files
 }
 
 # find files and copy to another directory
 fcf() {
   local IFS file dist
-  IFS=$'\n' file=($(fzf --query "$1" --multi --select-1 --exit-0))
-  IFS=$'\n' dist=($(fd -t d . ~/ 2>/dev/null | fzf --query "$1" --multi --select-1 --exit-0))
+  IFS=$'\n' file=($(fd -t f . ~/ 2>/dev/null | fzf --query "$1" --no-no-multi --select-1 --exit-0))
+  IFS=$'\n' dist=($(fd -t d . ~/ 2>/dev/null | fzf --query "$1" --no-multi --select-1 --exit-0))
   cp $file $dist
 }
 
@@ -516,7 +519,7 @@ fa() {
 # find and show filepath
 fsf() {
   local IFS files directory fullpath
-  IFS=$'\n' files=($(fd -t d . ~/ 2>/dev/null | fzf --query "$1" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(fd -t d . ~/ 2>/dev/null | fzf --query "$1" --no-multi --select-1 --exit-0))
   directory=$(dirname $files)
   fullpath="$(pwd)/$directory"
   [[ -n "$files" ]] && print $fullpath
@@ -525,7 +528,7 @@ fsf() {
 # find and open file (default app)
 fof() {
   local files
-  IFS=$'\n' files=($(fzf --query "$1" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(fd -t f . ~/ 2>/dev/null | fzf --query "$1" --no-multi --select-1 --exit-0))
   [[ -n "$files" ]] && open $files
 }
 
@@ -547,14 +550,14 @@ cf() {
 # cd to selected directory
 fcd() {
   local dir
-  dir=$(fd -t d --prune . ./ 2>/dev/null | fzf) &&
+  dir=$(fd -t d --prune . ./ 2>/dev/null | fzf --query "$1" --no-multi --select-1 --exit-0) &&
     z "$dir"
 }
 
 # cd to directory and open with selected action
 fcdc() {
   local dir action
-  dir=$(fd -t d . ~/ 2>/dev/null | fzf) &&
+  dir=$(fd -t d . ~/ 2>/dev/null | fzf --query "$1" --no-multi --select-1 --exit-0) &&
   action=$(gum choose "cd" "code" "nvim" "hx") &&
   z "$dir" &&
   fnm use;
@@ -573,7 +576,7 @@ fcdc() {
 # cd to repo directory and open with selected action
 fcdr() {
   local dir action
-  dir=$(fd -t d --prune . ~/Repos 2>/dev/null | fzf) &&
+  dir=$(fd -t d --prune . ~/Repos 2>/dev/null | fzf --query "$1" --no-multi --select-1 --exit-0) &&
   action=$(gum choose "cd" "code" "nvim" "hx") &&
   z "$dir" &&
   fnm use;
@@ -593,9 +596,9 @@ fcdr() {
 # find file and move to another directory
 ffmv() {
   local file dest
-  IFS=$'\n' file=($(fzf --query "$1" --multi --select-1 --exit-0)) &&
-    dest=$(fd -t d --prune . ~ 2>/dev/null | fzf) &&
-    mv "$file" "$dest"
+  IFS=$'\n' file=($(fd -t f . ~/ 2>/dev/null | fzf --query "$1" --no-multi --select-1 --exit-0)) &&
+  dest=$(fd -t d --prune . ~ 2>/dev/null | fzf --query "$1" --no-multi --select-1 --exit-0) &&
+  mv "$file" "$dest"
 }
 
 # cd to selected parent directory
@@ -617,24 +620,24 @@ fpcd() {
 ffcd() {
   local file
   local dir
-  file=$(fzf --query "$1") &&
-    dir=$(dirname "$file") &&
-    z "$dir"
+  file=$(fd -t f . ~/ 2>/dev/null | fzf --query "$1" --no-multi --select-1 --exit-0) &&
+  dir=$(dirname "$file") &&
+  z "$dir"
 }
 
 # tree selected directory
 ftr() {
   local dir
   dir=$(fd ${1:-.} -path '*/\.*' -prune \
-    -o -type d -not \( -name node_modules -prune \) -print 2>/dev/null | fzf) &&
+    -o -type d -not \( -name node_modules -prune \) -print 2>/dev/null | fzf --query "$1" --no-multi --select-1 --exit-0) &&
     tree "$dir" -I node_modules
 }
 
 # find and delete directory
 fdd() {
   local dir
-  dir=$(fd -t d --prune . ./ 2>/dev/null | fzf) &&
-    rm -rf $dir
+  dir=$(fd -t d --prune . ./ 2>/dev/null | fzf --query "$1" --no-multi --select-1 --exit-0) &&
+  rm -rf $dir
 }
 
 # GIT #
