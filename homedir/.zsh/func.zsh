@@ -431,8 +431,8 @@ mrgplex() {
   local src
   local dst=$2
   local dst_dir=$(dirname $dst)
-  local type=$(gum choose "f" "d")
-  IFS=$'\n' src=($(fd -t $type . 2>/dev/null | gum choose))
+  local type=$(gum choose "file" "dir" --header "Source Type")
+  IFS=$'\n' src=($(fd -t $type . 2>/dev/null | gum choose --header "Source"))
 
   if [[ -d $dst_dir ]]; then
     if [[ -n $src ]]; then
@@ -474,8 +474,8 @@ mvplex() {
   local src
   local dst=$1
   local dst_dir=$(dirname $dst)
-  local type=$(gum choose "f" "d")
-  IFS=$'\n' src=($(fd -t $type . 2>/dev/null | gum choose))
+  local type=$(gum choose "file" "dir" --header "Source type")
+  IFS=$'\n' src=($(fd -t $type . 2>/dev/null | gum choose --header "Source"))
 
   if [[ -d $dst_dir ]]; then
     if [[ -n $src ]]; then
