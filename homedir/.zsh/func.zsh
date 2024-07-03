@@ -414,10 +414,10 @@ bumkvc() {
 
 # merge files to Plex directory and set proper permissions
 mrgplex() {
+  local src
   local dst=$2
   local dst_dir=$(dirname $dst)
-  local src type
-  type=$(gum choose "f" "d")
+  local type=$(gum choose "f" "d")
   IFS=$'\n' src=($(fd -t $type . 2>/dev/null | gum choose))
 
   if [[ -d $dst_dir ]]; then
@@ -457,10 +457,10 @@ rpplexfiles() {
 
 # move files to Plex directory and set proper permissions
 mvplex() {
+  local src
   local dst=$1
   local dst_dir=$(dirname $dst)
-  local src type
-  type=$(gum choose "f" "d")
+  local type=$(gum choose "f" "d")
   IFS=$'\n' src=($(fd -t $type . 2>/dev/null | gum choose))
 
   if [[ -d $dst_dir ]]; then
