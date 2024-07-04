@@ -461,9 +461,15 @@ rpplex() {
 
 # replace all files to Plex directory and set proper permissions
 rpplexfiles() {
-  find . -type f -print0 | while IFS= read -r -d $'\0' file; do
-     rpplex "$file" $1
-  done
+  if [[ -n $1 ]]; then
+    find . -type f -print0 | while IFS= read -r -d $'\0' file; do
+      yes | sudo rm "$1/$file" &&
+      sudo mv $file $1 &&
+      sudo chown -R plex.plex "$1/$file"
+    done
+  else
+    echo "No destination provided."
+  fi
 }
 
 # move files to Plex directory and set proper permissions
@@ -477,7 +483,8 @@ mvplex() {
   if [[ -d $dst_dir ]]; then
     if [[ -n $src ]]; then
       sudo chmod -R 755 $src &&
-      pueue add "sudo mv $src $dst && sudo chown -R plex.plex $dst/$src"
+      sudo mv $src $dst &&
+      sudo chown -R plex.plex "$dst/$src"
     else
       echo "No source selected."
     fi
@@ -488,16 +495,30 @@ mvplex() {
 
 # move all directories to Plex directory and set proper permissions
 mvplexdirs() {
-  find * -prune -type d | while IFS= read -r dir; do
-     mvplex "$dir" $1
-  done
+  local dst=$1
+
+  if [[ -n $1 ]]; then
+    find * -prune -type d | while IFS= read -r dir; do
+      sudo chmod -R 755 $dir &&
+      sudo mv $dir $1 &&
+      sudo chown -R plex.plex "$1/$dir"
+    done
+  else
+    echo "No destination provided."
+  fi
 }
 
 # move all files to Plex directory and set proper permissions
 mvplexfiles() {
-  find . -type f -print0 | while IFS= read -r -d $'\0' file; do
-     mvplex "$file" $1
-  done
+  if [[ -n $1 ]]; then
+    find . -type f -print0 | while IFS= read -r -d $'\0' file; do
+      sudo chmod -R 755 $dir &&
+      sudo mv $dir $1 &&
+      sudo chown -R plex.plex "$1/$dir"
+    done
+  else
+    echo "No destination provided."
+  fi
 }
 
 # select two files, but fold lines longer than 20 characters, then diff (via delta)
