@@ -434,7 +434,8 @@ mrgplex() {
 
   if [[ -d $dst_dir ]]; then
     if [[ -n $src ]]; then
-      pueue add "sudo rsync -av $src $dst && sudo chown -R plex.plex $dst/$src"
+      sudo rsync -av $src $dst &&
+      sudo chown -R plex.plex "$dst/$src"
     else
       echo "No source selected."
     fi
@@ -482,7 +483,7 @@ mvplex() {
 
   if [[ -d $dst_dir ]]; then
     if [[ -n $src ]]; then
-      sudo chmod -R 755 $src &&
+      sudo chmod -R 755 $src;
       sudo mv $src $dst &&
       sudo chown -R plex.plex "$dst/$src"
     else
@@ -499,7 +500,7 @@ mvplexdirs() {
 
   if [[ -n $1 ]]; then
     for dir in $(find * -prune -type d ); do
-      sudo chmod -R 755 $dir &&
+      sudo chmod -R 755 $dir;
       sudo mv $dir $1 &&
       sudo chown -R plex.plex "$1/$dir"
     done
@@ -512,7 +513,6 @@ mvplexdirs() {
 mvplexfiles() {
   if [[ -n $1 ]]; then
     for file in $(find . -type f -print0); do
-      sudo chmod -R 755 $file &&
       sudo mv $file $1 &&
       sudo chown -R plex.plex "$1/$file"
     done
