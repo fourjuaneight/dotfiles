@@ -498,7 +498,7 @@ mvplexdirs() {
   local dst=$1
 
   if [[ -n $1 ]]; then
-    find * -prune -type d | while IFS= read -r dir; do
+    for dir in $(find * -prune -type d ); do
       sudo chmod -R 755 $dir &&
       sudo mv $dir $1 &&
       sudo chown -R plex.plex "$1/$dir"
@@ -511,10 +511,10 @@ mvplexdirs() {
 # move all files to Plex directory and set proper permissions
 mvplexfiles() {
   if [[ -n $1 ]]; then
-    find . -type f -print0 | while IFS= read -r -d $'\0' file; do
-      sudo chmod -R 755 $dir &&
-      sudo mv $dir $1 &&
-      sudo chown -R plex.plex "$1/$dir"
+    for file in $(find . -type f -print0); do
+      sudo chmod -R 755 $file &&
+      sudo mv $file $1 &&
+      sudo chown -R plex.plex "$1/$file"
     done
   else
     echo "No destination provided."
@@ -526,7 +526,7 @@ diffLongSel() {
   local file1 file2
   file1=$(fzf --query "$1") &&
   file2=$(fzf --query "$1") &&
-delta <(fold -s -w 20 $file1) <(fold -s -w 20 $file2)
+  delta <(fold -s -w 20 $file1) <(fold -s -w 20 $file2)
 }
 
 # select two files, then diff (via delta)
