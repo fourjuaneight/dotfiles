@@ -161,6 +161,7 @@ action "installing casks"
   jordanbaird-ice \
   keka \
   maccy \
+  markedit \
   meta \
   mullvadvpn \
   raycast \

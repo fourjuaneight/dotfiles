@@ -12,6 +12,8 @@ cargo install --locked pueue
 cargo install --locked sheldon
 cargo install --locked starship
 
+cargo install --git https://github.com/tbillington/kondo kondo
+
 action "installing normal packages"
 cargo install atuin \
   bandwhich \
