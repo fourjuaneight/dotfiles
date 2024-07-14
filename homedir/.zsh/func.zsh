@@ -512,7 +512,7 @@ mvplexdirs() {
 # move all files to Plex directory and set proper permissions
 mvplexfiles() {
   if [[ -n $1 ]]; then
-    for file in $(find . -type f -print0); do
+    for file in $(fd -t f -e 'mkv' -e 'mp4'); do
       sudo mv $file $1 &&
       sudo chown -R plex.plex "$1/$file"
     done
