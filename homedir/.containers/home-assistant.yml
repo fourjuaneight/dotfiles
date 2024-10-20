@@ -1,0 +1,63 @@
+version: "3.9"
+
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: "ghcr.io/home-assistant/home-assistant:stable"
+    user: 1000:1000
+    devices:
+      - /dev/ttyUSB0
+    depends_on:
+      - mosquitto
+      - zigbee2mqtt
+      - nodered
+    volumes:
+      - /opt/smart-home/homeassistant/config:/config
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - TZ=Europe/London
+    restart: unless-stopped
+    privileged: false # Remove if not needed
+    network_mode: host
+
+  mosquitto:
+    image: eclipse-mosquitto
+    container_name: mosquitto
+    volumes:
+      - /opt/smart-home/mosquitto/config:/mosquitto/config
+      - /opt/smart-home/mosquitto/data:/mosquitto/data # Add data volume
+    ports:
+      - 1883:1883
+      - 9001:9001
+    restart: always
+
+  zigbee2mqtt:
+    container_name: zigbee2mqtt
+    image: koenkk/zigbee2mqtt:latest
+    restart: unless-stopped
+    depends_on:
+      - mosquitto
+    volumes:
+      - /opt/smart-home/z2m:/app/data
+      - /run/udev:/run/udev:ro
+    ports:
+      - 8099:8080
+    environment:
+      - TZ=Europe/London
+    devices:
+      - /dev/ttyUSB0:/dev/ttyACM0
+
+  nodered:
+    image: nodered/node-red:latest
+    container_name: nodered
+    user: 1000:1000
+    depends_on:
+      - mosquitto
+      - zigbee2mqtt
+    environment:
+      - TZ=Europe/London
+    ports:
+      - "1880:1880"
+    volumes:
+      - /opt/smart-home/nodered:/data
+    restart: always
