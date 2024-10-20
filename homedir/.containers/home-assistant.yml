@@ -20,7 +20,7 @@ services:
     depends_on:
       - homeassistant
       - mosquitto
-      - zigbee2mqtt
+      - zwavejs
     environment:
       - TZ=America/New_York
     ports:
@@ -43,26 +43,10 @@ services:
       - TZ=America/New_York
     restart: always
 
-  zigbee2mqtt:
-    container_name: zigbee2mqtt
-    image: koenkk/zigbee2mqtt:latest
-    restart: unless-stopped
-    depends_on:
-      - mosquitto
-    volumes:
-      - /opt/smart-home/z2m:/app/data
-      - /run/udev:/run/udev:ro
-    ports:
-      - 8099:8080
-    environment:
-      - TZ=America/New_York
-    devices:
-      - /dev/ttyUSB0:/dev/ttyACM0
-
   zwavejs:
     container_name: zwavejs
     image: zwavejs/zwavejs2mqtt:latest
-    restart: unless-stopped
+    restart: always
     ports:
       - "8080:8080"
       - "3000:3000"
