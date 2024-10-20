@@ -48,7 +48,7 @@ services:
     image: zwavejs/zwavejs2mqtt:latest
     restart: always
     ports:
-      - "8080:8080"
+      - "8066:8080"
       - "3000:3000"
     volumes:
       - /opt/smart-home/zwavejs:/var/lib/zwavejs
