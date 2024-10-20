@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   homeassistant:
     container_name: homeassistant
@@ -7,10 +5,6 @@ services:
     user: 1000:1000
     devices:
       - /dev/ttyUSB0
-    depends_on:
-      - mosquitto
-      - zigbee2mqtt
-      - nodered
     volumes:
       - /opt/smart-home/homeassistant/config:/config
       - /etc/localtime:/etc/localtime:ro
