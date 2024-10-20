@@ -1,21 +1,22 @@
 services:
   homeassistant:
     container_name: homeassistant
-    image: "ghcr.io/home-assistant/home-assistant:stable"
+    image: ghcr.io/home-assistant/home-assistant:stable
+    restart: unless-stopped
+    network_mode: host
     user: "${UID}:${GID}"
+    environment:
+      - TZ=America/New_York
     devices:
       - /dev/ttyUSB0
     volumes:
       - /opt/smart-home/homeassistant/config:/config
       - /etc/localtime:/etc/localtime:ro
-    environment:
-      - TZ=America/New_York
-    restart: unless-stopped
-    network_mode: host
 
   nodered:
-    image: nodered/node-red:latest
     container_name: nodered
+    image: nodered/node-red:latest
+    restart: unless-stopped
     user: "${UID}:${GID}"
     depends_on:
       - homeassistant
@@ -24,46 +25,47 @@ services:
     environment:
       - TZ=America/New_York
     ports:
-      - "1880:1880"
+      - 1880:1880
     volumes:
       - /opt/smart-home/nodered:/data
-    restart: always
 
   mosquitto:
-    image: eclipse-mosquitto
     container_name: mosquitto
+    image: eclipse-mosquitto
+    restart: unless-stopped
+    environment:
+      - TZ=America/New_York
+    ports:
+      - 1883:1883
+      - 9001:9001
     volumes:
       - /opt/smart-home/mosquitto/config:/mosquitto/config
       - /opt/smart-home/mosquitto/data:/mosquitto/data
       - /opt/smart-home/mosquitto/log:/mosquitto/log
-    ports:
-      - 1883:1883
-      - 9001:9001
-    environment:
-      - TZ=America/New_York
-    restart: always
 
   zwavejs:
     container_name: zwavejs
     image: zwavejs/zwavejs2mqtt:latest
-    restart: always
-    ports:
-      - "8066:8080"
-      - "3000:3000"
-    volumes:
-      - /opt/smart-home/zwavejs:/var/lib/zwavejs
-    devices:
-      - /dev/ttyUSB0:/dev/ttyUSB0
-    environment:
-      - TZ=America/New_York
+    restart: unless-stopped
+    network_mode: host
     depends_on:
       - homeassistant
+    environment:
+      - TZ=America/New_York
+    ports:
+      - 8066:8080
+      - 3000:3000
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+    volumes:
+      - /opt/smart-home/zwavejs:/var/lib/zwavejs
 
   hass-configurator:
-    image: "causticlab/hass-configurator-docker:latest"
+    container_name: hassconfig
+    image: causticlab/hass-configurator-docker:latest
     restart: always
     ports:
-      - "3218:3218/tcp"
+      - 3218:3218/tcp
     volumes:
-      - "/opt/smart-home/hass/configurator-config:/config"
-      - "/opt/smart-home/hass/hass-config:/hass-config"
+      - /opt/smart-home/hass/configurator-config:/config
+      - /opt/smart-home/hass/hass-config:/hass-config
