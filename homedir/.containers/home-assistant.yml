@@ -2,7 +2,7 @@ services:
   homeassistant:
     container_name: homeassistant
     image: "ghcr.io/home-assistant/home-assistant:stable"
-    user: 1000:1000
+    user: "${UID}:${GID}"
     devices:
       - /dev/ttyUSB0
     volumes:
@@ -16,7 +16,7 @@ services:
   nodered:
     image: nodered/node-red:latest
     container_name: nodered
-    user: 1000:1000
+    user: "${UID}:${GID}"
     depends_on:
       - homeassistant
       - mosquitto
