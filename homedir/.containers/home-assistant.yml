@@ -15,20 +15,39 @@ services:
       - /opt/smart-home/homeassistant/config:/config
       - /etc/localtime:/etc/localtime:ro
     environment:
-      - TZ=Europe/London
+      - TZ=America/New_York
     restart: unless-stopped
-    privileged: false # Remove if not needed
+    privileged: true
     network_mode: host
+
+  nodered:
+    image: nodered/node-red:latest
+    container_name: nodered
+    user: 1000:1000
+    depends_on:
+      - homeassistant
+      - mosquitto
+      - zigbee2mqtt
+    environment:
+      - TZ=America/New_York
+    ports:
+      - "1880:1880"
+    volumes:
+      - /opt/smart-home/nodered:/data
+    restart: always
 
   mosquitto:
     image: eclipse-mosquitto
     container_name: mosquitto
     volumes:
       - /opt/smart-home/mosquitto/config:/mosquitto/config
-      - /opt/smart-home/mosquitto/data:/mosquitto/data # Add data volume
+      - /opt/smart-home/mosquitto/data:/mosquitto/data
+      - /opt/smart-home/mosquitto/log:/mosquitto/log
     ports:
       - 1883:1883
       - 9001:9001
+    environment:
+      - TZ=America/New_York
     restart: always
 
   zigbee2mqtt:
@@ -43,21 +62,15 @@ services:
     ports:
       - 8099:8080
     environment:
-      - TZ=Europe/London
+      - TZ=America/New_York
     devices:
       - /dev/ttyUSB0:/dev/ttyACM0
 
-  nodered:
-    image: nodered/node-red:latest
-    container_name: nodered
-    user: 1000:1000
-    depends_on:
-      - mosquitto
-      - zigbee2mqtt
-    environment:
-      - TZ=Europe/London
-    ports:
-      - "1880:1880"
-    volumes:
-      - /opt/smart-home/nodered:/data
+  hass-configurator:
+    image: "causticlab/hass-configurator-docker:latest"
     restart: always
+    ports:
+      - "3218:3218/tcp"
+    volumes:
+      - "/opt/smart-home/hass/configurator-config:/config"
+      - "/opt/smart-home/hass/hass-config:/hass-config"
