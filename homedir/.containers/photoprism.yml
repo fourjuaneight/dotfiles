@@ -1,6 +1,4 @@
-version: '3.7'
-
-services:
+      services:
   photoprism:
     image: photoprism/photoprism:latest
     depends_on:
@@ -81,5 +79,3 @@ services:
 networks:
   photoslibrary:
     driver: bridge
-  caddy_net:
-    external: true
