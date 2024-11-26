@@ -27,6 +27,10 @@ services:
         source: /media/Manga
         target: /Manga
         read_only: true
+      - type: bind
+        source: /media/Documents/Magazines
+        target: /Magazines
+        read_only: true
     ports:
       - 25600:25600
     user: "1000:1000"
