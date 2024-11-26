@@ -11,7 +11,5 @@ services:
       - PUID=1000
       - PGID=1000
     user: "0"
-    networks:
-      - caddy_net
     labels:
       - "com.centurylinklabs.watchtower.enable=true"

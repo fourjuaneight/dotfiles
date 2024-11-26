@@ -1,4 +1,4 @@
-      services:
+services:
   photoprism:
     image: photoprism/photoprism:latest
     depends_on:
@@ -12,7 +12,6 @@
       - "2342:2342"
     networks:
       - photoslibrary
-      - caddy_net
     environment:
       PHOTOPRISM_ADMIN_PASSWORD: "${PHOTOPRISM_ADMIN_PASSWORD}"
       PHOTOPRISM_SITE_URL: "http://localhost:2342/"
