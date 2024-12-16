@@ -135,7 +135,7 @@ portcheck() {
   fi
 
   echo "Checking port $port..."
-  rustscan -n --top -a $port
+  rustscan -n --top -a $port -- -A -sV
 }
 
 # system dependencies and tooling updates
