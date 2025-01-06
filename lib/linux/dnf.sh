@@ -86,6 +86,10 @@ yum install tar
 action "installing alacritty"
 dnf -y install rust-alacritty
 
+action "installing librewolf"
+curl -fsSL https://repo.librewolf.net/librewolf.repo | pkexec tee /etc/yum.repos.d/librewolf.repo
+sudo dnf install librewolf
+
 action "loading zfs kernel module"
 modprobe zfs
 

@@ -129,6 +129,10 @@ echo "deb [signed-by=/usr/share/keyrings/syncthing-archive-keyring.gpg] https://
 sudo apt-get update
 sudo apt-get install syncthing
 
+action "LibreWolf..."
+sudo apt install extrepo -y && sudo extrepo enable librewolf;
+sudo apt update && sudo apt install librewolf -y;
+
 action "cleaning up"
 apt-get autoclean -y
 
