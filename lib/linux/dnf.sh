@@ -90,14 +90,19 @@ action "installing librewolf"
 curl -fsSL https://repo.librewolf.net/librewolf.repo | pkexec tee /etc/yum.repos.d/librewolf.repo
 sudo dnf install librewolf
 
+action "installing mullvad browser"
+sudo dnf config-manager addrepo --from-repofile=https://repository.mullvad.net/rpm/stable/mullvad.repo
+sudo dnf config-manager --add-repo https://repository.mullvad.net/rpm/stable/mullvad.repo
+sudo dnf install mullvad-browser
+
 action "loading zfs kernel module"
 modprobe zfs
-
-action "cleaning up"
-dnf clean all
 
 action "installing speedtest-cli"
 curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.rpm.sh | sudo bash
 sudo yum install speedtest
+
+action "cleaning up"
+dnf clean all
 
 ok "done installing dependencies."

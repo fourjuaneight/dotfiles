@@ -162,6 +162,7 @@ action "installing casks"
   jordanbaird-ice \
   keka \
   meta \
+  mullvad-browser \
   mullvadvpn \
   raycast \
   soundsource \

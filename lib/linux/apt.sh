@@ -133,6 +133,15 @@ action "LibreWolf..."
 sudo apt install extrepo -y && sudo extrepo enable librewolf;
 sudo apt update && sudo apt install librewolf -y;
 
+action "Mullvad Browser..."
+# download the Mullvad signing key
+sudo curl -fsSLo /usr/share/keyrings/mullvad-keyring.asc https://repository.mullvad.net/deb/mullvad-keyring.asc
+# add the Mullvad repository server to apt
+echo "deb [signed-by=/usr/share/keyrings/mullvad-keyring.asc arch=$( dpkg --print-architecture )] https://repository.mullvad.net/deb/stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/mullvad.list
+# install the package
+sudo apt update
+sudo apt install mullvad-browser
+
 action "cleaning up"
 apt-get autoclean -y
 
