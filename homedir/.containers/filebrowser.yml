@@ -2,7 +2,7 @@ services:
   filebrowser:
     image: filebrowser/filebrowser
     ports:
-      - "8080:80"
+      - "8080:9090"
     volumes:
       - /media:/srv
       - ~/.config/filebrowser/filebrowser.db:/database/filebrowser.db
