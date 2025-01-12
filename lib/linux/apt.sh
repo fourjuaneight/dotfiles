@@ -91,6 +91,7 @@ apt-get install -y alacritty \
   stow \
   tar \
   tmux \
+  ufw \
   unrar \
   vim \
   virtualenv \

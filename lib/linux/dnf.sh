@@ -72,6 +72,7 @@ dnf -y install ansible \
   the_silver_searcher \
   tmux \
   syncthing \
+  ufw \
   unzip \
   vim \
   wget \
