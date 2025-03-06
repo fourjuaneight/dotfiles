@@ -10,11 +10,11 @@ action "installing 1Blocker"
 action "installing 1Password Extension"
 /opt/homebrew/bin/mas install 1569813296
 
-action "installing Affinity Designer"
-/opt/homebrew/bin/mas install 824171161
+# action "installing Affinity Designer"
+# /opt/homebrew/bin/mas install 824171161
 
-action "installing Affinity Photo"
-/opt/homebrew/bin/mas install 824183456
+# action "installing Affinity Photo"
+# /opt/homebrew/bin/mas install 824183456
 
 action "installing Baking Soda Extension"
 /opt/homebrew/bin/mas install 1601151613

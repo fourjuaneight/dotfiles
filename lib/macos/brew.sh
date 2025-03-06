@@ -160,13 +160,9 @@ action "installing casks"
   librewolf \
   loopback \
   jordanbaird-ice \
-  keka \
   meta \
-  mullvad-browser \
-  mullvadvpn \
   raycast \
   soundsource \
-  syncthing \
   tableplus \
   transmit \
   visual-studio-code
