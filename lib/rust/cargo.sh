@@ -32,7 +32,6 @@ cargo install atuin \
   git-cliff \
   git-delta \
   git-interactive-rebase-tool \
-  gitui \
   gping \
   halp \
   inlyne \

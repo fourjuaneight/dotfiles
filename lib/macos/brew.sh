@@ -61,6 +61,7 @@ action "installing packages"
   fzf \
   ghc \
   git \
+  gitui \
   git-lfs \
   gh \
   gist \

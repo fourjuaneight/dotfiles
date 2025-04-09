@@ -46,6 +46,7 @@ brew install ack \
   fzf \
   gcc@5 \
   gh \
+  gitui \
   glow \
   go \
   gum \

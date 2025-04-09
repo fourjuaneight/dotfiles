@@ -32,6 +32,7 @@ dnf -y install ansible \
   gcc-c++ \
   ghc \
   git \
+  gitui \
   git-lfs \
   gnupg2 \
   GraphicsMagick \
