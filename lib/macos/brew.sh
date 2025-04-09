@@ -146,7 +146,6 @@ action "installing complicated packages"
 action "installing casks"
 /opt/homebrew/bin/brew install --cask 1password \
   alacritty \
-  arc \
   audio-hijack \
   burn \
   contexts \
@@ -157,13 +156,13 @@ action "installing casks"
   iina \
   imageoptim \
   istat-menus \
-  librewolf \
   loopback \
   jordanbaird-ice \
   meta \
   raycast \
   soundsource \
   tableplus \
+  tower \
   transmit \
   visual-studio-code
 
