@@ -165,7 +165,8 @@ action "installing casks"
   tableplus \
   tower \
   transmit \
-  visual-studio-code
+  visual-studio-code \
+  webstorm
 
 action "cleaning up"
 /opt/homebrew/bin/brew cleanup
