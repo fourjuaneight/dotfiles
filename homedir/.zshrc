@@ -51,7 +51,10 @@ export SHELDON_LOCK_FILE="$SHELDON_CONFIG_DIR/plugins.lock"
 export SHELDON_CLONE_DIR="$SHELDON_DATA_DIR/repos"
 export SHELDON_DOWNLOAD_DIR="$SHELDON_DATA_DIR/downloads"
 
-# Starship
+if [[ "$OSTYPE" != "darwin"* ]]; then
+  # Coreutils
+  export PATH=/usr/lib/cargo/bin/coreutils:$PATH
+fi
 
 # GPG
 export GPG_TTY=$(tty)

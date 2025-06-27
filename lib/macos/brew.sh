@@ -28,7 +28,7 @@ action "updating homebrew directories"
 /opt/homebrew/bin/brew update
 
 action "installing updated GNU core utils"
-/opt/homebrew/bin/brew install coreutils
+/opt/homebrew/bin/brew install uutils-coreutils
 /opt/homebrew/bin/brew install gnu-sed
 /opt/homebrew/bin/brew install gnu-tar
 /opt/homebrew/bin/brew install gnu-indent

@@ -19,7 +19,6 @@ cargo install atuin \
   bandwhich \
   bottom \
   cargo-update \
-  coreutils \
   czkawka_cli \
   diskonaut \
   du-dust \
@@ -44,7 +43,6 @@ cargo install atuin \
   sd \
   skim \
   sigrs \
-  sniffnet \
   stdrename \
   topgrade \
   tree-rs \

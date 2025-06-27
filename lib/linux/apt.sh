@@ -85,6 +85,7 @@ apt-get install -y alacritty \
   python3-dev \
   python3-pip \
   ripgrep \
+  rust-coreutils \
   rsync \
   sed \
   silversearcher-ag \
