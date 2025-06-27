@@ -37,14 +37,14 @@ action "installing Deliveries"
 action "installing GoodLinks"
 /opt/homebrew/bin/mas install 1474335294
 
-action "installing Grammarly"
-/opt/homebrew/bin/mas install 1462114288
-
 action "installing HomeCam"
 /opt/homebrew/bin/mas install 1292995895
 
 action "installing iA Writer"
 /opt/homebrew/bin/mas install 775737590
+
+action "installing Infuse"
+/opt/homebrew/bin/mas install 1136220934
 
 action "installing Noir Extension"
 /opt/homebrew/bin/mas install 1592917505
