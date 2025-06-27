@@ -61,8 +61,8 @@ action "installing Pixelmator Pro"
 action "installing Refined GitHub"
 /opt/homebrew/bin/mas install 1519867270
 
-action "installing Spark"
-/opt/homebrew/bin/mas install 1176895641
+action "installing Screens"
+/opt/homebrew/bin/mas install 1663047912
 
 action "installing The Unarchiver"
 /opt/homebrew/bin/mas install 425424353

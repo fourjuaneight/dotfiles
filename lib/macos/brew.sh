@@ -161,6 +161,7 @@ action "installing casks"
   jordanbaird-ice \
   meta \
   raycast \
+  screens-connect \
   soundsource \
   tableplus \
   tower \
