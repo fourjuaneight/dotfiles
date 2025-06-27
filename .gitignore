@@ -1,5 +1,6 @@
 .DS_Store
 .env
+.idea
 homedir/.config/alacritty/dracula
 homedir/.config/coc/extensions/node_modules
 homedir/.config/configstore
@@ -24,4 +25,5 @@ homedir/.containers/storage
 homedir/.vim/autoload
 homedir/.vim/plugged
 homedir/.vim/sessions
+homedir/.config/github-copilot
 Caddyfile
