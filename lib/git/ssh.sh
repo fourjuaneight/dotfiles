@@ -4,10 +4,10 @@ source ~/dotfiles/util/echos.sh
 
 minibot "Little Gary here! Let's setup an SSH key for Github."
 
-if [[ -f ~/.ssh/space-maria_github ]]; then
-    minibot "Looks like you already have a key named space-maria_github."
+if [[ -f ~/.ssh/mikey_github ]]; then
+    minibot "Looks like you already have a key named mikey_github."
 else
-    action "creating ssh key (space-maria_github)"
+    action "creating ssh key (mikey_github)"
 
     read -p "Use Git user.email [y/n]: " email
     if [[ $email == "y" ]]; then
@@ -15,9 +15,9 @@ else
     else
         read -p "Your Email: " email
     fi
-    ssh-keygen -t ed25519 -C "$email" -f ~/.ssh/space-maria_github
-    ssh-keygen -t ed25519 -C "$email" -f ~/.ssh/space-maria_bitbucket
-    bat -p ~/.ssh/space-maria_github.pub
+    ssh-keygen -t ed25519 -C "$email" -f ~/.ssh/mikey_github
+    ssh-keygen -t ed25519 -C "$email" -f ~/.ssh/mikey_bitbucket
+    bat -p ~/.ssh/mikey_github.pub
     ok "add key to your Github account."
 fi
 
@@ -33,7 +33,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     PreferredAuthentications publickey
     AddKeysToAgent yes
     UseKeychain yes
-    IdentityFile ~/.ssh/space-maria_github
+    IdentityFile ~/.ssh/mikey_github
   " >> ~/.ssh/config
 else
   echo "
@@ -42,7 +42,7 @@ else
     Hostname github.com
     PreferredAuthentications publickey
     AddKeysToAgent yes
-    IdentityFile ~/.ssh/space-maria_github
+    IdentityFile ~/.ssh/mikey_github
   " >> ~/.ssh/config
 fi
 
@@ -51,9 +51,9 @@ if [[ $email == "y" ]]; then
     action "testing config..."
     eval "$(ssh-agent -s)"
     if [[ "$OSTYPE" == "darwin"* ]]; then
-      ssh-add --apple-use-keychain ~/.ssh/space-maria_github
+      ssh-add --apple-use-keychain ~/.ssh/mikey_github
     else
-      ssh-add ~/.ssh/space-maria_github
+      ssh-add ~/.ssh/mikey_github
     fi
     ssh -vT git@github.com
 
