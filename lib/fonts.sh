@@ -5,7 +5,7 @@ source ~/dotfiles/util/echos.sh
 minibot "Fonts will be saved to your local Fonts directory."
 
 action "saving fonts"
-for file in ./fonts/**/*; do
+for file in ~/dotfiles/fonts/**/*; do
   if [[ "$OSTYPE" == "darwin"* ]]; then
     cp "$file" ~/Library/Fonts
   else
