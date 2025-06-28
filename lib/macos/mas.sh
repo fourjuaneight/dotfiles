@@ -25,6 +25,9 @@ action "installing Better JSON Extension"
 action "installing Cascadea Extension"
 /opt/homebrew/bin/mas install 1432182561
 
+action "installing Collections"
+/opt/homebrew/bin/mas install 1568395334
+
 action "installing Darkroom"
 /opt/homebrew/bin/mas install 953286746
 
