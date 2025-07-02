@@ -147,6 +147,7 @@ action "installing complicated packages"
 action "installing casks"
 /opt/homebrew/bin/brew install --cask 1password \
   alacritty \
+  anydesk \
   audio-hijack \
   burn \
   contexts \
