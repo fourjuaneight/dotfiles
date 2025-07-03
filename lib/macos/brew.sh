@@ -159,6 +159,7 @@ action "installing casks"
   imageoptim \
   istat-menus \
   loopback \
+  plex-media-server \
   jordanbaird-ice \
   meta \
   raycast \
