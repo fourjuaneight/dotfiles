@@ -8,10 +8,14 @@ services:
       - /Library/Application Support/Plex Media Server:/config
       - /Volumes/Samuel/Audiobooks:/Audiobooks
       - /Volumes/Samuel/Music:/Music
+    ports:
+      - "32400:32400"
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=501
+      - PGID=20
       - VERSION=docker
+      - TZ=America/New_York
+      - PLEX_CLAIM=${PLEX_CLAIM_TOKEN}
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
   tautulli:
@@ -21,8 +25,8 @@ services:
     volumes:
       - ~/.config/tautulli:/config
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=501
+      - PGID=20
       - TZ=America/New_York
     ports:
       - 127.0.0.1:8181:8181
