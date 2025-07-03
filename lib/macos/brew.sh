@@ -157,10 +157,10 @@ action "installing casks"
   hazel \
   iina \
   imageoptim \
-  istat-menus \
+  jordanbaird-ice \
+  keyboard-maestro \
   loopback \
   plex-media-server \
-  jordanbaird-ice \
   meta \
   raycast \
   screens-connect \
@@ -168,8 +168,7 @@ action "installing casks"
   tableplus \
   tower \
   transmit \
-  visual-studio-code \
-  webstorm
+  visual-studio-code
 
 action "cleaning up"
 /opt/homebrew/bin/brew cleanup
