@@ -6,11 +6,8 @@ services:
     restart: unless-stopped
     volumes:
       - /Library/Application Support/Plex Media Server:/config
-      - /media/Audiobooks:/Audiobooks
-      - /media/Movies:/Movies
-      - /media/Music:/Music
-      - /media/Rentals:/Rentals
-      - /media/TV_Shows:/TV_Shows
+      - /Volumes/Samuel/Audiobooks:/Audiobooks
+      - /Volumes/Samuel/Music:/Music
     environment:
       - PUID=1000
       - PGID=1000
