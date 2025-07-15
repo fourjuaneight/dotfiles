@@ -31,9 +31,9 @@ brew update
 action "installing complicated packages"
 brew install homebrew-ffmpeg/ffmpeg/ffmpeg --with-xvid --with-fdk-aac --with-libbluray --with-rav1e --with-svt-av1
 
-
 action "tapping 3rd party repos"
 brew tap helix-editor/helix
+brew tap crumbyte/noxdir
 
 action "installing packages"
 brew install ack \
@@ -57,6 +57,7 @@ brew install ack \
   lindell/multi-gitter/multi-gitter \
   lux \
   neovim \
+  noxdir \
   osv-scanner \
   pnpm \
   pyenv \

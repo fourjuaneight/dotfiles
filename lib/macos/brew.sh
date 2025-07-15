@@ -42,6 +42,7 @@ action "installing latest bash"
 
 action "tapping 3rd party repos"
 /opt/homebrew/bin/brew tap teamookla/speedtest
+/opt/homebrew/bin/brew tap crumbyte/noxdir
 
 action "installing packages"
 /opt/homebrew/bin/brew install 1password-cli \
@@ -100,6 +101,7 @@ action "installing packages"
   ngrok \
   neovim \
   node \
+  noxdir \
   osv-scanner \
   p7zip \
   pkg-config \
