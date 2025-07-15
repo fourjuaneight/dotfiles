@@ -161,6 +161,7 @@ action "installing casks"
   iina \
   imageoptim \
   jordanbaird-ice \
+  keyboard-cowboy \
   keyboard-maestro \
   loopback \
   plex-media-server \
