@@ -122,6 +122,7 @@ action "installing packages"
   sphinx \
   speedtest \
   stow \
+  streamrip \
   superfile \
   syncthing \
   tako8ki/tap/gobang \

@@ -63,6 +63,7 @@ brew install ack \
   pyenv \
   rclone \
   restic \
+  streamrip \
   superfile \
   syncthing \
   tako8ki/tap/gobang \
