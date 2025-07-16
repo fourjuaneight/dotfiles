@@ -27,3 +27,4 @@ homedir/.vim/plugged
 homedir/.vim/sessions
 homedir/.config/github-copilot
 Caddyfile
+.vscode
