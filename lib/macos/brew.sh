@@ -168,6 +168,7 @@ action "installing casks"
   meta \
   raycast \
   screens-connect \
+  signal \
   soundsource \
   tableplus \
   tower \
