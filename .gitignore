@@ -26,5 +26,7 @@ homedir/.vim/autoload
 homedir/.vim/plugged
 homedir/.vim/sessions
 homedir/.config/github-copilot
+homedir/.config/homebridge
+homedir/.config/audiobookshelf
 Caddyfile
 .vscode

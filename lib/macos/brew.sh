@@ -53,6 +53,7 @@ action "installing packages"
   charmbracelet/tap/mods \
   cmake \
   cocoapods \
+  colima \
   curl \
   dog \
   duti \
