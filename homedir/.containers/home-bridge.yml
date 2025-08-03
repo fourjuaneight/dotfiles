@@ -2,8 +2,11 @@ services:
   homebridge:
     image: homebridge/homebridge:latest
     restart: unless-stopped
+    network_mode: host
     ports:
       - "8581:8581"
+      - "51802:51802"
+      - "59028:59028"
     volumes:
       - ~/.config/homebridge:/homebridge
     logging:
