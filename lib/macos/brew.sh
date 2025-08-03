@@ -154,6 +154,7 @@ action "installing casks"
   anydesk \
   audio-hijack \
   burn \
+  cleanshot \
   contexts \
   fission \
   gemini \
