@@ -61,6 +61,9 @@ action "installing Photomator"
 action "installing PDF Expert"
 /opt/homebrew/bin/mas install 1055273043
 
+action "installing Panels"
+/opt/homebrew/bin/mas install 1236567663
+
 action "installing Pixelmator Pro"
 /opt/homebrew/bin/mas install 1289583905
 
@@ -81,5 +84,8 @@ action "installing Tot"
 
 action "installing Vinegar Extension"
 /opt/homebrew/bin/mas install 1591303229
+
+action "installing Yomu"
+/opt/homebrew/bin/mas install 562211012
 
 ok "done with the App Store."
