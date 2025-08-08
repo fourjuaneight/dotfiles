@@ -150,12 +150,14 @@ action "installing complicated packages"
 
 action "installing casks"
 /opt/homebrew/bin/brew install --cask 1password \
+  affinity-designer@1 \
   alacritty \
   anydesk \
   audio-hijack \
   burn \
   cleanshot \
   contexts \
+  discord \
   fission \
   gemini \
   handbrake \
