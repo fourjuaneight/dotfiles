@@ -28,5 +28,6 @@ homedir/.vim/sessions
 homedir/.config/github-copilot
 homedir/.config/homebridge
 homedir/.config/audiobookshelf
+homedir/.config/helix/runtime/grammars
 Caddyfile
 .vscode
