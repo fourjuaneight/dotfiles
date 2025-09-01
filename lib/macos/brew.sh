@@ -174,6 +174,7 @@ action "installing casks"
   screens-connect \
   signal \
   soundsource \
+  streamrip \
   tableplus \
   tower \
   transmit \

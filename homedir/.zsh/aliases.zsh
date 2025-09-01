@@ -26,6 +26,9 @@ alias srm="sudo ~/.cargo/bin/rip -i"
 alias scat="sudo ~/.cargo/bin/bat"
 alias sls="sudo ~/.cargo/bin/exa"
 
+# direct to streamrip
+alias streamrip="/opt/homebrew/bin/rip"
+
 # alternative to 'cat'
 alias cat="bat"
 
