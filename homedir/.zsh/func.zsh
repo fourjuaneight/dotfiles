@@ -15,12 +15,24 @@ petrun() {
 # run wget inside pueue as a background job
 puewget() {
   local prompt
-  prompt=$(gum input --placeholder "Magnet") &&
+  prompt=$(gum input --placeholder "Link") &&
   
   if [[ -n "$prompt" ]]; then
     pueue add "wget '$prompt' --no-check-certificate"
   else
-    echo "No magnet link provided."
+    echo "No link provided."
+  fi
+}
+
+# run wget inside pueue as a background job
+qobuzrip() {
+  local prompt
+  prompt=$(gum input --placeholder "Link") &&
+  
+  if [[ -n "$prompt" ]]; then
+    streamrip --quality 2 url $prompt
+  else
+    echo "No link provided."
   fi
 }
 
