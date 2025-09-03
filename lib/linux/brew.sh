@@ -37,6 +37,7 @@ brew tap crumbyte/noxdir
 
 action "installing packages"
 brew install ack \
+  charmbracelet/tap/crush \
   charmbracelet/tap/mods \
   cocoapods \
   dive \

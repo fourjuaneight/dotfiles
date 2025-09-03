@@ -50,6 +50,7 @@ action "installing packages"
   ansible \
   aom \
   certbot \
+  charmbracelet/tap/crush \
   charmbracelet/tap/mods \
   cmake \
   cocoapods \

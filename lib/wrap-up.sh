@@ -62,5 +62,8 @@ fi
 action "setting Github CLI editor"
 gh config set editor hx
 
+action "setting Crush API key"
+crush
+
 bot "All done! Gary out."
 minibot "Little Gary out, too!"
