@@ -230,7 +230,7 @@ ytv() {
   prompt=$(gum input --placeholder "Link") &&
 
   if [[ -n "$prompt" ]]; then
-    pueue add "yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio:' --merge-output-format mp4 -o "%(title)s.%(ext)s" $prompt"
+    yt-dlp -f b --merge-output-format mp4 -o "%(title)s.%(ext)s" $prompt
   else
     echo "No link provided."
   fi
@@ -242,7 +242,7 @@ yta() {
   prompt=$(gum input --placeholder "Link") &&
 
   if [[ -n "$prompt" ]]; then
-    pueue add "yt-dlp -f bestaudio[ext=m4a] $prompt"
+    yt-dlp -x --audio-format flac --audio-quality 0 $prompt
   else
     echo "No link provided."
   fi
