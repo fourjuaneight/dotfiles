@@ -1,6 +1,6 @@
 zsh-defer source ${HOME}/dotfiles/lib/util/echos.sh
 
-# UTILITIES #
+# MEDIA #
 
 # search for a command in the pet database and run it
 petrun() {
@@ -24,18 +24,6 @@ puewget() {
   fi
 }
 
-# run wget inside pueue as a background job
-qobuzrip() {
-  local prompt
-  prompt=$(gum input --placeholder "Link") &&
-  
-  if [[ -n "$prompt" ]]; then
-    streamrip --quality 2 url $prompt
-  else
-    echo "No link provided."
-  fi
-}
-
 # run unzip inside pueue as a background job
 pueunzip() {
   local file
@@ -47,6 +35,32 @@ pueunzip() {
     echo "No files provided."
   fi
 }
+
+# run wget with retries
+forcewget() {
+  local prompt
+  prompt=$(gum input --placeholder "Link") &&
+  
+  if [[ -n "$prompt" ]]; then
+    pueue add "wget -v --continue --retry-on-host-error --retry-connrefused --tries=0 --no-check-certificate '$prompt'"
+  else
+    echo "No link provided."
+  fi
+}
+
+# run streamrip for Qobuz links
+qobuzrip() {
+  local prompt
+  prompt=$(gum input --placeholder "Link") &&
+  
+  if [[ -n "$prompt" ]]; then
+    streamrip -ndb --quality 2 url $prompt
+  else
+    echo "No link provided."
+  fi
+}
+
+# UTILITIES #
 
 # choose from different tmux layouts
 stl() {
