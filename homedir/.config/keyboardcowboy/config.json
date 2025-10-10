@@ -3,6 +3,7 @@
     "groups" : [
       {
         "color" : "#EB5545",
+        "disabled" : true,
         "id" : "74966B2F-ED0E-4021-9EB2-423951A94E94",
         "name" : "Automation",
         "symbol" : "autostartstop",
