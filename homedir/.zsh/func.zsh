@@ -42,7 +42,7 @@ forcewget() {
   prompt=$(gum input --placeholder "Link") &&
   
   if [[ -n "$prompt" ]]; then
-    wget -v --continue --retry-on-host-error --retry-connrefused --tries=0 --no-check-certificate '$prompt'
+    wget -v --continue --retry-on-host-error --retry-connrefused --tries=0 --no-check-certificate "$prompt"
   else
     echo "No link provided."
   fi
