@@ -43,6 +43,7 @@ action "installing latest bash"
 action "tapping 3rd party repos"
 /opt/homebrew/bin/brew tap teamookla/speedtest
 /opt/homebrew/bin/brew tap crumbyte/noxdir
+/opt/homebrew/bin/brew tap gromgit/homebrew-fuse
 
 action "installing packages"
 /opt/homebrew/bin/brew install 1password-cli \
@@ -104,6 +105,7 @@ action "installing packages"
   neovim \
   node \
   noxdir \
+  ntfs-3g-mac \
   osv-scanner \
   p7zip \
   pkg-config \
@@ -142,7 +144,7 @@ action "installing packages"
   yt-dlp
 
 action "installing complicated packages"
-/opt/homebrew/bin/brew install homebrew-ffmpeg/ffmpeg/ffmpeg
+/opt/homebrew/bin/brew install homebrew-ffmpeg/ffmpeg/ffmpeg --with-zimg
 /opt/homebrew/bin/brew tap heroku/brew
 /opt/homebrew/bin/brew install heroku
 /opt/homebrew/bin/brew tap helix-editor/helix
@@ -170,6 +172,7 @@ action "installing casks"
   keyboard-maestro \
   loopback \
   plex-media-server \
+  macfuse \
   meta \
   raycast \
   screens-connect \

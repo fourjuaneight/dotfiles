@@ -26,6 +26,10 @@ alias srm="sudo ~/.cargo/bin/rip -i"
 alias scat="sudo ~/.cargo/bin/bat"
 alias sls="sudo ~/.cargo/bin/exa"
 
+# direct to mkntfs
+alias mkntfs="/opt/homebrew/Cellar/ntfs-3g-mac/2022.10.3/sbin/mkntfs"
+alias smkntfs="sudo /opt/homebrew/Cellar/ntfs-3g-mac/2022.10.3/sbin/mkntfs"
+
 # direct to streamrip
 alias streamrip="/opt/homebrew/bin/rip"
 
