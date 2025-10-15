@@ -369,6 +369,61 @@ chapters() {
   [[ -n "$file" ]] && ffprobe -v quiet -print_format json -show_format -show_chapters $file | jq -r '[.chapters[]]'
 }
 
+# 4K HDR to Wii video conversion
+4k2wii() {
+  local prompt fname
+  prompt=$(gum input --placeholder "File") || return 1
+
+  if [[ -z "$prompt" ]]; then
+    echo "No file path provided."
+    return 1
+  fi
+
+  if [[ ! -f "$prompt" ]]; then
+    echo "Error: File '$prompt' not found."
+    return 1
+  fi
+
+  fname="${prompt%.*}"
+
+  ffmpeg -i "$prompt" \
+    -vf "zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p,scale=854:480,subtitles='$prompt':si=0" \
+    -c:v libx264 -preset slow -crf 23 \
+    -profile:v baseline -level 3.0 \
+    -c:a aac -b:a 128k -ar 48000 -ac 2 \
+    -movflags +faststart \
+    -n \
+    "$fname.mp4"
+}
+
+# 4K HDR to iPod video conversion
+4k2ipod() {
+  local prompt fname
+  prompt=$(gum input --placeholder "File") || return 1
+
+  if [[ -z "$prompt" ]]; then
+    echo "No file path provided."
+    return 1
+  fi
+
+  if [[ ! -f "$prompt" ]]; then
+    echo "Error: File '$prompt' not found."
+    return 1
+  fi
+
+  fname="${prompt%.*}"
+
+  ffmpeg -i "$prompt" \
+    -vf "zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p,scale=854:480,subtitles='$prompt':si=0" \
+    -c:v libx264 \
+    -profile:v baseline -level 3.0 \
+     -pix_fmt yuv420p -b:v 1500k -maxrate 2500k -bufsize 2500k \
+    -c:a aac -b:a 128k -ar 48000 -ac 2 \
+    -movflags +faststart \
+    -n \
+    "$fname.mp4"
+}
+
 # FILES #
 
 # render markdown files
