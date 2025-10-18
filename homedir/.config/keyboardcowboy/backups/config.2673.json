@@ -1,0 +1,819 @@
+[
+  {
+    "groups" : [
+      {
+        "color" : "#EB5545",
+        "disabled" : true,
+        "id" : "74966B2F-ED0E-4021-9EB2-423951A94E94",
+        "name" : "Automation",
+        "symbol" : "autostartstop",
+        "workflows" : [
+          {
+            "commands" : [
+              {
+                "applicationCommand" : {
+                  "action" : "open",
+                  "application" : {
+                    "bundleIdentifier" : "org.alacritty",
+                    "bundleName" : "Alacritty",
+                    "displayName" : "Alacritty.app",
+                    "path" : "\/Applications\/Alacritty.app"
+                  },
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "B20B9751-1A1C-4D3B-AE16-11C51F311150",
+                    "name" : ""
+                  },
+                  "modifiers" : [
+                    "background",
+                    "onlyIfNotRunning"
+                  ]
+                }
+              },
+              {
+                "applicationCommand" : {
+                  "action" : "open",
+                  "application" : {
+                    "bundleIdentifier" : "com.fournova.Tower3",
+                    "bundleName" : "Tower",
+                    "displayName" : "Tower.app",
+                    "path" : "\/Applications\/Tower.app"
+                  },
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "A997BDF2-4AB6-43A1-8791-6CCB2D690D98",
+                    "name" : ""
+                  },
+                  "modifiers" : [
+                    "background",
+                    "onlyIfNotRunning"
+                  ]
+                }
+              }
+            ],
+            "execution" : "concurrent",
+            "id" : "D6BDC35B-F559-41C1-AA8F-97E64025B434",
+            "name" : "Start Dev Environment",
+            "trigger" : {
+              "application" : [
+                {
+                  "application" : {
+                    "bundleIdentifier" : "com.microsoft.VSCode",
+                    "bundleName" : "Code",
+                    "displayName" : "Visual Studio Code.app",
+                    "path" : "\/Applications\/Visual Studio Code.app"
+                  },
+                  "contexts" : [
+                    "launched"
+                  ],
+                  "id" : "37E678D3-79F9-4065-A6D4-8BD96ED7163B"
+                }
+              ]
+            }
+          },
+          {
+            "commands" : [
+              {
+                "applicationCommand" : {
+                  "action" : "close",
+                  "application" : {
+                    "bundleIdentifier" : "org.alacritty",
+                    "bundleName" : "Alacritty",
+                    "displayName" : "Alacritty.app",
+                    "path" : "\/Applications\/Alacritty.app"
+                  },
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "F694FE78-1149-4149-BE17-AE7EE7030004",
+                    "name" : ""
+                  },
+                  "modifiers" : [
+                    "background"
+                  ]
+                }
+              },
+              {
+                "applicationCommand" : {
+                  "action" : "close",
+                  "application" : {
+                    "bundleIdentifier" : "com.fournova.Tower3",
+                    "bundleName" : "Tower",
+                    "displayName" : "Tower.app",
+                    "path" : "\/Applications\/Tower.app"
+                  },
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "B00F89CB-ED75-43A6-AE40-29E25E10C55A",
+                    "name" : ""
+                  },
+                  "modifiers" : [
+                    "background"
+                  ]
+                }
+              }
+            ],
+            "execution" : "concurrent",
+            "id" : "F86D776F-48C4-4DF6-8DD0-AE298981F782",
+            "name" : "End Dev Environment",
+            "trigger" : {
+              "application" : [
+                {
+                  "application" : {
+                    "bundleIdentifier" : "com.microsoft.VSCode",
+                    "bundleName" : "Code",
+                    "displayName" : "Visual Studio Code.app",
+                    "path" : "\/Applications\/Visual Studio Code.app"
+                  },
+                  "contexts" : [
+                    "closed"
+                  ],
+                  "id" : "D53B8B2F-2092-454B-A519-B0FED1321F08"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "color" : "#F2A23C",
+        "id" : "BDC5C130-D54F-4816-97F0-A57830A53ADE",
+        "name" : "Applications",
+        "symbol" : "app.dashed",
+        "workflows" : [
+          {
+            "commands" : [
+              {
+                "applicationCommand" : {
+                  "action" : "open",
+                  "application" : {
+                    "bundleIdentifier" : "com.apple.finder",
+                    "bundleName" : "Finder",
+                    "displayName" : "Finder",
+                    "path" : "\/System\/Library\/CoreServices\/Finder.app"
+                  },
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "3144D335-AAF5-457C-BD15-5EF25377D897",
+                    "name" : ""
+                  }
+                }
+              }
+            ],
+            "execution" : "concurrent",
+            "id" : "9716C2B4-9FD4-4A52-803D-A372162DA1AB",
+            "name" : "Switch to Finder",
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "shortcuts" : [
+                  {
+                    "id" : "768B566F-F65D-485A-9F54-0D34E7E8D590",
+                    "key" : "F",
+                    "modifiers" : [
+                      "fn"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "commands" : [
+              {
+                "applicationCommand" : {
+                  "action" : "open",
+                  "application" : {
+                    "bundleIdentifier" : "com.apple.TextEdit",
+                    "bundleName" : "TextEdit",
+                    "displayName" : "TextEdit",
+                    "path" : "\/System\/Applications\/TextEdit.app"
+                  },
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "BA4A36C1-0B30-410F-B5D8-7BB60E2D83B8",
+                    "name" : ""
+                  }
+                }
+              }
+            ],
+            "execution" : "concurrent",
+            "id" : "0E409A81-2519-489B-BBF4-8B0D66B48F8B",
+            "name" : "Switch to TextEdit",
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "shortcuts" : [
+                  {
+                    "id" : "419C1385-9AEB-4D63-8D01-E738FF01AFC9",
+                    "key" : "E",
+                    "modifiers" : [
+                      "fn"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "commands" : [
+              {
+                "applicationCommand" : {
+                  "action" : "open",
+                  "application" : {
+                    "bundleIdentifier" : "com.apple.Terminal",
+                    "bundleName" : "Terminal",
+                    "displayName" : "Terminal",
+                    "path" : "\/System\/Applications\/Utilities\/Terminal.app"
+                  },
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "C37C8880-9A5E-4EBE-8B41-B0C6C3132FD9",
+                    "name" : ""
+                  }
+                }
+              }
+            ],
+            "execution" : "concurrent",
+            "id" : "134ED78C-C7A8-42A9-B948-F8DC94001C87",
+            "name" : "Switch to Terminal",
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "shortcuts" : [
+                  {
+                    "id" : "3B574FC8-8FC2-4DD0-AD8E-1C17BBB89751",
+                    "key" : "T",
+                    "modifiers" : [
+                      "fn"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "commands" : [
+              {
+                "applicationCommand" : {
+                  "action" : "open",
+                  "application" : {
+                    "bundleIdentifier" : "com.apple.Safari",
+                    "bundleName" : "Safari",
+                    "displayName" : "Safari",
+                    "path" : "\/Applications\/Safari.app"
+                  },
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "17F24539-D260-4088-BB65-F5CFB32B35C2",
+                    "name" : ""
+                  }
+                }
+              }
+            ],
+            "execution" : "concurrent",
+            "id" : "7B21D1D1-71E2-4CE4-9321-4C873C03BCEF",
+            "name" : "Switch to Safari",
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "shortcuts" : [
+                  {
+                    "id" : "62CB5CAC-7417-4D7E-BB0C-6D8B059AC7AA",
+                    "key" : "S",
+                    "modifiers" : [
+                      "fn"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "commands" : [
+              {
+                "applicationCommand" : {
+                  "action" : "open",
+                  "application" : {
+                    "bundleIdentifier" : "com.apple.systempreferences",
+                    "bundleName" : "System Settings",
+                    "displayName" : "System Settings",
+                    "path" : "\/System\/Applications\/System Settings.app"
+                  },
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "D15781CE-9439-4875-8AA7-0D1F9039F278",
+                    "name" : ""
+                  }
+                }
+              }
+            ],
+            "execution" : "concurrent",
+            "id" : "496B7321-6A2C-4BE2-95DE-0D830373DD4A",
+            "name" : "Open System Settings",
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "shortcuts" : [
+                  {
+                    "id" : "0662D9DD-0A4F-43A6-86A8-057560B0C1E3",
+                    "key" : ",",
+                    "modifiers" : [
+                      "fn"
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "color" : "#F9D64A",
+        "id" : "1896A4FF-C1E5-4883-A6A6-55720E6D54D2",
+        "name" : "AppleScripts",
+        "symbol" : "applescript",
+        "workflows" : [
+          {
+            "commands" : [
+              {
+                "scriptCommand" : {
+                  "kind" : {
+                    "appleScript" : {
+                      "variant" : {
+                        "regular" : {
+
+                        }
+                      }
+                    }
+                  },
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "0D982220-8BDC-4EC0-A055-8D4DEEA84162",
+                    "name" : "Show note"
+                  },
+                  "source" : {
+                    "inline" : {
+                      "_0" : "tell application \"Notes\"\n    show note \"awesome note\"\nend tell"
+                    }
+                  }
+                }
+              }
+            ],
+            "execution" : "concurrent",
+            "id" : "493F9374-13BB-4F78-96B1-EC0FF245AB29",
+            "name" : "Open a specific note"
+          }
+        ]
+      },
+      {
+        "color" : "#6BD35F",
+        "id" : "BAEB45EB-1A91-430F-96F8-C394A237D8DC",
+        "name" : "Files & Folders",
+        "symbol" : "folder",
+        "workflows" : [
+          {
+            "commands" : [
+              {
+                "openCommand" : {
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "3E472410-9A53-4F15-8F90-CB33871DB0D0",
+                    "name" : ""
+                  },
+                  "path" : "\/Users\/juanvillela"
+                }
+              }
+            ],
+            "execution" : "concurrent",
+            "id" : "AABF1735-5019-492A-88C1-A13028213B8C",
+            "name" : "Open Home folder",
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "shortcuts" : [
+                  {
+                    "id" : "C7F73A0A-1FB4-4990-9E37-73D32214238C",
+                    "key" : "H",
+                    "modifiers" : [
+                      "fn"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "commands" : [
+              {
+                "openCommand" : {
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "311C251F-C81C-4265-AAD3-651BA456482E",
+                    "name" : ""
+                  },
+                  "path" : "\/Users\/juanvillela\/Documents"
+                }
+              }
+            ],
+            "execution" : "concurrent",
+            "id" : "FEBEDC23-2A38-4AD1-9BC8-8FC0E14D2390",
+            "name" : "Open Documents folder",
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "shortcuts" : [
+
+                ]
+              }
+            }
+          },
+          {
+            "commands" : [
+              {
+                "openCommand" : {
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "AE96F3E8-210A-4D1C-8233-0DC1AF0B6BC4",
+                    "name" : ""
+                  },
+                  "path" : "\/Users\/juanvillela\/Downloads"
+                }
+              }
+            ],
+            "execution" : "concurrent",
+            "id" : "5D3C71DE-265F-4C41-BAB4-F76C09DFBC37",
+            "name" : "Open Downloads folder",
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "shortcuts" : [
+
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "color" : "#3984F7",
+        "id" : "ED21132A-E7E7-4370-AF8C-78EAF2EDB592",
+        "name" : "Rebinding",
+        "symbol" : "app.connected.to.app.below.fill",
+        "workflows" : [
+          {
+            "commands" : [
+              {
+                "keyboardCommand" : {
+                  "kind" : {
+                    "key" : {
+                      "command" : {
+                        "iterations" : 1,
+                        "keyboardShortcuts" : [
+                          {
+                            "id" : "2DCA441B-D013-4E0D-BE6D-D43E0AEC174B",
+                            "key" : "←"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "9222877E-5BF8-4387-8B66-8B750F10D7FA",
+                    "name" : ""
+                  }
+                }
+              }
+            ],
+            "disabled" : true,
+            "execution" : "concurrent",
+            "id" : "056FD16B-295D-436E-A0A4-23A30FA2821B",
+            "name" : "Vim bindings H to ←",
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "shortcuts" : [
+                  {
+                    "id" : "8872DD08-1033-478E-A225-1A2BB474F91A",
+                    "key" : "H",
+                    "modifiers" : [
+                      "~"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "commands" : [
+              {
+                "keyboardCommand" : {
+                  "kind" : {
+                    "key" : {
+                      "command" : {
+                        "iterations" : 1,
+                        "keyboardShortcuts" : [
+                          {
+                            "id" : "3A63B7C9-2BD3-4DF5-9894-46429038586C",
+                            "key" : "↓"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "81AAF6FE-D4E3-4CA8-BFEB-51E3AB1A244F",
+                    "name" : ""
+                  }
+                }
+              }
+            ],
+            "disabled" : true,
+            "execution" : "concurrent",
+            "id" : "3A9DF8A8-039D-41B9-AC23-7B2CBE870A91",
+            "name" : "Vim bindings J to ↓",
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "shortcuts" : [
+                  {
+                    "id" : "C1C91A02-F1CA-492E-BC7B-1D335E8828F5",
+                    "key" : "J",
+                    "modifiers" : [
+                      "~"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "commands" : [
+              {
+                "keyboardCommand" : {
+                  "kind" : {
+                    "key" : {
+                      "command" : {
+                        "iterations" : 1,
+                        "keyboardShortcuts" : [
+                          {
+                            "id" : "BF6D47ED-7725-44BA-8ABB-A2CF15E5AC7D",
+                            "key" : "↑"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "FE62F1CB-61E3-4CCA-B8AB-03CA8B3BCC2D",
+                    "name" : ""
+                  }
+                }
+              }
+            ],
+            "disabled" : true,
+            "execution" : "concurrent",
+            "id" : "237B9740-06CD-445C-B56C-1B5C1935EB0F",
+            "name" : "Vim bindings K to ↑",
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "shortcuts" : [
+                  {
+                    "id" : "60DD6194-0E28-4A7C-B32D-33544F909695",
+                    "key" : "K",
+                    "modifiers" : [
+                      "~"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "commands" : [
+              {
+                "keyboardCommand" : {
+                  "kind" : {
+                    "key" : {
+                      "command" : {
+                        "iterations" : 1,
+                        "keyboardShortcuts" : [
+                          {
+                            "id" : "03A7E684-25F4-4467-97F3-AA87B3E3261E",
+                            "key" : "→"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "09874CA9-2E23-4C68-BD62-68E0B48EF7B3",
+                    "name" : ""
+                  }
+                }
+              }
+            ],
+            "disabled" : true,
+            "execution" : "concurrent",
+            "id" : "B24E3BD0-D846-49C3-B544-020A3E01703D",
+            "name" : "Vim bindings L to →",
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "shortcuts" : [
+                  {
+                    "id" : "7254D7F6-E41B-4521-A80B-0AC6DCD8F4FE",
+                    "key" : "L",
+                    "modifiers" : [
+                      "~"
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "color" : "#B263EA",
+        "id" : "5F82B145-132A-4884-A444-ACADB6F429E9",
+        "name" : "Shortcuts",
+        "symbol" : "flowchart"
+      },
+      {
+        "color" : "#5D5FDE",
+        "id" : "6EAFFB11-FC81-4DC8-A7E4-183F3D02DD06",
+        "name" : "ShellScripts",
+        "symbol" : "terminal"
+      },
+      {
+        "color" : "#A78F6D",
+        "id" : "31C791A6-C4EF-4D5D-93B6-F8A146D74B90",
+        "name" : "System",
+        "symbol" : "laptopcomputer"
+      },
+      {
+        "color" : "#98989D",
+        "id" : "14247799-0CAF-4ADD-92E8-1958E4B95053",
+        "name" : "Websites",
+        "symbol" : "safari",
+        "workflows" : [
+          {
+            "commands" : [
+              {
+                "openCommand" : {
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "4CC21EDE-F2A5-41AD-B6E0-00BB0033E588",
+                    "name" : ""
+                  },
+                  "path" : "https:\/\/www.apple.com"
+                }
+              }
+            ],
+            "execution" : "concurrent",
+            "id" : "7BCF73CB-6FBC-4345-B144-4E4FA06DAC16",
+            "name" : "Open apple.com",
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "shortcuts" : [
+                  {
+                    "id" : "5A0E210A-6D54-4B6F-846F-30DFF387EF8F",
+                    "key" : "⇥",
+                    "modifiers" : [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "id" : "94D6AF81-0498-4DF5-87CC-7ED7327A15E3",
+                    "key" : "A"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "commands" : [
+              {
+                "openCommand" : {
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "D18DC031-AA20-4B8D-AF45-1976EFD3C38D",
+                    "name" : ""
+                  },
+                  "path" : "https:\/\/www.github.com"
+                }
+              }
+            ],
+            "execution" : "concurrent",
+            "id" : "BF57D27D-23B7-4509-822F-741025B43187",
+            "name" : "Open github.com",
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "shortcuts" : [
+                  {
+                    "id" : "CAE13B4D-AED4-4842-9881-0F620140DCAD",
+                    "key" : "⇥",
+                    "modifiers" : [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "id" : "F9727AB4-DF5C-4464-B38F-B492AC4947BF",
+                    "key" : "G"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "commands" : [
+              {
+                "openCommand" : {
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "7031A09F-D1A9-490C-92A3-E1B2EC0365B8",
+                    "name" : ""
+                  },
+                  "path" : "https:\/\/www.imdb.com"
+                }
+              }
+            ],
+            "execution" : "concurrent",
+            "id" : "72D3B310-BD0A-4C26-952D-FA553E4149E9",
+            "name" : "Open imdb.com",
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "shortcuts" : [
+                  {
+                    "id" : "13D89503-D157-47A1-AD15-4EC040D245E8",
+                    "key" : "⇥",
+                    "modifiers" : [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "id" : "D218D79E-FC82-4552-823E-5A8E104CCCD7",
+                    "key" : "I"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "color" : "#3984F7",
+        "id" : "F4FC0E6F-B1EB-4A94-A539-AD0E6A78CAA6",
+        "name" : "Mail",
+        "rule" : {
+          "bundleIdentifiers" : [
+            "com.apple.mail"
+          ],
+          "id" : "9E1CF806-580F-459A-8FA3-E86DA21B9B58"
+        },
+        "symbol" : "folder",
+        "workflows" : [
+          {
+            "commands" : [
+              {
+                "textCommand" : {
+                  "kind" : {
+                    "insertText" : {
+                      "_0" : {
+                        "actions" : [
+                          "insertEnter"
+                        ],
+                        "input" : "Stay hungry, stay awesome!\n--------------------------\nxoxo\nJuan Villela",
+                        "meta" : {
+                          "enabled" : true,
+                          "id" : "C7A64D35-A3EF-4A8E-980A-7219EE6B607E",
+                          "name" : "Signature"
+                        },
+                        "mode" : "Instant"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "execution" : "concurrent",
+            "id" : "C8149D28-596E-49CA-82C0-A2A6BA52ECFD",
+            "name" : "Type mail signature",
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "shortcuts" : [
+                  {
+                    "id" : "28656BF9-1AFE-416B-B95E-AA8FE9E6DC97",
+                    "key" : "S",
+                    "modifiers" : [
+                      "fn",
+                      "@"
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "id" : "7CF9E842-4E54-4322-8784-B03C41D4D915",
+    "name" : "Mikey",
+    "userModes" : [
+
+    ]
+  }
+]
