@@ -371,23 +371,18 @@ chapters() {
 
 # 4K HDR to Wii video conversion
 4k2wii() {
-  local prompt fname
-  prompt=$(gum input --placeholder "File") || return 1
+  local file fname
+  IFS=$'\n' file=($(fd -t f -e 'mkv' 2>/dev/null | gum choose --no-limit))
 
-  if [[ -z "$prompt" ]]; then
-    echo "No file path provided."
+  if [[ -z "$file" ]]; then
+    echo "No file provided."
     return 1
   fi
 
-  if [[ ! -f "$prompt" ]]; then
-    echo "Error: File '$prompt' not found."
-    return 1
-  fi
+  fname="${file%.*}"
 
-  fname="${prompt%.*}"
-
-  ffmpeg -i "$prompt" \
-    -vf "zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p,scale=854:480,subtitles='$prompt':si=0" \
+  ffmpeg -i "$file" \
+    -vf "zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p,scale=854:480,subtitles='$file':si=0" \
     -c:v libx264 -preset slow -crf 23 \
     -profile:v baseline -level 3.0 \
     -c:a aac -b:a 128k -ar 48000 -ac 2 \
@@ -398,23 +393,18 @@ chapters() {
 
 # 4K HDR to iPod video conversion
 4k2ipod() {
-  local prompt fname
-  prompt=$(gum input --placeholder "File") || return 1
+  local file fname
+  IFS=$'\n' file=($(fd -t f -e 'mkv' 2>/dev/null | gum choose --no-limit))
 
-  if [[ -z "$prompt" ]]; then
-    echo "No file path provided."
+  if [[ -z "$file" ]]; then
+    echo "No file provided."
     return 1
   fi
 
-  if [[ ! -f "$prompt" ]]; then
-    echo "Error: File '$prompt' not found."
-    return 1
-  fi
+  fname="${file%.*}"
 
-  fname="${prompt%.*}"
-
-  ffmpeg -i "$prompt" \
-    -vf "zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p,scale=854:480,subtitles='$prompt':si=0" \
+  ffmpeg -i "$file" \
+    -vf "zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p,scale=854:480,subtitles='$file':si=0" \
     -c:v libx264 \
     -profile:v baseline -level 3.0 \
      -pix_fmt yuv420p -b:v 1500k -maxrate 2500k -bufsize 2500k \
