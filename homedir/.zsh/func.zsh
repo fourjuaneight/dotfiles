@@ -371,43 +371,63 @@ chapters() {
 
 # 4K HDR to Wii video conversion
 4k2wii() {
-  local file fname
-  IFS=$'\n' file=($(fd -t f -e 'mkv' 2>/dev/null | gum choose --no-limit))
+  local file fname escaped_file
+  
+  # Get file selection
+  file="$(fd -t f -e 'mkv' 2>/dev/null | gum choose)"
 
-  if [[ -n "$file" ]]; then
-    fname="${file%.*}"
-    ffmpeg -i "$file" \
-      -vf "zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p,scale=854:480,subtitles='$file':si=0" \
-      -c:v libx264 -preset slow -crf 23 \
-      -profile:v baseline -level 3.0 \
-      -c:a aac -b:a 128k -ar 48000 -ac 2 \
-      -movflags +faststart \
-      -n \
-      "$fname.mp4"
-  else
+  if [[ -z "$file" ]]; then
     echo "No file selected."
+    return 1
   fi
+
+  fname="${file:r}"  # Remove extension (zsh way)
+  echo "Processing: $file"
+  
+  # Escape the file path for the subtitles filter
+  escaped_file="${file//\\/\\\\}"
+  escaped_file="${escaped_file//:/\\:}"
+  escaped_file="${escaped_file//\'/\\\'}"
+  
+  ffmpeg -i "$file" \
+    -vf "zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p,scale=854:480,subtitles='${escaped_file}':si=0" \
+    -c:v libx264 -preset slow -crf 23 \
+    -profile:v baseline -level 3.0 \
+    -c:a aac -b:a 128k -ar 48000 -ac 2 \
+    -movflags +faststart \
+    -n \
+    "${fname}.mp4"
 }
 
 # 4K HDR to iPod video conversion
 4k2ipod() {
-  local file fname
-  IFS=$'\n' file=($(fd -t f -e 'mkv' 2>/dev/null | gum choose --no-limit))
+  local file fname escaped_file
+  
+  # Get file selection
+  file="$(fd -t f -e 'mkv' 2>/dev/null | gum choose)"
 
-  if [[ -n "$file" ]]; then
-    fname="${file%.*}"
-    ffmpeg -i "$file" \
-      -vf "zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p,scale=854:480,subtitles='$file':si=0" \
-      -c:v libx264 \
-      -profile:v baseline -level 3.0 \
-       -pix_fmt yuv420p -b:v 1500k -maxrate 2500k -bufsize 2500k \
-      -c:a aac -b:a 128k -ar 48000 -ac 2 \
-      -movflags +faststart \
-      -n \
-      "$fname.mp4"
-  else
+  if [[ -z "$file" ]]; then
     echo "No file selected."
+    return 1
   fi
+
+  fname="${file:r}"  # Remove extension (zsh way)
+  echo "Processing: $file"
+  
+  # Escape the file path for the subtitles filter
+  escaped_file="${file//\\/\\\\}"
+  escaped_file="${escaped_file//:/\\:}"
+  escaped_file="${escaped_file//\'/\\\'}"
+  
+  ffmpeg -i "$file" \
+    -vf "zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p,scale=854:480,subtitles='${escaped_file}':si=0" \
+    -c:v libx264 \
+    -profile:v baseline -level 3.0 \
+    -pix_fmt yuv420p -b:v 1500k -maxrate 2500k -bufsize 2500k \
+    -c:a aac -b:a 128k -ar 48000 -ac 2 \
+    -movflags +faststart \
+    -n \
+    "${fname}.mp4"
 }
 
 # FILES #
