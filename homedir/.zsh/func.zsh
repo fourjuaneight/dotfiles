@@ -374,21 +374,19 @@ chapters() {
   local file fname
   IFS=$'\n' file=($(fd -t f -e 'mkv' 2>/dev/null | gum choose --no-limit))
 
-  if [[ -z "$file" ]]; then
-    echo "No file provided."
-    return 1
+  if [[ -n "$file" ]]; then
+    fname="${file%.*}"
+    ffmpeg -i "$file" \
+      -vf "zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p,scale=854:480,subtitles='$file':si=0" \
+      -c:v libx264 -preset slow -crf 23 \
+      -profile:v baseline -level 3.0 \
+      -c:a aac -b:a 128k -ar 48000 -ac 2 \
+      -movflags +faststart \
+      -n \
+      "$fname.mp4"
+  else
+    echo "No file selected."
   fi
-
-  fname="${file%.*}"
-
-  ffmpeg -i "$file" \
-    -vf "zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p,scale=854:480,subtitles='$file':si=0" \
-    -c:v libx264 -preset slow -crf 23 \
-    -profile:v baseline -level 3.0 \
-    -c:a aac -b:a 128k -ar 48000 -ac 2 \
-    -movflags +faststart \
-    -n \
-    "$fname.mp4"
 }
 
 # 4K HDR to iPod video conversion
@@ -396,22 +394,20 @@ chapters() {
   local file fname
   IFS=$'\n' file=($(fd -t f -e 'mkv' 2>/dev/null | gum choose --no-limit))
 
-  if [[ -z "$file" ]]; then
-    echo "No file provided."
-    return 1
+  if [[ -n "$file" ]]; then
+    fname="${file%.*}"
+    ffmpeg -i "$file" \
+      -vf "zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p,scale=854:480,subtitles='$file':si=0" \
+      -c:v libx264 \
+      -profile:v baseline -level 3.0 \
+       -pix_fmt yuv420p -b:v 1500k -maxrate 2500k -bufsize 2500k \
+      -c:a aac -b:a 128k -ar 48000 -ac 2 \
+      -movflags +faststart \
+      -n \
+      "$fname.mp4"
+  else
+    echo "No file selected."
   fi
-
-  fname="${file%.*}"
-
-  ffmpeg -i "$file" \
-    -vf "zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p,scale=854:480,subtitles='$file':si=0" \
-    -c:v libx264 \
-    -profile:v baseline -level 3.0 \
-     -pix_fmt yuv420p -b:v 1500k -maxrate 2500k -bufsize 2500k \
-    -c:a aac -b:a 128k -ar 48000 -ac 2 \
-    -movflags +faststart \
-    -n \
-    "$fname.mp4"
 }
 
 # FILES #
