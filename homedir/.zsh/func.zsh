@@ -390,11 +390,15 @@ chapters() {
   escaped_file="${escaped_file//\'/\\\'}"
   
   ffmpeg -i "$file" \
-    -vf "zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p,scale=854:480,subtitles='${escaped_file}':si=0" \
-    -c:v libx264 -preset slow -crf 23 \
+    -vf "zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p,scale=854:480,setsar=1,fps=30000/1001,subtitles='${escaped_file}':si=0" \
+    -c:v libx264 -preset slow -crf 22 \
     -profile:v baseline -level 3.0 \
+    -maxrate 2500k -bufsize 5000k \
+    -x264-params "nal-hrd=cbr:force-cfr=1:keyint=60:min-keyint=60:scenecut=0" \
+    -color_primaries bt709 -color_trc bt709 -colorspace bt709 \
     -c:a aac -b:a 128k -ar 48000 -ac 2 \
     -movflags +faststart \
+    -vsync cfr \
     -n \
     "${fname}.mp4"
 }
