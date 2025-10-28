@@ -179,6 +179,7 @@ action "installing casks"
   signal \
   soundsource \
   streamrip \
+  swinsian \
   tableplus \
   tower \
   transmit \
