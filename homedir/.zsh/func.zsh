@@ -361,6 +361,49 @@ vidaudio() {
   [[ -n "$files" ]] && ffmpeg -i $files -codec:v copy -codec:a libmp3lame -q:a 2 "$fname.mp3"
 }
 
+# convert flac to alac, keeping tags and cover art
+flac2alac() {
+  local file src output tmp converted=0 skipped=0 failed=0 found=0
+
+  while IFS= read -r -d '' file; do
+    found=1
+    src="${file:A}"
+    if [[ ! -f "$src" ]]; then
+      echo "Missing source, skipping: $file"
+      ((failed++))
+      continue
+    fi
+
+    output="${src:r}.m4a"
+    tmp="${output}.tmp"
+
+    if [[ -f "$output" ]]; then
+      echo "Skipping (exists): $output"
+      ((skipped++))
+      continue
+    fi
+
+    if ffmpeg -i "$src" -ar 44100 -c:a alac -c:v copy -map 0:a -map 0:v\? -map_metadata 0 -f ipod "$tmp"; then
+      mv "$tmp" "$output" &&
+      yes | rm "$src"
+      ((converted++))
+    else
+      yes | rm "$tmp";
+      echo "Failed to convert: $file" >&2
+      ((failed++))
+    fi
+  done < <(find . -type f -iname '*.flac' -print0)
+
+  if (( found == 0 )); then
+    echo "No FLAC files found."
+    return 0
+  fi
+
+  printf 'Converted: %d | Skipped: %d | Failed: %d\n' "$converted" "$skipped" "$failed"
+
+  (( failed > 0 )) && return 1
+}
+
 # select file and retrieve the chapters using ffprobe and jq
 chapters() {
   local file
