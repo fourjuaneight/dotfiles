@@ -448,10 +448,13 @@ chapters() {
 
 # 4K HDR to iPod video conversion
 4k2ipod() {
-  local file fname escaped_file subtitle_filter
-  
+  local file fname escaped_file subtitle_filter hdr
+
   # Get file selection
   file="$(fd -t f -e 'mkv' 2>/dev/null | gum choose)"
+
+  # Ask if HDR tonemapping is needed
+  hdr=$(gum choose "yes" "no" --header "Is the video HDR?")
 
   if [[ -z "$file" ]]; then
     echo "No file selected."
@@ -465,9 +468,9 @@ chapters() {
     echo "Error: ${fname}.mp4 already exists"
     return 1
   fi
-  
+
   echo "Processing: $file"
-  
+
   # Check if file has subtitles
   if ffmpeg -i "$file" 2>&1 | grep -q "Subtitle:"; then
     # Escape the file path for the subtitles filter
@@ -482,13 +485,22 @@ chapters() {
     subtitle_filter=""
     echo "No subtitles found, skipping..."
   fi
-  
-  ffmpeg -i "$file" \
-    -vcodec libx264 -crf 23 -preset fast -profile:v baseline \
-    -level 3 -refs 6 \
-    -vf "${subtitle_filter}scale=640:-1,pad=iw:480:0:(oh-ih)/2,format=yuv420p" \
-    -acodec aac -b:a 128k \
-    "${fname}.mp4"
+
+  if [[ $hdr == "yes" ]]; then
+    ffmpeg -i "$file" \
+      -vcodec libx264 -crf 23 -preset fast -profile:v baseline \
+      -level 3 -refs 6 \
+      -vf "${subtitle_filter}zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,scale=640:-1,pad=iw:480:0:(oh-ih)/2,format=yuv420p" \
+      -acodec aac -b:a 128k -ac 2 -ar 44100 \
+      "${fname}.mp4"
+  elif [[ $hdr == "no" ]]; then
+    ffmpeg -i "$file" \
+      -vcodec libx264 -crf 23 -preset fast -profile:v baseline \
+      -level 3 -refs 6 \
+      -vf "${subtitle_filter}scale=640:-1,pad=iw:480:0:(oh-ih)/2,format=yuv420p" \
+      -acodec aac -b:a 128k -ac 2 -ar 44100 \
+      "${fname}.mp4"
+  fi
 }
 
 # FILES #
