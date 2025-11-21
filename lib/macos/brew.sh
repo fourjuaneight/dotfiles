@@ -144,7 +144,7 @@ action "installing packages"
   yt-dlp
 
 action "installing complicated packages"
-/opt/homebrew/bin/brew install homebrew-ffmpeg/ffmpeg/ffmpeg --with-zimg
+/opt/homebrew/bin/brew install homebrew-ffmpeg/ffmpeg/ffmpeg --with-zimg --with-fdk-aac --with-libsoxr
 /opt/homebrew/bin/brew tap heroku/brew
 /opt/homebrew/bin/brew install heroku
 /opt/homebrew/bin/brew tap helix-editor/helix
