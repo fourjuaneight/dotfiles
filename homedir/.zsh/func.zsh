@@ -449,6 +449,7 @@ chapters() {
 # 4K HDR to iPod video conversion
 4k2ipod() {
   local file fname escaped_file subtitle_filter hdr
+  local -a audio_args
 
   # Get file selection
   file="$(fd -t f -e 'mkv' 2>/dev/null | gum choose)"
@@ -486,19 +487,28 @@ chapters() {
     echo "No subtitles found, skipping..."
   fi
 
+  # Prefer libfdk_aac when available, otherwise fall back to native AAC with safer settings
+  if ffmpeg -hide_banner -codecs 2>/dev/null | grep -q '\blibfdk_aac\b'; then
+    audio_args=(-c:a libfdk_aac -vbr 4 -ac 2 -ar 44100 -af "aresample=resampler=soxr:osf=s16")
+    echo "Encoding audio with libfdk_aac (VBR 4) using high quality resampler..."
+  else
+    audio_args=(-c:a aac -aac_coder twoloop -b:a 192k -ac 2 -ar 44100 -af "aresample=resampler=soxr:osf=s16")
+    echo "libfdk_aac not available, using native AAC (twoloop @192k) with high quality resampler..."
+  fi
+
   if [[ $hdr == "yes" ]]; then
     ffmpeg -i "$file" \
+      -vf "${subtitle_filter}zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,scale=640:-1,pad=iw:480:0:(oh-ih)/2,format=yuv420p" \
       -vcodec libx264 -crf 23 -preset fast -profile:v baseline \
       -level 3 -refs 6 \
-      -vf "${subtitle_filter}zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,scale=640:-1,pad=iw:480:0:(oh-ih)/2,format=yuv420p" \
-      -acodec aac -b:a 128k -ac 2 -ar 44100 \
+      "${audio_args[@]}" \
       "${fname}.mp4"
   elif [[ $hdr == "no" ]]; then
     ffmpeg -i "$file" \
+      -vf "${subtitle_filter}scale=640:-1,pad=iw:480:0:(oh-ih)/2,format=yuv420p" \
       -vcodec libx264 -crf 23 -preset fast -profile:v baseline \
       -level 3 -refs 6 \
-      -vf "${subtitle_filter}scale=640:-1,pad=iw:480:0:(oh-ih)/2,format=yuv420p" \
-      -acodec aac -b:a 128k -ac 2 -ar 44100 \
+      "${audio_args[@]}" \
       "${fname}.mp4"
   fi
 }
