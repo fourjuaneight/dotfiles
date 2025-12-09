@@ -337,8 +337,8 @@ vidaudio() {
   [[ -n "$files" ]] && ffmpeg -i $1 -c:v libvpx-vp9 -crf 10 -b:v 0 -b:a 128k -c:a libopus "$fname.webm"
 }
 
-# convert selected audio to acc
-2acc() {
+# convert selected audio to aac
+2aac() {
   local files fname
   IFS=$'\n' files=($(fzf --query "$1" --no-multi --select-1 --exit-0))
   fname="${files%.*}"
@@ -363,45 +363,48 @@ vidaudio() {
 
 # convert flac to alac, keeping tags and cover art
 flac2alac() {
-  local file src output tmp converted=0 skipped=0 failed=0 found=0
+  local src dest input output
+  src="$(fd -t d 2>/dev/null | gum choose --header "Select source directory")"
+  dest="$(fd -t d 2>/dev/null | gum choose --header "Select destination directory")"
 
-  while IFS= read -r -d '' file; do
-    found=1
-    src="${file:A}"
-    if [[ ! -f "$src" ]]; then
-      echo "Missing source, skipping: $file"
-      ((failed++))
-      continue
-    fi
-
-    output="${src:r}.m4a"
-    tmp="${output}.tmp"
-
-    if [[ -f "$output" ]]; then
-      echo "Skipping (exists): $output"
-      ((skipped++))
-      continue
-    fi
-
-    if ffmpeg -i "$src" -ar 44100 -c:a alac -c:v copy -map 0:a -map 0:v\? -map_metadata 0 -f ipod "$tmp"; then
-      mv "$tmp" "$output" &&
-      yes | rm "$src"
-      ((converted++))
-    else
-      yes | rm "$tmp";
-      echo "Failed to convert: $file" >&2
-      ((failed++))
-    fi
-  done < <(find . -type f -iname '*.flac' -print0)
-
-  if (( found == 0 )); then
-    echo "No FLAC files found."
-    return 0
+  if [[ -z "$src" || -z "$dest" ]]; then
+    echo "No directory selected."
+    return 1
   fi
 
-  printf 'Converted: %d | Skipped: %d | Failed: %d\n' "$converted" "$skipped" "$failed"
+  input="$(pwd)/${src}"
+  output="$(pwd)/${dest}"
 
-  (( failed > 0 )) && return 1
+  find "$input" -name "*.flac" -exec sh -c '
+    input="$1"; output="$2"; file="$3"
+    relpath="${file#$input}"
+    outfile="${output}${relpath%.flac}.m4a"
+    mkdir -p "$(dirname "$outfile")"
+    ffmpeg -i "$file" -ar 44100 -c:a alac -c:v copy -map 0:a -map 0:v? -map_metadata 0 "$outfile"
+  ' _ "$input" "$output" {} \;
+}
+
+# convert flac to aac, keeping tags and cover art
+flac2aac() {
+  local src dest input output
+  src="$(fd -t d 2>/dev/null | gum choose --header "Select source directory")"
+  dest="$(fd -t d 2>/dev/null | gum choose --header "Select destination directory")"
+
+  if [[ -z "$src" || -z "$dest" ]]; then
+    echo "No directory selected."
+    return 1
+  fi
+
+  input="$(pwd)/${src}"
+  output="$(pwd)/${dest}"
+
+  find "$input" -name "*.flac" -exec sh -c '
+    input="$1"; output="$2"; file="$3"
+    relpath="${file#$input}"
+    outfile="${output}${relpath%.flac}.m4a"
+    mkdir -p "$(dirname "$outfile")"
+    ffmpeg -i "$file" -ar 44100 -c:a aac -b:a 256k -c:v copy -map 0:a -map 0:v? -map_metadata 0 "$outfile"
+  ' _ "$input" "$output" {} \;
 }
 
 # select file and retrieve the chapters using ffprobe and jq
@@ -483,8 +486,28 @@ chapters() {
     subtitle_filter="subtitles='${escaped_file}':si=0,"
     echo "Burning in subtitles..."
   else
-    subtitle_filter=""
-    echo "No subtitles found, skipping..."
+    echo "No embedded subtitles found."
+    local use_external=$(gum choose "yes" "no" --header "Use external subtitle file?")
+    
+    if [[ $use_external == "yes" ]]; then
+      local sub_file="$(fd -t f -e 'srt' -e 'ass' -e 'ssa' -e 'sub' 2>/dev/null | gum choose --header "Select subtitle file")"
+      
+      if [[ -n "$sub_file" ]]; then
+        escaped_file="${sub_file//\\/\\\\}"
+        escaped_file="${escaped_file//:/\\:}"
+        escaped_file="${escaped_file//\'/\\\'}"
+        escaped_file="${escaped_file//\[/\\[}"
+        escaped_file="${escaped_file//\]/\\]}"
+        subtitle_filter="subtitles='${escaped_file}',"
+        echo "Using external subtitles: $sub_file"
+      else
+        subtitle_filter=""
+        echo "No subtitle file selected, skipping..."
+      fi
+    else
+      subtitle_filter=""
+      echo "Skipping subtitles..."
+    fi
   fi
 
   # Prefer libfdk_aac when available, otherwise fall back to native AAC with safer settings
