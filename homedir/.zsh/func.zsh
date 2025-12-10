@@ -339,10 +339,10 @@ vidaudio() {
 
 # convert selected audio to aac
 2aac() {
-  local files fname
-  IFS=$'\n' files=($(fzf --query "$1" --no-multi --select-1 --exit-0))
-  fname="${files%.*}"
-  [[ -n "$files" ]] && ffmpeg -i $files -c:a libfdk_aac -vbr 3 -c:v copy "$fname.m4a"
+  local file fname
+  IFS=$'\n' file=($(fzf --query "$1" --no-multi --select-1 --exit-0))
+  fname="${file%.*}"
+  [[ -n "$file" ]] && ffmpeg -i "$file" -ar 44100 -ac 2 -c:a libfdk_aac -profile:a aac_low -vbr 4 -c:v copy -disposition:v attached_pic -map '0:a' -map '0:v?' -map_metadata 0 "$fname.m4a"
 }
 
 # convert selected audio to mp4
@@ -364,16 +364,17 @@ vidaudio() {
 # convert flac to alac, keeping tags and cover art
 flac2alac() {
   local src dest input output
-  src="$(fd -t d 2>/dev/null | gum choose --header "Select source directory")"
-  dest="$(fd -t d 2>/dev/null | gum choose --header "Select destination directory")"
+  cd / &&
+  src="$(fd -t d 2>/dev/null | fzf --no-multi --select-1 --exit-0 --header "Select source directory")"
+  dest="$(fd -t d 2>/dev/null | fzf --no-multi --select-1 --exit-0 --header "Select destination directory")"
 
   if [[ -z "$src" || -z "$dest" ]]; then
     echo "No directory selected."
     return 1
   fi
 
-  input="$(pwd)/${src}"
-  output="$(pwd)/${dest}"
+  input="/${src}"
+  output="/${dest}"
 
   find "$input" -name "*.flac" -exec sh -c '
     input="$1"; output="$2"; file="$3"
@@ -381,30 +382,37 @@ flac2alac() {
     outfile="${output}${relpath%.flac}.m4a"
     mkdir -p "$(dirname "$outfile")"
     ffmpeg -i "$file" -ar 44100 -c:a alac -c:v copy -map 0:a -map 0:v? -map_metadata 0 "$outfile"
-  ' _ "$input" "$output" {} \;
+  ' _ "$input" "$output" {} \; &&
+
+  cd "$input" &&
+  echo "Completed flac to alac conversion from $input to $output."
 }
 
 # convert flac to aac, keeping tags and cover art
 flac2aac() {
   local src dest input output
-  src="$(fd -t d 2>/dev/null | gum choose --header "Select source directory")"
-  dest="$(fd -t d 2>/dev/null | gum choose --header "Select destination directory")"
+  cd / &&
+  src="$(fd -t d 2>/dev/null | fzf --no-multi --select-1 --exit-0 --header "Select source directory")"
+  dest="$(fd -t d 2>/dev/null | fzf --no-multi --select-1 --exit-0 --header "Select destination directory")"
 
   if [[ -z "$src" || -z "$dest" ]]; then
     echo "No directory selected."
     return 1
   fi
 
-  input="$(pwd)/${src}"
-  output="$(pwd)/${dest}"
+  input="/${src}"
+  output="/${dest}"
 
   find "$input" -name "*.flac" -exec sh -c '
     input="$1"; output="$2"; file="$3"
     relpath="${file#$input}"
     outfile="${output}${relpath%.flac}.m4a"
     mkdir -p "$(dirname "$outfile")"
-    ffmpeg -i "$file" -ar 44100 -c:a aac -b:a 256k -c:v copy -map 0:a -map 0:v? -map_metadata 0 "$outfile"
-  ' _ "$input" "$output" {} \;
+    ffmpeg -i "$file" -ar 44100 -ac 2 -c:a libfdk_aac -profile:a aac_low -vbr 4 -c:v copy -disposition:v attached_pic -map '0:a' -map '0:v?' -map_metadata 0 "$outfile"
+  ' _ "$input" "$output" {} \; &&
+
+  cd "$input" &&
+  echo "Completed flac to aac conversion from $input to $output."
 }
 
 # select file and retrieve the chapters using ffprobe and jq
