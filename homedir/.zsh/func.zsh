@@ -408,7 +408,7 @@ flac2aac() {
     relpath="${file#$input}"
     outfile="${output}${relpath%.flac}.m4a"
     mkdir -p "$(dirname "$outfile")"
-    ffmpeg -i "$file" -ar 44100 -ac 2 -c:a libfdk_aac -profile:a aac_low -vbr 4 -c:v copy -disposition:v attached_pic -map '0:a' -map '0:v?' -map_metadata 0 "$outfile"
+    ffmpeg -i "$file" -ar 44100 -ac 2 -c:a libfdk_aac -profile:a aac_low -vbr 4 -c:v copy -disposition:v attached_pic -map 0:a -map 0:v? -map_metadata 0 "$outfile"
   ' _ "$input" "$output" {} \; &&
 
   cd "$input" &&
