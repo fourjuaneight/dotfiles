@@ -14,6 +14,13 @@ AAC_DIR="/Volumes/Sandro/iPod"
 LOG_FILE="$HOME/.scripts/music_manager.log"
 PARALLEL_JOBS=4
 
+# Ensure log directory exists (tee will fail under set -e otherwise)
+mkdir -p "$(dirname "$LOG_FILE")"
+
+require_cmd() {
+    command -v "$1" >/dev/null 2>&1
+}
+
 # Logging helper
 log() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG_FILE"
@@ -22,6 +29,16 @@ log() {
 # Check if required directories exist
 if [[ ! -d "$FLAC_DIR" ]]; then
     log "ERROR: Source directory $FLAC_DIR does not exist."
+    exit 1
+fi
+
+if ! require_cmd ffmpeg; then
+    log "ERROR: ffmpeg not found in PATH."
+    exit 1
+fi
+
+if [[ "$PARALLEL_JOBS" -lt 1 ]]; then
+    log "ERROR: PARALLEL_JOBS must be >= 1 (got $PARALLEL_JOBS)."
     exit 1
 fi
 
@@ -39,7 +56,8 @@ fi
 # Convert single file to ALAC
 convert_to_alac() {
     local file="$1"
-    local relpath="${file#"$FLAC_DIR"}"
+    local flac_root="${FLAC_DIR%/}"
+    local relpath="${file#"$flac_root"/}"
     local outfile="$ALAC_DIR/${relpath%.flac}.m4a"
 
     # Skip if output already exists and is newer than input
@@ -48,7 +66,7 @@ convert_to_alac() {
     fi
 
     mkdir -p "$(dirname "$outfile")"
-    if ffmpeg -n -loglevel warning -i "$file" -ar 44100 -c:a alac -c:v copy -map 0:a -map 0:v? -map_metadata 0 "$outfile" 2>&1; then
+    if ffmpeg -y -loglevel warning -i "$file" -ar 44100 -c:a alac -c:v copy -map 0:a -map 0:v? -map_metadata 0 "$outfile" 2>&1; then
         echo "Converted to ALAC: $relpath"
     else
         echo "ERROR: Failed to convert to ALAC: $relpath" >&2
@@ -59,7 +77,8 @@ convert_to_alac() {
 # Convert single file to AAC
 convert_to_aac() {
     local file="$1"
-    local relpath="${file#"$FLAC_DIR"}"
+    local flac_root="${FLAC_DIR%/}"
+    local relpath="${file#"$flac_root"/}"
     local outfile="$AAC_DIR/${relpath%.flac}.m4a"
 
     # Skip if output already exists and is newer than input
@@ -68,7 +87,7 @@ convert_to_aac() {
     fi
 
     mkdir -p "$(dirname "$outfile")"
-    if ffmpeg -n -loglevel warning -i "$file" -ar 44100 -ac 2 -c:a libfdk_aac -profile:a aac_low -vbr 4 -c:v copy -disposition:v attached_pic -map 0:a -map 0:v? -map_metadata 0 "$outfile" 2>&1; then
+    if ffmpeg -y -loglevel warning -i "$file" -ar 44100 -ac 2 -c:a libfdk_aac -profile:a aac_low -vbr 4 -c:v copy -disposition:v attached_pic -map 0:a -map 0:v? -map_metadata 0 "$outfile" 2>&1; then
         echo "Converted to AAC: $relpath"
     else
         echo "ERROR: Failed to convert to AAC: $relpath" >&2
@@ -91,7 +110,10 @@ fi
 
 # Step 3: Convert FLAC to AAC
 log "Converting FLAC files to AAC format..."
-if [[ -d "$AAC_DIR" ]] || mkdir -p "$AAC_DIR"; then
+if [[ ! -d "$(dirname "$AAC_DIR")" ]]; then
+    log "ERROR: Parent directory for AAC output does not exist: $(dirname "$AAC_DIR")"
+    log "ERROR: Is the destination volume mounted?"
+elif [[ -d "$AAC_DIR" ]] || mkdir -p "$AAC_DIR"; then
     find "$FLAC_DIR" -type f -name "*.flac" -print0 | \
         xargs -0 -P "$PARALLEL_JOBS" -I {} bash -c 'convert_to_aac "$@"' _ {}
     log "FLAC to AAC conversion completed."
