@@ -29,5 +29,6 @@ homedir/.config/github-copilot
 homedir/.config/homebridge
 homedir/.config/audiobookshelf
 homedir/.config/helix/runtime/grammars
+homedir/.scripts/logs
 Caddyfile
 .vscode
