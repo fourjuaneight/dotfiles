@@ -59,6 +59,7 @@ action "installing packages"
   curl \
   dog \
   duti \
+  flac \
   flyctl \
   fswatch \
   fx \
