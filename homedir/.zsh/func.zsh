@@ -54,7 +54,7 @@ qobuzrip() {
   prompt=$(gum input --placeholder "Link") &&
   
   if [[ -n "$prompt" ]]; then
-    streamrip -ndb --quality 2 url $prompt
+    /opt/homebrew/bin/rip -ndb --quality 2 url $prompt
   else
     echo "No link provided."
   fi
