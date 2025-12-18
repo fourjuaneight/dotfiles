@@ -11,7 +11,7 @@ MUSIC_DIR="/Volumes/Sergio"
 FLAC_DIR="$MUSIC_DIR/Music"
 ALAC_DIR="$MUSIC_DIR/iTunes"
 AAC_DIR="/Volumes/Sandro/iPod"
-LOG_FILE="$HOME/.scripts/music_manager.log"
+LOG_FILE="$HOME/.scripts/logs/music_manager.log"
 PARALLEL_JOBS=4
 
 # Ensure log directory exists (tee will fail under set -e otherwise)

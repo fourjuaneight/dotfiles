@@ -13,7 +13,7 @@ shopt -s extglob
 MUSIC_DIR="$HOME/StreamripDownloads"
 INPUT_DIR="$MUSIC_DIR/INTAKE"
 OUTPUT_DIR="$MUSIC_DIR/OUTPUT"
-LOG_FILE="$HOME/.scripts/music_sorter.log"
+LOG_FILE="$HOME/.scripts/logs/music_sorter.log"
 
 # ensure log directory exists (tee will fail under set -e otherwise)
 mkdir -p "$(dirname "$LOG_FILE")"
