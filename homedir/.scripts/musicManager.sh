@@ -37,6 +37,15 @@ if ! require_cmd ffmpeg; then
     exit 1
 fi
 
+# Determine which AAC encoder to use.
+# Homebrew ffmpeg often lacks libfdk_aac; fall back to the built-in "aac" encoder.
+# ffmpeg prints capability flags between the leading "A" and the encoder name (e.g. "A....D libfdk_aac").
+AAC_ENCODER="aac"
+if ffmpeg -hide_banner -encoders 2>/dev/null | grep -qE '^[[:space:]]*A[[:alnum:].]*[[:space:]]+libfdk_aac([[:space:]]|$)'; then
+    AAC_ENCODER="libfdk_aac"
+fi
+log "AAC encoder selected: $AAC_ENCODER"
+
 if [[ "$PARALLEL_JOBS" -lt 1 ]]; then
     log "ERROR: PARALLEL_JOBS must be >= 1 (got $PARALLEL_JOBS)."
     exit 1
@@ -53,7 +62,8 @@ else
     log "No FLAC files have been modified in the last hour."
 fi
 
-# Convert single file to ALAC
+# Convert one FLAC file to ALAC (.m4a) while preserving metadata and embedded artwork (if present).
+# Output path mirrors the FLAC directory tree under $ALAC_DIR.
 convert_to_alac() {
     local file="$1"
     local flac_root="${FLAC_DIR%/}"
@@ -66,6 +76,9 @@ convert_to_alac() {
     fi
 
     mkdir -p "$(dirname "$outfile")"
+    # -map 0:a      : include audio streams
+    # -map 0:v?     : include video streams if present (commonly embedded cover art)
+    # -map_metadata : copy tags from source
     if ffmpeg -y -loglevel warning -i "$file" -ar 44100 -c:a alac -c:v copy -map 0:a -map 0:v? -map_metadata 0 "$outfile" 2>&1; then
         echo "Converted to ALAC: $relpath"
     else
@@ -74,7 +87,8 @@ convert_to_alac() {
     fi
 }
 
-# Convert single file to AAC
+# Convert one FLAC file to AAC (.m4a) while preserving metadata and embedded artwork (if present).
+# Uses libfdk_aac if available in ffmpeg, otherwise falls back to the built-in aac encoder.
 convert_to_aac() {
     local file="$1"
     local flac_root="${FLAC_DIR%/}"
@@ -87,20 +101,36 @@ convert_to_aac() {
     fi
 
     mkdir -p "$(dirname "$outfile")"
-    if ffmpeg -y -loglevel warning -i "$file" -ar 44100 -ac 2 -c:a libfdk_aac -profile:a aac_low -vbr 4 -c:v copy -disposition:v attached_pic -map 0:a -map 0:v? -map_metadata 0 "$outfile" 2>&1; then
-        echo "Converted to AAC: $relpath"
+
+    local ok=0
+    if [[ "$AAC_ENCODER" == "libfdk_aac" ]]; then
+        # libfdk_aac VBR mode.
+        ffmpeg -y -loglevel warning -i "$file" -ar 44100 -ac 2 -c:a libfdk_aac -profile:a aac_low -vbr 4 -c:v copy -disposition:v attached_pic -map 0:a -map 0:v? -map_metadata 0 "$outfile" 2>&1 || ok=1
     else
-        echo "ERROR: Failed to convert to AAC: $relpath" >&2
-        return 1
+        # Built-in encoder fallback: quality-based VBR (smaller is higher quality).
+        ffmpeg -y -loglevel warning -i "$file" -ar 44100 -ac 2 -c:a aac -q:a 2 -c:v copy -disposition:v attached_pic -map 0:a -map 0:v? -map_metadata 0 "$outfile" 2>&1 || ok=1
     fi
+
+    if [[ "$ok" -eq 0 ]]; then
+        echo "Converted to AAC: $relpath"
+        return 0
+    fi
+
+    echo "ERROR: Failed to convert to AAC: $relpath" >&2
+    return 1
 }
 
+# These conversions run via `xargs ... bash -c` in parallel.
+# Export the functions and needed variables so each subprocess can call them.
 export -f convert_to_alac convert_to_aac
-export FLAC_DIR ALAC_DIR AAC_DIR
+export FLAC_DIR ALAC_DIR AAC_DIR AAC_ENCODER
 
 # Step 2: Convert FLAC to ALAC
 log "Converting FLAC files to ALAC format..."
 if [[ -d "$ALAC_DIR" ]] || mkdir -p "$ALAC_DIR"; then
+    # -print0/-0: safe for spaces/newlines in filenames.
+    # -P: parallel jobs.
+    # bash -c: run the exported function in a subprocess.
     find "$FLAC_DIR" -type f -name "*.flac" -print0 | \
         xargs -0 -P "$PARALLEL_JOBS" -I {} bash -c 'convert_to_alac "$@"' _ {}
     log "FLAC to ALAC conversion completed."
@@ -114,6 +144,7 @@ if [[ ! -d "$(dirname "$AAC_DIR")" ]]; then
     log "ERROR: Parent directory for AAC output does not exist: $(dirname "$AAC_DIR")"
     log "ERROR: Is the destination volume mounted?"
 elif [[ -d "$AAC_DIR" ]] || mkdir -p "$AAC_DIR"; then
+    # Same parallel pattern as ALAC.
     find "$FLAC_DIR" -type f -name "*.flac" -print0 | \
         xargs -0 -P "$PARALLEL_JOBS" -I {} bash -c 'convert_to_aac "$@"' _ {}
     log "FLAC to AAC conversion completed."
