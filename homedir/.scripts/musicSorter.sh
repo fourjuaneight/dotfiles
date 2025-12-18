@@ -172,12 +172,24 @@ strip_unwanted_flac_tags() {
         return 0
     fi
 
-    if ! metaflac \
-        --remove-tag=COMPOSER \
-        --remove-tag=DESCRIPTION \
-        --remove-tag=COPYRIGHT \
-        --remove-tag=ISRC \
-        "$file"; then
+    # If DISCTOTAL is "01" (single-disc release), remove DISCNUMBER and DISCTOTAL as well.
+    # (Some rippers store these even when redundant.)
+    local disc_total_line disc_total
+    disc_total_line="$(metaflac --show-tag=DISCTOTAL "$file" 2>/dev/null | head -n 1 || true)"
+    disc_total="${disc_total_line#DISCTOTAL=}"
+    disc_total="$(trim "$disc_total")"
+
+    local metaflac_args=(
+        --remove-tag=COMPOSER
+        --remove-tag=DESCRIPTION
+        --remove-tag=COPYRIGHT
+        --remove-tag=ISRC
+    )
+    if [[ "$disc_total" == "01" || "$disc_total" == "1" ]]; then
+        metaflac_args+=(--remove-tag=DISCNUMBER --remove-tag=DISCTOTAL)
+    fi
+
+    if ! metaflac "${metaflac_args[@]}" "$file"; then
         log "WARN: metaflac tag cleanup failed: $file"
     fi
 }
