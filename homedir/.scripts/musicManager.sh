@@ -13,6 +13,7 @@ ALAC_DIR="$MUSIC_DIR/iTunes"
 AAC_DIR="/Volumes/Sandro/iPod"
 LOG_FILE="$HOME/.scripts/logs/music_manager.log"
 PARALLEL_JOBS=4
+RECENT_MINS=60
 
 # Ensure log directory exists (tee will fail under set -e otherwise)
 mkdir -p "$(dirname "$LOG_FILE")"
@@ -53,13 +54,18 @@ fi
 
 # Step 1: Check for latest files
 log "Checking for recently modified FLAC files in $FLAC_DIR..."
-RECENT_FILES=$(find "$FLAC_DIR" -type f -name "*.flac" -mmin -120 2>/dev/null || true)
+# Store as an array to avoid word-splitting issues and to work safely with `set -u`.
+# Use -print0 + read -d '' for correct handling of spaces/newlines in filenames.
+RECENT_FILES=()
+while IFS= read -r -d '' f; do
+    RECENT_FILES+=("$f")
+done < <(find "$FLAC_DIR" -type f -name "*.flac" -mmin "-$RECENT_MINS" -print0 2>/dev/null || true)
 
-if [[ -n "$RECENT_FILES" ]]; then
-    log "Recently modified FLAC files (within the last 2 hours):"
-    echo "$RECENT_FILES" | tee -a "$LOG_FILE"
+if [[ ${#RECENT_FILES[@]} -gt 0 ]]; then
+    log "Recently modified FLAC files (within the last ${RECENT_MINS} minutes):"
+    printf '%s\n' "${RECENT_FILES[@]}" | tee -a "$LOG_FILE"
 else
-    log "No FLAC files have been modified in the last 2 hours."
+    log "No FLAC files have been modified in the last ${RECENT_MINS} minutes."
 fi
 
 # Convert one FLAC file to ALAC (.m4a) while preserving metadata and embedded artwork (if present).
@@ -128,12 +134,16 @@ export FLAC_DIR ALAC_DIR AAC_DIR AAC_ENCODER
 # Step 2: Convert FLAC to ALAC
 log "Converting FLAC files to ALAC format..."
 if [[ -d "$ALAC_DIR" ]] || mkdir -p "$ALAC_DIR"; then
-    # -print0/-0: safe for spaces/newlines in filenames.
-    # -P: parallel jobs.
-    # bash -c: run the exported function in a subprocess.
-    find "$FLAC_DIR" -type f -name "*.flac" -print0 | \
-        xargs -0 -P "$PARALLEL_JOBS" -I {} bash -c 'convert_to_alac "$@"' _ {}
-    log "FLAC to ALAC conversion completed."
+    if [[ ${#RECENT_FILES[@]} -gt 0 ]]; then
+        # -print0/-0: safe for spaces/newlines in filenames.
+        # -P: parallel jobs.
+        # bash -c: run the exported function in a subprocess.
+        printf '%s\0' "${RECENT_FILES[@]}" | \
+            xargs -0 -P "$PARALLEL_JOBS" -I {} bash -c 'convert_to_alac "$@"' _ {}
+        log "FLAC to ALAC conversion completed."
+    else
+        log "Skipping ALAC conversion (no recent FLAC files)."
+    fi
 else
     log "ERROR: Cannot create ALAC output directory $ALAC_DIR"
 fi
@@ -144,10 +154,14 @@ if [[ ! -d "$(dirname "$AAC_DIR")" ]]; then
     log "ERROR: Parent directory for AAC output does not exist: $(dirname "$AAC_DIR")"
     log "ERROR: Is the destination volume mounted?"
 elif [[ -d "$AAC_DIR" ]] || mkdir -p "$AAC_DIR"; then
-    # Same parallel pattern as ALAC.
-    find "$FLAC_DIR" -type f -name "*.flac" -print0 | \
-        xargs -0 -P "$PARALLEL_JOBS" -I {} bash -c 'convert_to_aac "$@"' _ {}
-    log "FLAC to AAC conversion completed."
+    if [[ ${#RECENT_FILES[@]} -gt 0 ]]; then
+        # Same parallel pattern as ALAC.
+        printf '%s\0' "${RECENT_FILES[@]}" | \
+            xargs -0 -P "$PARALLEL_JOBS" -I {} bash -c 'convert_to_aac "$@"' _ {}
+        log "FLAC to AAC conversion completed."
+    else
+        log "Skipping AAC conversion (no recent FLAC files)."
+    fi
 else
     log "ERROR: Cannot create AAC output directory $AAC_DIR"
 fi
