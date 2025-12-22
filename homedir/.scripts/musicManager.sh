@@ -53,13 +53,13 @@ fi
 
 # Step 1: Check for latest files
 log "Checking for recently modified FLAC files in $FLAC_DIR..."
-RECENT_FILES=$(find "$FLAC_DIR" -type f -name "*.flac" -mmin -60 2>/dev/null || true)
+RECENT_FILES=$(find "$FLAC_DIR" -type f -name "*.flac" -mmin -120 2>/dev/null || true)
 
 if [[ -n "$RECENT_FILES" ]]; then
-    log "Recently modified FLAC files (within the last hour):"
+    log "Recently modified FLAC files (within the last 2 hours):"
     echo "$RECENT_FILES" | tee -a "$LOG_FILE"
 else
-    log "No FLAC files have been modified in the last hour."
+    log "No FLAC files have been modified in the last 2 hours."
 fi
 
 # Convert one FLAC file to ALAC (.m4a) while preserving metadata and embedded artwork (if present).
