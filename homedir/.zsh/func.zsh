@@ -645,6 +645,30 @@ mrgplex() {
   fi
 }
 
+# move a directory into another directory, merging on name collisions
+mrgmvdir() {
+  local src dest input output
+  cd / &&
+  src="$(fd -t d 2>/dev/null | fzf --no-multi --select-1 --exit-0 --header "Select source directory")"
+  dest="$(fd -t d 2>/dev/null | fzf --no-multi --select-1 --exit-0 --header "Select destination directory")"
+
+  if [[ -z "$src" || -z "$dest" ]]; then
+    echo "No directory selected."
+    return 1
+  fi
+
+  input="/${src}"
+  output="/${dest}"
+
+  # move and merge directories
+  rsync -a --remove-source-files --progress "$input/" "$output/" &&
+  echo "Completed merging $input into $output."
+
+  # rsync doesn't remove empty directories on the sender; clean them up.
+  # Keep the source directory itself, only remove empty subdirectories.
+  find "$src" -mindepth 1 -type d -empty -delete 2>/dev/null || true
+}
+
 # replace files to Plex directory and set proper permissions
 rpplex() {
   local dst=$1
