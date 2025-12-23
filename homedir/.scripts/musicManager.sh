@@ -7,10 +7,11 @@
 
 set -euo pipefail
 
-MUSIC_DIR="/Volumes/Sergio"
-FLAC_DIR="$MUSIC_DIR/Music"
-ALAC_DIR="$MUSIC_DIR/iTunes"
-AAC_DIR="/Volumes/Sandro/iPod"
+P_DRIVE="/Volumes/Sergio"
+S_DRIVE="/Volumes/Sandro"
+FLAC_DIR="$P_DRIVE/Music"
+ALAC_DIR="$S_DRIVE/ALAC"
+AAC_DIR="$S_DRIVE/AAC"
 LOG_FILE="$HOME/.scripts/logs/music_manager.log"
 PARALLEL_JOBS=4
 RECENT_MINS=60
