@@ -10,8 +10,8 @@ set -euo pipefail
 P_DRIVE="/Volumes/Sergio"
 S_DRIVE="/Volumes/Sandro"
 FLAC_DIR="$P_DRIVE/Music"
-ALAC_DIR="$S_DRIVE/ALAC"
-AAC_DIR="$S_DRIVE/AAC"
+ALAC_DIR="$S_DRIVE/Music/ALAC"
+AAC_DIR="$S_DRIVE/Music/AAC"
 LOG_FILE="$HOME/.scripts/logs/music_manager.log"
 PARALLEL_JOBS=4
 RECENT_MINS=60
@@ -87,9 +87,9 @@ convert_to_alac() {
     # -map 0:v?     : include video streams if present (commonly embedded cover art)
     # -map_metadata : copy tags from source
     if ffmpeg -y -loglevel warning -i "$file" -ar 44100 -c:a alac -c:v copy -map 0:a -map 0:v? -map_metadata 0 "$outfile" 2>&1; then
-        echo "Converted to ALAC: $relpath"
+        log "Converted to ALAC: $relpath"
     else
-        echo "ERROR: Failed to convert to ALAC: $relpath" >&2
+        log "ERROR: Failed to convert to ALAC: $relpath"
         return 1
     fi
 }
@@ -119,18 +119,18 @@ convert_to_aac() {
     fi
 
     if [[ "$ok" -eq 0 ]]; then
-        echo "Converted to AAC: $relpath"
+        log "Converted to AAC: $relpath"
         return 0
     fi
 
-    echo "ERROR: Failed to convert to AAC: $relpath" >&2
+    log "ERROR: Failed to convert to AAC: $relpath"
     return 1
 }
 
 # These conversions run via `xargs ... bash -c` in parallel.
 # Export the functions and needed variables so each subprocess can call them.
-export -f convert_to_alac convert_to_aac
-export FLAC_DIR ALAC_DIR AAC_DIR AAC_ENCODER
+export -f log convert_to_alac convert_to_aac
+export LOG_FILE FLAC_DIR ALAC_DIR AAC_DIR AAC_ENCODER
 
 # Step 2: Convert FLAC to ALAC
 log "Converting FLAC files to ALAC format..."

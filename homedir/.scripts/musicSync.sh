@@ -12,10 +12,11 @@ set -euo pipefail
 # - It uploads via `rclone copy` (no remote deletions)
 # - It skips missing sources (volume not mounted) but exits non-zero if any copy fails
 
-MUSIC_DIR="/Volumes/Sergio"
-FLAC_DIR="$MUSIC_DIR/Music"
-ALAC_DIR="$MUSIC_DIR/iTunes"
-AAC_DIR="/Volumes/Sandro/iPod"
+P_DRIVE="/Volumes/Sergio"
+S_DRIVE="/Volumes/Sandro"
+FLAC_DIR="$P_DRIVE/Music"
+ALAC_DIR="$S_DRIVE/Music/ALAC"
+AAC_DIR="$S_DRIVE/Music/AAC"
 
 REMOTE_MUSIC_DIR="b2:Imladris/Music"
 REMOTE_FLAC_DIR="$REMOTE_MUSIC_DIR/FLAC"
