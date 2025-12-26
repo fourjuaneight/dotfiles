@@ -483,23 +483,56 @@ chapters() {
 
   echo "Processing: $file"
 
-  # Check if file has subtitles
-  if ffmpeg -i "$file" 2>&1 | grep -q "Subtitle:"; then
-    # Escape the file path for the subtitles filter
-    escaped_file="${file//\\/\\\\}"
-    escaped_file="${escaped_file//:/\\:}"
-    escaped_file="${escaped_file//\'/\\\'}"
-    escaped_file="${escaped_file//\[/\\[}"
-    escaped_file="${escaped_file//\]/\\]}"
-    subtitle_filter="subtitles='${escaped_file}':si=0,"
-    echo "Burning in subtitles..."
+  # Check if file has embedded subtitles, and whether they're text-based.
+  # The ffmpeg `subtitles=` filter only supports text subtitle codecs.
+  local sub_codec
+  sub_codec="$(ffprobe -v error -select_streams s:0 -show_entries stream=codec_name -of default=nk=1:nw=1 "$file" 2>/dev/null)"
+
+  if [[ -n "$sub_codec" ]]; then
+    case "$sub_codec" in
+      subrip|ass|ssa|mov_text|text|webvtt)
+        # Escape the file path for the subtitles filter
+        escaped_file="${file//\\/\\\\}"
+        escaped_file="${escaped_file//:/\\:}"
+        escaped_file="${escaped_file//\'/\\\'}"
+        escaped_file="${escaped_file//\[/\\[}"
+        escaped_file="${escaped_file//\]/\\]}"
+        subtitle_filter="subtitles='${escaped_file}':si=0,"
+        echo "Burning in embedded subtitles ($sub_codec)..."
+        ;;
+      *)
+        echo "Embedded subtitles found ($sub_codec), but ffmpeg can only burn in text-based subtitles via the subtitles filter."
+        echo "Tip: PGS/DVD subtitles need OCR/external .srt/.ass, or a different pipeline."
+
+        local use_external=$(gum choose "yes" "no" --header "Use external text subtitle file instead?")
+        if [[ $use_external == "yes" ]]; then
+          local sub_file="$(fd -t f -e 'srt' -e 'ass' -e 'ssa' -e 'vtt' 2>/dev/null | gum choose --header "Select subtitle file")"
+
+          if [[ -n "$sub_file" ]]; then
+            escaped_file="${sub_file//\\/\\\\}"
+            escaped_file="${escaped_file//:/\\:}"
+            escaped_file="${escaped_file//\'/\\\'}"
+            escaped_file="${escaped_file//\[/\\[}"
+            escaped_file="${escaped_file//\]/\\]}"
+            subtitle_filter="subtitles='${escaped_file}',"
+            echo "Using external subtitles: $sub_file"
+          else
+            subtitle_filter=""
+            echo "No subtitle file selected, skipping..."
+          fi
+        else
+          subtitle_filter=""
+          echo "Skipping subtitles..."
+        fi
+        ;;
+    esac
   else
     echo "No embedded subtitles found."
-    local use_external=$(gum choose "yes" "no" --header "Use external subtitle file?")
-    
+    local use_external=$(gum choose "yes" "no" --header "Use external text subtitle file?")
+
     if [[ $use_external == "yes" ]]; then
-      local sub_file="$(fd -t f -e 'srt' -e 'ass' -e 'ssa' -e 'sub' 2>/dev/null | gum choose --header "Select subtitle file")"
-      
+      local sub_file="$(fd -t f -e 'srt' -e 'ass' -e 'ssa' -e 'vtt' 2>/dev/null | gum choose --header "Select subtitle file")"
+
       if [[ -n "$sub_file" ]]; then
         escaped_file="${sub_file//\\/\\\\}"
         escaped_file="${escaped_file//:/\\:}"
@@ -533,6 +566,7 @@ chapters() {
       -vcodec libx264 -crf 23 -preset fast -profile:v baseline \
       -level 3 -refs 6 \
       "${audio_args[@]}" \
+      -loglevel warning -stats \
       "${fname}.mp4"
   elif [[ $hdr == "no" ]]; then
     ffmpeg -i "$file" \
@@ -540,6 +574,7 @@ chapters() {
       -vcodec libx264 -crf 23 -preset fast -profile:v baseline \
       -level 3 -refs 6 \
       "${audio_args[@]}" \
+      -loglevel warning -stats \
       "${fname}.mp4"
   fi
 }
