@@ -322,8 +322,8 @@ vidaudio() {
   IFS=$'\n' file=($(fd -t f -e 'mp4' -e 'mkv' 2>/dev/null | gum choose)) &&
 
   if [[ -n "$file" ]]; then
-    output=$(basename $file | sd '(\.[a-z0-9]+)' '_audio.mp3') &&
-    ffmpeg -i $file -q:a 0 -map a $output
+    output=$(basename "$file" | sd '(\.[a-z0-9]+)' '.flac') &&
+    ffmpeg -i "$file" -vn -map a:0 -c:a flac "$output"
   else
     echo "No file selected."
   fi
