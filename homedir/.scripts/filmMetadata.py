@@ -27,10 +27,10 @@ FILM_TYPES = {
 }
 
 PROCESSING_DATA = {
-    "json_path": "~/Documents/Photo_Projects/Film/Kodak_Gold_200-2024-08-07.json",
-    "input_dir": "~/Documents/Photo_Projects/Film/2024-08-07-Kodak_Gold_200",
-    "output_dir": "~/Documents/Photo_Projects/Film/Lossless",
-    "film_type": FILM_TYPES["Gold_200"],
+    "json_path": "~/Documents/Photo_Projects/Film/Kodak_Portra_800-2024-10-27.json",
+    "input_dir": "~/Downloads/FILM/Ingest",
+    "output_dir": "~/Documents/Photo_Projects/Film/Lossless/Kodak_Portra_800-2024-10-27",
+    "film_type": FILM_TYPES["Portra_800"],
 }
 
 
