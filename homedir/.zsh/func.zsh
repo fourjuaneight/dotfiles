@@ -564,16 +564,24 @@ chapters() {
     ffmpeg -i "$file" \
       -vf "${subtitle_filter}zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,scale=640:-1,pad=iw:480:0:(oh-ih)/2,format=yuv420p" \
       -vcodec libx264 -crf 23 -preset fast -profile:v baseline \
-      -level 3 -refs 6 \
+      -level 3 -refs 3 \
+      -maxrate 1500k -bufsize 3000k \
+      -x264-params "vbv-maxrate=1500:vbv-bufsize=3000:nal-hrd=vbr:force-cfr=1" \
       "${audio_args[@]}" \
+      -r 24000/1001 -vsync cfr \
+      -movflags +faststart \
       -loglevel warning -stats \
       "${fname}.mp4"
   elif [[ $hdr == "no" ]]; then
     ffmpeg -i "$file" \
       -vf "${subtitle_filter}scale=640:-1,pad=iw:480:0:(oh-ih)/2,format=yuv420p" \
       -vcodec libx264 -crf 23 -preset fast -profile:v baseline \
-      -level 3 -refs 6 \
+      -level 3 -refs 3 \
+      -maxrate 1500k -bufsize 3000k \
+      -x264-params "vbv-maxrate=1500:vbv-bufsize=3000:nal-hrd=vbr:force-cfr=1" \
       "${audio_args[@]}" \
+      -r 24000/1001 -vsync cfr \
+      -movflags +faststart \
       -loglevel warning -stats \
       "${fname}.mp4"
   fi
