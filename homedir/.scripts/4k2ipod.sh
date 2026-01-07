@@ -125,7 +125,7 @@ main() {
   fi
 
   if [[ $hdr == "yes" ]]; then
-    if ! ffmpeg -hide_banner -probesize 100000000 -analyzeduration 100000000 -fflags +genpts -i "$file" \
+    if ! ffmpeg -n -hide_banner -probesize 100000000 -analyzeduration 100000000 -fflags +genpts -i "$file" \
       -map 0:v:0 -map 0:a:0 -sn -dn \
       -map_metadata -1 -map_chapters -1 \
       -vf "${subtitle_filter}zscale=t=linear:npl=100:tin=${hdr_tin}:pin=bt2020:min=bt2020nc:rin=tv,format=gbrpf32le,tonemap=tonemap=hable:desat=0,zscale=t=bt709:m=bt709:p=bt709:r=tv,scale=640:-1,pad=iw:480:0:(oh-ih)/2,setsar=1,format=yuv420p,fps=24000/1001" \
@@ -140,12 +140,13 @@ main() {
       -loglevel warning -stats \
       "${fname}.mp4"; then
       echo "HDR tonemapping failed; retrying as SDR..."
+      rm -f "${fname}.mp4"
       hdr="no"
     fi
   fi
 
   if [[ $hdr == "no" ]]; then
-    ffmpeg -hide_banner -probesize 100000000 -analyzeduration 100000000 -fflags +genpts -i "$file" \
+    ffmpeg -n -hide_banner -probesize 100000000 -analyzeduration 100000000 -fflags +genpts -i "$file" \
       -map 0:v:0 -map 0:a:0 -sn -dn \
       -map_metadata -1 -map_chapters -1 \
       -vf "${subtitle_filter}scale=640:-1,pad=iw:480:0:(oh-ih)/2,setsar=1,format=yuv420p,fps=24000/1001" \
