@@ -5,6 +5,8 @@ main() {
   local color_transfer color_primaries color_space hdr_tin
   local sub_codec use_external sub_file
   local -a audio_args
+  local video_codec
+  local -a video_args
 
   # Get file selection
   file="$(fd -t f -e 'mkv' -e 'mov' 2>/dev/null | gum choose)"
@@ -47,6 +49,45 @@ main() {
   fi
 
   echo "Processing: $file"
+
+  video_codec="$(gum choose \
+    "H.264 (baseline)" \
+    "MPEG-4 Part 2 (mp4v)" \
+    --header "Select video codec")"
+
+  if [[ -z "$video_codec" ]]; then
+    echo "No codec selected."
+    return 1
+  fi
+
+  if [[ "$video_codec" == "MPEG-4 Part 2 (mp4v)" ]]; then
+    # Older Apple devices tend to be very tolerant of MPEG-4 Part 2 in MP4.
+    # Use 'mp4v' tag so the MP4 video sample entry is recognized broadly.
+    video_args=(
+      -c:v mpeg4
+      -vtag mp4v
+      -pix_fmt yuv420p
+      -b:v 1200k
+      -maxrate 1500k
+      -bufsize 3000k
+      -g 72
+      -bf 0
+    )
+    echo "Using video codec: MPEG-4 Part 2 (mp4v)"
+  else
+    video_args=(
+      -c:v libx264
+      -crf 23
+      -preset fast
+      -profile:v baseline
+      -level 3.0
+      -pix_fmt yuv420p
+      -maxrate 1500k
+      -bufsize 3000k
+      -x264-params "vbv-maxrate=1500:vbv-bufsize=3000:nal-hrd=vbr:force-cfr=1:ref=1:bframes=0:keyint=72:min-keyint=72:scenecut=0"
+    )
+    echo "Using video codec: H.264 baseline"
+  fi
 
   # Check if file has embedded subtitles, and whether they're text-based.
   # The ffmpeg `subtitles=` filter only supports text subtitle codecs.
@@ -129,9 +170,7 @@ main() {
       -map 0:v:0 -map 0:a:0 -sn -dn \
       -map_metadata -1 -map_chapters -1 \
       -vf "${subtitle_filter}zscale=t=linear:npl=100:tin=${hdr_tin}:pin=bt2020:min=bt2020nc:rin=tv,format=gbrpf32le,tonemap=tonemap=hable:desat=0,zscale=t=bt709:m=bt709:p=bt709:r=tv,scale=640:-1,pad=iw:480:0:(oh-ih)/2,setsar=1,format=yuv420p,fps=24000/1001" \
-      -c:v libx264 -crf 23 -preset fast -profile:v baseline -level 3.0 -pix_fmt yuv420p \
-      -maxrate 1500k -bufsize 3000k \
-      -x264-params "vbv-maxrate=1500:vbv-bufsize=3000:nal-hrd=vbr:force-cfr=1:ref=1:bframes=0:keyint=72:min-keyint=72:scenecut=0" \
+      "${video_args[@]}" \
       "${audio_args[@]}" \
       -fps_mode cfr \
       -movflags +faststart \
@@ -150,9 +189,7 @@ main() {
       -map 0:v:0 -map 0:a:0 -sn -dn \
       -map_metadata -1 -map_chapters -1 \
       -vf "${subtitle_filter}scale=640:-1,pad=iw:480:0:(oh-ih)/2,setsar=1,format=yuv420p,fps=24000/1001" \
-      -c:v libx264 -crf 23 -preset fast -profile:v baseline -level 3.0 -pix_fmt yuv420p \
-      -maxrate 1500k -bufsize 3000k \
-      -x264-params "vbv-maxrate=1500:vbv-bufsize=3000:nal-hrd=vbr:force-cfr=1:ref=1:bframes=0:keyint=72:min-keyint=72:scenecut=0" \
+      "${video_args[@]}" \
       "${audio_args[@]}" \
       -fps_mode cfr \
       -movflags +faststart \
