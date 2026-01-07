@@ -26,6 +26,11 @@ alias srm="sudo ~/.cargo/bin/rip -i"
 alias scat="sudo ~/.cargo/bin/bat"
 alias sls="sudo ~/.cargo/bin/exa"
 
+alias 4k2ipod="bash ~/.scripts/4k2ipod.sh"
+alias musicManager="bash ~/.scripts/musicManager.sh"
+alias musicSorter="bash ~/.scripts/musicSorter.sh"
+alias musicSync="bash ~/.scripts/musicSync.sh"
+
 # direct to mkntfs
 alias mkntfs="/opt/homebrew/Cellar/ntfs-3g-mac/2022.10.3/sbin/mkntfs"
 alias smkntfs="sudo /opt/homebrew/Cellar/ntfs-3g-mac/2022.10.3/sbin/mkntfs"
