@@ -7,6 +7,7 @@
 
 set -euo pipefail
 
+OUTPUT_DIR="$MUSIC_DIR/OUTPUT"
 P_DRIVE="/Volumes/Sergio"
 S_DRIVE="/Volumes/Sandro"
 FLAC_DIR="$P_DRIVE/Music"
@@ -53,7 +54,48 @@ if [[ "$PARALLEL_JOBS" -lt 1 ]]; then
     exit 1
 fi
 
-# Step 1: Check for latest files
+# Step 1: Move new music from OUTPUT_DIR to FLAC_DIR
+log "Checking for new music directories in $OUTPUT_DIR..."
+if [[ -d "$OUTPUT_DIR" ]]; then
+    # Find all top-level directories in OUTPUT_DIR
+    shopt -s nullglob
+    OUTPUT_DIRS=("$OUTPUT_DIR"/*/)
+    shopt -u nullglob
+
+    if [[ ${#OUTPUT_DIRS[@]} -gt 0 ]]; then
+        for dir in "${OUTPUT_DIRS[@]}"; do
+            dir_name="$(basename "$dir")"
+            dest_dir="$FLAC_DIR/$dir_name"
+
+            if [[ -d "$dest_dir" ]]; then
+                # Directory exists in FLAC_DIR, merge contents using rsync
+                log "Merging '$dir_name' into existing directory at $dest_dir..."
+                if rsync -av --remove-source-files "$dir" "$FLAC_DIR/" 2>&1 | tee -a "$LOG_FILE"; then
+                    # Remove empty source directory after rsync
+                    find "$dir" -type d -empty -delete 2>/dev/null || true
+                    log "Merged: $dir_name"
+                else
+                    log "ERROR: Failed to merge directory: $dir_name"
+                fi
+            else
+                # Directory doesn't exist, simply move it
+                log "Moving '$dir_name' to $FLAC_DIR..."
+                if mv "$dir" "$FLAC_DIR/" 2>&1 | tee -a "$LOG_FILE"; then
+                    log "Moved: $dir_name"
+                else
+                    log "ERROR: Failed to move directory: $dir_name"
+                fi
+            fi
+        done
+        log "Music directory migration completed."
+    else
+        log "No directories found in $OUTPUT_DIR to move."
+    fi
+else
+    log "WARNING: OUTPUT_DIR ($OUTPUT_DIR) does not exist. Skipping migration step."
+fi
+
+# Step 2: Check for latest files
 log "Checking for recently modified FLAC files in $FLAC_DIR..."
 # Store as an array to avoid word-splitting issues and to work safely with `set -u`.
 # Use -print0 + read -d '' for correct handling of spaces/newlines in filenames.
@@ -132,7 +174,7 @@ convert_to_aac() {
 export -f log convert_to_alac convert_to_aac
 export LOG_FILE FLAC_DIR ALAC_DIR AAC_DIR AAC_ENCODER
 
-# Step 2: Convert FLAC to ALAC
+# Step 3: Convert FLAC to ALAC
 log "Converting FLAC files to ALAC format..."
 if [[ -d "$ALAC_DIR" ]] || mkdir -p "$ALAC_DIR"; then
     if [[ ${#RECENT_FILES[@]} -gt 0 ]]; then
@@ -149,7 +191,7 @@ else
     log "ERROR: Cannot create ALAC output directory $ALAC_DIR"
 fi
 
-# Step 3: Convert FLAC to AAC
+# Step 4: Convert FLAC to AAC
 log "Converting FLAC files to AAC format..."
 if [[ ! -d "$(dirname "$AAC_DIR")" ]]; then
     log "ERROR: Parent directory for AAC output does not exist: $(dirname "$AAC_DIR")"
@@ -165,6 +207,28 @@ elif [[ -d "$AAC_DIR" ]] || mkdir -p "$AAC_DIR"; then
     fi
 else
     log "ERROR: Cannot create AAC output directory $AAC_DIR"
+fi
+
+# Step 5: Open newly converted ALAC directories in Music.app
+log "Opening newly converted ALAC directories in Music.app..."
+if [[ -d "$ALAC_DIR" ]]; then
+    # Find directories modified within the recent timeframe (matching our conversion window)
+    ALAC_RECENT_DIRS=()
+    while IFS= read -r -d '' d; do
+        ALAC_RECENT_DIRS+=("$d")
+    done < <(find "$ALAC_DIR" -mindepth 1 -maxdepth 1 -type d -mmin "-$RECENT_MINS" -print0 2>/dev/null || true)
+
+    if [[ ${#ALAC_RECENT_DIRS[@]} -gt 0 ]]; then
+        for dir in "${ALAC_RECENT_DIRS[@]}"; do
+            log "Opening in Music.app: $(basename "$dir")"
+            open -a "Music.app" "$dir"
+        done
+        log "Opened ${#ALAC_RECENT_DIRS[@]} directory(ies) in Music.app."
+    else
+        log "No recently converted ALAC directories to open."
+    fi
+else
+    log "WARNING: ALAC_DIR ($ALAC_DIR) does not exist. Skipping Music.app import."
 fi
 
 log "Music management tasks completed."
