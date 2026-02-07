@@ -7,6 +7,7 @@
 
 set -euo pipefail
 
+MUSIC_DIR="$HOME/StreamripDownloads"
 OUTPUT_DIR="$MUSIC_DIR/OUTPUT"
 P_DRIVE="/Volumes/Sergio"
 S_DRIVE="/Volumes/Sandro"
