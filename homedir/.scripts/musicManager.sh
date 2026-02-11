@@ -71,7 +71,8 @@ if [[ -d "$OUTPUT_DIR" ]]; then
             if [[ -d "$dest_dir" ]]; then
                 # Directory exists in FLAC_DIR, merge contents using rsync
                 log "Merging '$dir_name' into existing directory at $dest_dir..."
-                if rsync -av --remove-source-files "$dir" "$FLAC_DIR/" 2>&1 | tee -a "$LOG_FILE"; then
+                # Strip trailing slash to ensure rsync copies the directory itself, not just its contents
+                if rsync -av --remove-source-files "${dir%/}" "$FLAC_DIR/" 2>&1 | tee -a "$LOG_FILE"; then
                     # Remove empty source directory after rsync
                     find "$dir" -type d -empty -delete 2>/dev/null || true
                     log "Merged: $dir_name"
