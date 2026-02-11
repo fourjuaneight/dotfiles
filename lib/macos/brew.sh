@@ -42,8 +42,9 @@ action "installing latest bash"
 
 action "tapping 3rd party repos"
 /opt/homebrew/bin/brew tap teamookla/speedtest
+/opt/homebrew/bin/brew install speedtest
 /opt/homebrew/bin/brew tap crumbyte/noxdir
-/opt/homebrew/bin/brew tap gromgit/homebrew-fuse
+/opt/homebrew/bin/brew install noxdir
 
 action "installing packages"
 /opt/homebrew/bin/brew install 1password-cli \
@@ -105,7 +106,6 @@ action "installing packages"
   ngrok \
   neovim \
   node \
-  noxdir \
   ntfs-3g-mac \
   osv-scanner \
   p7zip \
@@ -125,7 +125,6 @@ action "installing packages"
   slurm \
   spark \
   sphinx \
-  speedtest \
   stow \
   streamrip \
   superfile \
@@ -139,6 +138,7 @@ action "installing packages"
   uv \
   webp \
   wget \
+  whosthere \
   wireshark \
   xz \
   yq \

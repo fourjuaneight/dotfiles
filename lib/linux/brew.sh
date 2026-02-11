@@ -71,6 +71,7 @@ brew install ack \
   tpm \
   uv \
   webp \
+  whosthere \
   yq \
   yt-dlp/taps/yt-dlp
 
