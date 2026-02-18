@@ -42,6 +42,8 @@ fmt_names() {
     input="$(cat)"
   fi
 
+        input="$(strip_version_suffixes "$input")"
+
     perl -CSDA -MUnicode::Normalize -pe '
         use utf8;
         use feature qw(unicode_strings);
@@ -64,6 +66,52 @@ fmt_names() {
 
         s/[\x{202a}-\x{202c}]+//g;
     ' <<<"$input"
+}
+
+# Remove common version suffixes from a track title-like string.
+# Removes (Album Version), (Single Version), and (YYYY Version), case-insensitive.
+strip_version_suffixes() {
+    local input
+    if [[ $# -gt 0 ]]; then
+        input="$*"
+    else
+        input="$(cat)"
+    fi
+
+    perl -CSDA -pe 's/\s*\((?:album|single|\d{4})\s+version\)//ig' <<<"$input"
+}
+
+# Normalize FLAC TITLE by removing common version suffixes.
+# Safe behavior:
+# - If TITLE is absent, does nothing.
+# - If cleaned TITLE becomes empty, removes TITLE.
+# - If metaflac fails, logs a warning and continues.
+normalize_flac_title_tag() {
+    local file="$1"
+
+    local title_line title title_clean
+    title_line="$(metaflac --show-tag=TITLE "$file" 2>/dev/null | head -n 1 || true)"
+    title=""
+    if [[ "$title_line" == TITLE=* ]]; then
+        title="${title_line#TITLE=}"
+    fi
+
+    title_clean="$(strip_version_suffixes "$title")"
+    title_clean="$(trim "$title_clean")"
+
+    if [[ "$title_clean" == "$title" ]]; then
+        return 0
+    fi
+
+    if [[ -n "$title_clean" ]]; then
+        if ! metaflac --remove-tag=TITLE "--set-tag=TITLE=$title_clean" "$file"; then
+            log "WARN: metaflac TITLE normalization failed: $file"
+        fi
+    else
+        if ! metaflac --remove-tag=TITLE "$file"; then
+            log "WARN: metaflac TITLE normalization failed: $file"
+        fi
+    fi
 }
 
 # Trim leading and trailing whitespace from a string.
@@ -178,6 +226,8 @@ strip_unwanted_flac_tags() {
     disc_total_line="$(metaflac --show-tag=DISCTOTAL "$file" 2>/dev/null | head -n 1 || true)"
     disc_total="${disc_total_line#DISCTOTAL=}"
     disc_total="$(trim "$disc_total")"
+
+    normalize_flac_title_tag "$file"
 
     local metaflac_args=(
         --remove-tag=COMPOSER
