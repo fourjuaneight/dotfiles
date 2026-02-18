@@ -27,8 +27,9 @@ alias scat="sudo ~/.cargo/bin/bat"
 alias sls="sudo ~/.cargo/bin/exa"
 
 alias 4k2ipod="bash ~/.scripts/4k2ipod.sh"
-alias musicManager="bash ~/.scripts/musicManager.sh"
 alias musicSorter="bash ~/.scripts/musicSorter.sh"
+alias musicTagger="bash ~/.scripts/musicTagger.sh"
+alias musicManager="bash ~/.scripts/musicManager.sh"
 alias musicSync="bash ~/.scripts/musicSync.sh"
 
 # direct to mkntfs
