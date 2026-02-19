@@ -78,7 +78,7 @@ strip_version_suffixes() {
         input="$(cat)"
     fi
 
-    perl -CSDA -pe 's/\s*\((?:album|single|\d{4})\s+version\)//ig' <<<"$input"
+    perl -CSDA -pe 's/\s*\((?:(?:album|single|\d{4})\s+version|\d{4}\s+remaster)\)//ig' <<<"$input"
 }
 
 # Normalize FLAC TITLE by removing common version suffixes.
@@ -397,6 +397,8 @@ main() {
 
     if [[ "$any" -eq 0 ]]; then
         log "No release folders found in: $INPUT_DIR"
+    else
+        open -a "Meta.app" "$OUTPUT_DIR"
     fi
 }
 
