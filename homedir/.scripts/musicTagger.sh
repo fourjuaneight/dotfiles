@@ -73,53 +73,60 @@ main() {
     printf "%2d) %s\n" "$((i + 1))" "$rel_path"
   done
 
-  selection=""
-  while true; do
-    read -r -p "Select album number to tag (1-${#album_dirs[@]}): " selection
+  total_updated=0
+  total_failed=0
 
-    if [[ "$selection" =~ ^[0-9]+$ ]] && (( selection >= 1 && selection <= ${#album_dirs[@]} )); then
-      break
-    fi
+  for i in "${!album_dirs[@]}"; do
+    selected_album="${album_dirs[$i]}"
+    rel_album="${selected_album#"$OUTPUT_DIR"/}"
 
-    log "WARN: Invalid selection. Expected a number between 1 and ${#album_dirs[@]}"
-  done
+    log "Processing album ($((i + 1))/${#album_dirs[@]}): $rel_album"
 
-  selected_album="${album_dirs[$((selection - 1))]}"
-  log "Selected album: ${selected_album#"$OUTPUT_DIR"/}"
+    genre=""
+    while [[ -z "$genre" ]]; do
+      read -r -p "Enter GENRE for '$rel_album': " genre
+      genre="${genre##+([[:space:]])}"
+      genre="${genre%%+([[:space:]])}"
 
-  genre=""
-  while [[ -z "$genre" ]]; do
-    read -r -p "Enter new GENRE value: " genre
-    genre="${genre##+([[:space:]])}"
-    genre="${genre%%+([[:space:]])}"
+      if [[ -z "$genre" ]]; then
+        log "WARN: GENRE cannot be empty"
+      fi
+    done
 
-    if [[ -z "$genre" ]]; then
-      log "WARN: GENRE cannot be empty"
-    fi
-  done
+    log "Applying GENRE tag: $genre"
 
-  log "Applying GENRE tag: $genre"
+    updated=0
+    failed=0
+    while IFS= read -r file; do
+      if metaflac --remove-tag=GENRE --set-tag="GENRE=$genre" "$file"; then
+        updated=$((updated + 1))
+      else
+        failed=$((failed + 1))
+        log "WARN: Failed to update GENRE for file: $file"
+      fi
+    done < <(find "$selected_album" -type f -iname "*.flac" | sort)
 
-  updated=0
-  failed=0
-  while IFS= read -r file; do
-    if metaflac --remove-tag=GENRE --set-tag="GENRE=$genre" "$file"; then
-      updated=$((updated + 1))
+    if [[ "$updated" -eq 0 && "$failed" -gt 0 ]]; then
+      log "ERROR: No files were updated. Failed on $failed file(s) in: $rel_album"
+    elif [[ "$failed" -gt 0 ]]; then
+      log "Done with warnings: updated $updated file(s), failed $failed file(s) in: $rel_album"
     else
-      failed=$((failed + 1))
-      log "WARN: Failed to update GENRE for file: $file"
+      log "Done: updated GENRE for $updated file(s) in: $rel_album"
     fi
-  done < <(find "$selected_album" -type f -iname "*.flac" | sort)
 
-  if [[ "$updated" -eq 0 && "$failed" -gt 0 ]]; then
-    log "ERROR: No files were updated. Failed on $failed file(s) in: ${selected_album#"$OUTPUT_DIR"/}"
+    total_updated=$((total_updated + updated))
+    total_failed=$((total_failed + failed))
+  done
+
+  if [[ "$total_updated" -eq 0 && "$total_failed" -gt 0 ]]; then
+    log "ERROR: No files were updated across all albums. Failed on $total_failed file(s)."
     exit 1
   fi
 
-  if [[ "$failed" -gt 0 ]]; then
-    log "Done with warnings: updated $updated file(s), failed $failed file(s) in: ${selected_album#"$OUTPUT_DIR"/}"
+  if [[ "$total_failed" -gt 0 ]]; then
+    log "All albums processed with warnings: updated $total_updated file(s), failed $total_failed file(s)."
   else
-    log "Done: updated GENRE for $updated file(s) in: ${selected_album#"$OUTPUT_DIR"/}"
+    log "All albums processed: updated GENRE for $total_updated file(s)."
   fi
 }
 
