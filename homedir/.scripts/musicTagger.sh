@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# This script reads music files from OUTPUT_DIR and lists them nested album directories, then prompts the user to select an album to tag.
-# 1. List ALBUMS in OUTPUT_DIR
+# This script reads music files from SRC and lists them nested album directories, then prompts the user to select an album to tag.
+# 1. List ALBUMS in SRC
 # 2. Prompt user to select an album
 # 3. Ask the tag value to update GENRE only
 # 4. Update the GENRE tag for all files in the selected album directory
@@ -13,7 +13,7 @@ shopt -s extglob
 
 MUSIC_DIR="$HOME/StreamripDownloads"
 # dir structure: OUTPUT/Artist/Album/*.flac
-OUTPUT_DIR="$MUSIC_DIR/OUTPUT"
+SRC="$MUSIC_DIR/INTAKE"
 LOG_FILE="$HOME/.scripts/logs/music_tagger.log"
 
 # ensure log directory exists (tee will fail under set -e otherwise)
@@ -42,8 +42,8 @@ is_album_with_flac() {
 }
 
 main() {
-  if [[ ! -d "$OUTPUT_DIR" ]]; then
-    log "ERROR: OUTPUT_DIR does not exist: $OUTPUT_DIR"
+  if [[ ! -d "$SRC" ]]; then
+    log "ERROR: SRC does not exist: $SRC"
     exit 1
   fi
 
@@ -60,16 +60,16 @@ main() {
     if is_album_with_flac "$dir"; then
       album_dirs+=("$dir")
     fi
-  done < <(find "$OUTPUT_DIR" -mindepth 2 -maxdepth 2 -type d | sort)
+  done < <(find "$SRC" -mindepth 2 -maxdepth 2 -type d | sort)
 
   if [[ ${#album_dirs[@]} -eq 0 ]]; then
-    log "No album directories with FLAC files found in: $OUTPUT_DIR"
+    log "No album directories with FLAC files found in: $SRC"
     exit 0
   fi
 
-  log "Albums found in: $OUTPUT_DIR"
+  log "Albums found in: $SRC"
   for i in "${!album_dirs[@]}"; do
-    rel_path="${album_dirs[$i]#"$OUTPUT_DIR"/}"
+    rel_path="${album_dirs[$i]#"$SRC"/}"
     printf "%2d) %s\n" "$((i + 1))" "$rel_path"
   done
 
@@ -78,7 +78,7 @@ main() {
 
   for i in "${!album_dirs[@]}"; do
     selected_album="${album_dirs[$i]}"
-    rel_album="${selected_album#"$OUTPUT_DIR"/}"
+    rel_album="${selected_album#"$SRC"/}"
 
     log "Processing album ($((i + 1))/${#album_dirs[@]}): $rel_album"
 
