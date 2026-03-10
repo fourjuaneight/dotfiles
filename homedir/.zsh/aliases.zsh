@@ -46,7 +46,7 @@ alias cat="bat"
 # alias find="fd"
 
 # alternative to 'rm'
-alias rm="rip -i"
+alias rmf="yes | rip -i"
 
 # alternatives to 'ls'
 alias ls="exa"
@@ -112,17 +112,14 @@ alias wp="webpack"
 alias psl="psql postgres -h localhost -l"
 
 # NPM
-alias nvup="npm version"
-alias nr="npm run"
+alias nvup="pnpm version"
+alias nr="pnpm run"
 
 # nvm
 alias nvi="fnm install"
 alias nvu="fnm use"
 alias nviu="fnm install && fnm use --delete-prefix"
 alias wnv="bat -p .nvmrc"
-
-# dev
-alias start="fnm use || fnm use 16 && clear && npm run clean; npm run start"
 
 # Git
 # alias ga="git add"
