@@ -13,7 +13,7 @@ shopt -s extglob
 
 MUSIC_DIR="$HOME/StreamripDownloads"
 # dir structure: OUTPUT/Artist/Album/*.flac
-SRC="$MUSIC_DIR/INTAKE"
+SRC="$MUSIC_DIR/OUTPUT"
 LOG_FILE="$HOME/.scripts/logs/music_tagger.log"
 
 # ensure log directory exists (tee will fail under set -e otherwise)
