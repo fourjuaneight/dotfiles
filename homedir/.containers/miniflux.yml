@@ -1,0 +1,37 @@
+services:
+  miniflux:
+    image: miniflux/miniflux:latest
+    restart: unless-stopped
+    ports:
+      - "80:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file: .env
+    environment:
+      - DATABASE_URL=postgres://miniflux:secret@db/miniflux?sslmode=disable
+      - RUN_MIGRATIONS=1
+      - CREATE_ADMIN=1
+      - ADMIN_USERNAME="${MINIFLUX_ADMIN_USERNAME}"
+      - ADMIN_PASSWORD="${MINIFLUX_ADMIN_PASSWORD}"
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+  db:
+    image: postgres:18
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - POSTGRES_USER=miniflux
+      - POSTGRES_PASSWORD="${MINIFLUX_POSTGRES_PASSWORD}"
+      - POSTGRES_DB=miniflux
+    volumes:
+      - miniflux-db:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "miniflux"]
+      interval: 10s
+      start_period: 30s
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+volumes:
+  miniflux-db:
