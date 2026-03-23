@@ -1,11 +1,24 @@
 services:
+  caddy:
+    image: caddy:latest
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      - miniflux
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
   miniflux:
     image: miniflux/miniflux:latest
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "/usr/bin/miniflux", "-healthcheck", "auto"]
-    ports:
-      - "7979:8080"
     depends_on:
       db:
         condition: service_healthy
@@ -38,3 +51,5 @@ services:
 
 volumes:
   miniflux-db:
+  caddy-data:
+  caddy-config:
