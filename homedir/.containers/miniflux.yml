@@ -1,22 +1,56 @@
 services:
+  tailscale:
+    image: tailscale/tailscale:latest
+    restart: unless-stopped
+    hostname: miniflux
+    networks:
+      - internal
+    environment:
+      - TS_AUTHKEY=${TS_AUTHKEY}
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_SOCKET=/var/run/tailscale/tailscaled.sock
+    volumes:
+      - tailscale-state:/var/lib/tailscale
+      - tailscale-sock:/var/run/tailscale
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    healthcheck:
+      test: ["CMD", "tailscale", "status"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
   caddy:
     image: caddy:latest
     restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
+    network_mode: service:tailscale
+    depends_on:
+      tailscale:
+        condition: service_healthy
+      miniflux:
+        condition: service_healthy
+    environment:
+      - TS_SOCKET=/var/run/tailscale/tailscaled.sock
     volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy-data:/data
       - caddy-config:/config
-    depends_on:
-      - miniflux
+      - tailscale-sock:/var/run/tailscale:ro
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
 
   miniflux:
     image: miniflux/miniflux:latest
     restart: unless-stopped
+    networks:
+      internal:
+        aliases:
+          - miniflux-app
     healthcheck:
       test: ["CMD", "/usr/bin/miniflux", "-healthcheck", "auto"]
     depends_on:
@@ -35,6 +69,8 @@ services:
   db:
     image: postgres:18
     restart: unless-stopped
+    networks:
+      - internal
     env_file: .env
     environment:
       - POSTGRES_USER=miniflux
@@ -53,3 +89,8 @@ volumes:
   miniflux-db:
   caddy-data:
   caddy-config:
+  tailscale-state:
+  tailscale-sock:
+
+networks:
+  internal:
