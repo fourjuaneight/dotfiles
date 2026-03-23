@@ -37,7 +37,7 @@ services:
     environment:
       - TS_SOCKET=/var/run/tailscale/tailscaled.sock
     volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./Caddyfile.miniflux:/etc/caddy/Caddyfile:ro
       - caddy-data:/data
       - caddy-config:/config
       - tailscale-sock:/var/run/tailscale:ro
