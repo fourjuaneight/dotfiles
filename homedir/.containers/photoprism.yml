@@ -50,8 +50,6 @@ services:
     volumes:
       - "/media/Photos:/photoprism/originals"
       - "~/.config/photoprism/storage:/photoprism/storage"
-    labels:
-      - "com.centurylinklabs.watchtower.enable=true"
 
   mariadb:
     restart: unless-stopped
@@ -72,8 +70,6 @@ services:
       MARIADB_PASSWORD: "${MARIADB_PASSWORD}"
       MARIADB_ROOT_PASSWORD: "${MARIADB_ROOT_PASSWORD}"
     env_file: .env
-    labels:
-      - "com.centurylinklabs.watchtower.enable=true"
 
 networks:
   photoslibrary:

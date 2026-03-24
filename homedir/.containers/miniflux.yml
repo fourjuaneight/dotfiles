@@ -22,8 +22,6 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-    labels:
-      - "com.centurylinklabs.watchtower.enable=true"
 
   caddy:
     image: caddy:latest
@@ -41,8 +39,6 @@ services:
       - caddy-data:/data
       - caddy-config:/config
       - tailscale-sock:/var/run/tailscale:ro
-    labels:
-      - "com.centurylinklabs.watchtower.enable=true"
 
   miniflux:
     image: miniflux/miniflux:latest
@@ -63,8 +59,6 @@ services:
       - CREATE_ADMIN=1
       - ADMIN_USERNAME=${MINIFLUX_ADMIN_USERNAME}
       - ADMIN_PASSWORD=${MINIFLUX_ADMIN_PASSWORD}
-    labels:
-      - "com.centurylinklabs.watchtower.enable=true"
 
   db:
     image: postgres:18
@@ -82,8 +76,6 @@ services:
       test: ["CMD", "pg_isready", "-U", "miniflux"]
       interval: 10s
       start_period: 30s
-    labels:
-      - "com.centurylinklabs.watchtower.enable=true"
 
 volumes:
   miniflux-db:

@@ -11,5 +11,3 @@ services:
     ports:
       - 8443:8443
     restart: unless-stopped
-    labels:
-      - "com.centurylinklabs.watchtower.enable=true"

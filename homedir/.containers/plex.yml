@@ -16,8 +16,7 @@ services:
       - VERSION=docker
       - TZ=America/New_York
       - PLEX_CLAIM=${PLEX_CLAIM_TOKEN}
-    labels:
-      - "com.centurylinklabs.watchtower.enable=true"
+
   tautulli:
     image: ghcr.io/tautulli/tautulli
     container_name: tautulli
@@ -30,5 +29,3 @@ services:
       - TZ=America/New_York
     ports:
       - 127.0.0.1:8181:8181
-    labels:
-      - "com.centurylinklabs.watchtower.enable=true"

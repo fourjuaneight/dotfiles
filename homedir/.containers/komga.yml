@@ -2,6 +2,7 @@ services:
   komga:
     image: gotson/komga
     container_name: komga
+    restart: unless-stopped
     volumes:
       - type: bind
         source: ~/.config/komga
@@ -34,6 +35,3 @@ services:
     user: "1000:1000"
     environment:
       KOMGA_LIBRARIES_SCAN_STARTUP: "true"
-    restart: unless-stopped
-    labels:
-      - "com.centurylinklabs.watchtower.enable=true"
