@@ -53,6 +53,7 @@ services:
           - vaultwarden-app
     environment:
       - DOMAIN=${VAULTWARDEN_DOMAIN}
+      - ROCKET_SECRET_KEY=${VAULTWARDEN_ROCKET_SECRET_KEY}
     volumes:
       - vw-data:/data
 
