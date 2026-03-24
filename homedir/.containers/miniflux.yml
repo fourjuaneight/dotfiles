@@ -14,8 +14,8 @@ services:
       - TS_TAILSCALED_EXTRA_ARGS=--port=0
     command: sh -c "rm -f /var/run/tailscale/tailscaled.sock && /usr/local/bin/containerboot"
     volumes:
-      - miniflux_tailscale-state:/var/lib/tailscale
-      - miniflux_tailscale-sock:/var/run/tailscale
+      - tailscale-state:/var/lib/tailscale
+      - tailscale-sock:/var/run/tailscale
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
@@ -96,3 +96,4 @@ volumes:
 networks:
   internal:
     name: miniflux_internal
+    
