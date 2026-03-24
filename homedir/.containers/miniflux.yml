@@ -6,7 +6,7 @@ services:
     networks:
       - internal
     environment:
-      - TS_AUTHKEY=${TS_AUTHKEY}
+      - TS_AUTHKEY=${MINIFLUX_TS_AUTHKEY}
       - TS_STATE_DIR=/var/lib/tailscale
       - TS_SOCKET=/var/run/tailscale/tailscaled.sock
     volumes:
@@ -79,10 +79,15 @@ services:
 
 volumes:
   miniflux-db:
+    name: miniflux_miniflux-db
   caddy-data:
+    name: miniflux_caddy-data
   caddy-config:
+    name: miniflux_caddy-config
   tailscale-state:
+    name: miniflux_tailscale-state
   tailscale-sock:
+    name: miniflux_tailscale-sock
 
 networks:
   internal:

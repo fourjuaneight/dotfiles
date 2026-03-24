@@ -6,7 +6,7 @@ services:
     networks:
       - internal
     environment:
-      - TS_AUTHKEY=${TS_AUTHKEY}
+      - TS_AUTHKEY=${VAULTWARDEN_TS_AUTHKEY}
       - TS_STATE_DIR=/var/lib/tailscale
       - TS_SOCKET=/var/run/tailscale/tailscaled.sock
     volumes:
@@ -48,16 +48,20 @@ services:
         aliases:
           - vaultwarden-app
     environment:
-      - DOMAIN=${VW_DOMAIN}
+      - DOMAIN=${VAULTWARDEN_DOMAIN}
     volumes:
       - vw-data:/data
 
 volumes:
   vw-data:
   caddy-data:
+    name: vaultwarden_caddy-data
   caddy-config:
+    name: vaultwarden_caddy-config
   tailscale-state:
+    name: vaultwarden_tailscale-state
   tailscale-sock:
+    name: vaultwarden_tailscale-sock
 
 networks:
   internal:
