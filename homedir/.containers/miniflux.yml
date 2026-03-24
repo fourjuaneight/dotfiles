@@ -91,3 +91,4 @@ volumes:
 
 networks:
   internal:
+    name: miniflux_internal
