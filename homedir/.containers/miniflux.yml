@@ -9,6 +9,7 @@ services:
       - TS_AUTHKEY=${MINIFLUX_TS_AUTHKEY}
       - TS_STATE_DIR=/var/lib/tailscale
       - TS_SOCKET=/var/run/tailscale/tailscaled.sock
+      - TS_TAILSCALED_EXTRA_ARGS=--port=0
     volumes:
       - tailscale-state:/var/lib/tailscale
       - tailscale-sock:/var/run/tailscale
