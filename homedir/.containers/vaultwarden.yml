@@ -1,3 +1,5 @@
+name: vaultwarden
+
 services:
   tailscale:
     image: tailscale/tailscale:latest

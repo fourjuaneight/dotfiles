@@ -1,3 +1,5 @@
+name: miniflux
+
 services:
   tailscale:
     image: tailscale/tailscale:latest
