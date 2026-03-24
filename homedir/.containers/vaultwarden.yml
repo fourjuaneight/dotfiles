@@ -12,9 +12,10 @@ services:
       - TS_STATE_DIR=/var/lib/tailscale
       - TS_SOCKET=/var/run/tailscale/tailscaled.sock
       - TS_TAILSCALED_EXTRA_ARGS=--port=0
+    command: sh -c "rm -f /var/run/tailscale/tailscaled.sock && /usr/local/bin/containerboot"
     volumes:
-      - tailscale-state:/var/lib/tailscale
-      - tailscale-sock:/var/run/tailscale
+      - vaultwarden_tailscale-state:/var/lib/tailscale
+      - vaultwarden_tailscale-sock:/var/run/tailscale
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
