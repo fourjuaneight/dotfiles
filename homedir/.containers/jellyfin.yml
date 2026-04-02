@@ -1,18 +1,59 @@
+name: jellyfin
+
 services:
-  jellyfin:
-    image: lscr.io/linuxserver/jellyfin:latest
-    container_name: jellyfin
-    network_mode: host
+  tailscale:
+    image: tailscale/tailscale:latest
     restart: unless-stopped
-    volumes:
-      - ~/.config/jellyfin/library:/config
-      - /media/Music:/Music
+    hostname: jellyfin
+    networks:
+      - internal
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Etc/UTC
-    ports:
-      - 8096:8096
-      - 8920:8920
-      - 7359:7359/udp
-      - 1900:1900/udp
+      - TS_AUTHKEY=${JELLYFIN_TS_AUTHKEY}
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_SOCKET=/var/run/tailscale/tailscaled.sock
+      - TS_TAILSCALED_EXTRA_ARGS=--port=0
+    command: sh -c "rm -f /var/run/tailscale/tailscaled.sock && /usr/local/bin/containerboot"
+    volumes:
+      - tailscale-state:/var/lib/tailscale
+      - tailscale-sock:/var/run/tailscale
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    healthcheck:
+      test: ["CMD", "tailscale", "status"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  caddy:
+    image: caddy:latest
+    restart: unless-stopped
+    network_mode: service:tailscale
+    depends_on:
+      tailscale:
+        condition: service_healthy
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - TS_SOCKET=/var/run/tailscale/tailscaled.sock
+    volumes:
+      - ./Caddyfile.jellyfin:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+      - tailscale-sock:/var/run/tailscale:ro
+
+volumes:
+  caddy-data:
+    name: jellyfin_caddy-data
+  caddy-config:
+    name: jellyfin_caddy-config
+  tailscale-state:
+    name: jellyfin_tailscale-state
+  tailscale-sock:
+    name: jellyfin_tailscale-sock
+
+networks:
+  internal:
+    name: jellyfin_internal
