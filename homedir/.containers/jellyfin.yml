@@ -7,6 +7,8 @@ services:
     hostname: jellyfin
     networks:
       - internal
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     environment:
       - TS_AUTHKEY=${JELLYFIN_TS_AUTHKEY}
       - TS_STATE_DIR=/var/lib/tailscale
@@ -34,8 +36,6 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     environment:
       - TS_SOCKET=/var/run/tailscale/tailscaled.sock
     volumes:
