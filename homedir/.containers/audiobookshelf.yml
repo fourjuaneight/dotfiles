@@ -1,11 +1,58 @@
+name: audiobookshelf
+
 services:
+  tailscale:
+    image: tailscale/tailscale:latest
+    restart: unless-stopped
+    hostname: audiobookshelf
+    networks:
+      - internal
+    environment:
+      - TS_AUTHKEY=${AUDIOBOOKSHELF_TS_AUTHKEY}
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_SOCKET=/var/run/tailscale/tailscaled.sock
+      - TS_SERVE_CONFIG=/config/serve.audiobookshelf.json
+      - TS_TAILSCALED_EXTRA_ARGS=--port=0
+      - TS_AUTH_ONCE=true
+      - TS_ENABLE_HEALTH_CHECK=true
+      - TS_LOCAL_ADDR_PORT=127.0.0.1:41234
+    command: sh -c "rm -f /var/run/tailscale/tailscaled.sock && /usr/local/bin/containerboot"
+    volumes:
+      - ./serve.audiobookshelf.json:/config/serve.audiobookshelf.json:ro
+      - tailscale-state:/var/lib/tailscale
+      - tailscale-sock:/var/run/tailscale
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
   audiobookshelf:
     image: ghcr.io/advplyr/audiobookshelf:latest
-    ports:
-      - 13378:80
+    restart: unless-stopped
+    networks:
+      internal:
+        aliases:
+          - audiobookshelf-app
     volumes:
-      - /Volumes/Samuel/Audiobooks:/audiobooks
+      - /Volumes/Sergio/Audiobooks:/audiobooks
       - ~/.config/audiobookshelf:/config
       - ~/.config/audiobookshelf/metadata:/metadata
     environment:
-      - TZ=America/New_York 
+      - TZ=America/New_York
+
+volumes:
+  tailscale-state:
+    name: audiobookshelf_tailscale-state
+  tailscale-sock:
+    name: audiobookshelf_tailscale-sock
+
+networks:
+  internal:
+    name: audiobookshelf_internal
