@@ -33,4 +33,5 @@ homedir/.config/cagent/.cagent_first_run
 homedir/.scripts/logs
 homedir/.scripts/cache.json
 Caddyfile*
+serve.*.json
 .vscode

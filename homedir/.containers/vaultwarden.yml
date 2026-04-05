@@ -11,9 +11,14 @@ services:
       - TS_AUTHKEY=${VAULTWARDEN_TS_AUTHKEY}
       - TS_STATE_DIR=/var/lib/tailscale
       - TS_SOCKET=/var/run/tailscale/tailscaled.sock
+      - TS_SERVE_CONFIG=/config/serve.vaultwarden.json
       - TS_TAILSCALED_EXTRA_ARGS=--port=0
+      - TS_AUTH_ONCE=true
+      - TS_ENABLE_HEALTH_CHECK=true
+      - TS_LOCAL_ADDR_PORT=127.0.0.1:41234
     command: sh -c "rm -f /var/run/tailscale/tailscaled.sock && /usr/local/bin/containerboot"
     volumes:
+      - ./serve.vaultwarden.json:/config/serve.vaultwarden.json:ro
       - tailscale-state:/var/lib/tailscale
       - tailscale-sock:/var/run/tailscale
     cap_add:
@@ -22,27 +27,11 @@ services:
     devices:
       - /dev/net/tun:/dev/net/tun
     healthcheck:
-      test: ["CMD", "tailscale", "status"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
-  caddy:
-    image: caddy:latest
-    restart: unless-stopped
-    network_mode: service:tailscale
-    depends_on:
-      tailscale:
-        condition: service_healthy
-      vaultwarden:
-        condition: service_started
-    environment:
-      - TS_SOCKET=/var/run/tailscale/tailscaled.sock
-    volumes:
-      - ./Caddyfile.vaultwarden:/etc/caddy/Caddyfile:ro
-      - caddy-data:/data
-      - caddy-config:/config
-      - tailscale-sock:/var/run/tailscale:ro
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 10s
 
   vaultwarden:
     image: vaultwarden/server:latest
@@ -59,10 +48,7 @@ services:
 
 volumes:
   vw-data:
-  caddy-data:
-    name: vaultwarden_caddy-data
-  caddy-config:
-    name: vaultwarden_caddy-config
+    name: vaultwarden_vw-data
   tailscale-state:
     name: vaultwarden_tailscale-state
   tailscale-sock:
@@ -71,4 +57,3 @@ volumes:
 networks:
   internal:
     name: vaultwarden_internal
-    
