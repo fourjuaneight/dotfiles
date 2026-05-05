@@ -1,0 +1,78 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "buffer_line_height": "standard",
+  "proxy": "",
+  "agent_servers": {
+    "claude-acp": {
+      "type": "registry"
+    }
+  },
+  "terminal": {
+    "env": {
+      "FIG_NEW_SESSION": "\"1\""
+    },
+    "font_size": 18.0,
+    "font_family": "JetBrainsMono Nerd Font Mono",
+    "font_fallbacks": [
+      "Fira Code",
+      "IBM Plex Mono",
+      "Monaco",
+      "Courier New",
+      "monospace"
+    ]
+  },
+  "base_keymap": "VSCode",
+  "tab_bar": {
+    "show": true
+  },
+  "show_signature_help_after_edits": false,
+  "auto_signature_help": false,
+  "multi_cursor_modifier": "cmd_or_ctrl",
+  "sticky_scroll": {
+    "enabled": true
+  },
+  "cursor_shape": "block",
+  "cursor_blink": true,
+  "autosave": "on_focus_change",
+  "buffer_font_fallbacks": [
+    "FiraCode Nerd Font",
+    "Dank Mono",
+    "Monaco",
+    "Courier New",
+    "monospace"
+  ],
+  "buffer_font_family": "JetBrainsMono Nerd Font",
+  "file_types": {
+    "html": [
+      "*.ejs"
+    ],
+    "xml": [
+      "*.plist"
+    ]
+  },
+  "show_whitespaces": "boundary",
+  "show_edit_predictions": true,
+  "soft_wrap": "editor_width",
+  "tab_size": 2,
+  "session": {
+    "trust_all_worktrees": true
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "ui_font_size": 16,
+  "buffer_font_size": 16.0,
+  "theme": {
+    "mode": "system",
+    "light": "Dracula Light (Alucard)",
+    "dark": "Dracula Solid"
+  }
+}

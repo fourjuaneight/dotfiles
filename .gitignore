@@ -32,6 +32,7 @@ homedir/.config/helix/runtime/grammars
 homedir/.config/cagent/.cagent_first_run
 homedir/.scripts/logs
 homedir/.scripts/cache.json
+homedir/.config/zed/prompts/
 Caddyfile*
 serve.*.json
 .vscode
