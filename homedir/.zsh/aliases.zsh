@@ -148,6 +148,7 @@ alias gao="git checkout --ours ."
 alias gdfn="git diff --name-only"
 alias gdfs="git diff --staged"
 
+alias gulc="git reset HEAD~1"
 alias grst="git reset"
 alias grsth="git reset --hard"
 
