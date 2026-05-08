@@ -56,7 +56,7 @@ services:
         condition: service_started
 
   postgres:
-    image: postgres:16-alpine
+    image: postgres:18-alpine
     restart: unless-stopped
     stop_grace_period: 60s
     networks:
@@ -66,7 +66,7 @@ services:
       - POSTGRES_PASSWORD=${LINKWARDEN_POSTGRES_PASSWORD}
       - POSTGRES_DB=linkwarden
     volumes:
-      - linkwarden-db:/var/lib/postgresql/data
+      - linkwarden-db:/var/lib/postgresql
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "linkwarden"]
       interval: 10s
