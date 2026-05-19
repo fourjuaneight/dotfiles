@@ -11,6 +11,8 @@ setopt hist_verify
 setopt inc_append_history
 setopt share_history # share command history data
 
+export PATH="$PATH:$HOME/.local/bin"
+
 # Homebrew
 if [[ "$OSTYPE" == "darwin"* ]]; then
   export PATH="/opt/homebrew/bin:$PATH"
@@ -95,11 +97,14 @@ zsh-defer eval "`fnm env`"
 # SKIM
 export SKIM_DEFAULT_COMMAND="git ls-tree -r --name-only HEAD || rg --files || fd ."
 
-# pyenv
+# Python
 PATH=$(pyenv root)/shims:$PATH
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+export PATH="$(brew --prefix python)/libexec/bin:$PATH"
+
 
 # fzf
 export FZF_DEFAULT_OPTS="
@@ -122,3 +127,11 @@ export FZF_DEFAULT_OPTS="
     --color=info:#f3be7c
     --color=spinner:#7fa563
     "
+
+# pnpm
+export PNPM_HOME="$HOME/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end
