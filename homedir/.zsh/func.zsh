@@ -679,7 +679,7 @@ diffSel() {
 fe() {
   local files
   IFS=$'\n' files=($(fd -t f . ~/ 2>/dev/null | fzf --query "$1" --multi --select-1 --exit-0))
-  [[ -n "$files" ]] && hx ${files[@]}
+  [[ -n "$files" ]] && nvim ${files[@]}
 }
 
 # using ripgrep combined with preview and open on editor
@@ -692,7 +692,7 @@ fif() {
   file="$(rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}")" &&
     line=$(rg -n $1 $file | sed -E 's/^([0-9]+).*/\1/') &&
     if [[ -n $file ]]; then
-      hx $file:$line
+      code $file:$line
     fi
 }
 
@@ -728,7 +728,7 @@ fa() {
   read -r file line <<<"$(rg --no-heading -n $@ | fzf --exit-0 --select-1 | mawk -F: '{print $1, $2}')"
 
   if [[ -n $file ]]; then
-    hx $file:$line
+    code $file:$line
   fi
 }
 
@@ -774,7 +774,7 @@ fcd() {
 fcdc() {
   local dir action
   dir=$(fd -t d . ~/ 2>/dev/null | fzf --query "$1" --no-multi --select-1 --exit-0) &&
-  action=$(gum choose "cd" "code" "nvim" "hx") &&
+  action=$(gum choose "cd" "code" "nvim" "zed") &&
   z "$dir" &&
   fnm use;
   if [[ $action == "cd" ]]; then
@@ -783,8 +783,8 @@ fcdc() {
     code "$dir";
   elif [[ $action == "nvim" ]]; then
     nvim "$dir";
-  elif [[ $action == "hx" ]]; then
-    hx "$dir";
+  elif [[ $action == "zed" ]]; then
+    zed "$dir";
   fi
   clear &&
 }
@@ -793,17 +793,17 @@ fcdc() {
 fcdr() {
   local dir action
   dir=$(fd -t d --prune . ~/Repos 2>/dev/null | fzf --query "$1" --no-multi --select-1 --exit-0) &&
-  action=$(gum choose "cd" "code" "nvim" "hx") &&
+  action=$(gum choose "cd" "code" "nvim" "zed") &&
   z "$dir" &&
   fnm use;
   if [[ $action == "cd" ]]; then
     echo "cd $dir";
+  elif [[ $action == "zed" ]]; then
+    zed "$dir";
   elif [[ $action == "code" ]]; then
     code "$dir";
   elif [[ $action == "nvim" ]]; then
     nvim "$dir";
-  elif [[ $action == "hx" ]]; then
-    hx "$dir";
   fi
   git pull --rebase &&
   clear &&

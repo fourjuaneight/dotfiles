@@ -60,7 +60,7 @@ else
 fi
 
 action "setting Github CLI editor"
-gh config set editor hx
+gh config set editor nvim
 
 action "setting Crush API key"
 crush

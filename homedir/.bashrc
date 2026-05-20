@@ -38,7 +38,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export GPG_TTY=$(tty)
 
 # Utils
-export EDITOR=hx
+export EDITOR=nvim
 eval "$(sheldon source)"
 eval "$(starship init zsh)"
 zsh-defer eval "$(atuin init zsh)"

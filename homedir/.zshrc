@@ -62,7 +62,7 @@ fi
 export GPG_TTY=$(tty)
 
 # Utils
-export EDITOR=hx
+export EDITOR=nvim
 eval "$(sheldon source)"
 eval "$(starship init zsh)"
 zsh-defer eval "$(atuin init zsh)"

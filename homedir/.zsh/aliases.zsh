@@ -73,7 +73,7 @@ alias dig="dog"
 alias sniffnet="sudo ~/.cargo/bin/sniffnet"
 
 # zsh
-alias zconf="hx ~/.zshrc"
+alias zconf="nvim ~/.zshrc"
 alias zsour="source ~/.zshrc"
 
 # nnn
@@ -88,7 +88,7 @@ alias doom="~/.emacs.d/bin/doom"
 
 # vim
 alias vi="nvim"
-alias vconf="hx ~/.vimrc"
+alias vconf="nvim ~/.vimrc"
 alias vsour="nvim source ~/.vimrc"
 
 # cron
@@ -97,7 +97,7 @@ alias crol="crontab -l"
 
 # tmux
 alias tmux="tmux -2"
-alias tconf="hx ~/.config/tmux/tmux.conf"
+alias tconf="nvim ~/.config/tmux/tmux.conf"
 
 # ssh
 alias rssh="sudo service ssh --full-restart"

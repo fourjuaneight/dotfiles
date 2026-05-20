@@ -16,7 +16,7 @@
 
 [core]
   excludesfile = ~/.gitignore_global
-  editor = hx
+  editor = nvim
   pager = delta
 
 [delta]

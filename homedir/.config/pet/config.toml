@@ -1,6 +1,6 @@
 [General]
   snippetfile = "~/.config/pet/snippet.toml"
-  editor = "hx"
+  editor = "nvim"
   column = 40
   selectcmd = "fzf --ansi --layout=reverse --border --height=90% --pointer='*' --cycle --prompt='Snippets: '"
   backend = "gist"
