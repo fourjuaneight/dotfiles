@@ -51,6 +51,7 @@ brew install ack \
   syncthing \
   tpm \
   webp \
+  witr \
   yt-dlp &&
 
 brew services start syncthing

@@ -140,6 +140,7 @@ action "installing packages"
   wget \
   whosthere \
   wireshark \
+  witr \
   xz \
   yq \
   yt-dlp
