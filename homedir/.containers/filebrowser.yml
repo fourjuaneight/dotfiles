@@ -1,13 +1,107 @@
+name: imladris
+
 services:
-  filebrowser:
-    image: filebrowser/filebrowser
-    ports:
-      - "8080:9090"
-    volumes:
-      - /media:/srv
-      - ~/.config/filebrowser/filebrowser.db:/database/filebrowser.db
-      - ~/.config/filebrowser/settings.json:/config/settings.json
+  tailscale:
+    image: tailscale/tailscale:latest
+    restart: unless-stopped
+    hostname: imladris
+    networks:
+      - internal
     environment:
-      - PUID=1000
-      - PGID=1000
-    user: "0"
+      - TS_AUTHKEY=${IMLADRIS_TS_AUTHKEY}
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_SOCKET=/var/run/tailscale/tailscaled.sock
+      - TS_SERVE_CONFIG=/config/serve.imladris.json
+      - TS_TAILSCALED_EXTRA_ARGS=--port=0
+      - TS_AUTH_ONCE=true
+      - TS_ENABLE_HEALTH_CHECK=true
+      - TS_LOCAL_ADDR_PORT=127.0.0.1:41234
+    command: sh -c "rm -f /var/run/tailscale/tailscaled.sock && /usr/local/bin/containerboot"
+    volumes:
+      - ./serve.imladris.json:/config/serve.imladris.json:ro
+      - tailscale-state:/var/lib/tailscale
+      - tailscale-sock:/var/run/tailscale
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  rclone:
+    image: rclone/rclone:latest
+    restart: unless-stopped
+    command: >
+      mount b2:${IMLADRIS_B2_BUCKET} /data
+      --allow-other
+      --allow-non-empty
+      --vfs-cache-mode full
+      --vfs-cache-max-size 2G
+      --dir-cache-time 5m
+    environment:
+      RCLONE_CONFIG_B2_TYPE: b2
+      RCLONE_CONFIG_B2_ACCOUNT: ${IMLADRIS_B2_KEY_ID}
+      RCLONE_CONFIG_B2_KEY: ${IMLADRIS_B2_APP_KEY}
+    networks:
+      - internal
+    cap_add:
+      - SYS_ADMIN
+    devices:
+      - /dev/fuse
+    security_opt:
+      - apparmor:unconfined
+    volumes:
+      - ./b2-mount:/data:shared
+    healthcheck:
+      test: ["CMD", "test", "-d", "/data"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  filebrowser:
+    image: filebrowser/filebrowser:latest
+    restart: unless-stopped
+    networks:
+      internal:
+        aliases:
+          - filebrowser-app
+    depends_on:
+      tailscale:
+        condition: service_healthy
+      rclone:
+        condition: service_healthy
+    volumes:
+      - ./b2-mount:/srv:shared
+      - ./fb-config:/config
+
+  samba:
+    image: dockurr/samba
+    restart: unless-stopped
+    network_mode: service:tailscale
+    depends_on:
+      tailscale:
+        condition: service_healthy
+      rclone:
+        condition: service_healthy
+    environment:
+      NAME: "Imladris"
+      USER: "fourjuaneight"
+      PASS: ${IMLADRIS_SAMBA_PASS}
+    volumes:
+      - ./b2-mount:/storage:shared
+
+volumes:
+  tailscale-state:
+    name: b2-files_tailscale-state
+  tailscale-sock:
+    name: b2-files_tailscale-sock
+
+networks:
+  internal:
+    name: b2-files_internal
