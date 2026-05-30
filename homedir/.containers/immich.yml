@@ -1,0 +1,142 @@
+name: immich
+
+services:
+  tailscale:
+    image: tailscale/tailscale:latest
+    restart: unless-stopped
+    hostname: immich
+    networks:
+      - internal
+    environment:
+      - TS_AUTHKEY=${IMMICH_TS_AUTHKEY}
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_SOCKET=/var/run/tailscale/tailscaled.sock
+      - TS_SERVE_CONFIG=/config/serve.immich.json
+      - TS_TAILSCALED_EXTRA_ARGS=--port=0
+      - TS_AUTH_ONCE=true
+      - TS_ENABLE_HEALTH_CHECK=true
+      - TS_LOCAL_ADDR_PORT=127.0.0.1:41234
+    command: sh -c "rm -f /var/run/tailscale/tailscaled.sock && /usr/local/bin/containerboot"
+    volumes:
+      - ./serve.immich.json:/config/serve.immich.json:ro
+      - tailscale-state:/var/lib/tailscale
+      - tailscale-sock:/var/run/tailscale
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  rclone:
+    image: rclone/rclone:latest
+    restart: unless-stopped
+    command: >
+      mount b2:${IMMICH_B2_BUCKET} /data
+      --allow-other
+      --allow-non-empty
+      --vfs-cache-mode full
+      --vfs-cache-max-size 10G
+      --dir-cache-time 5m
+    environment:
+      RCLONE_CONFIG_B2_TYPE: b2
+      RCLONE_CONFIG_B2_ACCOUNT: ${B2_KEY_ID}
+      RCLONE_CONFIG_B2_KEY: ${B2_APP_KEY}
+    networks:
+      - internal
+    cap_add:
+      - SYS_ADMIN
+    devices:
+      - /dev/fuse
+    security_opt:
+      - apparmor:unconfined
+    volumes:
+      - ./b2-mount:/data:shared
+    healthcheck:
+      test: ["CMD", "test", "-d", "/data"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  immich-server:
+    image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
+    restart: unless-stopped
+    networks:
+      internal:
+        aliases:
+          - immich-app
+    env_file:
+      - .env
+    volumes:
+      - ./b2-mount:/data:shared
+      - /etc/localtime:/etc/localtime:ro
+    depends_on:
+      tailscale:
+        condition: service_healthy
+      rclone:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      database:
+        condition: service_healthy
+    healthcheck:
+      disable: false
+
+  immich-machine-learning:
+    image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}
+    restart: unless-stopped
+    networks:
+      - internal
+    env_file:
+      - .env
+    volumes:
+      - model-cache:/cache
+    healthcheck:
+      disable: false
+
+  redis:
+    container_name: immich_redis
+    image: docker.io/valkey/valkey:9@sha256:3b55fbaa0cd93cf0d9d961f405e4dfcc70efe325e2d84da207a0a8e6d8fde4f9
+    restart: unless-stopped
+    networks:
+      - internal
+    healthcheck:
+      test: redis-cli ping || exit 1
+
+  database:
+    container_name: immich_postgres
+    image: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0@sha256:bcf63357191b76a916ae5eb93464d65c07511da41e3bf7a8416db519b40b1c23
+    restart: unless-stopped
+    stop_grace_period: 60s
+    networks:
+      - internal
+    environment:
+      POSTGRES_PASSWORD: ${IMMICH_DB_PASSWORD}
+      POSTGRES_USER: ${IMMICH_DB_USERNAME}
+      POSTGRES_DB: ${IMMICH_DB_DATABASE_NAME}
+      POSTGRES_INITDB_ARGS: '--data-checksums'
+    volumes:
+      - immich-db:/var/lib/postgresql/data
+    shm_size: 128mb
+    healthcheck:
+      disable: false
+
+volumes:
+  tailscale-state:
+    name: immich_tailscale-state
+  tailscale-sock:
+    name: immich_tailscale-sock
+  immich-db:
+    name: immich_db
+  model-cache:
+    name: immich_model-cache
+
+networks:
+  internal:
+    name: immich_internal
