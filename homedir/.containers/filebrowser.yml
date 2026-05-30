@@ -45,8 +45,8 @@ services:
       --dir-cache-time 5m
     environment:
       RCLONE_CONFIG_B2_TYPE: b2
-      RCLONE_CONFIG_B2_ACCOUNT: ${IMLADRIS_B2_KEY_ID}
-      RCLONE_CONFIG_B2_KEY: ${IMLADRIS_B2_APP_KEY}
+      RCLONE_CONFIG_B2_ACCOUNT: ${B2_KEY_ID}
+      RCLONE_CONFIG_B2_KEY: ${B2_APP_KEY}
     networks:
       - internal
     cap_add:
