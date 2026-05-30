@@ -9,3 +9,5 @@
 .com.apple.timemachine.donotpresent
 secring.*
 node_modules/
+
+**/.claude/settings.local.json
