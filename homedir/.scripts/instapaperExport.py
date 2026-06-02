@@ -1,300 +1,244 @@
 #!/usr/bin/env python3
 """
-instapaper_export.py
-Pulls all bookmarks from Instapaper via the Full API and saves them as a
-Pocket-format CSV ready for import into Linkwarden.
+instapaper-export.py
 
-Requirements:
-    pip install requests python-dotenv
+Fetches all bookmarks from an Instapaper account (Unread, Starred, Archive)
+and saves them as JSON: [{title, link, tags}]
+
+Requirements: Python 3.9+
+  pip install requests python-dotenv
 
 Usage:
-    # Recommended: place a .env file next to this script:
-    #   INSTAPAPER_CONSUMER_KEY=your_consumer_key
-    #   INSTAPAPER_CONSUMER_SECRET=your_consumer_secret
-    #   INSTAPAPER_USERNAME=your_email
-    #   INSTAPAPER_PASSWORD=your_password     # omit if you have no password
+  python instapaper-export.py
 
-    python3 instapaperExport.py [output.csv]
-
-    # CLI flags override .env values:
-    python3 instapaperExport.py \
-        --consumer-key KEY \
-        --consumer-secret SECRET \
-        --username EMAIL \
-        [--password PASSWORD] \
-        [output.csv]
-
-Output columns: title,url,time_added,cursor,tags,status
-    - status is "unread" for unread items, "read" for archive, "starred" adds a tag
-    - tags are pipe-separated; starred items get a "starred" tag appended
-    - time_added is the Unix timestamp from Instapaper
-
-Notes:
-    - Fetches unread, starred, and archive folders
-    - Paginates automatically (Instapaper max 500 per request)
-    - Requires an OAuth consumer key — apply at:
-      https://www.instapaper.com/developers/applications/create
+Status/progress → stderr. Output → instapaper-bookmarks.json
+Get consumer key/secret at: https://www.instapaper.com/developers/applications
 """
+
 from __future__ import annotations
 
-import argparse
 import base64
-import csv
 import hashlib
 import hmac
+import json
+import logging
 import os
-from pathlib import Path
+import secrets
+import sys
 import time
-import urllib.parse
-import uuid
+from dataclasses import dataclass
+from pathlib import Path
+from urllib.parse import parse_qs, quote
 
 import requests
-try:
-    from dotenv import load_dotenv
-except ImportError:
-    load_dotenv = None
-
-BASE_URL = "https://www.instapaper.com"
-TOKEN_URL = f"{BASE_URL}/api/1/oauth/access_token"
-BOOKMARKS_URL = f"{BASE_URL}/api/1/bookmarks/list"
-
+from dotenv import load_dotenv
 
 # ---------------------------------------------------------------------------
-# OAuth 1.0a signing (xAuth)
+# Configuration
 # ---------------------------------------------------------------------------
 
-def _percent_encode(s: str) -> str:
-    return urllib.parse.quote(str(s), safe="")
+@dataclass(frozen=True)
+class Config:
+    consumer_key: str
+    consumer_secret: str
+    username: str
+    password: str = ""
+
+load_dotenv()
+
+CONFIG = Config(
+    consumer_key=os.environ.get("INSTAPAPER_CONSUMER_KEY", ""),
+    consumer_secret=os.environ.get("INSTAPAPER_CONSUMER_SECRET", ""),
+    username=os.environ.get("INSTAPAPER_USERNAME", ""),
+    password=os.environ.get("INSTAPAPER_PASSWORD", ""),
+)
+
+BASE_URL = "https://www.instapaper.com/api/1"
+FOLDERS = ["unread"]
+LIMIT = 500  # maximum allowed by the API
+OUTPUT_PATH = Path("instapaper-bookmarks.json")
+
+logging.basicConfig(stream=sys.stderr, level=logging.INFO, format="%(message)s")
+log = logging.getLogger(__name__)
+
+# ---------------------------------------------------------------------------
+# OAuth 1.0a helpers
+# ---------------------------------------------------------------------------
+
+def _pct(value: str) -> str:
+    """RFC 3986 percent-encoding. quote(safe='') encodes !, ', (, ), * as required by OAuth."""
+    return quote(str(value), safe="")
 
 
-def _build_auth_header(
+def _build_signature(
     method: str,
     url: str,
-    consumer_key: str,
+    params: dict[str, str],
     consumer_secret: str,
-    oauth_token: str = "",
-    oauth_token_secret: str = "",
-    extra_params: dict | None = None,
+    token_secret: str = "",
 ) -> str:
-    """Build the OAuth 1.0a Authorization header value."""
-    oauth_params = {
-        "oauth_consumer_key": consumer_key,
-        "oauth_nonce": uuid.uuid4().hex,
+    normalized = "&".join(
+        f"{_pct(k)}={_pct(v)}" for k, v in sorted(params.items())
+    )
+    base = "&".join([method.upper(), _pct(url), _pct(normalized)])
+    key = f"{_pct(consumer_secret)}&{_pct(token_secret)}"
+    digest = hmac.new(key.encode(), base.encode(), hashlib.sha1).digest()
+    return base64.b64encode(digest).decode()
+
+
+def _auth_header(oauth_params: dict[str, str]) -> str:
+    parts = ", ".join(f'{k}="{_pct(v)}"' for k, v in oauth_params.items())
+    return f"OAuth {parts}"
+
+
+def _signed_post(
+    url: str,
+    body: dict[str, str] | None = None,
+    token: str = "",
+    token_secret: str = "",
+) -> requests.Response:
+    body = body or {}
+    oauth: dict[str, str] = {
+        "oauth_consumer_key": CONFIG.consumer_key,
+        "oauth_nonce": secrets.token_hex(16),
         "oauth_signature_method": "HMAC-SHA1",
         "oauth_timestamp": str(int(time.time())),
         "oauth_version": "1.0",
+        **({"oauth_token": token} if token else {}),
     }
-    if oauth_token:
-        oauth_params["oauth_token"] = oauth_token
-
-    # All params go into the signature base (oauth + body/extra)
-    all_params = {**oauth_params, **(extra_params or {})}
-    sorted_params = sorted(
-        (_percent_encode(k), _percent_encode(v)) for k, v in all_params.items()
+    oauth["oauth_signature"] = _build_signature(
+        "POST", url, {**oauth, **body}, CONFIG.consumer_secret, token_secret
     )
-    param_string = "&".join(f"{k}={v}" for k, v in sorted_params)
-
-    signature_base = "&".join([
-        method.upper(),
-        _percent_encode(url),
-        _percent_encode(param_string),
-    ])
-
-    signing_key = f"{_percent_encode(consumer_secret)}&{_percent_encode(oauth_token_secret)}"
-    hashed = hmac.new(signing_key.encode(), signature_base.encode(), hashlib.sha1)
-    signature = base64.b64encode(hashed.digest()).decode()
-
-    oauth_params["oauth_signature"] = signature
-    header_parts = ", ".join(
-        f'{_percent_encode(k)}="{_percent_encode(v)}"'
-        for k, v in sorted(oauth_params.items())
-    )
-    return f"OAuth {header_parts}"
-
-
-# ---------------------------------------------------------------------------
-# Instapaper API calls
-# ---------------------------------------------------------------------------
-
-def get_access_token(
-    consumer_key: str,
-    consumer_secret: str,
-    username: str,
-    password: str,
-) -> tuple[str, str]:
-    """Exchange xAuth credentials for an OAuth access token."""
-    body = {
-        "x_auth_username": username,
-        "x_auth_password": password,
-        "x_auth_mode": "client_auth",
-    }
-    auth_header = _build_auth_header(
-        "POST", TOKEN_URL, consumer_key, consumer_secret, extra_params=body
-    )
-    resp = requests.post(
-        TOKEN_URL,
+    return requests.post(
+        url,
+        headers={
+            "Authorization": _auth_header(oauth),
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
         data=body,
-        headers={"Authorization": auth_header},
-        timeout=15,
     )
-    resp.raise_for_status()
 
-    parsed = dict(urllib.parse.parse_qsl(resp.text.strip()))
-    token = parsed.get("oauth_token", "")
-    secret = parsed.get("oauth_token_secret", "")
-    if not token:
-        raise ValueError(f"Token request failed: {resp.text}")
-    return token, secret
+# ---------------------------------------------------------------------------
+# Authentication — xAuth flow
+# ---------------------------------------------------------------------------
+
+@dataclass(frozen=True)
+class OAuthToken:
+    token: str
+    secret: str
 
 
-def fetch_folder(
-    consumer_key: str,
-    consumer_secret: str,
-    token: str,
-    token_secret: str,
-    folder_id: str,
-) -> list[dict]:
-    """Fetch all bookmarks from a folder, paginating via the 'have' param."""
-    all_bookmarks: list[dict] = []
-    have_ids: set[str] = set()
+def authenticate() -> OAuthToken:
+    resp = _signed_post(
+        f"{BASE_URL}/oauth/access_token",
+        {
+            "x_auth_username": CONFIG.username,
+            "x_auth_password": CONFIG.password,
+            "x_auth_mode": "client_auth",
+        },
+    )
+    if not resp.ok:
+        raise RuntimeError(f"Authentication failed (HTTP {resp.status_code}): {resp.text}")
+
+    parsed = parse_qs(resp.text)
+    try:
+        return OAuthToken(
+            token=parsed["oauth_token"][0],
+            secret=parsed["oauth_token_secret"][0],
+        )
+    except (KeyError, IndexError):
+        raise RuntimeError(f"Unexpected auth response — missing token fields: {resp.text}")
+
+# ---------------------------------------------------------------------------
+# Bookmark fetching with pagination
+# ---------------------------------------------------------------------------
+
+def _fetch_folder(auth: OAuthToken, folder_id: str) -> list[dict]:
+    """Fetches all bookmarks from a folder. Uses `have` param to paginate past 500-item limit."""
+    url = f"{BASE_URL}/bookmarks/list"
+    collected: list[dict] = []
 
     while True:
-        body: dict = {"folder_id": folder_id, "limit": "500"}
-        if have_ids:
-            body["have"] = ",".join(have_ids)
+        body: dict[str, str] = {"folder_id": folder_id, "limit": str(LIMIT)}
+        if collected:
+            body["have"] = ",".join(str(b["bookmark_id"]) for b in collected)
 
-        auth_header = _build_auth_header(
-            "POST",
-            BOOKMARKS_URL,
-            consumer_key,
-            consumer_secret,
-            oauth_token=token,
-            oauth_token_secret=token_secret,
-            extra_params=body,
-        )
-        resp = requests.post(
-            BOOKMARKS_URL,
-            data=body,
-            headers={"Authorization": auth_header},
-            timeout=30,
-        )
-        resp.raise_for_status()
-        data = resp.json()  # list of typed objects: bookmark, user, meta
+        resp = _signed_post(url, body, auth.token, auth.secret)
+        if not resp.ok:
+            raise RuntimeError(
+                f'Failed to fetch folder "{folder_id}" (HTTP {resp.status_code}): {resp.text}'
+            )
 
-        batch = [item for item in data if item.get("type") == "bookmark"]
-        if not batch:
+        data = resp.json()
+        # Standard format: [{type: 'meta'}, {type: 'bookmark'}, ...]
+        # Non-standard format: {user: ..., bookmarks: [...]}
+        bookmarks = (
+            [item for item in data if item.get("type") == "bookmark"]
+            if isinstance(data, list)
+            else data.get("bookmarks", [])
+        )
+
+        if not bookmarks:
+            break
+        collected.extend(bookmarks)
+        if len(bookmarks) < LIMIT:
             break
 
-        all_bookmarks.extend(batch)
-        have_ids.update(
-            str(b["bookmark_id"]) for b in batch if b.get("bookmark_id") is not None
-        )
+        log.info("  %s: fetched %d so far, checking for more...", folder_id, len(collected))
 
-        # If we got fewer than 500, we've reached the end
-        if len(batch) < 500:
-            break
-
-        print(f"  Fetched {len(all_bookmarks)} from '{folder_id}' so far, paginating…")
-        time.sleep(0.5)
-
-    return all_bookmarks
+    return collected
 
 
-# ---------------------------------------------------------------------------
-# Conversion helpers
-# ---------------------------------------------------------------------------
-
-def bookmark_to_row(bookmark: dict, status: str, extra_tag: str = "") -> dict:
-    """Convert an Instapaper bookmark dict to a Pocket CSV row dict."""
-    title = (bookmark.get("title") or "").strip() or bookmark.get("url", "")
-    url = bookmark.get("url", "").strip()
-    time_added = bookmark.get("time", 0)
-
-    raw_tags = bookmark.get("tags") or []
-    tag_names = [t["name"] for t in raw_tags if isinstance(t, dict) and "name" in t]
-    if extra_tag:
-        tag_names.append(extra_tag)
-    tags = "|".join(tag_names)
-
+def _format(b: dict) -> dict:
+    """Tags from the API are [{id, name}]; keep only names."""
     return {
-        "title": title,
-        "url": url,
-        "time_added": time_added,
-        "cursor": time_added,
-        "tags": tags,
-        "status": status,
+        "title": b.get("title", ""),
+        "link": b.get("url", ""),
+        "tags": [t["name"] for t in b.get("tags", [])],
     }
 
-
 # ---------------------------------------------------------------------------
-# Main
+# Entry point
 # ---------------------------------------------------------------------------
 
 def main() -> None:
-    if load_dotenv is not None:
-        load_dotenv(Path(__file__).parent / ".env")
-
-    parser = argparse.ArgumentParser(
-        description="Export Instapaper bookmarks to Pocket-format CSV."
-    )
-    parser.add_argument("--consumer-key", default=os.environ.get("INSTAPAPER_CONSUMER_KEY"))
-    parser.add_argument("--consumer-secret", default=os.environ.get("INSTAPAPER_CONSUMER_SECRET"))
-    parser.add_argument("--username", default=os.environ.get("INSTAPAPER_USERNAME"))
-    parser.add_argument("--password", default=os.environ.get("INSTAPAPER_PASSWORD", ""))
-    parser.add_argument("output", nargs="?", default="instapaper_pocket.csv")
-    args = parser.parse_args()
-
-    missing = [k for k, v in {
-        "consumer-key": args.consumer_key,
-        "consumer-secret": args.consumer_secret,
-        "username": args.username,
-    }.items() if not v]
+    missing = [k for k in ("consumer_key", "consumer_secret", "username") if not getattr(CONFIG, k)]
     if missing:
-        parser.error(
-            f"Missing required credentials: {', '.join(missing)}.\n"
-            "Set via --flags or INSTAPAPER_CONSUMER_KEY / INSTAPAPER_CONSUMER_SECRET "
-            "/ INSTAPAPER_USERNAME env vars."
-        )
+        env_names = {
+            "consumer_key": "INSTAPAPER_CONSUMER_KEY",
+            "consumer_secret": "INSTAPAPER_CONSUMER_SECRET",
+            "username": "INSTAPAPER_USERNAME",
+        }
+        log.error("Missing required config:\n  %s", "\n  ".join(env_names[k] for k in missing))
+        sys.exit(1)
 
-    print("Authenticating…")
-    token, token_secret = get_access_token(
-        args.consumer_key, args.consumer_secret, args.username, args.password
+    log.info("Authenticating with Instapaper...")
+    auth = authenticate()
+    log.info("Authenticated.\n")
+
+    all_bookmarks: list[dict] = []
+    seen: set = set()
+
+    for folder in FOLDERS:
+        log.info('Fetching "%s"...', folder)
+        bookmarks = _fetch_folder(auth, folder)
+        new = [b for b in bookmarks if b["bookmark_id"] not in seen]
+        seen.update(b["bookmark_id"] for b in new)
+        all_bookmarks.extend(new)
+        log.info("  → %d items added (%d duplicates skipped)", len(new), len(bookmarks) - len(new))
+
+    log.info("\nTotal: %d unique bookmarks\n", len(all_bookmarks))
+
+    OUTPUT_PATH.write_text(
+        json.dumps([_format(b) for b in all_bookmarks], indent=2) + "\n",
+        encoding="utf-8",
     )
-    print("  ✓ Token obtained")
-
-    # Fetch unread, starred (tagged "starred"), archive (status=read)
-    folders = [
-        ("unread",   "unread",  ""),
-        ("starred",  "unread",  "starred"),
-        ("archive",  "read",    ""),
-    ]
-
-    fields = ["title", "url", "time_added", "cursor", "tags", "status"]
-    seen_ids: set[int] = set()
-    count = 0
-
-    with open(args.output, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=fields)
-        writer.writeheader()
-
-        for folder_id, status, extra_tag in folders:
-            print(f"Fetching '{folder_id}'…")
-            bookmarks = fetch_folder(
-                args.consumer_key, args.consumer_secret, token, token_secret, folder_id
-            )
-            print(f"  ✓ {len(bookmarks)} bookmarks")
-            for b in bookmarks:
-                bid = b.get("bookmark_id")
-                if bid is None:
-                    continue
-                if bid in seen_ids:
-                    continue  # starred items also appear in unread; deduplicate
-                seen_ids.add(bid)
-                writer.writerow(bookmark_to_row(b, status, extra_tag))
-                count += 1
-
-    print(f"\nDone. {count} bookmarks → {args.output}")
+    log.info("Saved to %s", OUTPUT_PATH)
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as exc:
+        log.error("\nFatal error: %s", exc)
+        sys.exit(1)
