@@ -60,6 +60,7 @@ brew install ack \
   neovim \
   noxdir \
   osv-scanner \
+  pandoc \
   pnpm \
   pyenv \
   rclone \

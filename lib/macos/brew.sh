@@ -110,6 +110,7 @@ action "installing packages"
   node \
   ntfs-3g-mac \
   osv-scanner \
+  pandoc \
   p7zip \
   pkg-config \
   pinentry-mac \
