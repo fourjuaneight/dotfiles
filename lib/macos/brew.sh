@@ -51,6 +51,7 @@ action "installing packages"
   ack \
   ansible \
   aom \
+  bun \
   certbot \
   charmbracelet/tap/crush \
   charmbracelet/tap/mods \
@@ -85,6 +86,7 @@ action "installing packages"
   jq \
   knqyf263/pet/pet \
   libjpeg \
+  libheif \
   libmemcached \
   libvips \
   lindell/multi-gitter/multi-gitter \
@@ -157,12 +159,10 @@ action "installing casks"
 /opt/homebrew/bin/brew install --cask 1password \
   affinity-designer@1 \
   alacritty \
-  anydesk \
   audio-hijack \
   burn \
   cleanshot \
   contexts \
-  discord \
   fission \
   gemini \
   handbrake \
@@ -170,22 +170,22 @@ action "installing casks"
   iina \
   imageoptim \
   jordanbaird-ice \
+  jellyfin \
   keyboard-cowboy \
   keyboard-maestro \
   loopback \
-  plex-media-server \
   macfuse \
   meta \
   raycast \
   screens-connect \
   signal \
   soundsource \
-  streamrip \
-  swinsian \
   tableplus \
+  taphouse \
   tower \
   transmit \
-  visual-studio-code
+  visual-studio-code \
+  zed
 
 action "cleaning up"
 /opt/homebrew/bin/brew cleanup
