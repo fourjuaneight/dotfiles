@@ -174,6 +174,7 @@ action "installing casks"
   keyboard-cowboy \
   keyboard-maestro \
   loopback \
+  losslesscut \
   macfuse \
   meta \
   raycast \
