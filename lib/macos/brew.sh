@@ -45,6 +45,8 @@ action "tapping 3rd party repos"
 /opt/homebrew/bin/brew install speedtest
 /opt/homebrew/bin/brew tap crumbyte/noxdir
 /opt/homebrew/bin/brew install noxdir
+/opt/homebrew/bin/brew tap darrylmorley/whatcable
+/opt/homebrew/bin/brew install --cask whatcable
 
 action "installing packages"
 /opt/homebrew/bin/brew install 1password-cli \
