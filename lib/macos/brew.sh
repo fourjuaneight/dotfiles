@@ -178,6 +178,7 @@ action "installing casks"
   macfuse \
   meta \
   raycast \
+  rustdesk \
   signal \
   tableplus \
   tower \
