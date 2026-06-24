@@ -159,12 +159,10 @@ action "installing complicated packages"
 /opt/homebrew/bin/brew tap iina/homebrew-mpv-iina
 
 action "installing casks"
-/opt/homebrew/bin/brew install --cask 1password \
-  affinity-designer@1 \
+/opt/homebrew/bin/brew install --cask affinity-designer@1 \
   alacritty \
   audio-hijack \
   burn \
-  cleanshot \
   contexts \
   fission \
   gemini \
@@ -174,18 +172,14 @@ action "installing casks"
   imageoptim \
   jordanbaird-ice \
   jellyfin \
-  keyboard-cowboy \
   keyboard-maestro \
   loopback \
   losslesscut \
   macfuse \
   meta \
   raycast \
-  screens-connect \
   signal \
-  soundsource \
   tableplus \
-  taphouse \
   tower \
   transmit \
   visual-studio-code \
