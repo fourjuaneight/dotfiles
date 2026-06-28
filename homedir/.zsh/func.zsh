@@ -940,7 +940,7 @@ gpr() {
 }
 
 # git reset soft to commit id
-grs() {
+grsc() {
   local commits commit
   commits=$(git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --reverse) &&
     commit=$(echo "$commits" | fzf --ansi --tac --no-sort --exact) &&
