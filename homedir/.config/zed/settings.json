@@ -13,8 +13,8 @@
   "agent_servers": {
     "claude-acp": {
       "default_config_options": {
-        "model": "opus",
-        "effort": "max",
+        "model": "sonnet[1m]",
+        "effort": "high",
         "mode": "acceptEdits"
       },
       "type": "registry"
