@@ -1,37 +1,62 @@
+name: komga
+
 services:
-  komga:
-    image: gotson/komga
-    container_name: komga
+  tailscale:
+    image: tailscale/tailscale:latest
     restart: unless-stopped
-    volumes:
-      - type: bind
-        source: ~/.config/komga
-        target: /config
-      - type: bind
-        source: ~/.config/komga/data
-        target: /data
-      - type: bind
-        source: /etc/timezone
-        target: /etc/timezone
-        read_only: true
-      - type: bind
-        source: /media/Books
-        target: /Books
-        read_only: true
-      - type: bind
-        source: /media/Comics
-        target: /Comics
-        read_only: true
-      - type: bind
-        source: /media/Manga
-        target: /Manga
-        read_only: true
-      - type: bind
-        source: /media/Documents/Magazines
-        target: /Magazines
-        read_only: true
-    ports:
-      - 25600:25600
-    user: "1000:1000"
+    hostname: komga
+    networks:
+      - internal
     environment:
-      KOMGA_LIBRARIES_SCAN_STARTUP: "true"
+      - TS_AUTHKEY=${KOMGA_TS_AUTHKEY}
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_SOCKET=/var/run/tailscale/tailscaled.sock
+      - TS_SERVE_CONFIG=/config/serve.komga.json
+      - TS_TAILSCALED_EXTRA_ARGS=--port=0
+      - TS_AUTH_ONCE=true
+      - TS_ENABLE_HEALTH_CHECK=true
+      - TS_LOCAL_ADDR_PORT=127.0.0.1:41234
+    command: sh -c "rm -f /var/run/tailscale/tailscaled.sock && /usr/local/bin/containerboot"
+    volumes:
+      - ./serve.komga.json:/config/serve.komga.json:ro
+      - tailscale-state:/var/lib/tailscale
+      - tailscale-sock:/var/run/tailscale
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  komga:
+    image: gotson/komga:latest
+    restart: unless-stopped
+    networks:
+      internal:
+        aliases:
+          - komga-app
+    user: "1000:1000"
+    volumes:
+      - ~/.config/komga:/config
+      - ~/.config/komga/data:/data
+      - /Volumes/Sergio/Books:/Books:ro
+      - /Volumes/Sergio/Comics:/Comics:ro
+      - /Volumes/Sergio/Magazines:/Magazines:ro
+    environment:
+      - TZ=America/New_York
+      - KOMGA_LIBRARIES_SCAN_STARTUP=true
+
+volumes:
+  tailscale-state:
+    name: komga_tailscale-state
+  tailscale-sock:
+    name: komga_tailscale-sock
+
+networks:
+  internal:
+    name: komga_internal
