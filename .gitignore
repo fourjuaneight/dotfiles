@@ -34,6 +34,7 @@ homedir/.scripts/logs
 homedir/.scripts/cache.json
 homedir/.config/zed/prompts/
 homedir/.config/komga
+homedir/.containers/searxng
 Caddyfile*
 serve.*.json
 .vscode
