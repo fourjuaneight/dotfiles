@@ -59,7 +59,6 @@ brew install ack \
   libheif \
   libvips \
   libmemcached \
-  lindell/multi-gitter/multi-gitter \
   mediainfo \
   pandoc \
   pnpm \
@@ -79,12 +78,18 @@ brew install ack \
   yt-dlp &&
 
 action "installing complicated packages"
+brew trust --tap teamookla/speedtest &&
 brew tap teamookla/speedtest &&
 brew install speedtest &&
+
+brew trust --tap crumbyte/noxdir &&
 brew tap crumbyte/noxdir &&
 brew install noxdir &&
+
+brew trust --tap helix-editor/helix &&
 brew tap helix-editor/helix &&
 brew install helix &&
+
 brew install homebrew-ffmpeg/ffmpeg/ffmpeg --with-zimg --with-fdk-aac --with-libsoxr &&
 
 action "cleaning up"
