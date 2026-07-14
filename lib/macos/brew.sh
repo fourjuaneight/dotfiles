@@ -162,6 +162,7 @@ action "installing casks"
 /opt/homebrew/bin/brew install --cask affinity-designer@1 \
   alacritty \
   audio-hijack \
+  balenaetcher \
   burn \
   contexts \
   fission \
