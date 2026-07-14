@@ -15,7 +15,7 @@ done
 ok "done saving fonts."
 
 if [[ "$OSTYPE" != "darwin"* ]]; then
-  action "building font chaches"
+  action "building font caches"
   fc-cache -f -v
-  ok "done building chaches."
+  ok "done building caches."
 fi
