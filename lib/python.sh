@@ -4,12 +4,14 @@ source ~/dotfiles/util/echos.sh
 
 minibot "Ok. Let's try to install some pips."
 
-action "installing python3 packages"
 if [[ "$OSTYPE" == "darwin"* ]]; then
+  action "installing mac python3 packages"
   python3 -m pip install --user b2 brotli fonttools openai psutil pynvim setuptools_rust zopfli Pygments
 elif command -v /home/linuxbrew/.linuxbrew/bin/python3 &>/dev/null; then
-  /home/linuxbrew/.linuxbrew/bin/python3 -m pip install b2 brotli fonttools openai psutil pynvim setuptools_rust zopfli Pygments
+  action "installing linux python3 packages"
+  /home/linuxbrew/.linuxbrew/bin/python3 -m pip install --user --break-system-packages b2 brotli fonttools zopfli Pygments
 else
+  action "installing python3 packages"
   python3 -m pip install --user --break-system-packages b2 brotli fonttools openai psutil pynvim setuptools_rust zopfli Pygments
 fi
 
