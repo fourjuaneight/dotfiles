@@ -45,3 +45,8 @@ if [[ "$SHELL" != "$(which zsh)" ]]; then
 else
   ok "zsh already default."
 fi
+
+action "installing tailscale"
+curl -fsSL https://tailscale.com/install.sh | sh
+
+ok "done!"
