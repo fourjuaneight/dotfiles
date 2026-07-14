@@ -5,7 +5,7 @@ source ~/dotfiles/util/echos.sh
 bot "Installing Homebrew."
 
 running "checking homebrew..."
-brew_bin=$(which brew) 2>&1 >/dev/null
+brew_bin=$(command -v brew) 2>/dev/null
 if [[ $? != 0 ]]; then
   action "installing homebrew"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -38,35 +38,43 @@ action "installing packages"
 brew install ack \
   ansible \
   bun \
+  cmake \
   charmbracelet/tap/crush \
   charmbracelet/tap/mods \
   flac \
   fzf \
   gh \
+  ghc \
+  git-lfs \
   gitui \
   glow \
+  go \
   graphicsmagick \
   gum \
   hugo \
   id3v2 \
   imagemagick \
   knqyf263/pet/pet \
+  libconfig \
   libheif \
   libvips \
+  libmemcached \
   lindell/multi-gitter/multi-gitter \
-  mysql \
+  mediainfo \
   pandoc \
   pnpm \
-  postgresql \
+  pyenv \
+  python3 \
   rclone \
   rename \
   restic \
+  rsync \
   streamrip \
   superfile \
+  the_silver_searcher \
   tpm \
   webp \
   whosthere \
-  wireshark \
   witr \
   yt-dlp &&
 
