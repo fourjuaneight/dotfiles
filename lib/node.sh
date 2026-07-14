@@ -15,4 +15,6 @@ eval "$(~/.cargo/bin/fnm env)"
 action "installing global npm dependencies"
 npm i -g eslint glyphhanger next prettier serve tailwindcss typescript puppeteer
 
+npm approve-scripts --allow-scripts-pending
+
 ok "done taking up half our storage."
