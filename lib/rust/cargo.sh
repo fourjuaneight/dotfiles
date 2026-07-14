@@ -20,7 +20,7 @@ cargo install atuin \
   diskonaut \
   du-dust \
   dua-cli \
-  exa \
+  eza \
   fd-find \
   fnm \
   frum \
@@ -30,7 +30,6 @@ cargo install atuin \
   git-interactive-rebase-tool \
   gping \
   halp \
-  inlyne \
   os_info_cli \
   procs \
   ripgrep \
