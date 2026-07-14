@@ -52,6 +52,7 @@ services:
       - SEARXNG_QUERY_URL=http://searxng:8080/search?q=<query>
       - WEB_SEARCH_RESULT_COUNT=3
       - WEBUI_URL=https://ollama.spotted-barometric.ts.net
+      - RAG_SYSTEM_CONTEXT=True
     volumes:
       - openwebui-data:/app/backend/data
     depends_on:
