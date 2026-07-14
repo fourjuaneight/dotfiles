@@ -59,12 +59,9 @@ action "installing packages"
   charmbracelet/tap/mods \
   cmake \
   cocoapods \
-  colima \
   curl \
-  dog \
   duti \
   flac \
-  flyctl \
   fswatch \
   fx \
   fzf \
@@ -152,8 +149,6 @@ action "installing packages"
 
 action "installing complicated packages"
 /opt/homebrew/bin/brew install homebrew-ffmpeg/ffmpeg/ffmpeg --with-zimg --with-fdk-aac --with-libsoxr
-/opt/homebrew/bin/brew tap heroku/brew
-/opt/homebrew/bin/brew install heroku
 /opt/homebrew/bin/brew tap helix-editor/helix
 /opt/homebrew/bin/brew install helix
 /opt/homebrew/bin/brew tap iina/homebrew-mpv-iina

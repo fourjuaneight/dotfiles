@@ -7,12 +7,9 @@ source $HOME/.cargo/env
 
 action "installing fuzzy packages"
 cargo install --locked bat
-cargo install --locked deno
 cargo install --locked pueue
 cargo install --locked sheldon
 cargo install --locked starship
-
-cargo install --git https://github.com/tbillington/kondo kondo
 
 action "installing normal packages"
 cargo install atuin \
@@ -39,10 +36,8 @@ cargo install atuin \
   ripgrep \
   rm-improved \
   rustscan \
-  scriptisto \
   sd \
   skim \
-  sigrs \
   stdrename \
   topgrade \
   tree-rs \
