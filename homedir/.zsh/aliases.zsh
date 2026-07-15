@@ -24,7 +24,7 @@ alias plexperm="sudo chown -R plex.plex"
 alias pueue="pueue -c ~/.config/pueue/pueue.yml"
 alias srm="sudo ~/.cargo/bin/rip -i"
 alias scat="sudo ~/.cargo/bin/bat"
-alias sls="sudo ~/.cargo/bin/exa"
+alias sls="sudo ~/.cargo/bin/eza"
 
 alias 4k2ipod="bash ~/.scripts/4k2ipod.sh"
 alias musicSorter="bash ~/.scripts/musicSorter.sh"
@@ -49,10 +49,10 @@ alias cat="bat"
 alias rmf="yes | rip -i"
 
 # alternatives to 'ls'
-alias ls="exa"
-alias ll="exa -l"
-alias la="exa -a"
-alias lal="exa -al"
+alias ls="eza"
+alias ll="eza -l"
+alias la="eza -a"
+alias lal="eza -al"
 alias lc="find . -type f ! -name '*.sha256' ! -name '.DS_Store*' ! -name '.localized*' | wc -l"
 
 # alternative to 'tree'
