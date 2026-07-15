@@ -26,3 +26,13 @@ action "installing EmuDeck"
 sh -c 'curl -L https://raw.githubusercontent.com/dragoonDorise/EmuDeck/main/install.sh | bash'
 
 ok "done installing EmuDeck."
+
+action "setting zsh as default shell"
+if [[ "$SHELL" != "$(which zsh)" ]]; then
+  echo "$(which zsh)" | sudo tee -a /etc/shells
+  chsh -s "$(which zsh)"
+
+  ok "zsh set as default. Log out and back in to activate."
+else
+  ok "zsh already default."
+fi

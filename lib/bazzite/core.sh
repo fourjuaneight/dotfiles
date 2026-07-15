@@ -32,20 +32,6 @@ podman pull docker.io/certbot/certbot:latest
 
 ok "done installing containerized services."
 
-action "checking zsh"
-if ! command -v zsh &>/dev/null; then
-  running "zsh not found, installing..."
-  rpm-ostree install --apply-live zsh
-fi
-
-action "setting zsh as default shell"
-if [[ "$SHELL" != "$(which zsh)" ]]; then
-  chsh -s "$(which zsh)"
-  ok "zsh set as default. Log out and back in to activate."
-else
-  ok "zsh already default."
-fi
-
 action "installing tailscale"
 curl -fsSL https://tailscale.com/install.sh | sh
 
