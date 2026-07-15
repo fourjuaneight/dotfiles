@@ -14,19 +14,6 @@ sudo setcap cap_net_raw+ep ~/.cargo/bin/rustscan
 
 ok "done setting capabilities."
 
-action "adding Visual Studio Code repository"
-sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
-
-action "installing Visual Studio Code"
-rpm-ostree install code
-
-ok "done installing Visual Studio Code."
-
-action "installing EmuDeck"
-sh -c 'curl -L https://raw.githubusercontent.com/dragoonDorise/EmuDeck/main/install.sh | bash'
-
-ok "done installing EmuDeck."
-
 action "setting zsh as default shell"
 if [[ "$SHELL" != "$(which zsh)" ]]; then
   echo "$(which zsh)" | sudo tee -a /etc/shells
@@ -36,3 +23,21 @@ if [[ "$SHELL" != "$(which zsh)" ]]; then
 else
   ok "zsh already default."
 fi
+
+action "adding Visual Studio Code repository"
+sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+
+action "installing Visual Studio Code"
+rpm-ostree install code
+
+ok "done installing Visual Studio Code."
+
+action "installing Tailscale"
+curl -fsSL https://tailscale.com/install.sh | sh
+
+ok "done installing Tailscale."
+
+action "installing EmuDeck"
+sh -c 'curl -L https://raw.githubusercontent.com/dragoonDorise/EmuDeck/main/install.sh | bash'
+
+ok "done installing EmuDeck."
