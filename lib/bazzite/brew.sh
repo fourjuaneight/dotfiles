@@ -71,11 +71,13 @@ brew install ack \
   streamrip \
   superfile \
   the_silver_searcher \
+  tmux \
   tpm \
   webp \
   whosthere \
   witr \
-  yt-dlp &&
+  yt-dlp \
+  zsh &&
 
 action "installing complicated packages"
 brew trust --tap teamookla/speedtest &&
