@@ -21,3 +21,8 @@ action "installing Visual Studio Code"
 rpm-ostree install code
 
 ok "done installing Visual Studio Code."
+
+action "installing EmuDeck"
+sh -c 'curl -L https://raw.githubusercontent.com/dragoonDorise/EmuDeck/main/install.sh | bash'
+
+ok "done installing EmuDeck."
