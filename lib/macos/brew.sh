@@ -173,6 +173,7 @@ action "installing casks"
   losslesscut \
   macfuse \
   meta \
+  moonlight \
   raycast \
   rustdesk \
   signal \
