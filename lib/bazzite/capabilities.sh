@@ -37,6 +37,11 @@ curl -fsSL https://tailscale.com/install.sh | sh
 
 ok "done installing Tailscale."
 
+action "installing Decky Loader"
+curl -L https://github.com/SteamDeckHomebrew/decky-installer/releases/latest/download/install_release.sh | sh
+
+ok "done installing Decky Loader."
+
 action "installing EmuDeck"
 sh -c 'curl -L https://raw.githubusercontent.com/dragoonDorise/EmuDeck/main/install.sh | bash'
 
