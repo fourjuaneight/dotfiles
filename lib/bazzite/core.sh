@@ -16,6 +16,8 @@ rpm-ostree install --apply-live \
   pkg-config \
   wayland-devel
 
+rpm-ostree install python3-evdev
+
 ok "done installing dependencies."
 
 action "installing Wireshark via Flatpak"
