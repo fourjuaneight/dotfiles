@@ -2,11 +2,11 @@
   "folders": [
     {
       "name": "Showrunner",
-      "path": "/home/fourjuaneight/showrunner"
+      "path": "~/showrunner"
     },
     {
       "name": "Tenjin",
-      "path": "/home/fourjuaneight/tenjin"
+      "path": "~/tenjin"
     }
   ],
   "extensions": {

@@ -91,7 +91,7 @@ zmodload zsh/zprof
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # fnm
-export PATH=/home/fourjuaneight/.fnm:$PATH
+export PATH=~/.fnm:$PATH
 zsh-defer eval "`fnm env`"
 
 # SKIM
@@ -137,7 +137,7 @@ esac
 # pnpm end
 
 # bun completions
-[ -s "/Users/juanvillela/.bun/_bun" ] && source "/Users/juanvillela/.bun/_bun"
+[ -s "~/.bun/_bun" ] && source "~/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"

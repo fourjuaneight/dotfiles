@@ -13,8 +13,9 @@
   "agent_servers": {
     "claude-acp": {
       "default_config_options": {
+        "fast": true,
         "model": "opus",
-        "effort": "xhigh",
+        "effort": "high",
         "mode": "acceptEdits"
       },
       "type": "registry"

@@ -2,11 +2,11 @@
   "folders": [
     {
       "name": "Dotfiles",
-      "path": "/home/fourjuaneight/dotfiles"
+      "path": "~/dotfiles"
     },
     {
       "name": "Codespace",
-      "path": "/home/fourjuaneight/Repos/development"
+      "path": "~/Repos/development"
     },
   ],
   "extensions": {

@@ -2,15 +2,15 @@
   "folders": [
     {
       "name": "Archiver",
-      "path": "/home/fourjuaneight/Repos/archiver"
+      "path": "~/Repos/archiver"
     },
     {
       "name": "Bookmarker",
-      "path": "/home/fourjuaneight/Repos/bookmarker"
+      "path": "~/Repos/bookmarker"
     },
     {
       "name": "Scriptable",
-      "path": "/home/fourjuaneight/Repos/scriptable"
+      "path": "~/Repos/scriptable"
     }
   ],
   "extensions": {
