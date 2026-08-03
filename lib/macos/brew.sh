@@ -53,6 +53,7 @@ action "installing packages"
   ack \
   ansible \
   aom \
+  bitwarden-cli \
   bun \
   certbot \
   charmbracelet/tap/crush \
