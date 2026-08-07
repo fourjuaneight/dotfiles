@@ -127,10 +127,17 @@ convert_to_alac() {
     fi
 
     mkdir -p "$(dirname "$outfile")"
+    # Target is iPod Classic 6th gen: stock firmware tops out at 16-bit/48kHz,
+    # so everything is normalized to 44.1kHz/16-bit ALAC.
+    # -af soxr      : high-quality resampler (default swr overshoots on loud masters)
+    # -af alimiter  : catches resample overshoot in float, prevents clipped samples (clicks)
+    # -af dither    : triangular_hp dither for the 24->16 bit reduction
     # -map 0:a      : include audio streams
     # -map 0:v?     : include video streams if present (commonly embedded cover art)
     # -map_metadata : copy tags from source
-    if ffmpeg -y -loglevel warning -i "$file" -ar 44100 -c:a alac -c:v copy -map 0:a -map 0:v? -map_metadata 0 "$outfile" 2>&1; then
+    if ffmpeg -y -nostdin -loglevel warning -i "$file" \
+        -af "aresample=resampler=soxr:precision=28:osr=44100:out_sample_fmt=fltp,alimiter=limit=0.998:level=false,aresample=dither_method=triangular_hp" \
+        -sample_fmt s16p -c:a alac -c:v copy -map 0:a -map 0:v? -map_metadata 0 "$outfile" 2>&1; then
         log "Converted to ALAC: $relpath"
     else
         log "ERROR: Failed to convert to ALAC: $relpath"
@@ -156,10 +163,10 @@ convert_to_aac() {
     local ok=0
     if [[ "$AAC_ENCODER" == "libfdk_aac" ]]; then
         # libfdk_aac VBR mode.
-        ffmpeg -y -loglevel warning -i "$file" -ar 44100 -ac 2 -c:a libfdk_aac -profile:a aac_low -vbr 4 -c:v copy -disposition:v attached_pic -map 0:a -map 0:v? -map_metadata 0 "$outfile" 2>&1 || ok=1
+        ffmpeg -y -nostdin -loglevel warning -i "$file" -af "aresample=resampler=soxr:precision=28:osr=44100:out_sample_fmt=fltp,alimiter=limit=0.998:level=false" -ac 2 -c:a libfdk_aac -profile:a aac_low -vbr 4 -c:v copy -disposition:v attached_pic -map 0:a -map 0:v? -map_metadata 0 "$outfile" 2>&1 || ok=1
     else
         # Built-in encoder fallback: quality-based VBR (smaller is higher quality).
-        ffmpeg -y -loglevel warning -i "$file" -ar 44100 -ac 2 -c:a aac -q:a 2 -c:v copy -disposition:v attached_pic -map 0:a -map 0:v? -map_metadata 0 "$outfile" 2>&1 || ok=1
+        ffmpeg -y -nostdin -loglevel warning -i "$file" -af "aresample=resampler=soxr:precision=28:osr=44100:out_sample_fmt=fltp,alimiter=limit=0.998:level=false" -ac 2 -c:a aac -q:a 2 -c:v copy -disposition:v attached_pic -map 0:a -map 0:v? -map_metadata 0 "$outfile" 2>&1 || ok=1
     fi
 
     if [[ "$ok" -eq 0 ]]; then
